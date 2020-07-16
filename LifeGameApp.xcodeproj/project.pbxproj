@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
 		E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* ContentView.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */; };
@@ -62,7 +63,6 @@
 		E5D9F26C24BEBDBD009A526B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E5D9F27224BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5D9F28724BEBDD5009A526B /* LifeGame */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LifeGame; path = ../../LifeGame; sourceTree = "<group>"; };
 		E5FA934124C0570800229AAA /* CircleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleStyle.swift; sourceTree = "<group>"; };
 		E5FA934524C05F5100229AAA /* RoundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundStyle.swift; sourceTree = "<group>"; };
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */,
 				E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +124,6 @@
 				E5FA934424C05E8F00229AAA /* Styles */,
 				E5FA934A24C07A3D00229AAA /* Model */,
 				E5FA934E24C07ACE00229AAA /* Extensions */,
-				E5D9F28724BEBDD5009A526B /* LifeGame */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -251,6 +251,7 @@
 			name = "LifeGameApp (iOS)";
 			packageProductDependencies = (
 				E5BA30B524BEE444002D0564 /* LifeGame */,
+				E51836EA24C0AA3B00DDE3A6 /* LifeGame */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = E5D9F25124BEBDBD009A526B /* LifeGameApp.app */;
@@ -343,6 +344,9 @@
 				Base,
 			);
 			mainGroup = E5D9F24424BEBDBC009A526B;
+			packageReferences = (
+				E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */,
+			);
 			productRefGroup = E5D9F25224BEBDBD009A526B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -792,7 +796,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/YusukeHosonuma/LifeGame";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		E51836EA24C0AA3B00DDE3A6 /* LifeGame */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
+			productName = LifeGame;
+		};
 		E5BA30B524BEE444002D0564 /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LifeGame;

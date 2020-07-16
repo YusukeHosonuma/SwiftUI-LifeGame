@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LifeGame",
+        "repositoryURL": "https://github.com/YusukeHosonuma/LifeGame",
+        "state": {
+          "branch": "main",
+          "revision": "fa77524f3602ecb94810f9654fff7b3e07d85bf8",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
