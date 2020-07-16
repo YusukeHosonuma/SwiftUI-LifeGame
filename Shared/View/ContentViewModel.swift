@@ -17,7 +17,7 @@ enum AnimationState {
 }
 
 final class ContentViewModel: ObservableObject {
-    @Published var board = Board(size: 13)
+    @Published var board: LifeGameBoard = .init(size: 13)
     @Published var animationState: AnimationState = .stoped
     @Published var speed = 0.5
     @Published var playButtonDisabled: Bool = true
@@ -64,7 +64,7 @@ final class ContentViewModel: ObservableObject {
     }
     
     func tapClear() {
-        self.board = Board(size: 13)
+        self.board = .init(size: 13)
     }
 
     func onSliderChanged(_ ediging: Bool) {

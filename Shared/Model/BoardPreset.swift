@@ -18,10 +18,10 @@ enum BoardPreset: CaseIterable {
         }
     }
 
-    var board: Board {
+    var board: LifeGameBoard {
         switch self {
         case .spaceShip:
-            return Board(size: 13, cells: [
+            return .init(size: 13, cells: [
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -38,7 +38,7 @@ enum BoardPreset: CaseIterable {
             ])
 
         case .nebura:
-            return Board(size: 13, cells: [
+            return .init(size: 13, cells: [
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0,

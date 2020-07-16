@@ -103,8 +103,8 @@ struct BoardView: View {
         VStack {
             ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
                 HStack {
-                    ForEach(row.withIndex(), id: \.0) { x, cellState in
-                        cellButton(x: x, y: y, state: cellState)
+                    ForEach(row.withIndex(), id: \.0) { x, cell in
+                        cellButton(x: x, y: y, cell: cell)
                     }
                 }
                 .padding(4)
@@ -112,22 +112,22 @@ struct BoardView: View {
         }
     }
     
-    private func cellButton(x: Int, y: Int, state: CellState) -> some View {
+    private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
         Button(action: {
             viewModel.tapCell(x: x, y: y)
         }) {
             Text("") // TODO: What better to do it?
                 .frame(width: cellSize, height: cellSize, alignment: .center)
-                .background(cellBackgroundColor(state: state))
+                .background(cellBackgroundColor(cell: cell))
                 .border(Color.gray)
         }
     }
     
-    private func cellBackgroundColor(state: CellState) -> Color {
-        switch (colorScheme, state) {
-        case (.light, .dead):  return .white
+    private func cellBackgroundColor(cell: Cell) -> Color {
+        switch (colorScheme, cell) {
+        case (.light, .die):   return .white
         case (.light, .alive): return .black
-        case (.dark,  .dead):  return .black
+        case (.dark,  .die):   return .black
         case (.dark,  .alive): return .white
         case (_, _):
             fatalError()
