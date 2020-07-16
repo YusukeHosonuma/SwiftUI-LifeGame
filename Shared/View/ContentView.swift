@@ -8,140 +8,24 @@
 import SwiftUI
 import LifeGame
 
+// MARK: - Main view
+
 struct ContentView: View {
-    @StateObject var gameManager = GameManager()
+    @StateObject var viewModel = ContentViewModel()
 
     var body: some View {
         VStack {
             Spacer()
-            TopControlView(gameManager: gameManager)
-            BoardView(board: $gameManager.board)
-            ControlView(gameManager: gameManager)
+            TopControlView(viewModel: viewModel)
+            BoardView(viewModel: viewModel)
+            ControlView(viewModel: viewModel)
             Spacer()
-            VStack {
-                Text("Speed")
-                Slider(value: $gameManager.speed, in: 0...1) { ediging in
-                    if ediging && gameManager.animationState == .inProgress {
-                        gameManager.pauseAnimation()
-                    } else {
-                        if gameManager.animationState == .paused {
-                            gameManager.startAnimation()
-                        }
-                    }
-                }
-                .padding()
-            }
+            SpeedSliderView(viewModel: viewModel)
         }
     }
 }
 
-struct TopControlView: View {
-    @State var isPresentAlert = false
-    @State var isPresentSheet = false
-    @ObservedObject var gameManager: GameManager
-
-    var body: some View {
-        HStack {
-            Button("Clear") {
-                isPresentAlert = true
-            }
-            .buttonStyle(RoundStyle(color: .red))
-            .alert(isPresented: $isPresentAlert) {
-                Alert(
-                    title: Text("Do you want to clear?"),
-                    primaryButton: .cancel(),
-                    secondaryButton: .destructive(Text("Clear"), action: { gameManager.clear() }))
-            }
-            Spacer()
-            Button("Presets") {
-                isPresentSheet = true
-            }
-            .buttonStyle(RoundStyle())
-            .actionSheet(isPresented: $isPresentSheet) {
-                ActionSheet(title: Text("Select from presets."), buttons: [
-                    .default(Text("Space ship")) {
-                        gameManager.applyPreset(.spaceShip)
-                    },
-                    .default(Text("Nebura")) {
-                        gameManager.applyPreset(.nebura)
-                    },
-                    .cancel()
-                ])
-            }
-            
-        }
-        .padding()
-    }
-}
-
-struct BoardView: View {
-    @Binding var board: Board
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    
-    func cellBackgroundColor(cell: CellState) -> Color {
-        switch colorScheme {
-        case .light:
-            return cell == .alive ? Color.black : Color.white
-
-        case .dark:
-            return cell == .alive ? Color.white : Color.black
-            
-        @unknown default:
-            fatalError()
-        }
-    }
-    
-    var body: some View {
-        VStack {
-            ForEach(board.rows.withIndex(), id: \.0) { y, row in
-                HStack {
-                    ForEach(row.withIndex(), id: \.0) { x, cell in
-                        Button(action: {
-                            board.toggle(x: x, y: y)
-                        }) {
-                            Text("")
-                                .frame(width: 20, height: 20, alignment: .center)
-                                .background(cellBackgroundColor(cell: cell))
-                                .border(Color.gray)
-                        }
-                    }
-                }
-                .padding(4)
-            }
-        }
-    }
-}
-
-struct ControlView: View {
-    @ObservedObject var gameManager: GameManager
-    
-    var body: some View {
-        HStack {
-            Button(action: {
-                gameManager.startAnimation()
-            }) {
-                Image(systemName: "play.fill")
-            }
-            .disabled(gameManager.animationState != .stop)
-            
-            Button(action: {
-                gameManager.stopAnimation()
-            }) {
-                Image(systemName: "stop.fill")
-            }
-            .disabled(gameManager.animationState != .inProgress)
-            
-            Spacer()
-            
-            Button("Next") {
-                gameManager.stepNext()
-            }
-            .disabled(gameManager.animationState != .stop)
-        }
-        .padding()
-        .buttonStyle(CircleStyle())
-    }
-}
+// MARK: - Preview
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -152,6 +36,140 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
                 .previewDevice("iPhone SE (2nd generation)")
                 .preferredColorScheme(.dark)
+        }
+    }
+}
+
+// MARK: - Subviews
+
+struct TopControlView: View {
+    @ObservedObject var viewModel: ContentViewModel
+
+    // MARK: Private
+    
+    @State private var isPresentedAlert = false
+    @State private var isPresentedSheet = false
+    
+    private var sheetButtons: [ActionSheet.Button] {
+        BoardPreset.allCases.map { preset in
+            .default(Text(preset.displayText)) { viewModel.selectPreset(preset) }
+        } + [.cancel()]
+    }
+    
+    // MARK: View
+    
+    var body: some View {
+        HStack {
+            Button("Clear") {
+                isPresentedAlert.toggle()
+            }
+            .buttonStyle(RoundStyle(color: .red))
+            .alert(isPresented: $isPresentedAlert, content: clearAlert)
+            
+            Spacer()
+            
+            Button("Presets") {
+                isPresentedSheet.toggle()
+            }
+            .buttonStyle(RoundStyle())
+            .actionSheet(isPresented: $isPresentedSheet, content: presetsActionSheet)
+        }
+        .padding()
+    }
+    
+    private func clearAlert() -> Alert {
+        Alert(
+            title: Text("Do you want to clear?"),
+            primaryButton: .cancel(),
+            secondaryButton: .destructive(Text("Clear"), action: viewModel.tapClear))
+    }
+    
+    private func presetsActionSheet() -> ActionSheet {
+        ActionSheet(title: Text("Select from presets"), buttons: sheetButtons)
+    }
+}
+
+struct BoardView: View {
+    @ObservedObject var viewModel: ContentViewModel
+    
+    // MARK: Private
+    
+    private let cellSize: CGFloat = 20
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
+    // MARK: View
+
+    var body: some View {
+        VStack {
+            ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
+                HStack {
+                    ForEach(row.withIndex(), id: \.0) { x, cellState in
+                        cellButton(x: x, y: y, state: cellState)
+                    }
+                }
+                .padding(4)
+            }
+        }
+    }
+    
+    private func cellButton(x: Int, y: Int, state: CellState) -> some View {
+        Button(action: {
+            viewModel.tapCell(x: x, y: y)
+        }) {
+            Text("") // TODO: What better to do it?
+                .frame(width: cellSize, height: cellSize, alignment: .center)
+                .background(cellBackgroundColor(state: state))
+                .border(Color.gray)
+        }
+    }
+    
+    private func cellBackgroundColor(state: CellState) -> Color {
+        switch (colorScheme, state) {
+        case (.light, .dead):  return .white
+        case (.light, .alive): return .black
+        case (.dark,  .dead):  return .black
+        case (.dark,  .alive): return .white
+        case (_, _):
+            fatalError()
+        }
+    }
+}
+
+struct ControlView: View {
+    @ObservedObject var viewModel: ContentViewModel
+    
+    // MARK: View
+    
+    var body: some View {
+        HStack {
+            Button(action: viewModel.tapPlayButton) {
+                Image(systemName: "play.fill")
+            }
+            .disabled(viewModel.playButtonDisabled)
+            
+            Button(action: viewModel.tapStopButton) {
+                Image(systemName: "stop.fill")
+            }
+            .disabled(viewModel.stopButtonDisabled)
+            
+            Spacer()
+            
+            Button("Next", action: viewModel.tapNextButton)
+                .disabled(viewModel.nextButtonDisabled)
+        }
+        .padding()
+        .buttonStyle(CircleStyle())
+    }
+}
+
+struct SpeedSliderView: View {
+    @ObservedObject var viewModel: ContentViewModel
+    
+    var body: some View {
+        VStack {
+            Text("Speed")
+            Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+                .padding()
         }
     }
 }
