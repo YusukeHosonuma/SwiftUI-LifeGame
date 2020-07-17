@@ -1,4 +1,4 @@
-# SwiftUI example of the Life of Game
+# SwiftUI example of the 'Life of Game'
 
 ![screenshot-anime](./Image/screenshot.gif)
 
@@ -26,4 +26,4 @@ Yusuke Hosonuma / [@tobi462](https://twitter.com/tobi462)
 
 ## License
 
-Flatten is available under the MIT license. See the LICENSE file for more info.
+MIT license.
