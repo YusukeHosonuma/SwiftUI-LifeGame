@@ -74,7 +74,7 @@ final class LifeGameContext {
     }
     
     func clear() {
-        _board.value = .init(size: 13)
+        _board.value.clear()
     }
     
     func toggle(x: Int, y: Int) {
