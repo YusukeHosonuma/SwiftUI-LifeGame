@@ -10,98 +10,74 @@ import LifeGame
 import Combine
 import os
 
-enum AnimationState {
-    case inProgress
-    case paused
-    case stoped
-}
-
 final class ContentViewModel: ObservableObject {
-    @Published var board: LifeGameBoard = .init(size: 13)
-    @Published var animationState: AnimationState = .stoped
-    @Published var speed = 0.5
+    @Published var board: LifeGameBoard
+    @Published var speed: Double
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
-
+    
     init() {
-        $animationState
-            .sink { state in
-                self.playButtonDisabled = state != .stoped
-                self.stopButtonDisabled = state != .inProgress
-                self.nextButtonDisabled = state != .stoped
-            }
+        let board = LifeGameBoard(size: 13)
+        let speed = 0.5
+        self.board = board
+        self.speed = speed
+        _context = LifeGameContext(board: board, speed: speed)
+        bind()
+    }
+    
+    private func bind() {
+        _context.board.assign(to: $board)
+        _context.speed.assign(to: $speed)
+        _context.isEnabledPlay.map { !$0 }.assign(to: $playButtonDisabled)
+        _context.isEnabledStop.map { !$0 }.assign(to: $stopButtonDisabled)
+        _context.isEnabledNext.map { !$0 }.assign(to: $nextButtonDisabled)
+        
+        $speed
+            .removeDuplicates()
+            .sink(receiveValue: _context.changeSpeed)
             .store(in: &_cancellables)
+        
+        _context.finishConfigure()
     }
     
     // MARK: - Private
-    
-    private let BaseInterval = 0.05
-    private let _logger = Logger(subsystem: "tech.penginmura.LifeGameApp", category: "ContentViewModel")
-    private var _timerPublisher: Cancellable?
+
+    private var _context: LifeGameContext
     private var _cancellables: [AnyCancellable] = []
-    
+    private let _logger = Logger(subsystem: "tech.penginmura.LifeGameApp", category: "ContentViewModel")
+
     // MARK: - Actions
     
     func tapCell(x: Int, y: Int) {
-        board.toggle(x: x, y: y)
+        _context.toggle(x: x, y: y)
     }
     
     func tapPlayButton() {
-        startAnimation()
+        _context.play()
     }
     
     func tapStopButton() {
-        stopAnimation()
+        _context.stop()
     }
     
     func tapNextButton() {
-        board.next()
+        _context.next()
     }
     
     func selectPreset(_ preset: BoardPreset) {
-        self.board = preset.board
+        _context.setPreset(preset)
     }
     
     func tapClear() {
-        self.board = .init(size: 13)
+        _context.clear()
     }
 
     func onSliderChanged(_ ediging: Bool) {
-        if ediging && animationState == .inProgress {
-            pauseAnimation()
+        if ediging {
+            _context.pause()
         } else {
-            if animationState == .paused {
-                startAnimation()
-            }
+            _context.resume()
         }
-    }
-    
-    // MARK: - Private
-    
-    private func startAnimation() {
-        _logger.notice("Animation: Start - speed: \(self.speed, format: .fixed(precision: 3))")
-        
-        let interval = BaseInterval + (1.0 - self.speed) * 0.8
-        _timerPublisher = Timer.TimerPublisher(interval: interval, runLoop: .main, mode: .default)
-            .autoconnect()
-            .sink { _ in
-                self.board.next()
-            }
-        animationState = .inProgress
-    }
-
-    private func stopAnimation() {
-        _logger.notice("Animation: Stop")
-
-        _timerPublisher?.cancel()
-        animationState = .stoped
-    }
-    
-    private func pauseAnimation() {
-        _logger.notice("Animation: Pause")
-        
-        _timerPublisher?.cancel()
-        animationState = .paused
     }
 }
