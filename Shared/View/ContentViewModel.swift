@@ -27,11 +27,11 @@ final class ContentViewModel: ObservableObject {
     }
     
     private func bind() {
-        _context.board.assign(to: $board)
-        _context.speed.assign(to: $speed)
-        _context.isEnabledPlay.map { !$0 }.assign(to: $playButtonDisabled)
-        _context.isEnabledStop.map { !$0 }.assign(to: $stopButtonDisabled)
-        _context.isEnabledNext.map { !$0 }.assign(to: $nextButtonDisabled)
+        _context.board.assign(to: &$board)
+        _context.speed.assign(to: &$speed)
+        _context.isEnabledPlay.map { !$0 }.assign(to: &$playButtonDisabled)
+        _context.isEnabledStop.map { !$0 }.assign(to: &$stopButtonDisabled)
+        _context.isEnabledNext.map { !$0 }.assign(to: &$nextButtonDisabled)
         
         $speed
             .removeDuplicates()
