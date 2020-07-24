@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
+		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* ContentView.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */; };
@@ -86,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +276,9 @@
 			dependencies = (
 			);
 			name = "LifeGameApp (macOS)";
+			packageProductDependencies = (
+				E58CC55C24CB99D600048A0A /* LifeGame */,
+			);
 			productName = "LifeGameApp (macOS)";
 			productReference = E5D9F25924BEBDBD009A526B /* LifeGameApp.app */;
 			productType = "com.apple.product-type.application";
@@ -815,6 +820,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		E51836EA24C0AA3B00DDE3A6 /* LifeGame */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
+			productName = LifeGame;
+		};
+		E58CC55C24CB99D600048A0A /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;

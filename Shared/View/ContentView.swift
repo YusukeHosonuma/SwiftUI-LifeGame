@@ -50,31 +50,50 @@ struct TopControlView: View {
     @State private var isPresentedAlert = false
     @State private var isPresentedSheet = false
     
-    private var sheetButtons: [ActionSheet.Button] {
-        BoardPreset.allCases.map { preset in
-            .default(Text(preset.displayText)) { viewModel.selectPreset(preset) }
-        } + [.cancel()]
-    }
-    
     // MARK: View
     
+    func clearButton() -> some View {
+        Button("Clear") {
+            isPresentedAlert.toggle()
+        }
+        .buttonStyle(RoundStyle(color: .red))
+        .alert(isPresented: $isPresentedAlert, content: clearAlert)
+    }
+    
+    func presetsMenu() -> some View {
+        let contents = ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
+            Button(preset.displayText) {
+                viewModel.selectPreset(preset)
+            }
+        }
+        
+        #if os(macOS)
+        return Menu("Presets") { contents }
+        #else
+        return Menu(content: { contents }, label: {
+            Button("Presets") {}.buttonStyle(RoundStyle())
+        })
+        #endif
+    }
+    
     var body: some View {
-        HStack {
-            Button("Clear") {
-                isPresentedAlert.toggle()
+        #if os(macOS)
+        VStack {
+            HStack {
+                Spacer()
+                clearButton()
             }
-            .buttonStyle(RoundStyle(color: .red))
-            .alert(isPresented: $isPresentedAlert, content: clearAlert)
-            
-            Spacer()
-            
-            Button("Presets") {
-                isPresentedSheet.toggle()
-            }
-            .buttonStyle(RoundStyle())
-            .actionSheet(isPresented: $isPresentedSheet, content: presetsActionSheet)
+            presetsMenu()
         }
         .padding()
+        #else
+        HStack {
+            clearButton()
+            Spacer()
+            presetsMenu()
+        }
+        .padding()
+        #endif
     }
     
     private func clearAlert() -> Alert {
@@ -82,10 +101,6 @@ struct TopControlView: View {
             title: Text("Do you want to clear?"),
             primaryButton: .cancel(),
             secondaryButton: .destructive(Text("Clear"), action: viewModel.tapClear))
-    }
-    
-    private func presetsActionSheet() -> ActionSheet {
-        ActionSheet(title: Text("Select from presets"), buttons: sheetButtons)
     }
 }
 
