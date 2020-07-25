@@ -12,6 +12,9 @@ import Combine
 private let KeyLightModeColor = "lightModeColor"
 private let KeyDarkModeColor = "darkModeColor"
 
+private let LightModeDefaultColor = Color.black
+private let DarkModeDefaultColor = Color.white
+
 final class SettingEnvironment: ObservableObject {
     @Published var darkModeColor: Color
     @Published var lightModeColor: Color
@@ -20,8 +23,8 @@ final class SettingEnvironment: ObservableObject {
     
     init() {
         // Restore or use default color
-        lightModeColor = UserDefaults.standard.data(forKey: KeyLightModeColor).flatMap(Color.init) ?? .black
-        darkModeColor = UserDefaults.standard.data(forKey: KeyDarkModeColor).flatMap(Color.init) ?? .white
+        lightModeColor = UserDefaults.standard.data(forKey: KeyLightModeColor).flatMap(Color.init) ?? LightModeDefaultColor
+        darkModeColor = UserDefaults.standard.data(forKey: KeyDarkModeColor).flatMap(Color.init) ?? DarkModeDefaultColor
 
         // Subscribe changes
         $lightModeColor
@@ -36,6 +39,11 @@ final class SettingEnvironment: ObservableObject {
                 UserDefaults.standard.set($0.rawValue, forKey: KeyDarkModeColor)
             }
             .store(in: &cancellables)
+    }
+    
+    func resetToDefault() {
+        lightModeColor = LightModeDefaultColor
+        darkModeColor = DarkModeDefaultColor
     }
 }
 
