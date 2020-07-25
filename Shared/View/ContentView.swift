@@ -111,6 +111,7 @@ struct BoardView: View {
     
     private let cellSize: CGFloat = 20
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @EnvironmentObject private var setting: SettingEnvironment
     
     // MARK: View
 
@@ -127,10 +128,7 @@ struct BoardView: View {
     }
     
     private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
-        Rectangle()
-            .fill(cellBackgroundColor(cell: cell))
-            .frame(width: cellSize, height: cellSize, alignment: .center)
-            .border(Color.gray)
+        CellView(color: cellBackgroundColor(cell: cell), size: cellSize)
             .onTapGesture(perform: {
                 viewModel.tapCell(x: x, y: y)
             })
@@ -139,9 +137,9 @@ struct BoardView: View {
     private func cellBackgroundColor(cell: Cell) -> Color {
         switch (colorScheme, cell) {
         case (.light, .die):   return .white
-        case (.light, .alive): return .black
+        case (.light, .alive): return setting.lightModeColor
         case (.dark,  .die):   return .black
-        case (.dark,  .alive): return .white
+        case (.dark,  .alive): return setting.darkModeColor
         case (_, _):
             fatalError()
         }

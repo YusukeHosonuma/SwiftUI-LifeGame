@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
+		E507EBEF24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
+		E518212C24CC149C00ABD16B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* ContainerView.swift */; };
+		E518212D24CC149C00ABD16B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* ContainerView.swift */; };
+		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
+		E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
+		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
+		E518213424CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
+		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
+		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* ContentView.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */; };
@@ -50,6 +60,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E507EBED24CC1106002A6EC4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		E518212B24CC149C00ABD16B /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
+		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		E5CE237224C199F200BC5820 /* LifeGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameContext.swift; sourceTree = "<group>"; };
@@ -108,6 +123,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E518212E24CC27B900ABD16B /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		E5B0572624CC3441005EE1AA /* Part */ = {
+			isa = PBXGroup;
+			children = (
+				E5B0572724CC3465005EE1AA /* CellView.swift */,
+			);
+			path = Part;
+			sourceTree = "<group>";
+		};
 		E5D9F24424BEBDBC009A526B = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +159,7 @@
 				E5FA934924C0799700229AAA /* View */,
 				E5FA934424C05E8F00229AAA /* Styles */,
 				E5FA934A24C07A3D00229AAA /* Model */,
+				E518212E24CC27B900ABD16B /* Environment */,
 				E5FA934E24C07ACE00229AAA /* Extensions */,
 			);
 			path = Shared;
@@ -207,8 +239,11 @@
 		E5FA934924C0799700229AAA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E5B0572624CC3441005EE1AA /* Part */,
+				E518212B24CC149C00ABD16B /* ContainerView.swift */,
 				E5D9F24B24BEBDBC009A526B /* ContentView.swift */,
 				E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */,
+				E507EBED24CC1106002A6EC4 /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				E5FA934F24C07AE300229AAA /* Collection+.swift */,
+				E518213224CC2E5300ABD16B /* Color+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -406,11 +442,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E518212C24CC149C00ABD16B /* ContainerView.swift in Sources */,
+				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
+				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E5FA934624C05F5100229AAA /* RoundStyle.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* ContentView.swift in Sources */,
+				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */,
 				E5D9F27324BEBDBD009A526B /* LifeGameApp.swift in Sources */,
+				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934224C0570800229AAA /* CircleStyle.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
@@ -421,11 +462,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E518212D24CC149C00ABD16B /* ContainerView.swift in Sources */,
+				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
+				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E5FA934724C05F5100229AAA /* RoundStyle.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */,
+				E507EBEF24CC1106002A6EC4 /* SettingView.swift in Sources */,
 				E5BA30B924BF05BC002D0564 /* ContentViewModel.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* LifeGameApp.swift in Sources */,
+				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* CircleStyle.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
