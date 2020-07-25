@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainGameView.swift
 //  Shared
 //
 //  Created by Yusuke Hosonuma on 2020/07/15.
@@ -10,8 +10,8 @@ import LifeGame
 
 // MARK: - Main view
 
-struct ContentView: View {
-    @StateObject var viewModel = ContentViewModel()
+struct MainGameView: View {
+    @StateObject var viewModel = MainGameViewModel()
 
     var body: some View {
         VStack {
@@ -27,13 +27,13 @@ struct ContentView: View {
 
 // MARK: - Preview
 
-struct ContentView_Previews: PreviewProvider {
+struct MainGameView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            MainGameView()
                 .previewDevice("iPhone SE (2nd generation)")
                 .preferredColorScheme(.light)
-            ContentView()
+            MainGameView()
                 .previewDevice("iPhone SE (2nd generation)")
                 .preferredColorScheme(.dark)
         }
@@ -43,7 +43,7 @@ struct ContentView_Previews: PreviewProvider {
 // MARK: - Subviews
 
 struct TopControlView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: MainGameViewModel
 
     // MARK: Private
     
@@ -56,7 +56,7 @@ struct TopControlView: View {
         Button("Clear") {
             isPresentedAlert.toggle()
         }
-        .buttonStyle(RoundStyle(color: .red))
+        .buttonStyle(ButtonStyleRounded(color: .red))
         .alert(isPresented: $isPresentedAlert, content: clearAlert)
     }
     
@@ -71,7 +71,7 @@ struct TopControlView: View {
         return Menu("Presets") { contents }
         #else
         return Menu(content: { contents }, label: {
-            Button("Presets") {}.buttonStyle(RoundStyle())
+            Button("Presets") {}.buttonStyle(ButtonStyleRounded())
         })
         #endif
     }
@@ -105,7 +105,7 @@ struct TopControlView: View {
 }
 
 struct BoardView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: MainGameViewModel
     
     // MARK: Private
     
@@ -147,7 +147,7 @@ struct BoardView: View {
 }
 
 struct ControlView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: MainGameViewModel
     
     // MARK: View
     
@@ -169,12 +169,12 @@ struct ControlView: View {
                 .disabled(viewModel.nextButtonDisabled)
         }
         .padding()
-        .buttonStyle(CircleStyle())
+        .buttonStyle(ButtonStyleCircle())
     }
 }
 
 struct SpeedSliderView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: MainGameViewModel
     
     var body: some View {
         HStack {

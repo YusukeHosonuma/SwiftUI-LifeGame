@@ -10,7 +10,7 @@ import LifeGame
 import Combine
 import os
 
-final class ContentViewModel: ObservableObject {
+final class MainGameViewModel: ObservableObject {
     @Published var board: LifeGameBoard
     @Published var speed: Double
     @Published var playButtonDisabled: Bool = true

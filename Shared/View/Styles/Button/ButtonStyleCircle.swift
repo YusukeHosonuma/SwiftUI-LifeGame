@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CircleStyle: ButtonStyle {
+struct ButtonStyleCircle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         Button(configuration: configuration)
     }
@@ -16,9 +16,9 @@ struct CircleStyle: ButtonStyle {
         var configuration: Configuration
         var foreground = Color.white
         var background = Color.blue
-
+        
         @Environment(\.isEnabled) private var isEnabled: Bool
-
+        
         var body: some View {
             Circle()
                 .fill(background.opacity(!isEnabled ? 0.5 : configuration.isPressed ? 0.8 : 1))
@@ -29,13 +29,13 @@ struct CircleStyle: ButtonStyle {
     }
 }
 
-struct CircleStyle_Previews: PreviewProvider {
+struct ButtonStyleCircleStyle_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             Button("Start") {}
             Button("Stop") {}.disabled(true)
         }
-        .buttonStyle(CircleStyle())
+        .buttonStyle(ButtonStyleCircle())
         .padding()
         .previewLayout(.sizeThatFits)
     }
