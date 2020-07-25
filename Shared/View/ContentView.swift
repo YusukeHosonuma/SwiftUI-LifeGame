@@ -122,20 +122,18 @@ struct BoardView: View {
                         cellButton(x: x, y: y, cell: cell)
                     }
                 }
-                .padding(4)
             }
         }
     }
     
     private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
-        Button(action: {
-            viewModel.tapCell(x: x, y: y)
-        }) {
-            Text("") // TODO: What better to do it?
-                .frame(width: cellSize, height: cellSize, alignment: .center)
-                .background(cellBackgroundColor(cell: cell))
-                .border(Color.gray)
-        }
+        Rectangle()
+            .fill(cellBackgroundColor(cell: cell))
+            .frame(width: cellSize, height: cellSize, alignment: .center)
+            .border(Color.gray)
+            .onTapGesture(perform: {
+                viewModel.tapCell(x: x, y: y)
+            })
     }
     
     private func cellBackgroundColor(cell: Cell) -> Color {
