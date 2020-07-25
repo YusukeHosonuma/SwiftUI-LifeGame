@@ -19,8 +19,8 @@ struct ContentView: View {
             TopControlView(viewModel: viewModel)
             BoardView(viewModel: viewModel)
             ControlView(viewModel: viewModel)
-            Spacer()
             SpeedSliderView(viewModel: viewModel)
+            Spacer()
         }
     }
 }
@@ -177,10 +177,11 @@ struct SpeedSliderView: View {
     @ObservedObject var viewModel: ContentViewModel
     
     var body: some View {
-        VStack {
-            Text("Speed")
+        HStack {
+            Image(systemName: "tortoise.fill")
             Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
-                .padding()
+            Image(systemName: "hare.fill")
         }
+        .padding()
     }
 }
