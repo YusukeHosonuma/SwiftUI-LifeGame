@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct LifeGameApp: App {
+struct LifeGameApplication: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContainerView()
+                .environmentObject(SettingEnvironment())
         }
     }
 }
