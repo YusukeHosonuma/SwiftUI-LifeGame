@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RootView: View {
     var body: some View {
         #if os(macOS)
-        ContentView()
+        RootView()
         #else
         TabView {
             MainGameView()
@@ -28,8 +28,8 @@ struct ContentView: View {
     }
 }
 
-struct ContainerView_Previews: PreviewProvider {
+struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        RootView()
     }
 }

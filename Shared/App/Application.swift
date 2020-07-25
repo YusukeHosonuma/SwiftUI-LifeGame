@@ -10,10 +10,10 @@ import SwiftUI
 private let settingEnvironment = SettingEnvironment()
 
 @main
-struct LifeGameApplication: App {
+struct Application: App {
     var body: some Scene {
         WindowGroup {
-            ContainerView()
+            RootView()
                 .environmentObject(settingEnvironment)
         }
         #if os(macOS)

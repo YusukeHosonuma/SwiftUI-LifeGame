@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoundStyle: ButtonStyle {
+struct ButtonStyleRounded: ButtonStyle {
     var color: Color = .blue
     
     func makeBody(configuration: Configuration) -> some View {
@@ -35,18 +35,18 @@ struct RoundStyle: ButtonStyle {
     }
 }
 
-struct RoundStyle_Previews: PreviewProvider {
+struct ButtonStyleRound_Previews: PreviewProvider {
     
     struct PreviewView: View {
         var body: some View {
             HStack {
                 Button("Start") {}
-                    .buttonStyle(RoundStyle())
+                    .buttonStyle(ButtonStyleRounded())
                 Button("Stop") {}
-                    .buttonStyle(RoundStyle())
+                    .buttonStyle(ButtonStyleRounded())
                     .disabled(true)
                 Button("Cancel") {}
-                    .buttonStyle(RoundStyle(color: .red))
+                    .buttonStyle(ButtonStyleRounded(color: .red))
             }
             .padding()
             .previewLayout(.sizeThatFits)

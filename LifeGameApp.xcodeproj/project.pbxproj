@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
-		E518212C24CC149C00ABD16B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* ContainerView.swift */; };
-		E518212D24CC149C00ABD16B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* ContainerView.swift */; };
+		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
+		E518212D24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
@@ -19,23 +19,23 @@
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
-		E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* ContentView.swift */; };
+		E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
-		E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */; };
-		E5BA30B924BF05BC002D0564 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */; };
+		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
+		E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5D9F26624BEBDBD009A526B /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F26524BEBDBD009A526B /* Tests_iOS.swift */; };
 		E5D9F27124BEBDBD009A526B /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */; };
-		E5D9F27324BEBDBD009A526B /* LifeGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* LifeGameApp.swift */; };
-		E5D9F27424BEBDBD009A526B /* LifeGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* LifeGameApp.swift */; };
-		E5D9F27524BEBDBD009A526B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* ContentView.swift */; };
+		E5D9F27324BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
+		E5D9F27424BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
+		E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5D9F27724BEBDBD009A526B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D9F24C24BEBDBD009A526B /* Assets.xcassets */; };
 		E5D9F27824BEBDBD009A526B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D9F24C24BEBDBD009A526B /* Assets.xcassets */; };
-		E5FA934224C0570800229AAA /* CircleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* CircleStyle.swift */; };
-		E5FA934324C0570800229AAA /* CircleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* CircleStyle.swift */; };
-		E5FA934624C05F5100229AAA /* RoundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934524C05F5100229AAA /* RoundStyle.swift */; };
-		E5FA934724C05F5100229AAA /* RoundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934524C05F5100229AAA /* RoundStyle.swift */; };
+		E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */; };
+		E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */; };
+		E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */; };
+		E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */; };
 		E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5FA935024C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
@@ -61,16 +61,16 @@
 
 /* Begin PBXFileReference section */
 		E507EBED24CC1106002A6EC4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		E518212B24CC149C00ABD16B /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
-		E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
 		E5CE237224C199F200BC5820 /* LifeGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameContext.swift; sourceTree = "<group>"; };
-		E5D9F24A24BEBDBC009A526B /* LifeGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameApp.swift; sourceTree = "<group>"; };
-		E5D9F24B24BEBDBC009A526B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E5D9F24A24BEBDBC009A526B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		E5D9F24B24BEBDBC009A526B /* MainGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameView.swift; sourceTree = "<group>"; };
 		E5D9F24C24BEBDBD009A526B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5D9F25124BEBDBD009A526B /* LifeGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D9F25424BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +83,8 @@
 		E5D9F26C24BEBDBD009A526B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E5D9F27224BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5FA934124C0570800229AAA /* CircleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleStyle.swift; sourceTree = "<group>"; };
-		E5FA934524C05F5100229AAA /* RoundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundStyle.swift; sourceTree = "<group>"; };
+		E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleCircle.swift; sourceTree = "<group>"; };
+		E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleRounded.swift; sourceTree = "<group>"; };
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
 		E5FA934F24C07AE300229AAA /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +132,65 @@
 			path = Environment;
 			sourceTree = "<group>";
 		};
+		E5A153D424CC5C620030A1D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5D9F25424BEBDBD009A526B /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5A153D524CC5C7A0030A1D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5D9F25B24BEBDBD009A526B /* Info.plist */,
+				E5D9F25C24BEBDBD009A526B /* macOS.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5A153D624CC5C910030A1D9 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E5A153D724CC5D390030A1D9 /* Root */,
+				E5A153D824CC5D410030A1D9 /* MainGame */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		E5A153D724CC5D390030A1D9 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				E518212B24CC149C00ABD16B /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		E5A153D824CC5D410030A1D9 /* MainGame */ = {
+			isa = PBXGroup;
+			children = (
+				E5D9F24B24BEBDBC009A526B /* MainGameView.swift */,
+				E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */,
+			);
+			path = MainGame;
+			sourceTree = "<group>";
+		};
+		E5A7B4DD24CC5B2700F5AED9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E507EBED24CC1106002A6EC4 /* SettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5A7B4DE24CC5B3200F5AED9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E5B0572624CC3441005EE1AA /* Part */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,7 +217,6 @@
 			children = (
 				E5FA934824C0794900229AAA /* App */,
 				E5FA934924C0799700229AAA /* View */,
-				E5FA934424C05E8F00229AAA /* Styles */,
 				E5FA934A24C07A3D00229AAA /* Model */,
 				E518212E24CC27B900ABD16B /* Environment */,
 				E5FA934E24C07ACE00229AAA /* Extensions */,
@@ -180,8 +238,8 @@
 		E5D9F25324BEBDBD009A526B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				E507EBED24CC1106002A6EC4 /* SettingView.swift */,
-				E5D9F25424BEBDBD009A526B /* Info.plist */,
+				E5A7B4DD24CC5B2700F5AED9 /* View */,
+				E5A153D424CC5C620030A1D9 /* Resources */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -189,9 +247,8 @@
 		E5D9F25A24BEBDBD009A526B /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				E5D9F25B24BEBDBD009A526B /* Info.plist */,
-				E5D9F25C24BEBDBD009A526B /* macOS.entitlements */,
-				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+				E5A7B4DE24CC5B3200F5AED9 /* View */,
+				E5A153D524CC5C7A0030A1D9 /* Resources */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -233,7 +290,7 @@
 		E5FA934824C0794900229AAA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E5D9F24A24BEBDBC009A526B /* LifeGameApp.swift */,
+				E5D9F24A24BEBDBC009A526B /* Application.swift */,
 				E5D9F24C24BEBDBD009A526B /* Assets.xcassets */,
 			);
 			path = App;
@@ -243,9 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				E5B0572624CC3441005EE1AA /* Part */,
-				E518212B24CC149C00ABD16B /* ContainerView.swift */,
-				E5D9F24B24BEBDBC009A526B /* ContentView.swift */,
-				E5BA30B724BF05BC002D0564 /* ContentViewModel.swift */,
+				E5FA934424C05E8F00229AAA /* Styles */,
+				E5A153D624CC5C910030A1D9 /* Screen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,8 +327,8 @@
 		E5FA936524C07D1D00229AAA /* Button */ = {
 			isa = PBXGroup;
 			children = (
-				E5FA934124C0570800229AAA /* CircleStyle.swift */,
-				E5FA934524C05F5100229AAA /* RoundStyle.swift */,
+				E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */,
+				E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -444,18 +500,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E518212C24CC149C00ABD16B /* ContainerView.swift in Sources */,
+				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
-				E5FA934624C05F5100229AAA /* RoundStyle.swift in Sources */,
+				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
-				E5D9F27524BEBDBD009A526B /* ContentView.swift in Sources */,
+				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
 				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
-				E5BA30B824BF05BC002D0564 /* ContentViewModel.swift in Sources */,
-				E5D9F27324BEBDBD009A526B /* LifeGameApp.swift in Sources */,
+				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
+				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
-				E5FA934224C0570800229AAA /* CircleStyle.swift in Sources */,
+				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,17 +520,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E518212D24CC149C00ABD16B /* ContainerView.swift in Sources */,
+				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
-				E5FA934724C05F5100229AAA /* RoundStyle.swift in Sources */,
+				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
-				E5BA30A824BEE05A002D0564 /* ContentView.swift in Sources */,
-				E5BA30B924BF05BC002D0564 /* ContentViewModel.swift in Sources */,
-				E5D9F27424BEBDBD009A526B /* LifeGameApp.swift in Sources */,
+				E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */,
+				E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
+				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
-				E5FA934324C0570800229AAA /* CircleStyle.swift in Sources */,
+				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 			);
@@ -631,7 +687,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = iOS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,7 +709,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = iOS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,7 +735,7 @@
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_FILE = macOS/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -703,7 +759,7 @@
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_FILE = macOS/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
