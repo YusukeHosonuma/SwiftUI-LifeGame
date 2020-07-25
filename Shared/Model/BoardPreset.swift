@@ -7,7 +7,7 @@
 
 import LifeGame
 
-enum BoardPreset: CaseIterable {
+enum BoardPreset: Int, CaseIterable {
     case nebura
     case spaceShip
     
