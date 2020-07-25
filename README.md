@@ -1,12 +1,19 @@
 # SwiftUI example of the 'Life of Game'
 
-![screenshot-anime](./Image/screenshot.gif)
+iOS:
+
+![screenshot-anime](./Image/anime-ios.gif)
+
+Mac:
+
+![screenshot-mac](./Image/screenshot-mac.png)
+
 
 ## TODO
 
 - [ ] Feature: Save to presets
 - [x] Support Dark mode
-- [ ] Support Mac app
+- [x] Support Mac
 - [ ] Support iPad app (apply proper layout)
 - [ ] UITests
 
@@ -14,7 +21,7 @@
 
 Like MVVM.
 
-![screenshot-anime](./Image/architecture.png)
+![Architecture](./Image/architecture.png)
 
 ## Dependency
 
