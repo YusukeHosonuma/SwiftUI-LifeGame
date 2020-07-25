@@ -29,7 +29,7 @@ struct SettingView: View {
                         }
                     }
                 }
-            }.navigationBarTitle("Settings")
+            }
         }
     }
 }
