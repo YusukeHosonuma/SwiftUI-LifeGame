@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContainerView: View {
     var body: some View {
+        #if os(macOS)
+        ContentView()
+        #else
         TabView {
             ContentView()
                 .tabItem {
@@ -21,6 +24,7 @@ struct ContainerView: View {
                     Text("Settings")
                 }
         }
+        #endif
     }
 }
 
