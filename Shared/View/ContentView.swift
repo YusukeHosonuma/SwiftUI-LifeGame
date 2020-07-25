@@ -128,10 +128,7 @@ struct BoardView: View {
     }
     
     private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
-        Rectangle()
-            .fill(cellBackgroundColor(cell: cell))
-            .frame(width: cellSize, height: cellSize, alignment: .center)
-            .border(Color.gray)
+        CellView(color: cellBackgroundColor(cell: cell), size: cellSize)
             .onTapGesture(perform: {
                 viewModel.tapCell(x: x, y: y)
             })

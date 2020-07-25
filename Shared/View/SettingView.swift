@@ -7,15 +7,27 @@
 
 import SwiftUI
 
+private let CellSize: CGFloat = 20
+
 struct SettingView: View {
     @EnvironmentObject private var setting: SettingEnvironment
 
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Colors")) {
-                    ColorPicker("Light mode", selection: $setting.lightModeColor)
-                    ColorPicker("Dark mode", selection: $setting.darkModeColor)
+                Section(header: Text("Color")) {
+                    ColorPicker(selection: $setting.lightModeColor) {
+                        HStack {
+                            CellView(color: setting.lightModeColor, size: CellSize)
+                            Text("Light mode")
+                        }
+                    }
+                    ColorPicker(selection: $setting.darkModeColor) {
+                        HStack {
+                            CellView(color: setting.darkModeColor, size: CellSize)
+                            Text("Dark mode")
+                        }
+                    }
                 }
             }.navigationBarTitle("Settings")
         }
@@ -25,5 +37,6 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .preferredColorScheme(.light)
     }
 }
