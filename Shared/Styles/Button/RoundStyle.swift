@@ -25,19 +25,12 @@ struct RoundStyle: ButtonStyle {
             color.opacity(!isEnabled ? 0.5 : configuration.isPressed ? 0.8 : 1.0)
         }
         
-        var backgroundColor: Color {
-            colorScheme == .light ? Color.white : Color.black
-        }
-        
         var body: some View {
-            VStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(backgroundColor)
-                    .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(foregroundColor))
-                    .overlay(configuration.label.foregroundColor(foregroundColor))
-                    .frame(width: 100, height: 40)
-
-            }
+            RoundedRectangle(cornerRadius: 8)
+                .fill(BackgroundStyle())
+                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(foregroundColor))
+                .overlay(configuration.label.foregroundColor(foregroundColor))
+                .frame(width: 100, height: 40)
         }
     }
 }
