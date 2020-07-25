@@ -1,4 +1,6 @@
-# SwiftUI example of the 'Life of Game'
+# SwiftUI-LifeGame
+
+The Conway's Game of Life that build with SwiftUI.
 
 |iOS|macOS|
 |--|--|
@@ -7,10 +9,10 @@
 
 ## TODO
 
-- [ ] Feature: Save to presets
 - [x] Support Dark mode
 - [x] Support Mac
 - [ ] Support iPad app (apply proper layout)
+- [ ] Feature: Save to presets
 - [ ] UITests
 
 ## Architecture
