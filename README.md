@@ -1,12 +1,8 @@
 # SwiftUI example of the 'Life of Game'
 
-iOS:
-
-![screenshot-anime](./Image/anime-ios.gif)
-
-Mac:
-
-![screenshot-mac](./Image/screenshot-mac.png)
+|iOS|macOS|
+|--|--|
+|<img src="./Image/anime-ios.gif" width="200px">|<img src="./Image/screenshot-mac.png" width="200px">|
 
 
 ## TODO
