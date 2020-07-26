@@ -8,8 +8,12 @@
 import Combine
 import LifeGame
 import Foundation
+import SwiftUI
+import os
 
 final class LifeGameContext {
+    private static let _logger = Logger(subsystem: "tech.penginmura.LifeGameApp", category: "UserDefaults") // TODO: refactor
+    
     var board: AnyPublisher<LifeGameBoard, Never> { _board.eraseToAnyPublisher() }
     var speed: AnyPublisher<Double, Never> { _speed.eraseToAnyPublisher() }
     let isEnabledPlay: PassthroughSubject<Bool, Never> = .init()
@@ -20,6 +24,7 @@ final class LifeGameContext {
     private let _speed: CurrentValueSubject<Double, Never>
     private let _BaseInterval = 0.05
     private var _timerPublisher: Cancellable?
+    private var _cancellables: [AnyCancellable] = []
     
     private var _state: LifeGameState = StopState() {
         didSet {
@@ -30,6 +35,12 @@ final class LifeGameContext {
     init(board: LifeGameBoard, speed: Double) {
         _board = .init(board)
         _speed = .init(speed)
+        
+        _speed.sink { value in
+            UserDefaults.standard.set(value, forKey: "animationSpeed")
+            Self._logger.info("[Write] animationSpeed: \(value, format: .fixed(precision: 2))")
+        }
+        .store(in: &_cancellables)
     }
 
     private func bind() {
