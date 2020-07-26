@@ -34,12 +34,10 @@ struct SettingView: View {
                 }
             }
             Section {
-                HStack { // TODO: `HCenter` ❗
-                    Spacer()
+                HCenter {
                     Button("Reset to Default", action: tapResetToDefault)
                         .foregroundColor(.red)
                         .alert(isPresented: $isAlertPresented, content: resetAlert)
-                    Spacer()
                 }
             }
         }
