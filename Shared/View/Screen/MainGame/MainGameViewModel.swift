@@ -19,7 +19,11 @@ final class MainGameViewModel: ObservableObject {
     
     init() {
         let board = LifeGameBoard(size: 13)
-        let speed = 0.5
+        
+        // TODO: refactor
+        UserDefaults.standard.register(defaults: ["animationSpeed" : 0.5])
+        let speed = UserDefaults.standard.double(forKey: "animationSpeed")
+            
         self.board = board
         self.speed = speed
         _context = LifeGameContext(board: board, speed: speed)
