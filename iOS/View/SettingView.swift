@@ -10,29 +10,31 @@ import SwiftUI
 private let CellSize: CGFloat = 20
 
 struct SettingView: View {
-    @State private var isAlertPresented = false
+
+    // MARK: Dependencies
+    
     @EnvironmentObject private var setting: SettingEnvironment
+
+    // MARK: Local Properties
+    
+    @State private var isAlertPresented = false
     
     // MARK: Views
-    
+
     var body: some View {
         Form {
             Section(header: Text("Color")) {
-                ColorPicker(selection: $setting.lightModeColor) {
-                    HStack {
-                        CellView(color: setting.lightModeColor, size: CellSize)
-                        Text("Light mode")
-                    }
-                }
-                ColorPicker(selection: $setting.darkModeColor) {
-                    HStack {
-                        CellView(color: setting.darkModeColor, size: CellSize)
-                        Text("Dark mode")
+                ForEach(colors, id: \.title) { data in
+                    ColorPicker(selection: data.binding) {
+                        HStack {
+                            CellView(color: data.value, size: CellSize)
+                            Text(data.title)
+                        }
                     }
                 }
             }
             Section {
-                HStack {
+                HStack { // TODO: `HCenter` ❗
                     Spacer()
                     Button("Reset to Default", action: tapResetToDefault)
                         .foregroundColor(.red)
@@ -41,6 +43,13 @@ struct SettingView: View {
                 }
             }
         }
+    }
+    
+    private var colors: [(title: String, value: Color, binding: Binding<Color>)] {
+        [
+            ("Light mode", setting.lightModeColor, $setting.lightModeColor),
+            ("Dark mode",  setting.darkModeColor,  $setting.darkModeColor),
+        ]
     }
     
     private func resetAlert() -> Alert {
@@ -64,14 +73,16 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SettingView()
-                .environmentObject(SettingEnvironment())
-                .previewLayout(.fixed(width: 370.0, height: 250.0))
-                .preferredColorScheme(.light)
-            SettingView()
-                .environmentObject(SettingEnvironment())
-                .previewLayout(.fixed(width: 370.0, height: 250.0))
-                .preferredColorScheme(.dark)
+            view(.light)
+            view(.dark)
         }
     }
+    
+    static func view(_ colorScheme: ColorScheme) -> some View {
+        SettingView()
+            .environmentObject(SettingEnvironment())
+            .previewLayout(.fixed(width: 370.0, height: 250.0))
+            .preferredColorScheme(colorScheme)
+    }
 }
+
