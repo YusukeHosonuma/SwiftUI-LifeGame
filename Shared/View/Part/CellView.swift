@@ -26,3 +26,14 @@ struct CellView_Previews: PreviewProvider {
             .padding()
     }
 }
+
+struct CellView_LibraryContent: LibraryContentProvider {
+
+    @LibraryContentBuilder
+    var views: [LibraryItem] {
+        LibraryItem(
+            CellView(color: .black, size: 20),
+            category: .control
+        )
+    }
+}
