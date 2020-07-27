@@ -22,3 +22,17 @@ struct HCenter<Content>: View where Content: View {
         }
     }
 }
+
+struct HCenter_LibraryContent: LibraryContentProvider {
+
+    @LibraryContentBuilder
+    var views: [LibraryItem] {
+        LibraryItem(
+            HCenter {
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Content")/*@END_MENU_TOKEN@*/
+            },
+            title: "Horizontal Center",
+            category: .layout
+        )
+    }
+}
