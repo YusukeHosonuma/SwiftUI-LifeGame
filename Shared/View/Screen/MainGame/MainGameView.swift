@@ -11,7 +11,7 @@ import LifeGame
 // MARK: - Main view
 
 struct MainGameView: View {
-    @StateObject var viewModel = MainGameViewModel()
+    @ObservedObject var viewModel: MainGameViewModel
 
     var body: some View {
         VStack {
@@ -28,15 +28,18 @@ struct MainGameView: View {
 // MARK: - Preview
 
 struct MainGameView_Previews: PreviewProvider {
+    
     static var previews: some View {
         Group {
-            MainGameView()
-                .previewDevice("iPhone SE (2nd generation)")
-                .preferredColorScheme(.light)
-            MainGameView()
-                .previewDevice("iPhone SE (2nd generation)")
-                .preferredColorScheme(.dark)
+            view(.light)
+            view(.dark)
         }
+    }
+
+    static func view(_ colorScheme: ColorScheme) -> some View {
+        MainGameView(viewModel: MainGameViewModel())
+            .previewDevice("iPhone SE (2nd generation)")
+            .preferredColorScheme(colorScheme)
     }
 }
 

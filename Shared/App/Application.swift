@@ -11,11 +11,17 @@ private let settingEnvironment = SettingEnvironment()
 
 @main
 struct Application: App {
+    @StateObject var viewModel = MainGameViewModel()
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
         }
+        .commands {
+            LifeGameCommands(viewModel: viewModel)
+        }
+        
         #if os(macOS)
         Settings {
             PreferenceView()

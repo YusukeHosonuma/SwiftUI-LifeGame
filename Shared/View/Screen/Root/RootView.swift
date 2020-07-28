@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct RootView: View {
+    var viewModel: MainGameViewModel
+    
     var body: some View {
         #if os(macOS)
-        MainGameView()
+        MainGameView(viewModel: viewModel)
         #else
         TabView {
             MainGameView()
@@ -30,6 +32,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        RootView(viewModel: MainGameViewModel())
     }
 }
