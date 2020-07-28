@@ -10,7 +10,7 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         #if os(macOS)
-        RootView()
+        MainGameView()
         #else
         TabView {
             MainGameView()
