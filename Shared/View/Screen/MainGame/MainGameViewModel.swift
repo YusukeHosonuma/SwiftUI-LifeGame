@@ -16,9 +16,9 @@ final class MainGameViewModel: ObservableObject {
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
-    
+
     init() {
-        let board = LifeGameBoard(size: 19)
+        let board = LifeGameBoard(size: 13)
         
         // TODO: refactor
         UserDefaults.standard.register(defaults: ["animationSpeed" : 0.5])

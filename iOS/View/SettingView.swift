@@ -18,6 +18,8 @@ struct SettingView: View {
     // MARK: Local Properties
     
     @State private var isAlertPresented = false
+    @State private var isPresentedChangeSizeAlert = [false, false, false]
+    @State private var selectedSize: Int?
     
     // MARK: Views
 
@@ -33,6 +35,15 @@ struct SettingView: View {
                     }
                 }
             }
+            
+            Section(header: Text("Board")) {
+                Menu(content: changeBoardSizeMenu) {
+                    HStack {
+                        Button("Size: \(setting.boardSize) x \(setting.boardSize)") {}
+                    }
+                }
+            }
+            
             Section {
                 HCenter {
                     Button("Reset to Default", action: tapResetToDefault)
@@ -42,13 +53,33 @@ struct SettingView: View {
             }
         }
     }
-    
+
     private var colors: [(title: String, value: Color, binding: Binding<Color>)] {
         [
             ("Light mode", setting.lightModeColor, $setting.lightModeColor),
             ("Dark mode",  setting.darkModeColor,  $setting.darkModeColor),
         ]
     }
+    
+    @ViewBuilder
+    private func changeBoardSizeMenu() -> some View {
+        ForEach([13, 17, 21].withIndex(), id: \.0) { index, size in
+            Button("\(size) x \(size)") {
+                isPresentedChangeSizeAlert[index].toggle()
+                selectedSize = size
+            }
+            .alert(isPresented: $isPresentedChangeSizeAlert[index], content: changeSizeAlert(size: size))
+        }
+    }
+
+    private func changeSizeAlert(size: Int) -> () -> Alert {{
+        Alert(
+            title: Text("The board will be initialized..."),
+            primaryButton: .cancel(),
+            secondaryButton: .destructive(Text("Change: \(size)")) {
+                tapBoardSize(size)
+            })
+    }}
     
     private func resetAlert() -> Alert {
         Alert(
@@ -61,6 +92,10 @@ struct SettingView: View {
     
     private func tapResetToDefault() {
         isAlertPresented.toggle()
+    }
+    
+    private func tapBoardSize(_ size: Int) {
+        setting.boardSize = size
     }
     
     private func tapReset() {
