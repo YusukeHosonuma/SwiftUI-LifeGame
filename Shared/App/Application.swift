@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private let settingEnvironment = SettingEnvironment()
+private let settingEnvironment: SettingEnvironment = .shared
 
 @main
 struct Application: App {

@@ -16,7 +16,7 @@ final class MainGameViewModel: ObservableObject {
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
-    
+
     init() {
         let board = LifeGameBoard(size: 13)
         

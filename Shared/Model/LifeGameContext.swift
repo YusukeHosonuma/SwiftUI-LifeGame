@@ -21,6 +21,7 @@ final class LifeGameContext {
     let isEnabledNext: PassthroughSubject<Bool, Never> = .init()
 
     fileprivate let _board: CurrentValueSubject<LifeGameBoard, Never>
+    private var _setting: SettingEnvironment
     private let _speed: CurrentValueSubject<Double, Never>
     private let _BaseInterval = 0.05
     private var _timerPublisher: Cancellable?
@@ -32,15 +33,24 @@ final class LifeGameContext {
         }
     }
     
-    init(board: LifeGameBoard, speed: Double) {
+    init(setting: SettingEnvironment = .shared, board: LifeGameBoard, speed: Double) {
+        _setting = setting
         _board = .init(board)
         _speed = .init(speed)
         
-        _speed.sink { value in
-            UserDefaults.standard.set(value, forKey: "animationSpeed")
-            Self._logger.info("[Write] animationSpeed: \(value, format: .fixed(precision: 2))")
-        }
-        .store(in: &_cancellables)
+        _speed
+            .sink { value in
+                UserDefaults.standard.set(value, forKey: "animationSpeed")
+                Self._logger.info("[Write] animationSpeed: \(value, format: .fixed(precision: 2))")
+            }
+            .store(in: &_cancellables)
+        
+        _setting.$boardSize
+            .sink { [weak self] size in
+                guard let self = self else { return }
+                self._board.value = LifeGameBoard(size: size)
+            }
+            .store(in: &_cancellables)
     }
 
     private func bind() {
@@ -81,7 +91,8 @@ final class LifeGameContext {
     }
     
     func setPreset(_ preset: BoardPreset) {
-        _board.value = preset.board
+        _board.value.clear()
+        _board.value.apply(size: preset.board.size, cells: preset.board.cells.map(\.rawValue))
     }
     
     func clear() {
@@ -100,7 +111,7 @@ final class LifeGameContext {
     
     fileprivate func startAnimation() {
         let interval = _BaseInterval + (1.0 - _speed.value) * 0.8
-        _timerPublisher = Timer.TimerPublisher(interval: interval, runLoop: .main, mode: .default)
+        _timerPublisher = Timer.TimerPublisher(interval: interval, runLoop: .current, mode: .common)
             .autoconnect()
             .sink { _ in
                 self._board.value.next()
