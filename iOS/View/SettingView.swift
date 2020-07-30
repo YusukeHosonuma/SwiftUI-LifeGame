@@ -76,7 +76,7 @@ struct SettingView: View {
         Alert(
             title: Text("The board will be initialized..."),
             primaryButton: .cancel(),
-            secondaryButton: .destructive(Text("Change: \(size)")) {
+            secondaryButton: .destructive(Text("Change")) {
                 tapBoardSize(size)
             })
     }}
