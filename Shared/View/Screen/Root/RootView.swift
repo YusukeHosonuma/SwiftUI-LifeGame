@@ -15,7 +15,7 @@ struct RootView: View {
         MainGameView(viewModel: viewModel)
         #else
         TabView {
-            MainGameView()
+            MainGameView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
                     Text("Game")
