@@ -15,7 +15,7 @@ struct ButtonStyleCircle: ButtonStyle {
     struct Button: View {
         var configuration: Configuration
         var foreground = Color.white
-        var background = Color.blue
+        var background = Color.accentColor
         
         @Environment(\.isEnabled) private var isEnabled: Bool
         

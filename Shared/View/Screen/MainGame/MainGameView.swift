@@ -217,6 +217,7 @@ struct SpeedSliderView: View {
             Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
             Image(systemName: "hare.fill")
         }
+        .foregroundColor(.accentColor)
         .padding()
     }
 }
