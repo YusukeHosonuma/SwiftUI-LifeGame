@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonStyleRounded: ButtonStyle {
-    var color: Color = .blue
+    var color: Color = .accentColor
     
     func makeBody(configuration: Configuration) -> some View {
         Button(color: color, configuration: configuration)
