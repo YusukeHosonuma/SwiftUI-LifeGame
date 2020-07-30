@@ -17,6 +17,8 @@
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E518213424CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
+		E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
+		E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
@@ -67,6 +69,7 @@
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
@@ -130,6 +133,7 @@
 		E507481D24CD4E17003811B5 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				E55BF0C424D2C67700AAD125 /* VCenter.swift */,
 				E507481E24CD4E45003811B5 /* HCenter.swift */,
 			);
 			path = Layout;
@@ -513,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
+				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
@@ -534,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
+				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,

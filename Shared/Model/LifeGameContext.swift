@@ -100,7 +100,7 @@ final class LifeGameContext {
     
     fileprivate func startAnimation() {
         let interval = _BaseInterval + (1.0 - _speed.value) * 0.8
-        _timerPublisher = Timer.TimerPublisher(interval: interval, runLoop: .main, mode: .default)
+        _timerPublisher = Timer.TimerPublisher(interval: interval, runLoop: .current, mode: .common)
             .autoconnect()
             .sink { _ in
                 self._board.value.next()

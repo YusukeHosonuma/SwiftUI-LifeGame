@@ -17,7 +17,7 @@ struct MainGameView: View {
         VStack {
             Spacer()
             TopControlView(viewModel: viewModel)
-            BoardView(viewModel: viewModel)
+            BoardContainerView(viewModel: viewModel)
             ControlView(viewModel: viewModel)
             SpeedSliderView(viewModel: viewModel)
             Spacer()
@@ -104,21 +104,51 @@ struct TopControlView: View {
     }
 }
 
+struct BoardContainerView: View {
+    @ObservedObject var viewModel: MainGameViewModel
+
+    var body: some View {
+        let boardView = BoardView(viewModel: viewModel, cellWidth: 20, cellPadding: 2)
+
+        GeometryReader { geometry in
+            VCenter {
+                HCenter {
+                    if boardView.width > geometry.size.width {
+                        ScrollView([.vertical, .horizontal]) {
+                            boardView
+                        }
+                    } else {
+                        boardView
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct BoardView: View {
     @ObservedObject var viewModel: MainGameViewModel
     
-    // MARK: Private
+    var cellWidth: CGFloat
+    var cellPadding: CGFloat
+
+    // MARK: Computed properties
     
-    private let cellSize: CGFloat = 20
+    var width: CGFloat {
+        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size)
+    }
+
+    // MARK: Private
+
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @EnvironmentObject private var setting: SettingEnvironment
-    
+
     // MARK: View
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
-                HStack {
+                HStack(spacing: 0) {
                     ForEach(row.withIndex(), id: \.0) { x, cell in
                         cellButton(x: x, y: y, cell: cell)
                     }
