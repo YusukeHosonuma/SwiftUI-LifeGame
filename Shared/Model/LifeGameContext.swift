@@ -81,7 +81,8 @@ final class LifeGameContext {
     }
     
     func setPreset(_ preset: BoardPreset) {
-        _board.value = preset.board
+        _board.value.clear()
+        _board.value.apply(size: preset.board.size, cells: preset.board.cells.map(\.rawValue))
     }
     
     func clear() {
