@@ -51,7 +51,7 @@ final class SettingEnvironment: ObservableObject {
         $boardSize
             .dropFirst()
             .sink {
-                UserDefaults.standard.set($0, forKey: KeyDarkModeColor)
+                UserDefaults.standard.set($0, forKey: KeyBoardSize)
             }
             .store(in: &cancellables)
     }
