@@ -122,7 +122,7 @@ struct BoardContainerView: View {
             VCenter {
                 HCenter {
                     if boardView.width > geometry.size.width {
-                        ScrollView([.vertical, .horizontal]) {
+                        ScrollView([.vertical, .horizontal], showsIndicators: false) {
                             boardView
                         }
                     } else {
@@ -163,6 +163,7 @@ struct BoardView: View {
                 }
             }
         }
+        .padding(4)
     }
     
     private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
