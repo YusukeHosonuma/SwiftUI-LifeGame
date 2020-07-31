@@ -90,6 +90,10 @@ final class LifeGameContext {
         _state = execute(self)
     }
     
+    func generateRandom() {
+        _board.value = LifeGameBoard.random(size: _board.value.size)
+    }
+    
     func setPreset(_ preset: BoardPreset) {
         _board.value.clear()
         _board.value.apply(size: preset.board.size, cells: preset.board.cells.map(\.rawValue))

@@ -15,7 +15,9 @@ struct Application: App {
 
     init() {
         // ref: https://stackoverflow.com/a/59926791
-        UIScrollView.appearance().bounces = false
+        #if os(iOS)
+        UIScrollView.appearance().bounces = false // FIXME: ✅ Support macOS
+        #endif
     }
     
     var body: some Scene {
