@@ -16,8 +16,8 @@ struct MainGameView: View {
     var body: some View {
         VStack {
             Spacer()
-            TopControlView(viewModel: viewModel)
             BoardContainerView(viewModel: viewModel)
+            TopControlView(viewModel: viewModel)
             ControlView(viewModel: viewModel)
             SpeedSliderView(viewModel: viewModel)
             Spacer()
@@ -92,8 +92,9 @@ struct TopControlView: View {
         #else
         HStack {
             clearButton()
-            Spacer()
             presetsMenu()
+            Spacer()
+            Stepper(value: $viewModel.zoomLevel, in: 0...10) {}
         }
         .padding()
         #endif
@@ -110,8 +111,12 @@ struct TopControlView: View {
 struct BoardContainerView: View {
     @ObservedObject var viewModel: MainGameViewModel
 
+    var cellWidth: CGFloat {
+        CGFloat(20 + (viewModel.zoomLevel - 5) * 2)
+    }
+    
     var body: some View {
-        let boardView = BoardView(viewModel: viewModel, cellWidth: 20, cellPadding: 2)
+        let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
 
         GeometryReader { geometry in
             VCenter {

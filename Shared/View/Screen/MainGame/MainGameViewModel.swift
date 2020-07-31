@@ -13,6 +13,7 @@ import os
 final class MainGameViewModel: ObservableObject {
     @Published var board: LifeGameBoard
     @Published var speed: Double
+    @Published var zoomLevel: Int = 5
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
