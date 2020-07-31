@@ -73,7 +73,13 @@ struct TopControlView: View {
         #if os(macOS)
         return Menu("Presets") { contents }
         #else
-        return Menu(content: { contents }, label: {
+        return Menu(content: {
+            contents
+            Divider()
+            Button("Randome") {
+                viewModel.tapRandomButton()
+            }
+        }, label: {
             Button("Presets") {}.buttonStyle(ButtonStyleRounded())
         })
         #endif
