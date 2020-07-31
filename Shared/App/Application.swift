@@ -13,6 +13,11 @@ private let settingEnvironment: SettingEnvironment = .shared
 struct Application: App {
     @StateObject var viewModel = MainGameViewModel()
 
+    init() {
+        // ref: https://stackoverflow.com/a/59926791
+        UIScrollView.appearance().bounces = false
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView(viewModel: viewModel)
