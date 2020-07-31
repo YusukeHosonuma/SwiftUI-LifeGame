@@ -15,6 +15,13 @@ struct MainGameView: View {
 
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Text("\(viewModel.board.size) x \(viewModel.board.size)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding([.trailing], 16)
+            }
             Spacer()
             BoardContainerView(viewModel: viewModel)
             TopControlView(viewModel: viewModel)
