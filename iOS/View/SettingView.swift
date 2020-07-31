@@ -24,33 +24,39 @@ struct SettingView: View {
     // MARK: Views
 
     var body: some View {
-        Form {
-            Section(header: Text("Color")) {
-                ForEach(colors, id: \.title) { data in
-                    ColorPicker(selection: data.binding) {
-                        HStack {
-                            CellView(color: data.value, size: CellSize)
-                            Text(data.title)
+        NavigationView {
+            Form {
+                Section(header: Text("Color")) {
+                    ForEach(colors, id: \.title) { data in
+                        ColorPicker(selection: data.binding) {
+                            HStack {
+                                CellView(color: data.value, size: CellSize)
+                                Text(data.title)
+                            }
                         }
                     }
                 }
-            }
-            
-            Section(header: Text("Board")) {
-                Menu(content: changeBoardSizeMenu) {
-                    HStack {
-                        Button("Size: \(setting.boardSize) x \(setting.boardSize)") {}
+                Section(header: Text("Board")) {
+                    Menu(content: changeBoardSizeMenu) {
+                        HStack {
+                            Button("Size: \(setting.boardSize) x \(setting.boardSize)") {}
+                        }
                     }
                 }
-            }
-            
-            Section {
-                HCenter {
-                    Button("Reset to Default", action: tapResetToDefault)
-                        .foregroundColor(.red)
-                        .alert(isPresented: $isAlertPresented, content: resetAlert)
+                Section(
+                    header: Text("GitHub"),
+                    footer: Text("This app is Open Source Software (MIT)")) {
+                    Link("YusukeHosonuma/SwiftUI-LifeGame",
+                         destination: URL(string: "https://github.com/YusukeHosonuma/SwiftUI-LifeGame")!)
                 }
-            }
+                Section {
+                    HCenter {
+                        Button("Reset to Default", action: tapResetToDefault)
+                            .foregroundColor(.red)
+                            .alert(isPresented: $isAlertPresented, content: resetAlert)
+                    }
+                }
+            }.navigationTitle("Settings")
         }
     }
 
