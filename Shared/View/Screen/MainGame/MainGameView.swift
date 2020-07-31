@@ -55,36 +55,6 @@ struct TopControlView: View {
     
     // MARK: View
     
-    func clearButton() -> some View {
-        Button("Clear") {
-            isPresentedAlert.toggle()
-        }
-        .buttonStyle(ButtonStyleRounded(color: .red))
-        .alert(isPresented: $isPresentedAlert, content: clearAlert)
-    }
-    
-    func presetsMenu() -> some View {
-        let contents = ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-            Button(preset.displayText) {
-                viewModel.selectPreset(preset)
-            }
-        }
-        
-        #if os(macOS)
-        return Menu("Presets") { contents }
-        #else
-        return Menu(content: {
-            contents
-            Divider()
-            Button("Randome") {
-                viewModel.tapRandomButton()
-            }
-        }, label: {
-            Button("Presets") {}.buttonStyle(ButtonStyleRounded())
-        })
-        #endif
-    }
-    
     var body: some View {
         #if os(macOS)
         VStack {
@@ -92,19 +62,61 @@ struct TopControlView: View {
                 Spacer()
                 clearButton()
             }
-            presetsMenu()
+            presetsMenuButton()
         }
         .padding()
         #else
         HStack {
             clearButton()
-            presetsMenu()
+            presetsMenuButton()
             Spacer()
             Stepper(value: $viewModel.zoomLevel, in: 0...10) {}
         }
         .padding()
         #endif
     }
+    
+    private func clearButton() -> some View {
+        Button("Clear") {
+            isPresentedAlert.toggle()
+        }
+        .buttonStyle(ButtonStyleRounded(color: .red))
+        .alert(isPresented: $isPresentedAlert, content: clearAlert)
+    }
+    
+    @ViewBuilder
+    private func presetsMenuButton() -> some View {
+        #if os(macOS)
+        Menu("Presets", content: presetsMenuContent)
+        #else
+        Menu(content: presetsMenuContent) {
+            Button("Presets") {}.buttonStyle(ButtonStyleRounded())
+        }
+        #endif
+    }
+    
+    @ViewBuilder
+    private func presetsMenuContent() -> some View {
+        // Note:
+        // バグか仕様なのか分からないが、実際のボタン表示は逆順になる。（Xcode 12 beta3）
+        //
+        // ...
+        // -----
+        // Random
+        //
+        
+        Button("Random") {
+            viewModel.tapRandomButton()
+        }
+        Divider()
+        ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
+            Button(preset.displayText) {
+                viewModel.selectPreset(preset)
+            }
+        }
+    }
+    
+    // MARK: Actions
     
     private func clearAlert() -> Alert {
         Alert(
