@@ -68,18 +68,24 @@ struct BoardContainerView: View {
         GeometryReader { geometry in
             VCenter {
                 HCenter {
-                    let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
-                    if boardView.width + padding * 2 > geometry.size.width {
-                        ScrollView([.vertical, .horizontal], showsIndicators: false) {
-                            boardView
-                        }
-                    } else {
-                        boardView
-                    }
+                    boardView(geometry: geometry)
                 }
             }
             .padding(padding)
             .frame(width: geometry.size.width, height: geometry.size.width)
+        }
+    }
+    
+    @ViewBuilder
+    private func boardView(geometry: GeometryProxy) -> some View {
+        let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+        
+        if boardView.width + padding * 2 > geometry.size.width {
+            ScrollView([.vertical, .horizontal], showsIndicators: false) {
+                boardView
+            }
+        } else {
+            boardView
         }
     }
 }
