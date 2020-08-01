@@ -56,12 +56,13 @@ struct MainGameView_Previews: PreviewProvider {
 // MARK: - Subviews
 
 struct BoardContainerView: View {
+    @EnvironmentObject var setting: SettingEnvironment
     @ObservedObject var viewModel: MainGameViewModel
 
     private let padding: CGFloat = 8
     
     var cellWidth: CGFloat {
-        CGFloat(20 + (viewModel.zoomLevel - 5) * 2)
+        CGFloat(20 + (setting.zoomLevel - 5) * 2)
     }
     
     var body: some View {
@@ -143,6 +144,7 @@ struct BoardView: View {
 }
 
 struct TopControlView: View {
+    @EnvironmentObject var setting: SettingEnvironment
     @ObservedObject var viewModel: MainGameViewModel
 
     // MARK: Private
@@ -167,7 +169,7 @@ struct TopControlView: View {
             clearButton()
             presetsMenuButton()
             Spacer()
-            Stepper(value: $viewModel.zoomLevel, in: 0...10) {}
+            Stepper(value: $setting.zoomLevel, in: 0...10) {}
         }
         .padding([.leading, .trailing])
         #endif

@@ -14,6 +14,7 @@ final class UserDefaultSetting {
     static let DefaultDarkModeColor: Color = .white
     static let DefaultBoardSize: Int = 13
     static let DefaultAnimationSpeed: Double = 0.5
+    static let DefaultZoomLevel: Int = 5
 
     @UserDefault(key: "lightModeColor", defaultValue: DefaultLightModeColor)
     var lightModeColor: Color
@@ -26,4 +27,7 @@ final class UserDefaultSetting {
 
     @UserDefault(key: "animationSpeed", defaultValue: DefaultAnimationSpeed)
     var animationSpeed: Double
+
+    @UserDefault(key: "zoomLevel", defaultValue: DefaultZoomLevel)
+    var zoomLevel: Int
 }

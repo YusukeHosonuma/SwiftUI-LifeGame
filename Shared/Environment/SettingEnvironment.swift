@@ -17,6 +17,7 @@ final class SettingEnvironment: ObservableObject {
     @Published var lightModeColor: Color
     @Published var boardSize: Int
     @Published var animationSpeed: Double
+    @Published var zoomLevel: Int
 
     private var cancellables: [AnyCancellable] = []
     
@@ -26,6 +27,7 @@ final class SettingEnvironment: ObservableObject {
         darkModeColor = UserDefaultSetting.shared.darkModeColor
         boardSize = UserDefaultSetting.shared.boardSize
         animationSpeed = UserDefaultSetting.shared.animationSpeed
+        zoomLevel = UserDefaultSetting.shared.zoomLevel
 
         // Subscribe changes
         $lightModeColor
@@ -44,6 +46,10 @@ final class SettingEnvironment: ObservableObject {
             .dropFirst()
             .assign(to: \.animationSpeed, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
+        $zoomLevel
+            .dropFirst()
+            .assign(to: \.zoomLevel, on: UserDefaultSetting.shared)
+            .store(in: &cancellables)
     }
     
     func resetToDefault() {
@@ -51,5 +57,6 @@ final class SettingEnvironment: ObservableObject {
         darkModeColor = UserDefaultSetting.DefaultDarkModeColor
         boardSize = UserDefaultSetting.DefaultBoardSize
         animationSpeed = UserDefaultSetting.DefaultAnimationSpeed
+        zoomLevel = UserDefaultSetting.DefaultZoomLevel
     }
 }

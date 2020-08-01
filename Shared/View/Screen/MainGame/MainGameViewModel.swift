@@ -13,7 +13,6 @@ import os
 final class MainGameViewModel: ObservableObject {
     @Published var board: LifeGameBoard
     @Published var speed: Double = 0
-    @Published var zoomLevel: Int = 5
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
@@ -74,7 +73,7 @@ final class MainGameViewModel: ObservableObject {
     func selectPreset(_ preset: BoardPreset) {
         _context.setPreset(preset)
     }
-    
+
     func tapClear() {
         _context.clear()
     }
