@@ -16,18 +16,18 @@ jobs:
 
     - name: Build iOS (debug)
       run: |
-        xcodebuild \
+        set -o pipefail && xcodebuild \
           -workspace LifeGameApp.xcodeproj/project.xcworkspace \
           -scheme 'LifeGameApp (iOS)' \
           -sdk iphonesimulator \
           -configuration Debug \
-          build
+          build | xcpretty
 
     - name: Build macOS (debug)
       run: |
-        xcodebuild \
+        set -o pipefail && xcodebuild \
           -workspace LifeGameApp.xcodeproj/project.xcworkspace \
           -scheme 'LifeGameApp (macOS)' \
           -sdk macosx11.0 \
           -configuration Debug \
-          build
+          build | xcpretty
