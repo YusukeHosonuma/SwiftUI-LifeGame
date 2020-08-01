@@ -14,20 +14,23 @@ struct MainGameView: View {
     @ObservedObject var viewModel: MainGameViewModel
 
     var body: some View {
-        VStack {
-            HStack {
+        GeometryReader { geometry in
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("\(viewModel.board.size) x \(viewModel.board.size)")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .padding([.trailing], 16)
+                }
                 Spacer()
-                Text("\(viewModel.board.size) x \(viewModel.board.size)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .padding([.trailing], 16)
+                BoardContainerView(viewModel: viewModel)
+                    .frame(width: geometry.size.width, height: geometry.size.width)
+                Spacer()
+                TopControlView(viewModel: viewModel)
+                ControlView(viewModel: viewModel)
+                SpeedSliderView(viewModel: viewModel)
             }
-            Spacer()
-            BoardContainerView(viewModel: viewModel)
-            TopControlView(viewModel: viewModel)
-            ControlView(viewModel: viewModel)
-            SpeedSliderView(viewModel: viewModel)
-            Spacer()
         }
     }
 }
@@ -51,6 +54,87 @@ struct MainGameView_Previews: PreviewProvider {
 }
 
 // MARK: - Subviews
+
+struct BoardContainerView: View {
+    @ObservedObject var viewModel: MainGameViewModel
+
+    private let padding: CGFloat = 8
+    
+    var cellWidth: CGFloat {
+        CGFloat(20 + (viewModel.zoomLevel - 5) * 2)
+    }
+    
+    var body: some View {
+        GeometryReader { geometry in
+            VCenter {
+                HCenter {
+                    let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+                    if boardView.width + padding * 2 > geometry.size.width {
+                        ScrollView([.vertical, .horizontal], showsIndicators: false) {
+                            boardView
+                        }
+                    } else {
+                        boardView
+                    }
+                }
+            }
+            .padding(padding)
+            .frame(width: geometry.size.width, height: geometry.size.width)
+        }
+    }
+}
+
+struct BoardView: View {
+    @ObservedObject var viewModel: MainGameViewModel
+    
+    var cellWidth: CGFloat
+    var cellPadding: CGFloat
+
+    // MARK: Computed properties
+    
+    var width: CGFloat {
+        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size)
+    }
+
+    // MARK: Private
+
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @EnvironmentObject private var setting: SettingEnvironment
+
+    // MARK: View
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
+                HStack(spacing: 0) {
+                    ForEach(row.withIndex(), id: \.0) { x, cell in
+                        cellButton(x: x, y: y, cell: cell)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
+        CellView(color: cellBackgroundColor(cell: cell), size: cellWidth)
+            .padding(cellPadding)
+            .contentShape(Rectangle())
+            .onTapGesture(perform: {
+                viewModel.tapCell(x: x, y: y)
+            })
+    }
+    
+    private func cellBackgroundColor(cell: Cell) -> Color {
+        switch (colorScheme, cell) {
+        case (.light, .die):   return .white
+        case (.light, .alive): return setting.lightModeColor
+        case (.dark,  .die):   return .black
+        case (.dark,  .alive): return setting.darkModeColor
+        case (_, _):
+            fatalError()
+        }
+    }
+}
 
 struct TopControlView: View {
     @ObservedObject var viewModel: MainGameViewModel
@@ -79,7 +163,7 @@ struct TopControlView: View {
             Spacer()
             Stepper(value: $viewModel.zoomLevel, in: 0...10) {}
         }
-        .padding()
+        .padding([.leading, .trailing])
         #endif
     }
     
@@ -133,85 +217,6 @@ struct TopControlView: View {
     }
 }
 
-struct BoardContainerView: View {
-    @ObservedObject var viewModel: MainGameViewModel
-
-    var cellWidth: CGFloat {
-        CGFloat(20 + (viewModel.zoomLevel - 5) * 2)
-    }
-    
-    var body: some View {
-        let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
-
-        GeometryReader { geometry in
-            VCenter {
-                HCenter {
-                    if boardView.width > geometry.size.width {
-                        ScrollView([.vertical, .horizontal], showsIndicators: false) {
-                            boardView
-                        }
-                    } else {
-                        boardView
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct BoardView: View {
-    @ObservedObject var viewModel: MainGameViewModel
-    
-    var cellWidth: CGFloat
-    var cellPadding: CGFloat
-
-    // MARK: Computed properties
-    
-    var width: CGFloat {
-        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size)
-    }
-
-    // MARK: Private
-
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var setting: SettingEnvironment
-
-    // MARK: View
-
-    var body: some View {
-        VStack(spacing: 0) {
-            ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
-                HStack(spacing: 0) {
-                    ForEach(row.withIndex(), id: \.0) { x, cell in
-                        cellButton(x: x, y: y, cell: cell)
-                    }
-                }
-            }
-        }
-        .padding(4)
-    }
-    
-    private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
-        CellView(color: cellBackgroundColor(cell: cell), size: cellWidth)
-            .padding(cellPadding)
-            .contentShape(Rectangle())
-            .onTapGesture(perform: {
-                viewModel.tapCell(x: x, y: y)
-            })
-    }
-    
-    private func cellBackgroundColor(cell: Cell) -> Color {
-        switch (colorScheme, cell) {
-        case (.light, .die):   return .white
-        case (.light, .alive): return setting.lightModeColor
-        case (.dark,  .die):   return .black
-        case (.dark,  .alive): return setting.darkModeColor
-        case (_, _):
-            fatalError()
-        }
-    }
-}
-
 struct ControlView: View {
     @ObservedObject var viewModel: MainGameViewModel
     
@@ -234,8 +239,8 @@ struct ControlView: View {
             Button("Next", action: viewModel.tapNextButton)
                 .disabled(viewModel.nextButtonDisabled)
         }
-        .padding()
         .buttonStyle(ButtonStyleCircle())
+        .padding([.leading, .trailing, .top])
     }
 }
 

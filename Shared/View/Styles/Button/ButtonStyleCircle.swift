@@ -29,7 +29,7 @@ struct ButtonStyleCircle: ButtonStyle {
                 .fill(background.opacity(!isEnabled ? 0.5 : configuration.isPressed ? 0.8 : 1))
                 .overlay(Circle().strokeBorder(borderColor, lineWidth: 2).padding(2))
                 .overlay(configuration.label.foregroundColor(foreground))
-                .frame(width: 75, height: 75)
+                .frame(width: 64, height: 64)
         }
     }
 }
