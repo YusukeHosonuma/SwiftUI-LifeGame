@@ -12,22 +12,16 @@ import os
 
 final class MainGameViewModel: ObservableObject {
     @Published var board: LifeGameBoard
-    @Published var speed: Double
-    @Published var zoomLevel: Int = 5
+    @Published var speed: Double = 0
     @Published var playButtonDisabled: Bool = true
     @Published var stopButtonDisabled: Bool = true
     @Published var nextButtonDisabled: Bool = true
 
     init() {
-        let board = LifeGameBoard(size: 13)
-        
-        // TODO: refactor
-        UserDefaults.standard.register(defaults: ["animationSpeed" : 0.5])
-        let speed = UserDefaults.standard.double(forKey: "animationSpeed")
-            
+        let board = LifeGameBoard(size: 13) // TODO: refactor
+
         self.board = board
-        self.speed = speed
-        _context = LifeGameContext(board: board, speed: speed)
+        _context = LifeGameContext(board: board)
         bind()
     }
     
@@ -38,8 +32,10 @@ final class MainGameViewModel: ObservableObject {
         _context.isEnabledStop.map { !$0 }.assign(to: &$stopButtonDisabled)
         _context.isEnabledNext.map { !$0 }.assign(to: &$nextButtonDisabled)
         
+        // TODO: これはやはり微妙感
         $speed
             .removeDuplicates()
+            .throttle(for: 0.5, scheduler: RunLoop.main, latest: true)
             .sink(receiveValue: _context.changeSpeed)
             .store(in: &_cancellables)
         
@@ -77,7 +73,7 @@ final class MainGameViewModel: ObservableObject {
     func selectPreset(_ preset: BoardPreset) {
         _context.setPreset(preset)
     }
-    
+
     func tapClear() {
         _context.clear()
     }
