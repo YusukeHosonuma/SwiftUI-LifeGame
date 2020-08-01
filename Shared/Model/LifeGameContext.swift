@@ -33,18 +33,15 @@ final class LifeGameContext {
         }
     }
     
-    init(setting: SettingEnvironment = .shared, board: LifeGameBoard, speed: Double) {
+    init(setting: SettingEnvironment = .shared, board: LifeGameBoard) {
         _setting = setting
         _board = .init(board)
-        _speed = .init(speed)
+        _speed = .init(setting.animationSpeed)
         
-        _speed
-            .sink { value in
-                UserDefaults.standard.set(value, forKey: "animationSpeed")
-                Self._logger.info("[Write] animationSpeed: \(value, format: .fixed(precision: 2))")
-            }
+        _setting.$animationSpeed
+            .assign(to: \._speed.value, on: self)
             .store(in: &_cancellables)
-        
+
         _setting.$boardSize
             .sink { [weak self] size in
                 guard let self = self else { return }
@@ -109,6 +106,8 @@ final class LifeGameContext {
     
     func changeSpeed(_ speed: Double) {
         _speed.value = speed
+        _setting.animationSpeed = speed
+        Self._logger.info("[Write] animationSpeed: \(speed, format: .fixed(precision: 2))")
     }
     
     // MARK: File Private - Allow access from states.

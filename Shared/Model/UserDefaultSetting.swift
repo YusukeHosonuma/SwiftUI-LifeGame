@@ -13,6 +13,7 @@ final class UserDefaultSetting {
     static let DefaultLightModeColor: Color = .black
     static let DefaultDarkModeColor: Color = .white
     static let DefaultBoardSize: Int = 13
+    static let DefaultAnimationSpeed: Double = 0.5
 
     @UserDefault(key: "lightModeColor", defaultValue: DefaultLightModeColor)
     var lightModeColor: Color
@@ -22,4 +23,7 @@ final class UserDefaultSetting {
 
     @UserDefault(key: "boardSize", defaultValue: DefaultBoardSize)
     var boardSize: Int
+
+    @UserDefault(key: "animationSpeed", defaultValue: DefaultAnimationSpeed)
+    var animationSpeed: Double
 }

@@ -24,6 +24,17 @@ extension Int: UserDefaultConvertible {
     }
 }
 
+extension Double: UserDefaultConvertible {
+    init?(with object: Any) {
+        guard let value = object as? Double else { return nil }
+        self = value
+    }
+    
+    func object() -> Any {
+        self
+    }
+}
+
 extension Color: UserDefaultConvertible {
     init?(with object: Any) {
         guard let data = object as? Data, let color = Color(rawValue: data) else { return nil }
