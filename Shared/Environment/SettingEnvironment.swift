@@ -8,14 +8,7 @@
 import SwiftUI
 import Combine
 
-// TODO: refactor - more swifty
-private let KeyLightModeColor = "lightModeColor"
-private let KeyDarkModeColor = "darkModeColor"
-private let KeyBoardSize = "boardSize"
-
-private let LightModeDefaultColor = Color.black
-private let DarkModeDefaultColor = Color.white
-private let DefaultBoardSize = 13
+// TODO: もう少しうまくやれそうな気もする。というかこのクラスが過剰になるのでは？
 
 final class SettingEnvironment: ObservableObject {
     static let shared: SettingEnvironment = .init()
@@ -27,38 +20,29 @@ final class SettingEnvironment: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     init() {
-        // Register defaults
-        UserDefaults.standard.register(defaults: [KeyBoardSize : DefaultBoardSize])
-
         // Restore
-        lightModeColor = UserDefaults.standard.data(forKey: KeyLightModeColor).flatMap(Color.init) ?? LightModeDefaultColor
-        darkModeColor = UserDefaults.standard.data(forKey: KeyDarkModeColor).flatMap(Color.init) ?? DarkModeDefaultColor
-        boardSize = UserDefaults.standard.integer(forKey: KeyBoardSize)
+        lightModeColor = UserDefaultSetting.shared.lightModeColor
+        darkModeColor = UserDefaultSetting.shared.darkModeColor
+        boardSize = UserDefaultSetting.shared.boardSize
         
         // Subscribe changes
         $lightModeColor
             .dropFirst()
-            .sink {
-                UserDefaults.standard.set($0.rawValue, forKey: KeyLightModeColor)
-            }
+            .assign(to: \.lightModeColor, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
         $darkModeColor
             .dropFirst()
-            .sink {
-                UserDefaults.standard.set($0.rawValue, forKey: KeyDarkModeColor)
-            }
+            .assign(to: \.darkModeColor, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
         $boardSize
             .dropFirst()
-            .sink {
-                UserDefaults.standard.set($0, forKey: KeyBoardSize)
-            }
+            .assign(to: \.boardSize, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
     }
     
     func resetToDefault() {
-        lightModeColor = LightModeDefaultColor
-        darkModeColor = DarkModeDefaultColor
+        lightModeColor = UserDefaultSetting.DefaultLightModeColor
+        darkModeColor = UserDefaultSetting.DefaultDarkModeColor
+        boardSize = UserDefaultSetting.DefaultBoardSize
     }
 }
-

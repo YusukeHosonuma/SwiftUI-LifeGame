@@ -20,6 +20,12 @@
 		E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
 		E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
+		E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
+		E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
+		E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536824D51B9F003B4C9E /* UserDefault.swift */; };
+		E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536824D51B9F003B4C9E /* UserDefault.swift */; };
+		E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
+		E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E573BD8424D054B40096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
@@ -73,6 +79,9 @@
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
+		E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConvertible.swift; sourceTree = "<group>"; };
+		E571536824D51B9F003B4C9E /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultSetting.swift; sourceTree = "<group>"; };
 		E573BD8124D053F90096BF75 /* LifeGameCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameCommands.swift; sourceTree = "<group>"; };
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
@@ -148,6 +157,15 @@
 				E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		E571536424D51B5B003B4C9E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */,
+				E571536824D51B9F003B4C9E /* UserDefault.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E573BD8324D054A70096BF75 /* Command */ = {
@@ -246,6 +264,7 @@
 				E5FA934A24C07A3D00229AAA /* Model */,
 				E518212E24CC27B900ABD16B /* Environment */,
 				E5FA934E24C07ACE00229AAA /* Extensions */,
+				E571536424D51B5B003B4C9E /* Util */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -339,6 +358,7 @@
 			children = (
 				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 				E5CE237224C199F200BC5820 /* LifeGameContext.swift */,
+				E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -530,10 +550,12 @@
 			files = (
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
+				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
+				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
 				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
@@ -541,6 +563,7 @@
 				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
+				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E573BD8424D054B40096BF75 /* LifeGameCommands.swift in Sources */,
@@ -553,10 +576,12 @@
 			files = (
 				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
+				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
+				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */,
 				E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
@@ -564,6 +589,7 @@
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
+				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
