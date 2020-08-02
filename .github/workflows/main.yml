@@ -23,11 +23,13 @@ jobs:
           -configuration Debug \
           build | xcpretty
 
-    - name: Build macOS (debug)
-      run: |
-        set -o pipefail && xcodebuild \
-          -workspace LifeGameApp.xcodeproj/project.xcworkspace \
-          -scheme 'LifeGameApp (macOS)' \
-          -sdk macosx11.0 \
-          -configuration Debug \
-          build | xcpretty
+    # TODO: Development signing is required to build for macOS.
+
+    # - name: Build macOS (debug)
+    #   run: |
+    #     set -o pipefail && xcodebuild \
+    #       -workspace LifeGameApp.xcodeproj/project.xcworkspace \
+    #       -scheme 'LifeGameApp (macOS)' \
+    #       -sdk macosx11.0 \
+    #       -configuration Debug \
+    #       build | xcpretty
