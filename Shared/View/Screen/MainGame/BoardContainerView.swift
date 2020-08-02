@@ -53,7 +53,7 @@ struct BoardView: View {
     // MARK: Computed properties
     
     var width: CGFloat {
-        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size)
+        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size) + 6
     }
 
     // MARK: Private
@@ -73,6 +73,8 @@ struct BoardView: View {
                 }
             }
         }
+        .padding(3)
+        .border(Color.gray, width: 2)
     }
     
     private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
