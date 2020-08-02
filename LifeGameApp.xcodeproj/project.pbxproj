@@ -10,6 +10,12 @@
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
+		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
+		E51169D024D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
+		E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D124D644E3002D40B6 /* SpeedSliderView.swift */; };
+		E51169D324D644E3002D40B6 /* SpeedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D124D644E3002D40B6 /* SpeedSliderView.swift */; };
+		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
+		E51169D624D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518212D24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
@@ -31,6 +37,8 @@
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
+		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
+		E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
@@ -74,6 +82,9 @@
 /* Begin PBXFileReference section */
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
+		E51169D124D644E3002D40B6 /* SpeedSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSliderView.swift; sourceTree = "<group>"; };
+		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -84,6 +95,7 @@
 		E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultSetting.swift; sourceTree = "<group>"; };
 		E573BD8124D053F90096BF75 /* LifeGameCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameCommands.swift; sourceTree = "<group>"; };
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5A7911B24D64A1000648813 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
@@ -215,6 +227,10 @@
 			children = (
 				E5D9F24B24BEBDBC009A526B /* MainGameView.swift */,
 				E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */,
+				E51169D424D64546002D40B6 /* ControlView.swift */,
+				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
+				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
+				E5A7911B24D64A1000648813 /* ActionMenu.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -548,8 +564,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
+				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
@@ -557,6 +575,7 @@
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
+				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
 				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
@@ -564,6 +583,7 @@
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
+				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E573BD8424D054B40096BF75 /* LifeGameCommands.swift in Sources */,
@@ -574,8 +594,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
+				E51169D624D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
@@ -583,6 +605,7 @@
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
+				E51169D024D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */,
 				E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
@@ -590,6 +613,7 @@
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,
+				E51169D324D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
