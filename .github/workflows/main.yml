@@ -1,0 +1,35 @@
+name: Build iOS / macOS
+
+on: [push]
+
+jobs:
+  unit-test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Use Xcode 12.0
+      run: |
+        sudo xcode-select -s /Applications/Xcode_12_beta.app/Contents/Developer
+        xcodebuild -version
+
+    - uses: actions/checkout@v2
+
+    - name: Build iOS (debug)
+      run: |
+        set -o pipefail && xcodebuild \
+          -workspace LifeGameApp.xcodeproj/project.xcworkspace \
+          -scheme 'LifeGameApp (iOS)' \
+          -sdk iphonesimulator \
+          -configuration Debug \
+          build | xcpretty
+
+    # TODO: Development signing is required to build for macOS.
+
+    # - name: Build macOS (debug)
+    #   run: |
+    #     set -o pipefail && xcodebuild \
+    #       -workspace LifeGameApp.xcodeproj/project.xcworkspace \
+    #       -scheme 'LifeGameApp (macOS)' \
+    #       -sdk macosx11.0 \
+    #       -configuration Debug \
+    #       build | xcpretty
