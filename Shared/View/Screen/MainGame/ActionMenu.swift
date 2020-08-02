@@ -24,11 +24,7 @@ struct ActionMenu<Label>: View where Label: View {
     // MARK: View
     
     var body: some View {
-        #if os(macOS)
-        Menu("Presets", content: content)
-        #else
         Menu(content: content, label: label)
-        #endif
     }
     
     @ViewBuilder

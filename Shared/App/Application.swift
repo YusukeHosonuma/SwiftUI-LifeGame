@@ -14,9 +14,11 @@ struct Application: App {
     @StateObject var viewModel = MainGameViewModel()
 
     init() {
+        #if os(macOS)
+        // TODO: How can disable scroll-bounce in mac?
+        #elseif os(iOS)
         // ref: https://stackoverflow.com/a/59926791
-        #if os(iOS)
-        UIScrollView.appearance().bounces = false // FIXME: ✅ Support macOS
+        UIScrollView.appearance().bounces = false
         #endif
     }
     
