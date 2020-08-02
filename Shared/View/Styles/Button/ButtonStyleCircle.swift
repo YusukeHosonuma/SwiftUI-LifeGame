@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ButtonStyleCircle: ButtonStyle {
+    var color: Color = .accentColor
+    
     func makeBody(configuration: Configuration) -> some View {
-        Button(configuration: configuration)
+        Button(configuration: configuration, background: color)
     }
     
     struct Button: View {
         var configuration: Configuration
+        var background: Color
         var foreground = Color.white
-        var background = Color.accentColor
         
         var borderColor: Color {
             colorScheme == .dark ? Color.black : Color.white
