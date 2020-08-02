@@ -18,12 +18,12 @@ struct RootView: View {
             MainGameView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
-                    Text("Game")
+                    Text("GAME")
                 }
             SettingView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    Text("SETTING")
                 }
         }
         #endif
