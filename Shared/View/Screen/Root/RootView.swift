@@ -8,11 +8,106 @@
 import SwiftUI
 
 struct RootView: View {
-    var viewModel: MainGameViewModel
+    @ObservedObject var viewModel: MainGameViewModel
+    @EnvironmentObject var setting: SettingEnvironment
+    
+    private var cellWidth: CGFloat {
+        CGFloat(20 + (setting.zoomLevel - 5) * 2)
+    }
     
     var body: some View {
         #if os(macOS)
-        MainGameView(viewModel: viewModel)
+        NavigationView {
+            List {
+                // ❗ Not working in beta3
+                // Section(header: Text("Presets")) {
+                //     Text("Nebura")
+                //     Text("Spaceship")
+                // }
+                
+                Text("Size").foregroundColor(.secondary)
+                ForEach([13, 17, 21].withIndex(), id: \.1) { index, size in
+                    Text("\(size) x \(size)")
+                        .onTapGesture {
+                            setting.boardSize = size
+                        }
+                }
+                
+                Divider()
+
+                Text("Presets").foregroundColor(.secondary)
+                ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
+                    Text(preset.displayText)
+                        .onTapGesture {
+                            viewModel.selectPreset(preset)
+                        }
+                }
+
+                Divider()
+                
+                Text("Random")
+                    .onTapGesture(perform: viewModel.tapRandomButton)
+                
+                Divider()
+                
+                Text("Animation Speed").foregroundColor(.secondary)
+                Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+            }
+            .listStyle(SidebarListStyle())
+            .frame(minWidth: 212, idealWidth: 212, maxWidth: 212, maxHeight: .infinity)
+            
+            BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+        }
+        .navigationTitle("\(setting.boardSize) x \(setting.boardSize)")
+        .toolbar {
+            ToolbarItem(placement: .status) {
+                Button(action: viewModel.tapPlayButton) {
+                    Image(systemName: "play.fill")
+                }
+                .disabled(viewModel.playButtonDisabled)
+            }
+            
+            ToolbarItem(placement: .status) {
+                Button(action: viewModel.tapStopButton) {
+                    Image(systemName: "stop.fill")
+                }
+                .disabled(viewModel.stopButtonDisabled)
+            }
+            
+            ToolbarItem(placement: .status) {
+                Button(action: viewModel.tapNextButton) {
+                    Image(systemName: "arrow.right.to.line.alt")
+                }
+                .disabled(viewModel.nextButtonDisabled)
+            }
+            
+            ToolbarItem(placement: .status) {
+                Button(action: viewModel.tapClear) {
+                    Image(systemName: "trash")
+                }
+            }
+            
+            // TODO: refactor
+            ToolbarItem(placement: .status) {
+                Button(action: {
+                    if setting.zoomLevel < 10 {
+                        setting.zoomLevel += 1
+                    }
+                }) {
+                    Image(systemName: "plus.magnifyingglass")
+                }
+            }
+            
+            ToolbarItem(placement: .status) {
+                Button(action: {
+                    if 0 < setting.zoomLevel {
+                        setting.zoomLevel -= 1
+                    }
+                }) {
+                    Image(systemName: "minus.magnifyingglass")
+                }
+            }
+        }
         #else
         TabView {
             MainGameView(viewModel: viewModel)
