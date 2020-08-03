@@ -131,6 +131,6 @@ struct ControlView: View {
 struct ControlView_Previews: PreviewProvider {
     static var previews: some View {
         TopControlView(viewModel: MainGameViewModel())
-            .previewDevice("iPod touch (7th generation)")
+            .previewLayout(.sizeThatFits)
     }
 }

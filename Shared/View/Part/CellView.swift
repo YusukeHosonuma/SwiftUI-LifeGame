@@ -15,7 +15,7 @@ struct CellView: View {
         Rectangle()
             .fill(color)
             .frame(width: size, height: size, alignment: .center)
-            .border(Color.gray)
+            .border(Color.gray.opacity(0.5))
     }
 }
 

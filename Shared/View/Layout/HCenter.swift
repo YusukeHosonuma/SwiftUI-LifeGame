@@ -15,7 +15,7 @@ struct HCenter<Content>: View where Content: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Spacer()
             content()
             Spacer()

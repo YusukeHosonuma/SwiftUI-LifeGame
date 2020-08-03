@@ -33,13 +33,34 @@ struct BoardContainerView: View {
     @ViewBuilder
     private func boardView(geometry: GeometryProxy) -> some View {
         let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+        let background = backgroundView()
+            .frame(width: boardView.width, height: boardView.width)
+            .clipped()
         
         if boardView.width + padding * 2 > geometry.size.width {
             ScrollView([.vertical, .horizontal], showsIndicators: false) {
-                boardView
+                ZStack {
+                    background
+                    boardView
+                }
             }
         } else {
-            boardView
+            ZStack {
+                background
+                boardView
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func backgroundView() -> some View {
+        if let image = setting.backgroundImage {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                .opacity(0.8)
+        } else {
+            EmptyView()
         }
     }
 }
@@ -88,9 +109,9 @@ struct BoardView: View {
     
     private func cellBackgroundColor(cell: Cell) -> Color {
         switch (colorScheme, cell) {
-        case (.light, .die):   return .white
+        case (.light, .die):   return Color.clear
         case (.light, .alive): return setting.lightModeColor
-        case (.dark,  .die):   return .black
+        case (.dark,  .die):   return Color.clear
         case (.dark,  .alive): return setting.darkModeColor
         case (_, _):
             fatalError()

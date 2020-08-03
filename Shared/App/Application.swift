@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: プレビュー時でもインスタンス化されてるのでコスト
 private let settingEnvironment: SettingEnvironment = .shared
 
 @main
