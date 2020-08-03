@@ -13,7 +13,10 @@ struct PhotoPicker: UIViewControllerRepresentable {
     let configuration: PHPickerConfiguration
     
     @Binding var isPresented: Bool
-    @Binding var selectedImage: Image?
+    
+    // Note:
+    // Currently not supported to convert `Image` to `UIImage` maybe...
+    @Binding var selectedImage: UIImage?
     
     func makeUIViewController(context: Context) -> some PHPickerViewController {
         let controller = PHPickerViewController(configuration: configuration)
@@ -54,7 +57,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                     }
                     
                     DispatchQueue.main.sync {
-                        self.parent.selectedImage = Image(uiImage: image)
+                        self.parent.selectedImage = image
                     }
                 }
             }

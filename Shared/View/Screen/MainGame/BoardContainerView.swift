@@ -55,7 +55,7 @@ struct BoardContainerView: View {
     @ViewBuilder
     private func backgroundView() -> some View {
         if let image = setting.backgroundImage {
-            image
+            Image(uiImage: image)
                 .resizable()
                 .scaledToFill()
                 .opacity(0.8)
