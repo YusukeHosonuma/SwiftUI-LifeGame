@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 private let CellSize: CGFloat = 20
 
@@ -19,6 +20,7 @@ struct SettingView: View {
     
     @State private var isAlertPresented = false
     @State private var isPresentedChangeSizeAlert = [false, false, false]
+    @State private var isPresentedPhotoPicker = false
     @State private var selectedSize: Int?
     
     // MARK: Views
@@ -42,6 +44,18 @@ struct SettingView: View {
                     }
                 }
             }
+            Section(header: Text("Background Image")) {
+                HCenter {
+                    Button("Select image...") {
+                        isPresentedPhotoPicker.toggle()
+                    }
+                    .sheet(isPresented: $isPresentedPhotoPicker) {
+                        PhotoPicker(configuration: configuration,
+                                    isPresented: $isPresentedPhotoPicker,
+                                    selectedImage: $setting.backgroundImage)
+                    }
+                }
+            }
             Section(
                 header: Text("GitHub"),
                 footer: Text("This app is Open Source Software (MIT)")) {
@@ -58,6 +72,13 @@ struct SettingView: View {
         }
     }
 
+    private var configuration: PHPickerConfiguration {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        return config
+    }
+    
     private var colors: [(title: String, value: Color, binding: Binding<Color>)] {
         [
             ("Light mode", setting.lightModeColor, $setting.lightModeColor),

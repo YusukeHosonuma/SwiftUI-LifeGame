@@ -18,6 +18,7 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSize: Int
     @Published var animationSpeed: Double
     @Published var zoomLevel: Int
+    @Published var backgroundImage: Image? // TODO: 永続化
 
     private var cancellables: [AnyCancellable] = []
     

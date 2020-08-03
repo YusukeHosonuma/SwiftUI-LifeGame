@@ -15,7 +15,7 @@ struct VCenter<Content>: View where Content: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
             content()
             Spacer()
