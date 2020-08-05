@@ -19,39 +19,31 @@ struct RootView: View {
         #if os(macOS)
         NavigationView {
             List {
-                // ❗ Not working in beta3
-                // Section(header: Text("Presets")) {
-                //     Text("Nebura")
-                //     Text("Spaceship")
-                // }
-                
-                Text("Size").foregroundColor(.secondary)
-                ForEach([13, 17, 21].withIndex(), id: \.1) { index, size in
-                    Text("\(size) x \(size)")
-                        .onTapGesture {
-                            setting.boardSize = size
-                        }
+                Section(header: Text("Size")) {
+                    ForEach([13, 17, 21].withIndex(), id: \.1) { index, size in
+                        Text("\(size) x \(size)")
+                            .onTapGesture {
+                                setting.boardSize = size
+                            }
+                    }
                 }
                 
-                Divider()
-
-                Text("Presets").foregroundColor(.secondary)
-                ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-                    Text(preset.displayText)
-                        .onTapGesture {
-                            viewModel.selectPreset(preset)
-                        }
+                Section(header: Text("Presets")) {
+                    ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
+                        Text(preset.displayText)
+                            .onTapGesture {
+                                viewModel.selectPreset(preset)
+                            }
+                    }
+                    Divider()
+                    
+                    Text("Random")
+                        .onTapGesture(perform: viewModel.tapRandomButton)
                 }
 
-                Divider()
-                
-                Text("Random")
-                    .onTapGesture(perform: viewModel.tapRandomButton)
-                
-                Divider()
-                
-                Text("Animation Speed").foregroundColor(.secondary)
-                Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+                Section(header: Text("Animation Speed")) {
+                    Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+                }
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 212, idealWidth: 212, maxWidth: 212, maxHeight: .infinity)
