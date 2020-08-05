@@ -44,13 +44,7 @@ struct RootView: View {
         .navigationTitle("")
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                Menu("\(setting.boardSize) x \(setting.boardSize)") {
-                    ForEach([13, 17, 21].withIndex(), id: \.0) { index, size in
-                        Button("\(size) x \(size)") {
-                            setting.boardSize = size
-                        }
-                    }
-                }
+                BoardSizeMenu(size: $setting.boardSize)
             }
 
             ToolbarItem(placement: .status) {
