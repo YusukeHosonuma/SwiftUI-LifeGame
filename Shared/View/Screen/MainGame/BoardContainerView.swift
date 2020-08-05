@@ -54,6 +54,10 @@ struct BoardContainerView: View {
     
     @ViewBuilder
     private func backgroundView() -> some View {
+        #if os(macOS)
+        // TODO:
+        EmptyView()
+        #else
         if let image = setting.backgroundImage {
             Image(uiImage: image)
                 .resizable()
@@ -62,6 +66,7 @@ struct BoardContainerView: View {
         } else {
             EmptyView()
         }
+        #endif
     }
 }
 

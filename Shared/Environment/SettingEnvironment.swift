@@ -18,7 +18,11 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSize: Int
     @Published var animationSpeed: Double
     @Published var zoomLevel: Int
+    #if os(macOS)
+    // TODO:
+    #else
     @Published var backgroundImage: UIImage?
+    #endif
 
     private var cancellables: [AnyCancellable] = []
     
@@ -30,6 +34,9 @@ final class SettingEnvironment: ObservableObject {
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
 
+        #if os(macOS)
+        // TODO:
+        #else
         // TODO: refactor - @UserDefault で簡単にラップできなかったので暫定
         if let data = UserDefaults.standard.data(forKey: "backgroundImage"), let image = UIImage(data: data) {
             backgroundImage = image
@@ -42,6 +49,7 @@ final class SettingEnvironment: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        #endif
         
         // Subscribe changes
         $lightModeColor
