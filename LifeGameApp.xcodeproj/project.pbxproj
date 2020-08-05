@@ -33,7 +33,6 @@
 		E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
 		E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
-		E573BD8424D054B40096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
@@ -311,6 +310,7 @@
 		E5D9F25A24BEBDBD009A526B /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				E573BD8324D054A70096BF75 /* Command */,
 				E5A7B4DE24CC5B3200F5AED9 /* View */,
 				E5A153D524CC5C7A0030A1D9 /* Resources */,
 			);
@@ -367,7 +367,6 @@
 				E5B0572624CC3441005EE1AA /* Part */,
 				E5FA934424C05E8F00229AAA /* Styles */,
 				E5A153D624CC5C910030A1D9 /* Screen */,
-				E573BD8324D054A70096BF75 /* Command */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,7 +589,6 @@
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
-				E573BD8424D054B40096BF75 /* LifeGameCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
