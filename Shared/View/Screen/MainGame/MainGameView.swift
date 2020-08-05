@@ -16,19 +16,19 @@ struct MainGameView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                HStack {
-                    Spacer()
-                    Text("\(viewModel.board.size) x \(viewModel.board.size)")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .padding([.trailing], 16)
-                }
+                HeaderView(generation: viewModel.board.generation, size: viewModel.board.size)
+                .padding([.horizontal])
+
                 Spacer()
+                
                 BoardContainerView(viewModel: viewModel)
                     .frame(width: geometry.size.width, height: geometry.size.width)
+                
                 Spacer()
+                
                 SpeedSliderView(viewModel: viewModel)
-                    .padding([.leading, .trailing])
+                    .padding([.horizontal])
+                
                 ControlView(viewModel: viewModel)
                     .padding()
             }
