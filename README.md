@@ -2,22 +2,13 @@
 
 The Conway's Game of Life that build with SwiftUI.
 
-|iOS|macOS|
-|--|--|
-|<img src="./Image/anime-ios.gif" width="200px">|<img src="./Image/screenshot-mac.png" width="200px">|
-
-
-## TODO
-
-- [x] Support Dark mode
-- [x] Support Mac
-- [ ] Support iPad app (apply proper layout)
-- [ ] Feature: Save to presets
-- [ ] UITests
+|iOS|iPad|macOS|
+|--|--|--|
+|<img src="./Image/screenshot-ios.png" width="160px">|<img src="./Image/screenshot-ipad.png" width="200px">|<img src="./Image/screenshot-mac.png" width="400px">|
 
 ## Architecture
 
-Like MVVM.
+Like MVVM. (below diagram is old...)
 
 ![Architecture](./Image/architecture.png)
 
