@@ -19,15 +19,6 @@ struct RootView: View {
         #if os(macOS)
         NavigationView {
             List {
-                Section(header: Text("Size")) {
-                    ForEach([13, 17, 21].withIndex(), id: \.1) { index, size in
-                        Text("\(size) x \(size)")
-                            .onTapGesture {
-                                setting.boardSize = size
-                            }
-                    }
-                }
-                
                 Section(header: Text("Presets")) {
                     ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
                         Text(preset.displayText)
@@ -50,8 +41,18 @@ struct RootView: View {
             
             BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
         }
-        .navigationTitle("\(setting.boardSize) x \(setting.boardSize)")
+        .navigationTitle("")
         .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Menu("\(setting.boardSize) x \(setting.boardSize)") {
+                    ForEach([13, 17, 21].withIndex(), id: \.0) { index, size in
+                        Button("\(size) x \(size)") {
+                            setting.boardSize = size
+                        }
+                    }
+                }
+            }
+
             ToolbarItem(placement: .status) {
                 Button(action: viewModel.tapPlayButton) {
                     Image(systemName: "play.fill")
