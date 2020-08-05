@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 // TODO: プレビュー時でもインスタンス化されてるのでコスト
 private let settingEnvironment: SettingEnvironment = .shared
@@ -20,6 +21,8 @@ struct Application: App {
         #elseif os(iOS)
         // ref: https://stackoverflow.com/a/59926791
         UIScrollView.appearance().bounces = false
+        
+        FirebaseApp.configure()
         #endif
     }
     

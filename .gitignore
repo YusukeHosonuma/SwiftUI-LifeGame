@@ -92,3 +92,7 @@ iOSInjectionProject/
 # Bundler
 
 vendor/bundle
+
+# Firebase
+
+GoogleService-Info.plist
