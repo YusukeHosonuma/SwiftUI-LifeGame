@@ -19,13 +19,22 @@ struct HeaderView: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
-        .padding([.horizontal])
     }
 }
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
+        Group {
+            view(colorScheme: .light)
+            view(colorScheme: .dark)
+        }
+    }
+    
+    @ViewBuilder
+    static func view(colorScheme: ColorScheme) -> some View {
         HeaderView(generation: 123, size: 17)
+            .preferredColorScheme(colorScheme)
             .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
