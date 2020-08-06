@@ -14,6 +14,8 @@ import os
 final class LifeGameContext {
     private static let _logger = Logger(subsystem: "tech.penginmura.LifeGameApp", category: "UserDefaults") // TODO: refactor
     
+    static let shared = LifeGameContext()
+    
     var board: AnyPublisher<LifeGameBoard, Never> { _board.eraseToAnyPublisher() }
     var speed: AnyPublisher<Double, Never> { _speed.eraseToAnyPublisher() }
     let isEnabledPlay: PassthroughSubject<Bool, Never> = .init()
@@ -33,9 +35,9 @@ final class LifeGameContext {
         }
     }
     
-    init(setting: SettingEnvironment = .shared, board: LifeGameBoard) {
+    private init(setting: SettingEnvironment = .shared) {
         _setting = setting
-        _board = .init(board)
+        _board = .init(LifeGameBoard(size: 13))
         _speed = .init(setting.animationSpeed)
         
         _setting.$animationSpeed
@@ -91,6 +93,12 @@ final class LifeGameContext {
         _board.value = LifeGameBoard.random(size: _board.value.size)
     }
     
+    func setBoard(_ board: LifeGameBoard) {
+        _board.value.clear()
+        _board.value.apply(size: board.size, cells: board.cells.map(\.rawValue))
+    }
+    
+    // TODO: remove (meybe...)
     func setPreset(_ preset: BoardPreset) {
         _board.value.clear()
         _board.value.apply(size: preset.board.size, cells: preset.board.cells.map(\.rawValue))

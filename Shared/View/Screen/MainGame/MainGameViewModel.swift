@@ -21,7 +21,7 @@ final class MainGameViewModel: ObservableObject {
         let board = LifeGameBoard(size: 13) // TODO: refactor
 
         self.board = board
-        _context = LifeGameContext(board: board)
+        _context = LifeGameContext.shared
         bind()
     }
     
