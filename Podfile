@@ -1,6 +1,5 @@
-platform :ios, '14.0'
-
 target 'LifeGameApp (iOS)' do
+  platform :ios, '14.0'
   use_frameworks!
 
   pod 'Firebase/Core'
@@ -9,8 +8,10 @@ target 'LifeGameApp (iOS)' do
 end
 
 target 'LifeGameApp (macOS)' do
+  platform :osx, '11'
   use_frameworks!
 
-  # Pods for LifeGameApp (macOS)
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 end
