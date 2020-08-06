@@ -92,6 +92,7 @@ struct TopControlView: View {
 
 struct ControlView: View {
     @ObservedObject var viewModel: MainGameViewModel
+    @State var isPresentedListSheet = false
     
     // MARK: View
     
@@ -117,7 +118,14 @@ struct ControlView: View {
             .disabled(viewModel.nextButtonDisabled)
 
             Spacer()
-
+            
+            Button(action: { isPresentedListSheet.toggle() }) {
+                Image(systemName: "list.bullet")
+            }
+            .sheet(isPresented: $isPresentedListSheet) {
+                BoardListView(isPresented: $isPresentedListSheet)
+            }
+            
             ActionMenu(viewModel: viewModel) {
                 Button(action: viewModel.tapNextButton) {
                     Image(systemName: "ellipsis")

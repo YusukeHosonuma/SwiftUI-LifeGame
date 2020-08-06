@@ -16,9 +16,9 @@ struct HeaderView: View {
             Text("Genration: \(generation)")
             Spacer()
             Text("\(size) x \(size)")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
         }
+        .font(.subheadline)
+        .foregroundColor(.secondary)
     }
 }
 

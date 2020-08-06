@@ -7,6 +7,8 @@
 
 import SwiftUI
 import LifeGame
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 // MARK: - Main view
 

@@ -24,7 +24,15 @@
 		E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E518213424CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
-		E51836EB24C0AA3B00DDE3A6 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */; };
+		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
+		E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
+		E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
+		E52FE5E124DC03C100D93764 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardListView.swift */; };
+		E52FE5E224DC03C100D93764 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardListView.swift */; };
+		E53DFF7A24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */; };
+		E53DFF7B24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */; };
+		E53DFF7D24DC166A00DC8F4F /* BoardListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */; };
+		E53DFF7E24DC166A00DC8F4F /* BoardListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */; };
 		E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
 		E54B7AF224DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
 		E558A97324DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
@@ -41,7 +49,7 @@
 		E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
 		E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
-		E58CC55D24CB99D600048A0A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */; };
+		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
@@ -49,7 +57,7 @@
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
-		E5BA30B624BEE444002D0564 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */; };
+		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
@@ -102,6 +110,10 @@
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
+		E52FE5E024DC03C100D93764 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
+		E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewModel.swift; sourceTree = "<group>"; };
+		E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCellView.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
@@ -142,8 +154,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E51836EB24C0AA3B00DDE3A6 /* BuildFile in Frameworks */,
-				E5BA30B624BEE444002D0564 /* BuildFile in Frameworks */,
+				E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */,
+				E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */,
 				1369F172EE87A88EB8BC8A55 /* Pods_LifeGameApp__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E58CC55D24CB99D600048A0A /* BuildFile in Frameworks */,
+				E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */,
 				1822143613200647A35FCC94 /* Pods_LifeGameApp__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +214,24 @@
 			path = Environment;
 			sourceTree = "<group>";
 		};
+		E52FE5DB24DC00E100D93764 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				E52FE5DC24DC012A00D93764 /* BoardDocument.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		E52FE5DF24DC03A000D93764 /* BoardList */ = {
+			isa = PBXGroup;
+			children = (
+				E52FE5E024DC03C100D93764 /* BoardListView.swift */,
+				E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */,
+				E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */,
+			);
+			path = BoardList;
+			sourceTree = "<group>";
+		};
 		E571536424D51B5B003B4C9E /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +271,7 @@
 			children = (
 				E5A153D724CC5D390030A1D9 /* Root */,
 				E5A153D824CC5D410030A1D9 /* MainGame */,
+				E52FE5DF24DC03A000D93764 /* BoardList */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -410,6 +441,7 @@
 		E5FA934A24C07A3D00229AAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E52FE5DB24DC00E100D93764 /* Firestore */,
 				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 				E5CE237224C199F200BC5820 /* LifeGameContext.swift */,
 				E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */,
@@ -454,8 +486,8 @@
 			);
 			name = "LifeGameApp (iOS)";
 			packageProductDependencies = (
-				E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */,
-				E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */,
+				E5BA30B524BEE444002D0564 /* LifeGame */,
+				E51836EA24C0AA3B00DDE3A6 /* LifeGame */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = E5D9F25124BEBDBD009A526B /* LifeGameApp.app */;
@@ -477,7 +509,7 @@
 			);
 			name = "LifeGameApp (macOS)";
 			packageProductDependencies = (
-				E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */,
+				E58CC55C24CB99D600048A0A /* LifeGame */,
 			);
 			productName = "LifeGameApp (macOS)";
 			productReference = E5D9F25924BEBDBD009A526B /* LifeGameApp.app */;
@@ -554,7 +586,7 @@
 			);
 			mainGroup = E5D9F24424BEBDBC009A526B;
 			packageReferences = (
-				E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */,
+				E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */,
 			);
 			productRefGroup = E5D9F25224BEBDBD009A526B /* Products */;
 			projectDirPath = "";
@@ -692,12 +724,15 @@
 				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
+				E53DFF7A24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */,
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
 				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
+				E52FE5E124DC03C100D93764 /* BoardListView.swift in Sources */,
+				E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
@@ -713,6 +748,7 @@
 				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
+				E53DFF7D24DC166A00DC8F4F /* BoardListCellView.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -724,12 +760,15 @@
 				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
+				E53DFF7B24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E51169D624D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
+				E52FE5E224DC03C100D93764 /* BoardListView.swift in Sources */,
+				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
@@ -745,6 +784,7 @@
 				E51169D324D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
+				E53DFF7E24DC166A00DC8F4F /* BoardListCellView.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1131,7 +1171,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */ = {
+		E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/YusukeHosonuma/LifeGame";
 			requirement = {
@@ -1142,17 +1182,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */ = {
+		E51836EA24C0AA3B00DDE3A6 /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */;
+			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
 		};
-		E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */ = {
+		E58CC55C24CB99D600048A0A /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */;
+			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
 		};
-		E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */ = {
+		E5BA30B524BEE444002D0564 /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LifeGame;
 		};
