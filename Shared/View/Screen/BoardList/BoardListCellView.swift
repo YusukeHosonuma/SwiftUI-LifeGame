@@ -17,6 +17,7 @@ struct BoardListCellView: View {
     var body: some View {
         HStack() {
             Image(uiImage: thumbnailImage)
+                .antialiased(false)
                 .resizable()
                 .frame(width: 44, height: 44, alignment: .center)
             Text("\(item.title)")
@@ -36,17 +37,19 @@ struct BoardListCellView: View {
     
     private var thumbnailImage: UIImage {
         let board = LifeGameBoard(size: item.size, cells: item.cells)
-        let size = CGSize(width: item.size, height: item.size)
+        
+        let scale = 4
+        let size = CGSize(width: item.size * scale, height: item.size * scale)
         
         return UIGraphicsImageRenderer(size: size)
             .image(actions: { context in
                 context.cgContext.setFillColor(fillColor)
                 
                 for (index, cell) in board.cells.enumerated() {
-                    let x = index % item.size
-                    let y = index / item.size
+                    let x = (index % item.size) * scale
+                    let y = (index / item.size) * scale
                     if cell == .alive {
-                        context.fill(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: 1, height: 1)))
+                        context.fill(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: scale, height: scale)))
                     }
                 }
             })
