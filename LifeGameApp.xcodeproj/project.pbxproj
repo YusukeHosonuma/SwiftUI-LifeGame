@@ -24,7 +24,7 @@
 		E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E518213424CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
-		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
+		E51836EB24C0AA3B00DDE3A6 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */; };
 		E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
 		E54B7AF224DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
 		E558A97324DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
@@ -41,7 +41,7 @@
 		E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
 		E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
-		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
+		E58CC55D24CB99D600048A0A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
@@ -49,7 +49,7 @@
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5BA30A824BEE05A002D0564 /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
-		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
+		E5BA30B624BEE444002D0564 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */; };
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5BA30B924BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
@@ -142,8 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */,
-				E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */,
+				E51836EB24C0AA3B00DDE3A6 /* BuildFile in Frameworks */,
+				E5BA30B624BEE444002D0564 /* BuildFile in Frameworks */,
 				1369F172EE87A88EB8BC8A55 /* Pods_LifeGameApp__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */,
+				E58CC55D24CB99D600048A0A /* BuildFile in Frameworks */,
 				1822143613200647A35FCC94 /* Pods_LifeGameApp__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,8 +454,8 @@
 			);
 			name = "LifeGameApp (iOS)";
 			packageProductDependencies = (
-				E5BA30B524BEE444002D0564 /* LifeGame */,
-				E51836EA24C0AA3B00DDE3A6 /* LifeGame */,
+				E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */,
+				E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = E5D9F25124BEBDBD009A526B /* LifeGameApp.app */;
@@ -469,6 +469,7 @@
 				E5D9F25524BEBDBD009A526B /* Sources */,
 				E5D9F25624BEBDBD009A526B /* Frameworks */,
 				E5D9F25724BEBDBD009A526B /* Resources */,
+				FF31EA23227D21466E02A37F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -476,7 +477,7 @@
 			);
 			name = "LifeGameApp (macOS)";
 			packageProductDependencies = (
-				E58CC55C24CB99D600048A0A /* LifeGame */,
+				E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */,
 			);
 			productName = "LifeGameApp (macOS)";
 			productReference = E5D9F25924BEBDBD009A526B /* LifeGameApp.app */;
@@ -553,7 +554,7 @@
 			);
 			mainGroup = E5D9F24424BEBDBC009A526B;
 			packageReferences = (
-				E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */,
+				E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = E5D9F25224BEBDBD009A526B /* Products */;
 			projectDirPath = "";
@@ -662,6 +663,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF31EA23227D21466E02A37F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1113,7 +1131,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */ = {
+		E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/YusukeHosonuma/LifeGame";
 			requirement = {
@@ -1124,17 +1142,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E51836EA24C0AA3B00DDE3A6 /* LifeGame */ = {
+		E51836EA24C0AA3B00DDE3A6 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
+			package = E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */;
 			productName = LifeGame;
 		};
-		E58CC55C24CB99D600048A0A /* LifeGame */ = {
+		E58CC55C24CB99D600048A0A /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
+			package = E51836E924C0AA3B00DDE3A6 /* RemoteSwiftPackageReference */;
 			productName = LifeGame;
 		};
-		E5BA30B524BEE444002D0564 /* LifeGame */ = {
+		E5BA30B524BEE444002D0564 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LifeGame;
 		};

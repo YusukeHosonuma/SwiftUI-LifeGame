@@ -16,13 +16,13 @@ struct Application: App {
     @StateObject var viewModel = MainGameViewModel()
 
     init() {
+        FirebaseApp.configure()
+
         #if os(macOS)
         // TODO: How can disable scroll-bounce in mac?
         #elseif os(iOS)
         // ref: https://stackoverflow.com/a/59926791
         UIScrollView.appearance().bounces = false
-        
-        FirebaseApp.configure()
         #endif
     }
     
