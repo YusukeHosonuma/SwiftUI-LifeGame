@@ -14,7 +14,7 @@ final class BoardListViewModel: ObservableObject {
     init() {
         Firestore.firestore()
             .collection("boards")
-            .getDocuments { (snapshot, error) in
+            .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else {
                     print("Error fetching snapshot results: \(error!)")
                     return
