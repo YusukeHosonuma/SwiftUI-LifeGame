@@ -19,7 +19,6 @@
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E51169D624D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
-		E518212D24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
@@ -39,6 +38,7 @@
 		E558A97424DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
 		E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
+		E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA524DD0C1000DBC175 /* MacRootView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
 		E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
 		E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
@@ -117,6 +117,7 @@
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
+		E55F7AA524DD0C1000DBC175 /* MacRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRootView.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConvertible.swift; sourceTree = "<group>"; };
 		E571536824D51B9F003B4C9E /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -311,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -758,7 +760,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
-				E518212D24CC149C00ABD16B /* RootView.swift in Sources */,
+				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E53DFF7B24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
