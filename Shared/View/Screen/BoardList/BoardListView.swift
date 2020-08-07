@@ -13,15 +13,23 @@ struct BoardListView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        List {
-            Section(header: Text("Presets")) {
-                ForEach(viewModel.items) { item in
-                    Button(action: { tapCell(board: item) }) {
-                        BoardListCellView(item: item)
+        NavigationView {
+            List {
+                Section(header: Text("Presets")) {
+                    ForEach(viewModel.items) { item in
+                        Button(action: { tapCell(board: item) }) {
+                            BoardListCellView(item: item)
+                        }
                     }
                 }
             }
+            .navigationBarTitle("Select board", displayMode: .inline)
+            .navigationBarItems(trailing: Button("Cancel", action: tapCancel))
         }
+    }
+    
+    private func tapCancel() {
+        isPresented = false
     }
     
     private func tapCell(board document: BoardDocument) {
