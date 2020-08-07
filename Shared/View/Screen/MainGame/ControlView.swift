@@ -91,6 +91,7 @@ struct TopControlView: View {
 }
 
 struct ControlView: View {
+    @StateObject var boardListViewModel = BoardListViewModel()
     @ObservedObject var viewModel: MainGameViewModel
     @State var isPresentedListSheet = false
     
@@ -123,7 +124,8 @@ struct ControlView: View {
                 Image(systemName: "list.bullet")
             }
             .sheet(isPresented: $isPresentedListSheet) {
-                BoardListView(isPresented: $isPresentedListSheet)
+                BoardListView(isPresented: $isPresentedListSheet,
+                              boardDocuments: boardListViewModel.items)
             }
             
             ActionMenu(viewModel: viewModel) {
