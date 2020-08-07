@@ -19,12 +19,23 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            BoardView(board: viewModel.board,
-                      cellWidth: cellWidth,
-                      cellPadding: 1,
-                      lightModeCellColor: setting.lightModeColor,
-                      darkModeCellColor: setting.darkModeColor,
-                      tapCell: viewModel.tapCell)
+            ZStack {
+                BoardView(board: viewModel.board,
+                          cellWidth: cellWidth,
+                          cellPadding: 1,
+                          lightModeCellColor: setting.lightModeColor,
+                          darkModeCellColor: setting.darkModeColor,
+                          tapCell: viewModel.tapCell)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("Generation: \(viewModel.board.generation)")
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                }
+                .padding()
+            }
             PresetListView()
         }
     }
