@@ -239,6 +239,14 @@
 			path = BoardList;
 			sourceTree = "<group>";
 		};
+		E56EF83624DD55820019F30C /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E5A153D724CC5D390030A1D9 /* Root */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
 		E571536424D51B5B003B4C9E /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +284,6 @@
 		E5A153D624CC5C910030A1D9 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				E5A153D724CC5D390030A1D9 /* Root */,
 				E5A153D824CC5D410030A1D9 /* MainGame */,
 				E52FE5DF24DC03A000D93764 /* BoardList */,
 			);
@@ -376,6 +383,7 @@
 		E5D9F25324BEBDBD009A526B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E56EF83624DD55820019F30C /* Screen */,
 				E5A7B4DD24CC5B2700F5AED9 /* View */,
 				E5A153D424CC5C620030A1D9 /* Resources */,
 			);
