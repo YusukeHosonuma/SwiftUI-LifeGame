@@ -27,11 +27,19 @@ struct BoardView: View {
     // MARK: View
 
     var body: some View {
+        // Rows
         VStack(spacing: 0) {
             ForEach(board.rows.withIndex(), id: \.0) { y, row in
+                
+                // Cols
                 HStack(spacing: 0) {
                     ForEach(row.withIndex(), id: \.0) { x, cell in
-                        cellButton(x: x, y: y, cell: cell)
+                        CellView(color: cellBackgroundColor(cell: cell), size: cellWidth)
+                            .padding(cellPadding)
+                            .contentShape(Rectangle())
+                            .onTapGesture(perform: {
+                                tapCell(x, y)
+                            })
                     }
                 }
             }
@@ -39,16 +47,7 @@ struct BoardView: View {
         .padding(3)
         .border(Color.gray, width: 2)
     }
-    
-    private func cellButton(x: Int, y: Int, cell: Cell) -> some View {
-        CellView(color: cellBackgroundColor(cell: cell), size: cellWidth)
-            .padding(cellPadding)
-            .contentShape(Rectangle())
-            .onTapGesture(perform: {
-                tapCell(x, y)
-            })
-    }
-    
+        
     private func cellBackgroundColor(cell: Cell) -> Color {
         switch (cell, colorScheme) {
         case (.die, _):        return .clear
