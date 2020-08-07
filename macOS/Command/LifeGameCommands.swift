@@ -10,7 +10,7 @@ import SwiftUI
 struct LifeGameCommands: Commands {
     @ObservedObject var viewModel: MainGameViewModel
     
-    // TODO: ❗beta3 bug (maybe...)❗
+    // TODO: beta4 bug (maybe...)❗
     // Not update disabled state when viewModel was changed.
     
     var body: some Commands {

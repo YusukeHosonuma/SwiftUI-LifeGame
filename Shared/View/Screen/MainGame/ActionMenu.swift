@@ -53,18 +53,6 @@ struct ActionMenu<Label>: View where Label: View {
                 Image(systemName: "square.grid.2x2.fill")
             }
         }
-        
-        Divider()
-        
-        // TODO: macOS側も Firestore のプリセットを適用できるようになったら削除
-        
-        #if os(macOS)
-        ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-            Button(preset.displayText) {
-                viewModel.selectPreset(preset)
-            }
-        }
-        #endif
     }
     
     // MARK: Actions

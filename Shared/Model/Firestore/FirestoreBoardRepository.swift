@@ -1,5 +1,5 @@
 //
-//  BoardListViewModel.swift
+//  FirestoreBoardRepository.swift
 //  LifeGameApp
 //
 //  Created by Yusuke Hosonuma on 2020/08/06.
@@ -8,13 +8,13 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class BoardListViewModel: ObservableObject {
+final class FirestoreBoardRepository: ObservableObject {
     @Published var items: [BoardDocument] = []
     
     init() {
         Firestore.firestore()
             .collection("boards")
-            .getDocuments { (snapshot, error) in
+            .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else {
                     print("Error fetching snapshot results: \(error!)")
                     return
