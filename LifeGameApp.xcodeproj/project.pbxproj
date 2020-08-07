@@ -28,8 +28,8 @@
 		E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E52FE5E124DC03C100D93764 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardListView.swift */; };
 		E52FE5E224DC03C100D93764 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardListView.swift */; };
-		E53DFF7A24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */; };
-		E53DFF7B24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */; };
+		E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
+		E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E53DFF7D24DC166A00DC8F4F /* BoardListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */; };
 		E53DFF7E24DC166A00DC8F4F /* BoardListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */; };
 		E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
@@ -115,7 +115,7 @@
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
 		E52FE5E024DC03C100D93764 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
-		E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewModel.swift; sourceTree = "<group>"; };
+		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
 		E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCellView.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -225,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				E52FE5DC24DC012A00D93764 /* BoardDocument.swift */,
+				E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -233,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				E52FE5E024DC03C100D93764 /* BoardListView.swift */,
-				E53DFF7924DC09BC00DC8F4F /* BoardListViewModel.swift */,
 				E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */,
 			);
 			path = BoardList;
@@ -735,7 +735,7 @@
 				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
-				E53DFF7A24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */,
+				E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
 				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
@@ -772,7 +772,7 @@
 				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
-				E53DFF7B24DC09BC00DC8F4F /* BoardListViewModel.swift in Sources */,
+				E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E51169D624D64546002D40B6 /* ControlView.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  BoardListViewModel.swift
+//  FirestoreBoardRepository.swift
 //  LifeGameApp
 //
 //  Created by Yusuke Hosonuma on 2020/08/06.
@@ -8,7 +8,7 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class BoardListViewModel: ObservableObject {
+final class FirestoreBoardRepository: ObservableObject {
     @Published var items: [BoardDocument] = []
     
     init() {

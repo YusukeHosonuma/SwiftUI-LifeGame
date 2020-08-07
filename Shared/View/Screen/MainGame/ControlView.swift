@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControlView: View {
-    @StateObject var boardListViewModel = BoardListViewModel()
+    @StateObject var boardRepository = FirestoreBoardRepository()
     @ObservedObject var viewModel: MainGameViewModel
     @State var isPresentedListSheet = false
     
@@ -42,7 +42,7 @@ struct ControlView: View {
             }
             .sheet(isPresented: $isPresentedListSheet) {
                 BoardListView(isPresented: $isPresentedListSheet,
-                              boardDocuments: boardListViewModel.items)
+                              boardDocuments: boardRepository.items)
             }
             
             ActionMenu(viewModel: viewModel) {
