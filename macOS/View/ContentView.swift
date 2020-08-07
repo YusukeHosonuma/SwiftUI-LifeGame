@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: MainGameViewModel
+    @EnvironmentObject var setting: SettingEnvironment
+
     var zoomLevel: Int
 
     private var cellWidth: CGFloat {
@@ -17,7 +19,12 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+            BoardView(board: viewModel.board,
+                      cellWidth: cellWidth,
+                      cellPadding: 1,
+                      lightModeCellColor: setting.lightModeColor,
+                      darkModeCellColor: setting.darkModeColor,
+                      tapCell: viewModel.tapCell)
             PresetListView()
         }
     }
