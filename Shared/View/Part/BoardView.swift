@@ -9,27 +9,26 @@ import SwiftUI
 import LifeGame
 
 struct BoardView: View {
-    @ObservedObject var viewModel: MainGameViewModel
-    
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+
+    var board: LifeGameBoard
     var cellWidth: CGFloat
     var cellPadding: CGFloat
+    var lightModeCellColor: Color
+    var darkModeCellColor: Color
+    var tapCell: (Int, Int) -> ()
 
     // MARK: Computed properties
     
     var width: CGFloat {
-        (cellWidth + (cellPadding * 2)) * CGFloat(viewModel.board.size) + 6
+        (cellWidth + (cellPadding * 2)) * CGFloat(board.size) + 6
     }
-
-    // MARK: Private
-
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var setting: SettingEnvironment
 
     // MARK: View
 
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(viewModel.board.rows.withIndex(), id: \.0) { y, row in
+            ForEach(board.rows.withIndex(), id: \.0) { y, row in
                 HStack(spacing: 0) {
                     ForEach(row.withIndex(), id: \.0) { x, cell in
                         cellButton(x: x, y: y, cell: cell)
@@ -46,22 +45,39 @@ struct BoardView: View {
             .padding(cellPadding)
             .contentShape(Rectangle())
             .onTapGesture(perform: {
-                viewModel.tapCell(x: x, y: y)
+                tapCell(x, y)
             })
     }
     
     private func cellBackgroundColor(cell: Cell) -> Color {
         switch (cell, colorScheme) {
         case (.die, _):        return .clear
-        case (.alive, .light): return setting.lightModeColor
-        case (.alive, .dark):  return setting.darkModeColor
+        case (.alive, .light): return lightModeCellColor
+        case (.alive, .dark):  return darkModeCellColor
         @unknown default: fatalError()
         }
     }
 }
 
-//struct BoardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BoardView()
-//    }
-//}
+struct BoardView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            view(colorScheme: .light)
+            view(colorScheme: .dark)
+        }
+    }
+    
+    static func view(colorScheme: ColorScheme) -> some View {
+        BoardView(
+            board: BoardPreset.nebura.board,
+            cellWidth: 20,
+            cellPadding: 1,
+            lightModeCellColor: .black,
+            darkModeCellColor: .white,
+            tapCell: { _, _ in }
+        )
+        .colorScheme(colorScheme) // これはすでに deprecated だが、ここでは適用しないと機能しない（beta4 in macOS Big Sur）
+        .preferredColorScheme(colorScheme)
+        .previewLayout(.sizeThatFits)
+    }
+}

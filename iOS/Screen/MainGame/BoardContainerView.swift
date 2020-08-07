@@ -32,7 +32,13 @@ struct BoardContainerView: View {
     
     @ViewBuilder
     private func boardView(geometry: GeometryProxy) -> some View {
-        let boardView = BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+        let boardView = BoardView(board: viewModel.board,
+                  cellWidth: cellWidth,
+                  cellPadding: 1,
+                  lightModeCellColor: setting.lightModeColor,
+                  darkModeCellColor: setting.darkModeColor,
+                  tapCell: viewModel.tapCell)
+        
         let background = backgroundView()
             .frame(width: boardView.width, height: boardView.width)
             .clipped()
