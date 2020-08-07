@@ -9,7 +9,7 @@ import SwiftUI
 import LifeGame
 
 struct PresetListView: View {
-    @StateObject var viewModel = BoardListViewModel()
+    @StateObject var viewModel = FirestoreBoardRepository()
     
     var body: some View {
         List {
