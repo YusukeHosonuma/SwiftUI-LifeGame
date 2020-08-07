@@ -28,12 +28,18 @@ struct Application: App {
     
     var body: some Scene {
         #if os(macOS)
-        windowGroup()
-            .commands {
-                LifeGameCommands(viewModel: viewModel)
-            }
+        WindowGroup {
+            MacRootView(viewModel: viewModel)
+                .environmentObject(settingEnvironment)
+        }
+        .commands {
+            LifeGameCommands(viewModel: viewModel)
+        }
         #else
-        windowGroup()
+        WindowGroup {
+            RootView(viewModel: viewModel)
+                .environmentObject(settingEnvironment)
+        }
         #endif
         
         #if os(macOS)
@@ -42,13 +48,5 @@ struct Application: App {
                 .environmentObject(settingEnvironment)
         }
         #endif
-    }
-    
-    @SceneBuilder
-    func windowGroup() -> some Scene {
-        WindowGroup {
-            RootView(viewModel: viewModel)
-                .environmentObject(settingEnvironment)
-        }
     }
 }

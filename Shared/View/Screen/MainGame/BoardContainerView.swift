@@ -113,13 +113,11 @@ struct BoardView: View {
     }
     
     private func cellBackgroundColor(cell: Cell) -> Color {
-        switch (colorScheme, cell) {
-        case (.light, .die):   return Color.clear
-        case (.light, .alive): return setting.lightModeColor
-        case (.dark,  .die):   return Color.clear
-        case (.dark,  .alive): return setting.darkModeColor
-        case (_, _):
-            fatalError()
+        switch (cell, colorScheme) {
+        case (.die, _):        return .clear
+        case (.alive, .light): return setting.lightModeColor
+        case (.alive, .dark):  return setting.darkModeColor
+        @unknown default: fatalError()
         }
     }
 }
