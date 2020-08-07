@@ -11,21 +11,17 @@ struct MacRootView: View {
     @ObservedObject var viewModel: MainGameViewModel
     @EnvironmentObject var setting: SettingEnvironment
 
-    private var cellWidth: CGFloat {
-        CGFloat(20 + (setting.zoomLevel - 5) * 2)
-    }
-
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Presets")) {
-                    ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-                        Text(preset.displayText)
-                            .onTapGesture {
-                                viewModel.selectPreset(preset)
-                            }
-                    }
-                    Divider()
+//                    ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
+//                        Text(preset.displayText)
+//                            .onTapGesture {
+//                                viewModel.selectPreset(preset)
+//                            }
+//                    }
+//                    Divider()
                     
                     Text("Random")
                         .onTapGesture(perform: viewModel.tapRandomButton)
@@ -38,7 +34,7 @@ struct MacRootView: View {
             .listStyle(SidebarListStyle())
             .frame(minWidth: 212, idealWidth: 212, maxWidth: 212, maxHeight: .infinity)
             
-            BoardView(viewModel: viewModel, cellWidth: cellWidth, cellPadding: 1)
+            ContentView(viewModel: viewModel, zoomLevel: setting.zoomLevel)
         }
         .navigationTitle("")
         .toolbar {
