@@ -16,10 +16,12 @@ struct BoardListCellView: View {
     
     var body: some View {
         HStack() {
+            #if os(iOS)
             Image(uiImage: thumbnailImage)
                 .antialiased(false)
                 .resizable()
                 .frame(width: 44, height: 44, alignment: .center)
+            #endif
             Text("\(item.title)")
             Spacer()
         }
@@ -34,7 +36,7 @@ struct BoardListCellView: View {
     // Note:
     // レンダリングコストが高ければバックグラウンド処理を検討する。
     // （たかが数百ピクセルなので大したこと無い・・・はず）
-    
+    #if os(iOS)
     private var thumbnailImage: UIImage {
         let board = LifeGameBoard(size: item.size, cells: item.cells)
         
@@ -54,6 +56,7 @@ struct BoardListCellView: View {
                 }
             })
     }
+    #endif
 }
 
 struct BoardListCellView_Previews: PreviewProvider {
