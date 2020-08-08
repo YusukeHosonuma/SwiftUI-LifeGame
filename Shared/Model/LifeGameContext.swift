@@ -93,9 +93,9 @@ final class LifeGameContext {
         _board.value = LifeGameBoard.random(size: _board.value.size)
     }
     
-    func setBoard(_ board: LifeGameBoard) {
-        _board.value.clear()
-        _board.value.apply(size: board.size, cells: board.cells.map(\.rawValue))
+    func setBoard(_ board: Board<Cell>) {
+        let newBoard = Board(size: _board.value.size, cell: Cell.die).setBoard(toCenter: board)
+        _board.value = LifeGameBoard(board: newBoard)
     }
     
     // TODO: remove (meybe...)
