@@ -32,7 +32,10 @@ struct PresetListView: View {
     }
     
     private func tapCell(board document: BoardDocument) {
-        LifeGameContext.shared.setBoard(document.makeBoard())
+        // TODO: Firestoreのデータトリムが終わったら不要になる
+        let board = Board(size: document.size, cells: document.cells.map { $0 == 0 ? Cell.die : Cell.alive })
+            .trimed { $0 == .die }
+        LifeGameContext.shared.setBoard(board)
     }
 }
 
