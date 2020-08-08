@@ -18,13 +18,13 @@ struct BoardThumnailView: View {
             ForEach(board.rows.withIndex(), id: \.0) { y, row in
                 HStack(spacing: 0) {
                     ForEach(row.withIndex(), id: \.0) { x, cell in
-                        CellView(color: cellColor(cell), size: 8) // TODO: 盤面サイズで全体の大きさが変わってしまうのでそのうち修正
+                        CellView(color: cellColor(cell), size: 100.0 / CGFloat(board.size)) // TODO: 盤面サイズで全体の大きさが変わってしまうのでそのうち修正
                     }
                 }
             }
         }
     }
-    
+
     private func cellColor(_ cell: Cell) -> Color {
         switch (cell, colorScheme) {
         case (.die, _):        return .clear

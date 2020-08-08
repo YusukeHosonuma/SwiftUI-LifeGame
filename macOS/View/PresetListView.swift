@@ -16,7 +16,7 @@ struct PresetListView: View {
             Section(header: Text("Presets")) {
                 ForEach(viewModel.items) { item in
                     HStack {
-                        BoardThumnailView(board: LifeGameBoard(size: item.size, cells: item.cells))
+                        BoardThumnailView(board: item.makeBoardForRender())
                         Text("\(item.title)")
                     }
                     .contentShape(Rectangle()) // ❗not working in beta4
@@ -32,8 +32,7 @@ struct PresetListView: View {
     }
     
     private func tapCell(board document: BoardDocument) {
-        let board = LifeGameBoard(size: document.size, cells: document.cells)
-        LifeGameContext.shared.setBoard(board)
+        LifeGameContext.shared.setBoard(document.makeBoard())
     }
 }
 
