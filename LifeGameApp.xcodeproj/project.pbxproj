@@ -1197,8 +1197,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/YusukeHosonuma/LifeGame";
 			requirement = {
-				branch = feature/trim;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

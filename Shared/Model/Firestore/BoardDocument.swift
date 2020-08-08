@@ -34,7 +34,7 @@ extension BoardDocument {
     func makeBoardForRender() -> LifeGameBoard {
         let board = Board(size: size, cells: cells.map { $0 == 0 ? Cell.die : Cell.alive })
             .trimed { $0 == .die }
-            .extended { .die }
+            .extended(by: .die)
         return LifeGameBoard(board: board)
     }
 }
