@@ -18,7 +18,7 @@ struct SettingView: View {
 
     // MARK: Local Properties
     
-    @State private var isAlertPresented = false
+    @State private var isPresentedAlert = false
     @State private var isPresentedPhotoPicker = false
     @State private var selectedSize: Int?
     
@@ -36,32 +36,38 @@ struct SettingView: View {
                     }
                 }
             }
+            
             Section(header: Text("Board")) {
                 BoardSizeMenu(size: $setting.boardSize)
             }
+            
             Section(header: Text("Background Image")) {
                 HCenter {
-                    Button("Select image...") {
-                        isPresentedPhotoPicker.toggle()
-                    }
-                    .sheet(isPresented: $isPresentedPhotoPicker) {
-                        PhotoPicker(configuration: configuration,
-                                    isPresented: $isPresentedPhotoPicker,
-                                    selectedImage: $setting.backgroundImage)
+                    if let _ = setting.backgroundImage {
+                        Button("Clear", action: clearBackgroundImage)
+                    } else {
+                        Button("Select...", action: showPhotoPicker)
                     }
                 }
+                .sheet(isPresented: $isPresentedPhotoPicker) {
+                    PhotoPicker(configuration: configuration,
+                                isPresented: $isPresentedPhotoPicker,
+                                selectedImage: $setting.backgroundImage)
+                }
             }
+            
             Section(
                 header: Text("GitHub"),
                 footer: Text("This app is Open Source Software (MIT)")) {
-                Link("YusukeHosonuma/SwiftUI-LifeGame",
+                Link("YusukeHosonuma / SwiftUI-LifeGame",
                      destination: URL(string: "https://github.com/YusukeHosonuma/SwiftUI-LifeGame")!)
             }
+            
             Section {
                 HCenter {
-                    Button("Reset to Default", action: tapResetToDefault)
+                    Button("Reset to Default", action: showResetAlert)
                         .foregroundColor(.red)
-                        .alert(isPresented: $isAlertPresented, content: resetAlert)
+                        .alert(isPresented: $isPresentedAlert, content: resetAlert)
                 }
             }
         }
@@ -85,21 +91,22 @@ struct SettingView: View {
         Alert(
             title: Text("Do you really want to reset?"),
             primaryButton: .cancel(),
-            secondaryButton: .destructive(Text("Reset"), action: tapReset))
+            secondaryButton: .destructive(Text("Reset"), action: setting.resetToDefault)
+        )
     }
     
     // MARK: Actions
-    
-    private func tapResetToDefault() {
-        isAlertPresented.toggle()
+
+    private func showPhotoPicker() {
+        isPresentedPhotoPicker.toggle()
     }
     
-    private func tapBoardSize(_ size: Int) {
-        setting.boardSize = size
+    private func clearBackgroundImage() {
+        setting.backgroundImage = nil
     }
     
-    private func tapReset() {
-        setting.resetToDefault()
+    private func showResetAlert() {
+        isPresentedAlert.toggle()
     }
 }
 
