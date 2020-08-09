@@ -42,13 +42,9 @@ struct SettingView: View {
             Section(header: Text("Background Image")) {
                 HCenter {
                     if let _ = setting.backgroundImage {
-                        Button("Clear") {
-                            setting.backgroundImage = nil
-                        }
+                        Button("Clear", action: clearBackgroundImage)
                     } else {
-                        Button("Select...") {
-                            isPresentedPhotoPicker.toggle()
-                        }
+                        Button("Select...", action: showPhotoPicker)
                     }
                 }
                 .sheet(isPresented: $isPresentedPhotoPicker) {
@@ -96,14 +92,22 @@ struct SettingView: View {
     
     // MARK: Actions
     
-    private func tapResetToDefault() {
-        isAlertPresented.toggle()
-    }
-    
     private func tapBoardSize(_ size: Int) {
         setting.boardSize = size
     }
+
+    private func showPhotoPicker() {
+        isPresentedPhotoPicker.toggle()
+    }
     
+    private func clearBackgroundImage() {
+        setting.backgroundImage = nil
+    }
+    
+    private func tapResetToDefault() {
+        isAlertPresented.toggle()
+    }
+
     private func tapReset() {
         setting.resetToDefault()
     }
