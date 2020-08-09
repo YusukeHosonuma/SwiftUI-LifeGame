@@ -33,7 +33,7 @@ private enum Style {
     }
 }
 
-struct BoardListView: View {
+struct BoardSelectView: View {
     @Binding var isPresented: Bool
     var boardDocuments: [BoardDocument]
     
@@ -63,7 +63,7 @@ struct BoardListView: View {
                             ForEach(boardDocuments, id: \.title) { item in
                                 Divider()
                                 Button(action: { tapCell(board: item) }) {
-                                    BoardListCellView(item: item)
+                                    BoardListCell(item: item)
                                 }
                                 .padding([.horizontal])
                             }
@@ -100,14 +100,14 @@ struct BoardListView: View {
     }
 }
 
-struct BoardListView_Previews: PreviewProvider {
+struct BoardSelectView_Previews: PreviewProvider {
     static let boards = [
         BoardDocument(id: "1", title: "Nebura", board: BoardPreset.nebura.board),
         BoardDocument(id: "2", title: "Spaceship", board: BoardPreset.spaceShip.board),
     ]
     
     static var previews: some View {
-        BoardListView(isPresented: .constant(true), boardDocuments: boards)
+        BoardSelectView(isPresented: .constant(true), boardDocuments: boards)
 
         // Note:
         // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗

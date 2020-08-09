@@ -23,10 +23,10 @@
 		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
 		E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
-		E52FE5E124DC03C100D93764 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardListView.swift */; };
+		E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardSelectView.swift */; };
 		E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
-		E53DFF7D24DC166A00DC8F4F /* BoardListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */; };
+		E53DFF7D24DC166A00DC8F4F /* BoardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7C24DC166A00DC8F4F /* BoardListCell.swift */; };
 		E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E54904AF24DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
 		E54904B024DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
@@ -111,9 +111,9 @@
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
-		E52FE5E024DC03C100D93764 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
+		E52FE5E024DC03C100D93764 /* BoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectView.swift; sourceTree = "<group>"; };
 		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
-		E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCellView.swift; sourceTree = "<group>"; };
+		E53DFF7C24DC166A00DC8F4F /* BoardListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCell.swift; sourceTree = "<group>"; };
 		E54904AE24DD5E2D003AE7C7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -230,15 +230,15 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
-		E54904AB24DD5D6F003AE7C7 /* BoardList */ = {
+		E54904AB24DD5D6F003AE7C7 /* BoardSelect */ = {
 			isa = PBXGroup;
 			children = (
-				E52FE5E024DC03C100D93764 /* BoardListView.swift */,
-				E53DFF7C24DC166A00DC8F4F /* BoardListCellView.swift */,
+				E52FE5E024DC03C100D93764 /* BoardSelectView.swift */,
+				E53DFF7C24DC166A00DC8F4F /* BoardListCell.swift */,
 				E5E6EB1324DFF27C0012E911 /* BoardGridCell.swift */,
 				E5E6EB1524DFF33E0012E911 /* BoardThumnailImage.swift */,
 			);
-			path = BoardList;
+			path = BoardSelect;
 			sourceTree = "<group>";
 		};
 		E54904AC24DD5DBD003AE7C7 /* MainGame */ = {
@@ -258,7 +258,7 @@
 			children = (
 				E5A153D724CC5D390030A1D9 /* Root */,
 				E54904AC24DD5DBD003AE7C7 /* MainGame */,
-				E54904AB24DD5D6F003AE7C7 /* BoardList */,
+				E54904AB24DD5D6F003AE7C7 /* BoardSelect */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -762,7 +762,7 @@
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
-				E52FE5E124DC03C100D93764 /* BoardListView.swift in Sources */,
+				E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */,
 				E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
@@ -781,7 +781,7 @@
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E54904AF24DD5E2D003AE7C7 /* BoardView.swift in Sources */,
-				E53DFF7D24DC166A00DC8F4F /* BoardListCellView.swift in Sources */,
+				E53DFF7D24DC166A00DC8F4F /* BoardListCell.swift in Sources */,
 				E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
