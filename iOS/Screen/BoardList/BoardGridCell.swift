@@ -1,31 +1,27 @@
 //
-//  BoardListCellView.swift
-//  LifeGameApp
+//  BoardGridCell.swift
+//  LifeGameApp (iOS)
 //
-//  Created by Yusuke Hosonuma on 2020/08/06.
+//  Created by Yusuke Hosonuma on 2020/08/09.
 //
 
 import SwiftUI
 import LifeGame
-import Foundation
 
-struct BoardListCellView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
+struct BoardGridCell: View {
     var item: BoardDocument
     
     var body: some View {
-        HStack() {
-            Text("\(item.title)")
-            Spacer()
+        VStack {
             BoardThumnailImage(board: item.makeBoard().extended(by: .die))
-                .frame(width: 60, height: 60, alignment: .center)
+            Text(item.title)
+                .font(.subheadline)
         }
     }
 }
 
-struct BoardListCellView_Previews: PreviewProvider {
-
+struct BoardGridCell_Previews: PreviewProvider {
+    
     static var previews: some View {
         view(title: "Nebura", board: BoardPreset.nebura.board, colorScheme: .light)
         view(title: "Nebura", board: BoardPreset.nebura.board, colorScheme: .dark)
@@ -34,13 +30,13 @@ struct BoardListCellView_Previews: PreviewProvider {
     
     @ViewBuilder
     private static func view(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardListCellView(
+        BoardGridCell(
             item: BoardDocument(id: nil,
                                 title: title,
                                 size: board.size,
                                 cells: board.cells.map(\.rawValue))
         )
-        .previewLayout(.sizeThatFits)
+        .previewLayout(.fixed(width: 200.0, height: 200.0))
         .preferredColorScheme(colorScheme)
     }
 }

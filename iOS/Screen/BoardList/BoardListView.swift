@@ -8,24 +8,85 @@
 import SwiftUI
 import LifeGame
 
+private enum Style {
+    case grid
+    case list
+    
+    mutating func toggle() {
+        switch self {
+        case .grid:
+            self = .list
+            
+        case .list:
+            self = .grid
+        }
+    }
+    
+    var imageName: String {
+        switch self {
+        case .grid:
+            return "list.bullet"
+
+        case .list:
+            return "square.grid.2x2.fill"
+        }
+    }
+}
+
 struct BoardListView: View {
     @Binding var isPresented: Bool
     var boardDocuments: [BoardDocument]
     
+    @State private var style: Style = .grid
+
+    // MARK: View
+    
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Presets")) {
-                    ForEach(boardDocuments, id: \.title) { item in
-                        Button(action: { tapCell(board: item) }) {
-                            BoardListCellView(item: item)
+            Group {
+                // TODO: 将来的にはトランジションでキレイに切り替えたい。
+                switch style {
+                case .grid:
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(boardDocuments, id: \.title) { item in
+                                Button(action: { tapCell(board: item) }) {
+                                    BoardGridCell(item: item)
+                                }
+                            }
+                        }
+                    }
+                    
+                case .list:
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(boardDocuments, id: \.title) { item in
+                                Divider()
+                                Button(action: { tapCell(board: item) }) {
+                                    BoardListCellView(item: item)
+                                }
+                                .padding([.horizontal])
+                            }
                         }
                     }
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Cancel", action: tapCancel))
+            .navigationBarItems(leading: Button("Cancel", action: tapCancel))
+            .navigationBarItems(trailing: Button(action: tapChangeStyleButton) {
+                Image(systemName: style.imageName)
+            })
         }
+    }
+    
+    var columns: [GridItem] = [
+        GridItem(.adaptive(minimum: 100))
+    ]
+    
+    // MARK: Actions
+    
+    private func tapChangeStyleButton() {
+        style.toggle()
     }
     
     private func tapCancel() {
