@@ -18,7 +18,7 @@ struct SettingView: View {
 
     // MARK: Local Properties
     
-    @State private var isAlertPresented = false
+    @State private var isPresentedAlert = false
     @State private var isPresentedPhotoPicker = false
     @State private var selectedSize: Int?
     
@@ -65,9 +65,9 @@ struct SettingView: View {
             
             Section {
                 HCenter {
-                    Button("Reset to Default", action: tapResetToDefault)
+                    Button("Reset to Default", action: showResetAlert)
                         .foregroundColor(.red)
-                        .alert(isPresented: $isAlertPresented, content: resetAlert)
+                        .alert(isPresented: $isPresentedAlert, content: resetAlert)
                 }
             }
         }
@@ -91,7 +91,8 @@ struct SettingView: View {
         Alert(
             title: Text("Do you really want to reset?"),
             primaryButton: .cancel(),
-            secondaryButton: .destructive(Text("Reset"), action: tapReset))
+            secondaryButton: .destructive(Text("Reset"), action: setting.resetToDefault)
+        )
     }
     
     // MARK: Actions
@@ -104,12 +105,8 @@ struct SettingView: View {
         setting.backgroundImage = nil
     }
     
-    private func tapResetToDefault() {
-        isAlertPresented.toggle()
-    }
-
-    private func tapReset() {
-        setting.resetToDefault()
+    private func showResetAlert() {
+        isPresentedAlert.toggle()
     }
 }
 
