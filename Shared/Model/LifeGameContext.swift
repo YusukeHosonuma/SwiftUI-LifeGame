@@ -94,7 +94,11 @@ final class LifeGameContext {
     }
     
     func setBoard(_ board: Board<Cell>) {
-        let newBoard = Board(size: _board.value.size, cell: Cell.die).setBoard(toCenter: board)
+        let newSize = (board.size <= _board.value.size)
+            ? _board.value.size
+            : PresetBoardSizes.first(where: { board.size < $0 }) ?? board.size // fail-safe
+        
+        let newBoard = Board(size: newSize, cell: Cell.die).setBoard(toCenter: board)
         _board.value = LifeGameBoard(board: newBoard)
     }
     
