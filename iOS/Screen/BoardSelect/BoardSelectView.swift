@@ -8,64 +8,22 @@
 import SwiftUI
 import LifeGame
 
-private enum Style {
-    case grid
-    case list
-    
-    mutating func toggle() {
-        switch self {
-        case .grid:
-            self = .list
-            
-        case .list:
-            self = .grid
-        }
-    }
-    
-    var imageName: String {
-        switch self {
-        case .grid:
-            return "list.bullet"
-
-        case .list:
-            return "square.grid.2x2.fill"
-        }
-    }
-}
-
 struct BoardSelectView: View {
     @Binding var isPresented: Bool
     var boardDocuments: [BoardDocument]
     
-    @State private var style: Style = .grid
+    @State private var style: BoardSelectStyle = .grid
 
     // MARK: View
     
     var body: some View {
         NavigationView {
             Group {
-                // TODO: 将来的にはトランジションでキレイに切り替えたい。
-                switch style {
-                case .grid:
-                    ScrollView {
-                        LazyVGrid(columns: columns) {
-                            ForEach(boardDocuments, id: \.title) { item in
-                                Button(action: { tapCell(board: item) }) {
-                                    BoardGridCell(item: item)
-                                }
-                            }
-                        }
-                    }
-                    
-                case .list:
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(boardDocuments, id: \.title) { item in
-                                Divider()
-                                Button(action: { tapCell(board: item) }) {
-                                    BoardListCell(item: item)
-                                }
-                                .padding([.horizontal])
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(boardDocuments, id: \.id!) { item in
+                            Button(action: { tapCell(board: item) }) {
+                                BoardSelectCell(item: item, style: style)
                             }
                         }
                     }
@@ -79,14 +37,25 @@ struct BoardSelectView: View {
         }
     }
     
-    var columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 100))
-    ]
+    var columns: [GridItem] {
+        switch style {
+        case .grid:
+            return [
+                GridItem(.adaptive(minimum: 100))
+            ]
+        case .list:
+            return [
+                GridItem(spacing: 0)
+            ]
+        }
+    }
     
     // MARK: Actions
     
     private func tapChangeStyleButton() {
-        style.toggle()
+        withAnimation {
+            style.toggle()
+        }
     }
     
     private func tapCancel() {
