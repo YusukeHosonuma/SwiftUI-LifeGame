@@ -25,8 +25,7 @@ extension BoardDocument {
         cells = board.cells.map(\.rawValue)
     }
     
-    func makeBoard() -> LifeGameBoard {
-        let board = Board(size: size, cells: cells.map { $0 == 0 ? Cell.die : Cell.alive })
-        return LifeGameBoard(board: board)
+    func makeBoard() -> Board<Cell> {
+        Board(size: size, cells: cells.map { $0 == 0 ? Cell.die : Cell.alive })
     }
 }

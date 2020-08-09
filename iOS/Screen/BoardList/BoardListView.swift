@@ -33,7 +33,7 @@ struct BoardListView: View {
     }
     
     private func tapCell(board document: BoardDocument) {
-        let board = document.makeBoard().board
+        let board = document.makeBoard()
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         isPresented = false
     }
