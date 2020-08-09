@@ -72,10 +72,10 @@ struct BoardSelectView: View {
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
-            .navigationBarItems(leading: Button("Cancel", action: tapCancel))
-            .navigationBarItems(trailing: Button(action: tapChangeStyleButton) {
-                Image(systemName: style.imageName)
-            })
+            .navigationBarItems(leading: Button("Cancel", action: tapCancel),
+                                trailing: Button(action: tapChangeStyleButton) {
+                                    Image(systemName: style.imageName)
+                                })
         }
     }
     
