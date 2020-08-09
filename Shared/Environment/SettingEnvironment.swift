@@ -44,8 +44,14 @@ final class SettingEnvironment: ObservableObject {
         
         $backgroundImage
             .sink { image in
-                if let data = image?.pngData() {
-                    UserDefaults.standard.setValue(data, forKey: "backgroundImage")
+                if let image = image {
+                    if let data = image.pngData() {
+                        UserDefaults.standard.setValue(data, forKey: "backgroundImage")
+                    } else {
+                        print("error: can't convert to png.")
+                    }
+                } else {
+                    UserDefaults.standard.setValue(nil, forKey: "backgroundImage")
                 }
             }
             .store(in: &cancellables)

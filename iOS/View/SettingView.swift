@@ -41,20 +41,26 @@ struct SettingView: View {
             }
             Section(header: Text("Background Image")) {
                 HCenter {
-                    Button("Select image...") {
-                        isPresentedPhotoPicker.toggle()
+                    if let _ = setting.backgroundImage {
+                        Button("Clear") {
+                            setting.backgroundImage = nil
+                        }
+                    } else {
+                        Button("Select...") {
+                            isPresentedPhotoPicker.toggle()
+                        }
                     }
-                    .sheet(isPresented: $isPresentedPhotoPicker) {
-                        PhotoPicker(configuration: configuration,
-                                    isPresented: $isPresentedPhotoPicker,
-                                    selectedImage: $setting.backgroundImage)
-                    }
+                }
+                .sheet(isPresented: $isPresentedPhotoPicker) {
+                    PhotoPicker(configuration: configuration,
+                                isPresented: $isPresentedPhotoPicker,
+                                selectedImage: $setting.backgroundImage)
                 }
             }
             Section(
                 header: Text("GitHub"),
                 footer: Text("This app is Open Source Software (MIT)")) {
-                Link("YusukeHosonuma/SwiftUI-LifeGame",
+                Link("YusukeHosonuma / SwiftUI-LifeGame",
                      destination: URL(string: "https://github.com/YusukeHosonuma/SwiftUI-LifeGame")!)
             }
             Section {
