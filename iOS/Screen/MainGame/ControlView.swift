@@ -41,8 +41,8 @@ struct ControlView: View {
                 Image(systemName: "list.bullet")
             }
             .sheet(isPresented: $isPresentedListSheet) {
-                BoardListView(isPresented: $isPresentedListSheet,
-                              boardDocuments: boardRepository.items)
+                BoardSelectView(isPresented: $isPresentedListSheet,
+                                boardDocuments: boardRepository.items)
             }
             
             ActionMenu(viewModel: viewModel) {
