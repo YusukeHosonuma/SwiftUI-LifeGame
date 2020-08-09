@@ -13,7 +13,8 @@ final class FirestoreBoardRepository: ObservableObject {
     
     init() {
         Firestore.firestore()
-            .collection("boards")
+            .collection("presets")
+            .order(by: "title")
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else {
                     print("Error fetching snapshot results: \(error!)")

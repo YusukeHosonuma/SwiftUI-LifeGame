@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private let PresetBoardSizes: [Int] = [15, 25, 40, 60]
+let PresetBoardSizes: [Int] = [15, 25, 40, 60]
 
 struct BoardSizeMenu: View {
     @Binding var size: Int
