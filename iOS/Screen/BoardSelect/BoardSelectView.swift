@@ -23,7 +23,7 @@ struct BoardSelectView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(boardDocuments, id: \.id!) { item in
                             Button(action: { tapCell(board: item) }) {
-                                BoardGridCell(item: item, style: style)
+                                BoardSelectCell(item: item, style: style)
                             }
                         }
                     }

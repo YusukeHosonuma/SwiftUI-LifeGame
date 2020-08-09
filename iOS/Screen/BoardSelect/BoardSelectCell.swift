@@ -1,5 +1,5 @@
 //
-//  BoardGridCell.swift
+//  BoardSelectCell.swift
 //  LifeGameApp (iOS)
 //
 //  Created by Yusuke Hosonuma on 2020/08/09.
@@ -8,7 +8,7 @@
 import SwiftUI
 import LifeGame
 
-struct BoardGridCell: View {
+struct BoardSelectCell: View {
     var item: BoardDocument
     var style: BoardSelectStyle
     
@@ -61,14 +61,14 @@ struct BoardGridCell_Previews: PreviewProvider {
     
     @ViewBuilder
     private static func gridView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardGridCell(item: BoardDocument(title: title, board: board), style: .grid)
+        BoardSelectCell(item: BoardDocument(title: title, board: board), style: .grid)
             .previewLayout(.fixed(width: 200.0, height: 200.0))
             .preferredColorScheme(colorScheme)
     }
     
     @ViewBuilder
     private static func listView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardGridCell(item: BoardDocument(title: title, board: board), style: .list)
+        BoardSelectCell(item: BoardDocument(title: title, board: board), style: .list)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(colorScheme)
     }
