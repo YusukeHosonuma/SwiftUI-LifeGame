@@ -36,9 +36,11 @@ struct SettingView: View {
                     }
                 }
             }
+            
             Section(header: Text("Board")) {
                 BoardSizeMenu(size: $setting.boardSize)
             }
+            
             Section(header: Text("Background Image")) {
                 HCenter {
                     if let _ = setting.backgroundImage {
@@ -53,12 +55,14 @@ struct SettingView: View {
                                 selectedImage: $setting.backgroundImage)
                 }
             }
+            
             Section(
                 header: Text("GitHub"),
                 footer: Text("This app is Open Source Software (MIT)")) {
                 Link("YusukeHosonuma / SwiftUI-LifeGame",
                      destination: URL(string: "https://github.com/YusukeHosonuma/SwiftUI-LifeGame")!)
             }
+            
             Section {
                 HCenter {
                     Button("Reset to Default", action: tapResetToDefault)
@@ -91,10 +95,6 @@ struct SettingView: View {
     }
     
     // MARK: Actions
-    
-    private func tapBoardSize(_ size: Int) {
-        setting.boardSize = size
-    }
 
     private func showPhotoPicker() {
         isPresentedPhotoPicker.toggle()
