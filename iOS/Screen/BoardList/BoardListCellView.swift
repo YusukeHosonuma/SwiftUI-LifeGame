@@ -38,7 +38,7 @@ struct BoardListCellView: View {
     // （たかが数百ピクセルなので大したこと無い・・・はず）
     #if os(iOS)
     private var thumbnailImage: UIImage {
-        let board = item.makeBoardForRender()
+        let board = item.makeBoard().board
         
         let scale = 4
         let size = CGSize(width: board.size * scale, height: board.size * scale)

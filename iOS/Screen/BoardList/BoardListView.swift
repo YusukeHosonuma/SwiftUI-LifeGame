@@ -33,11 +33,7 @@ struct BoardListView: View {
     }
     
     private func tapCell(board document: BoardDocument) {
-        
-        // TODO: Firestoreのデータトリムが終わったら不要になる
-        let board = Board(size: document.size, cells: document.cells.map { $0 == 0 ? Cell.die : Cell.alive })
-            .trimed { $0 == .die }
-
+        let board = document.makeBoard().board
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         isPresented = false
     }
