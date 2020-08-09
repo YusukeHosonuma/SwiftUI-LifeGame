@@ -34,13 +34,8 @@ struct BoardListCell_Previews: PreviewProvider {
     
     @ViewBuilder
     private static func view(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardListCell(
-            item: BoardDocument(id: nil,
-                                title: title,
-                                size: board.size,
-                                cells: board.cells.map(\.rawValue))
-        )
-        .previewLayout(.sizeThatFits)
-        .preferredColorScheme(colorScheme)
+        BoardListCell(item: BoardDocument(title: title, board: board))
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(colorScheme)
     }
 }
