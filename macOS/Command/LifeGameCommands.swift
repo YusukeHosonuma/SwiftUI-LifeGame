@@ -33,7 +33,7 @@ struct LifeGameCommands: Commands {
                     .disabled(viewModel.stopButtonDisabled)
                 
                 Button("Next", action: viewModel.tapNextButton)
-                    .keyboardShortcut("n") // Next `s`tep
+                    .keyboardShortcut("n") // Next
                     .disabled(viewModel.nextButtonDisabled)
             }
             
