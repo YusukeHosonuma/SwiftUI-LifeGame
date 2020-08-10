@@ -70,6 +70,10 @@ final class MainGameViewModel: ObservableObject {
         _context.generateRandom()
     }
     
+    func loadBoard(_ board: Board<Cell>) {
+        _context.setBoard(board)
+    }
+    
     func selectPreset(_ preset: BoardPreset) {
         _context.setPreset(preset)
     }
