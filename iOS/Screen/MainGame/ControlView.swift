@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ControlView: View {
-    @StateObject var boardRepository = FirestoreBoardRepository()
+    @EnvironmentObject var boardRepository: FirestoreBoardRepository
     @ObservedObject var viewModel: MainGameViewModel
+    
     @State var isPresentedListSheet = false
     
     // MARK: View
