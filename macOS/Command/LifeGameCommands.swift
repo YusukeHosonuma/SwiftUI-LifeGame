@@ -12,11 +12,10 @@ import UniformTypeIdentifiers
 struct LifeGameCommands: Commands {    
     @ObservedObject var viewModel: MainGameViewModel
     @ObservedObject var boardRepository: FirestoreBoardRepository
-
-    // TODO: beta4 bug (maybe...)❗
-    // Not update disabled state when viewModel was changed.
     
     var body: some Commands {
+        // TODO: 将来的にはドキュメントベースのアプリで構築することも検討
+
         CommandGroup(before: .saveItem) {
             Section {
                 Button("Save", action: save)
@@ -29,6 +28,9 @@ struct LifeGameCommands: Commands {
         
         CommandMenu("Game") {
             Section {
+                // TODO: beta4 bug (maybe...)❗
+                // Not update disabled state when viewModel was changed.
+
                 Button("Start", action: viewModel.tapPlayButton)
                     .keyboardShortcut("r")
                     .disabled(viewModel.playButtonDisabled)
@@ -42,8 +44,6 @@ struct LifeGameCommands: Commands {
                     .disabled(viewModel.nextButtonDisabled)
             }
             
-            // TODO: Don't apply section... beta3 bug?
-
             Section {
                 Button("Clear", action: viewModel.tapClear)
                     .keyboardShortcut("k", modifiers: [.command, .shift])
@@ -102,7 +102,7 @@ struct LifeGameCommands: Commands {
         panel.allowedContentTypes = [UTType.json]
         
         if panel.runModal() == .OK {
-            guard let url = panel.url else { fatalError() } // 複数選択でなければ発生しないらしい
+            guard let url = panel.url else { fatalError() }
             
             let items = boardRepository.items.map(BoardPresetFile.init)
             do {
