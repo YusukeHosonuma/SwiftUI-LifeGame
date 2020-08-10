@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LifeGame
 import UniformTypeIdentifiers
 
 struct LifeGameCommands: Commands {    
@@ -18,7 +19,11 @@ struct LifeGameCommands: Commands {
     var body: some Commands {
         CommandGroup(before: .saveItem) {
             Section {
-                Button("Export presets...", action: showSaveDialog)
+                Button("Save", action: save)
+                Button("Open...", action: open)
+            }
+            Section {
+                Button("Export Presets...", action: exportPresets)
             }
         }
         
@@ -46,7 +51,49 @@ struct LifeGameCommands: Commands {
         }
     }
     
-    func showSaveDialog() {
+    // MARK: Actions
+    
+    private func save() {
+        let panel = NSSavePanel()
+        panel.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        panel.canCreateDirectories = true
+        panel.showsTagField = true
+        panel.nameFieldStringValue = "Untitled"
+        panel.allowedContentTypes = [UTType(exportedAs: "tech.penginmura.LifeGameApp.board")]
+
+        if panel.runModal() == .OK {
+            guard let url = panel.url else { fatalError() }
+            do {
+                let data = try JSONEncoder().encode(viewModel.board.board)
+                try data.write(to: url)
+            } catch {
+                fatalError("Failed to write file: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func open() {
+        let panel = NSOpenPanel()
+        panel.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        panel.canCreateDirectories = true
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
+        panel.allowsMultipleSelection = false
+        panel.allowedContentTypes = [UTType(exportedAs: "tech.penginmura.LifeGameApp.board")]
+
+        if panel.runModal() == .OK {
+            guard let url = panel.url else { fatalError() }
+            do {
+                let data = try Data(contentsOf: url)
+                let board = try JSONDecoder().decode(Board<Cell>.self, from: data)
+                viewModel.loadBoard(board)
+            } catch {
+                fatalError("Failed to read file: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func exportPresets() {
         let panel = NSSavePanel()
         panel.directoryURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
         panel.canCreateDirectories = true
