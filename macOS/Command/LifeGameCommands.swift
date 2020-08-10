@@ -18,8 +18,12 @@ struct LifeGameCommands: Commands {
 
         CommandGroup(before: .saveItem) {
             Section {
-                Button("Save", action: save)
                 Button("Open...", action: open)
+                    .keyboardShortcut("o")
+            }
+            Section {
+                Button("Save", action: save)
+                    .keyboardShortcut("s")
             }
             Section {
                 Button("Export Presets...", action: exportPresets)
