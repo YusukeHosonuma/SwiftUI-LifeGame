@@ -12,7 +12,8 @@ import UniformTypeIdentifiers
 struct LifeGameCommands: Commands {    
     @ObservedObject var viewModel: MainGameViewModel
     @ObservedObject var boardRepository: FirestoreBoardRepository
-    
+    @ObservedObject var fileManager: LifeGameFileManager
+
     var body: some Commands {
         // TODO: 将来的にはドキュメントベースのアプリで構築することも検討
 
@@ -24,6 +25,8 @@ struct LifeGameCommands: Commands {
             Section {
                 Button("Save", action: save)
                     .keyboardShortcut("s")
+                Button("Save As...", action: saveAs)
+                    .keyboardShortcut("S")
             }
             Section {
                 Button("Export Presets...", action: exportPresets)
@@ -56,66 +59,22 @@ struct LifeGameCommands: Commands {
     }
     
     // MARK: Actions
+
+    private func saveAs() {
+        fileManager.saveAs(board: viewModel.board.board)
+    }
     
     private func save() {
-        let panel = NSSavePanel()
-        panel.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        panel.canCreateDirectories = true
-        panel.showsTagField = true
-        panel.nameFieldStringValue = "Untitled"
-        panel.allowedContentTypes = [UTType(exportedAs: "tech.penginmura.LifeGameApp.board")]
-
-        if panel.runModal() == .OK {
-            guard let url = panel.url else { fatalError() }
-            do {
-                let data = try JSONEncoder().encode(viewModel.board.board)
-                try data.write(to: url)
-            } catch {
-                fatalError("Failed to write file: \(error.localizedDescription)")
-            }
-        }
+        fileManager.save(board: viewModel.board.board)
     }
     
     private func open() {
-        let panel = NSOpenPanel()
-        panel.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        panel.canCreateDirectories = true
-        panel.canChooseDirectories = false
-        panel.canChooseFiles = true
-        panel.allowsMultipleSelection = false
-        panel.allowedContentTypes = [UTType(exportedAs: "tech.penginmura.LifeGameApp.board")]
-
-        if panel.runModal() == .OK {
-            guard let url = panel.url else { fatalError() }
-            do {
-                let data = try Data(contentsOf: url)
-                let board = try JSONDecoder().decode(Board<Cell>.self, from: data)
-                viewModel.loadBoard(board)
-            } catch {
-                fatalError("Failed to read file: \(error.localizedDescription)")
-            }
-        }
+        guard let board = fileManager.open() else { return }
+        viewModel.loadBoard(board)
     }
     
     private func exportPresets() {
-        let panel = NSSavePanel()
-        panel.directoryURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-        panel.canCreateDirectories = true
-        panel.showsTagField = true
-        panel.nameFieldStringValue = "LifeGamePresets"
-        panel.allowedContentTypes = [UTType.json]
-        
-        if panel.runModal() == .OK {
-            guard let url = panel.url else { fatalError() }
-            
-            let items = boardRepository.items.map(BoardPresetFile.init)
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(items)
-                try data.write(to: url)
-            } catch {
-                fatalError("Failed to write file: \(error.localizedDescription)")
-            }
-        }
+        let presets = boardRepository.items.map(BoardPresetFile.init)
+        fileManager.exportPresets(presets)
     }
 }
