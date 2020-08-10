@@ -25,7 +25,7 @@ struct MainGameView: View {
                 //
                 // TextField("Title", text: $title)
                 // Button("Save") {
-                //     let trimed = viewModel.board.board.trimed(by: { $0 == .die })
+                //    let trimed = viewModel.board.board.trimed(by: { $0 == .die }).centering(by:{ $0 == .die })
                 //     let document = BoardDocument(title: title, board: LifeGameBoard(board: trimed))
                 //     _ = try! Firestore.firestore()
                 //         .collection("presets")

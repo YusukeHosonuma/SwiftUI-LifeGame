@@ -5,9 +5,9 @@
         "package": "LifeGame",
         "repositoryURL": "https://github.com/YusukeHosonuma/LifeGame",
         "state": {
-          "branch": null,
-          "revision": "dc79b918871f0f2a0801d227c39d2239c943d82e",
-          "version": "1.5.0"
+          "branch": "main",
+          "revision": "c9dfe0b4b8cfbe2ef656ef36e88571292f5fc1e6",
+          "version": null
         }
       }
     ]
