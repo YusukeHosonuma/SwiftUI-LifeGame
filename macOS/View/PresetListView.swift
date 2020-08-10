@@ -12,11 +12,12 @@ struct PresetListView: View {
     @StateObject var viewModel = FirestoreBoardRepository()
     
     var body: some View {
+        // TODO: Use Lazy
         List {
             Section(header: Text("Presets")) {
                 ForEach(viewModel.items) { item in
                     HStack {
-                        BoardThumnailView(board: item.makeBoardForRender())
+                        BoardThumnailView(board: LifeGameBoard(board: item.makeBoard()))
                         Text("\(item.title)")
                     }
                     .contentShape(Rectangle()) // ❗not working in beta4
@@ -32,8 +33,8 @@ struct PresetListView: View {
     }
     
     private func tapCell(board document: BoardDocument) {
-        let board = document.makeBoard().board
-        LifeGameContext.shared.setBoard(board)
+        let board = document.makeBoard()
+        LifeGameContext.shared.setBoard(board) // TODO: refactor
     }
 }
 

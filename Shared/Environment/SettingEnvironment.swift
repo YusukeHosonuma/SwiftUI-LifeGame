@@ -18,7 +18,9 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSize: Int
     @Published var animationSpeed: Double
     @Published var zoomLevel: Int
+    #if os(iOS)
     @Published var boardSelectDisplayStyle: BoardSelectStyle
+    #endif
     #if os(macOS)
     // TODO:
     #else
@@ -34,7 +36,10 @@ final class SettingEnvironment: ObservableObject {
         boardSize = UserDefaultSetting.shared.boardSize
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
+        
+        #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
+        #endif
 
         #if os(macOS)
         // TODO:
@@ -80,10 +85,13 @@ final class SettingEnvironment: ObservableObject {
             .dropFirst()
             .assign(to: \.zoomLevel, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
+        
+        #if os(iOS)
         $boardSelectDisplayStyle
             .dropFirst()
             .assign(to: \.boardSelectDisplayStyle, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
+        #endif
     }
     
     func resetToDefault() {
@@ -92,6 +100,9 @@ final class SettingEnvironment: ObservableObject {
         boardSize = UserDefaultSetting.DefaultBoardSize
         animationSpeed = UserDefaultSetting.DefaultAnimationSpeed
         zoomLevel = UserDefaultSetting.DefaultZoomLevel
+        
+        #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.DefaultBoardSelectDisplayStyle
+        #endif
     }
 }
