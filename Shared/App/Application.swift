@@ -43,6 +43,7 @@ struct Application: App {
         WindowGroup {
             RootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
+                .environmentObject(boardRepository)
         }
         #endif
         
