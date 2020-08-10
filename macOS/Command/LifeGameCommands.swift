@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct LifeGameCommands: Commands {
+struct LifeGameCommands: Commands {    
     @ObservedObject var viewModel: MainGameViewModel
-    
+    @ObservedObject var boardRepository: FirestoreBoardRepository
+
     // TODO: beta4 bug (maybe...)❗
     // Not update disabled state when viewModel was changed.
     

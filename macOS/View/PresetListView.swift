@@ -9,13 +9,13 @@ import SwiftUI
 import LifeGame
 
 struct PresetListView: View {
-    @StateObject var viewModel = FirestoreBoardRepository()
+    @EnvironmentObject var boardRepository: FirestoreBoardRepository
     
     var body: some View {
         // TODO: Use Lazy
         List {
             Section(header: Text("Presets")) {
-                ForEach(viewModel.items) { item in
+                ForEach(boardRepository.items) { item in
                     HStack {
                         BoardThumnailView(board: LifeGameBoard(board: item.makeBoard()))
                         Text("\(item.title)")
