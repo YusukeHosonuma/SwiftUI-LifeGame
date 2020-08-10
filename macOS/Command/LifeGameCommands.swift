@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct LifeGameCommands: Commands {    
     @ObservedObject var viewModel: MainGameViewModel
@@ -15,6 +16,12 @@ struct LifeGameCommands: Commands {
     // Not update disabled state when viewModel was changed.
     
     var body: some Commands {
+        CommandGroup(before: .saveItem) {
+            Section {
+                Button("Export presets...", action: showSaveDialog)
+            }
+        }
+        
         CommandMenu("Game") {
             Section {
                 Button("Start", action: viewModel.tapPlayButton)
@@ -26,7 +33,7 @@ struct LifeGameCommands: Commands {
                     .disabled(viewModel.stopButtonDisabled)
                 
                 Button("Next", action: viewModel.tapNextButton)
-                    .keyboardShortcut("s") // Next `s`tep
+                    .keyboardShortcut("n") // Next `s`tep
                     .disabled(viewModel.nextButtonDisabled)
             }
             
@@ -35,6 +42,28 @@ struct LifeGameCommands: Commands {
             Section {
                 Button("Clear", action: viewModel.tapClear)
                     .keyboardShortcut("k", modifiers: [.command, .shift])
+            }
+        }
+    }
+    
+    func showSaveDialog() {
+        let panel = NSSavePanel()
+        panel.directoryURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
+        panel.canCreateDirectories = true
+        panel.showsTagField = true
+        panel.nameFieldStringValue = "LifeGamePresets"
+        panel.allowedContentTypes = [UTType.json]
+        
+        if panel.runModal() == .OK {
+            guard let url = panel.url else { fatalError() } // 複数選択でなければ発生しないらしい
+            
+            let items = boardRepository.items.map(BoardPresetFile.init)
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(items)
+                try data.write(to: url)
+            } catch {
+                fatalError("Failed to write file: \(error.localizedDescription)")
             }
         }
     }
