@@ -67,7 +67,7 @@
 		E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */; };
 		E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */; };
-		E5E6EB1624DFF33E0012E911 /* BoardThumnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumnailImage.swift */; };
+		E5E6EB1624DFF33E0012E911 /* BoardThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */; };
 		E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */; };
 		E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */; };
 		E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */; };
@@ -149,7 +149,7 @@
 		E5D9F27224BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectCell.swift; sourceTree = "<group>"; };
-		E5E6EB1524DFF33E0012E911 /* BoardThumnailImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardThumnailImage.swift; sourceTree = "<group>"; };
+		E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardThumbnailImage.swift; sourceTree = "<group>"; };
 		E5FA934124C0570800229AAA /* ButtonStyleCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleCircle.swift; sourceTree = "<group>"; };
 		E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleRounded.swift; sourceTree = "<group>"; };
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 			children = (
 				E52FE5E024DC03C100D93764 /* BoardSelectView.swift */,
 				E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */,
-				E5E6EB1524DFF33E0012E911 /* BoardThumnailImage.swift */,
+				E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */,
 				E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */,
 			);
 			path = BoardSelect;
@@ -751,7 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5E6EB1624DFF33E0012E911 /* BoardThumnailImage.swift in Sources */,
+				E5E6EB1624DFF33E0012E911 /* BoardThumbnailImage.swift in Sources */,
 				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,

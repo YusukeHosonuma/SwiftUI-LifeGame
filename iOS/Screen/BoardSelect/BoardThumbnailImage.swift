@@ -1,5 +1,5 @@
 //
-//  BoardThumnailImage.swift
+//  BoardThumbnailImage.swift
 //  LifeGameApp (iOS)
 //
 //  Created by Yusuke Hosonuma on 2020/08/09.
@@ -8,7 +8,7 @@
 import SwiftUI
 import LifeGame
 
-struct BoardThumnailImage: View {
+struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     
     var board: Board<Cell>
@@ -60,7 +60,7 @@ struct BoardThumnailImage_Previews: PreviewProvider {
     }
     
     static func view(preset: BoardPreset, colorScheme: ColorScheme) -> some View {
-        BoardThumnailImage(board: preset.board.board)
+        BoardThumbnailImage(board: preset.board.board)
             .previewLayout(.fixed(width: 200.0, height: 200.0))
             .colorScheme(colorScheme)
             .preferredColorScheme(colorScheme)
