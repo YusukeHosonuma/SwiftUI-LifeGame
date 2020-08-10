@@ -27,7 +27,7 @@ struct BoardThumbnailImage: View {
     }
     
     private var thumbnailImage: UIImage {
-        let scale = max(1, 100 / board.size)
+        let scale = max(2, 200 / board.size)
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
         
         return UIGraphicsImageRenderer(size: size)
