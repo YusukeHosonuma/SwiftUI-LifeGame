@@ -21,7 +21,7 @@ struct BoardSelectCell: View {
                 BoardThumbnailImage(board: item.makeBoard().extended(by: .die))
                     .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
                 Text(item.title)
-                    .font(.subheadline)
+                    .font(.caption)
                     .fixedSize(horizontal: true, vertical: true)
                     .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
             }
@@ -30,7 +30,7 @@ struct BoardSelectCell: View {
             VStack(spacing: 0) {
                 HStack() {
                     Text("\(item.title)")
-                        .font(.subheadline)
+                        .font(.caption)
                         .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                         .fixedSize(horizontal: true, vertical: true)
                     Spacer()
