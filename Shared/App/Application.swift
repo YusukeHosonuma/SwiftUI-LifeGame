@@ -15,6 +15,9 @@ private let settingEnvironment: SettingEnvironment = .shared
 struct Application: App {
     @StateObject var boardRepository = FirestoreBoardRepository()
     @StateObject var viewModel = MainGameViewModel()
+    #if os(macOS)
+    @StateObject var fileManager = LifeGameFileManager()
+    #endif
 
     init() {
         FirebaseApp.configure()
@@ -33,9 +36,12 @@ struct Application: App {
             MacRootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
+                .environmentObject(fileManager)
         }
         .commands {
-            LifeGameCommands(viewModel: viewModel, boardRepository: boardRepository)
+            LifeGameCommands(viewModel: viewModel,
+                             boardRepository: boardRepository,
+                             fileManager: fileManager)
                 // ❗API is not supported in beta4
                 // .environmentObject(boardRepository)
         }

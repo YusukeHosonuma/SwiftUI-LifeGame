@@ -10,7 +10,12 @@ import SwiftUI
 struct MacRootView: View {
     @ObservedObject var viewModel: MainGameViewModel
     @EnvironmentObject var setting: SettingEnvironment
+    @EnvironmentObject var fileManager: LifeGameFileManager
 
+    private var title: String {
+        fileManager.latestURL?.lastPathComponent ?? "Untitled"
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -36,7 +41,7 @@ struct MacRootView: View {
             
             ContentView(viewModel: viewModel, zoomLevel: setting.zoomLevel)
         }
-        .navigationTitle("")
+        .navigationTitle(title)
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 BoardSizeMenu(size: $setting.boardSize)
