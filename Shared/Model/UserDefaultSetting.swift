@@ -15,6 +15,7 @@ final class UserDefaultSetting {
     static let DefaultBoardSize: Int = 13
     static let DefaultAnimationSpeed: Double = 0.5
     static let DefaultZoomLevel: Int = 5
+    static let DefaultBoardSelectDisplayStyle: BoardSelectStyle = .grid
 
     @UserDefault(key: "lightModeColor", defaultValue: DefaultLightModeColor)
     var lightModeColor: Color
@@ -30,4 +31,7 @@ final class UserDefaultSetting {
 
     @UserDefault(key: "zoomLevel", defaultValue: DefaultZoomLevel)
     var zoomLevel: Int
+    
+    @UserDefault(key: "boardSelectDisplayStyle", defaultValue: DefaultBoardSelectDisplayStyle)
+    var boardSelectDisplayStyle: BoardSelectStyle
 }

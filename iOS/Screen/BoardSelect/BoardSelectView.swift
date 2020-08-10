@@ -9,10 +9,10 @@ import SwiftUI
 import LifeGame
 
 struct BoardSelectView: View {
+    @EnvironmentObject var setting: SettingEnvironment
+    
     @Binding var isPresented: Bool
     var boardDocuments: [BoardDocument]
-    
-    @State private var style: BoardSelectStyle = .grid
 
     // MARK: View
     
@@ -23,7 +23,7 @@ struct BoardSelectView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(boardDocuments, id: \.id!) { item in
                             Button(action: { tapCell(board: item) }) {
-                                BoardSelectCell(item: item, style: style)
+                                BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                             }
                         }
                     }
@@ -32,13 +32,13 @@ struct BoardSelectView: View {
             .navigationBarTitle("Select board", displayMode: .inline)
             .navigationBarItems(leading: Button("Cancel", action: tapCancel),
                                 trailing: Button(action: tapChangeStyleButton) {
-                                    Image(systemName: style.imageName)
+                                    Image(systemName: setting.boardSelectDisplayStyle.imageName)
                                 })
         }
     }
     
     var columns: [GridItem] {
-        switch style {
+        switch setting.boardSelectDisplayStyle {
         case .grid:
             return [
                 GridItem(.adaptive(minimum: 100))
@@ -54,7 +54,7 @@ struct BoardSelectView: View {
     
     private func tapChangeStyleButton() {
         withAnimation {
-            style.toggle()
+            setting.boardSelectDisplayStyle.toggle()
         }
     }
     
