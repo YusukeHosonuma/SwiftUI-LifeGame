@@ -54,7 +54,7 @@ struct Provider: TimelineProvider {
                     
                     // とりあえずランダムでチョイスするだけ
                     let document = documents.randomElement()!
-                    let data = LifeGameData(title: document.title, board: document.makeBoard().extended(by: .die))
+                    let data = LifeGameData(title: document.title, board: document.makeBoard().extended(by: .die), url: URL(string: "board:///\(document.id!)")!)
                     let entry = LifeGameEntry(date: entryDate, relevance: data)
                     entries.append(entry)
                 }
@@ -73,6 +73,7 @@ struct LifeGameEntry: TimelineEntry {
 struct LifeGameData {
     var title: String
     var board: Board<Cell>
+    var url: URL = URL(string: "board:///0")!
 }
 
 struct LifeGameWidgetEntryView : View {
@@ -86,6 +87,7 @@ struct LifeGameWidgetEntryView : View {
                     .font(.system(.footnote, design: .monospaced))
                     .foregroundColor(.gray)
             }
+            .widgetURL(entry.relevance.url)
             Spacer()
         }
         .padding()
