@@ -50,6 +50,29 @@ struct Application: App {
             RootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
+                .onOpenURL { url in
+                    let documentID = url.lastPathComponent
+                    guard documentID != "0" else { return }
+                    
+                    // TODO: ユーザが編集していた場合は上書きしてしまうことになるので、ちょっと考える。
+                    
+                    Firestore.firestore()
+                        .collection("presets")
+                        .document(documentID)
+                        .getDocument { (snapshot, error) in
+                            guard let snapshot = snapshot else {
+                                print("Error fetching snapshot results: \(error!)")
+                                return
+                            }
+                            
+                            guard let document = try! snapshot.data(as: BoardDocument.self) else {
+                                fatalError()
+                            }
+                            
+                            let board = document.makeBoard()
+                            LifeGameContext.shared.setBoard(board)
+                        }
+                }
         }
         #endif
         
