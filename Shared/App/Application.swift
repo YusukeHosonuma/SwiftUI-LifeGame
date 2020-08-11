@@ -54,6 +54,8 @@ struct Application: App {
                     let documentID = url.lastPathComponent
                     guard documentID != "0" else { return }
                     
+                    // TODO: ユーザが編集していた場合は上書きしてしまうことになるので、ちょっと考える。
+                    
                     Firestore.firestore()
                         .collection("presets")
                         .document(documentID)
