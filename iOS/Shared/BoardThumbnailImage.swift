@@ -26,6 +26,12 @@ struct BoardThumbnailImage: View {
             : CGColor(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
+    private var gridColor: CGColor {
+        colorScheme == .dark
+            ? CGColor(gray: 0.5, alpha: 0.3)
+            : CGColor(gray: 0.5, alpha: 0.5)
+    }
+
     private var thumbnailImage: UIImage {
         let scale = max(2, 200 / board.size)
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
@@ -43,7 +49,7 @@ struct BoardThumbnailImage: View {
                 }
                 
                 // Draw grid
-                context.cgContext.setFillColor(CGColor(gray: 0.5, alpha: 0.3))
+                context.cgContext.setFillColor(gridColor)
                 for index in 0...board.size + 1 {
                     let length = board.size * scale + 1
                     context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
