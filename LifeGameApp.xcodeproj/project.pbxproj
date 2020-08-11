@@ -26,6 +26,14 @@
 		E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardSelectView.swift */; };
 		E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
+		E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */; };
+		E5438E3724E2AB0B007A3EB7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BA30A924BEE073002D0564 /* SwiftUI.framework */; };
+		E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */; };
+		E5438E3C24E2AB0D007A3EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */; };
+		E5438E4024E2AB0D007A3EB7 /* LifeGameWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */; };
+		E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
+		E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5438E4824E2ADE3007A3EB7 /* LifeGame */; };
 		E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E54904AF24DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
 		E54904B024DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
@@ -81,6 +89,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E5438E3E24E2AB0D007A3EB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5D9F24524BEBDBC009A526B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5438E3324E2AB0B007A3EB7;
+			remoteInfo = LifeGameWidgetExtension;
+		};
 		E5D9F26224BEBDBD009A526B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E5D9F24524BEBDBC009A526B /* Project object */;
@@ -96,6 +111,20 @@
 			remoteInfo = "LifeGameApp (macOS)";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E5438E4124E2AB0D007A3EB7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E5438E4024E2AB0D007A3EB7 /* LifeGameWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameApp__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +144,11 @@
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
 		E52FE5E024DC03C100D93764 /* BoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectView.swift; sourceTree = "<group>"; };
 		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
+		E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LifeGameWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameWidget.swift; sourceTree = "<group>"; };
+		E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5438E3D24E2AB0D007A3EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E54904AE24DD5E2D003AE7C7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -161,6 +195,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E5438E3124E2AB0B007A3EB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5438E3724E2AB0B007A3EB7 /* SwiftUI.framework in Frameworks */,
+				E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */,
+				E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5D9F24E24BEBDBD009A526B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,12 +278,29 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
+		E5438E3824E2AB0B007A3EB7 /* LifeGameWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */,
+				E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */,
+				E5438E3D24E2AB0D007A3EB7 /* Info.plist */,
+			);
+			path = LifeGameWidget;
+			sourceTree = "<group>";
+		};
+		E5438E4624E2ACEF007A3EB7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		E54904AB24DD5D6F003AE7C7 /* BoardSelect */ = {
 			isa = PBXGroup;
 			children = (
 				E52FE5E024DC03C100D93764 /* BoardSelectView.swift */,
 				E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */,
-				E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */,
 				E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */,
 			);
 			path = BoardSelect;
@@ -374,6 +435,7 @@
 				E5D9F25A24BEBDBD009A526B /* macOS */,
 				E5D9F26424BEBDBD009A526B /* Tests iOS */,
 				E5D9F26F24BEBDBD009A526B /* Tests macOS */,
+				E5438E3824E2AB0B007A3EB7 /* LifeGameWidget */,
 				E5D9F25224BEBDBD009A526B /* Products */,
 				E5D9F28824BEDCFC009A526B /* Frameworks */,
 				9E13C87229874903F6FA62E0 /* Pods */,
@@ -400,6 +462,7 @@
 				E5D9F25924BEBDBD009A526B /* LifeGameApp.app */,
 				E5D9F26124BEBDBD009A526B /* Tests iOS.xctest */,
 				E5D9F26C24BEBDBD009A526B /* Tests macOS.xctest */,
+				E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +470,7 @@
 		E5D9F25324BEBDBD009A526B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E5438E4624E2ACEF007A3EB7 /* Shared */,
 				E56EF83624DD55820019F30C /* Screen */,
 				E5A7B4DD24CC5B2700F5AED9 /* View */,
 				E5A153D424CC5C620030A1D9 /* Resources */,
@@ -449,6 +513,7 @@
 				E5BA30A924BEE073002D0564 /* SwiftUI.framework */,
 				5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */,
 				23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */,
+				E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -514,6 +579,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E5438E3324E2AB0B007A3EB7 /* LifeGameWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5438E4424E2AB0D007A3EB7 /* Build configuration list for PBXNativeTarget "LifeGameWidgetExtension" */;
+			buildPhases = (
+				E5438E3024E2AB0B007A3EB7 /* Sources */,
+				E5438E3124E2AB0B007A3EB7 /* Frameworks */,
+				E5438E3224E2AB0B007A3EB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LifeGameWidgetExtension;
+			packageProductDependencies = (
+				E5438E4824E2ADE3007A3EB7 /* LifeGame */,
+			);
+			productName = LifeGameWidgetExtension;
+			productReference = E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E5D9F25024BEBDBD009A526B /* LifeGameApp (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5D9F27B24BEBDBD009A526B /* Build configuration list for PBXNativeTarget "LifeGameApp (iOS)" */;
@@ -523,10 +608,12 @@
 				E5D9F24E24BEBDBD009A526B /* Frameworks */,
 				E5D9F24F24BEBDBD009A526B /* Resources */,
 				E0B774C9379B3627793D2983 /* [CP] Embed Pods Frameworks */,
+				E5438E4124E2AB0D007A3EB7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5438E3F24E2AB0D007A3EB7 /* PBXTargetDependency */,
 			);
 			name = "LifeGameApp (iOS)";
 			packageProductDependencies = (
@@ -604,6 +691,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					E5438E3324E2AB0B007A3EB7 = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					E5D9F25024BEBDBD009A526B = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -640,11 +730,20 @@
 				E5D9F25824BEBDBD009A526B /* LifeGameApp (macOS) */,
 				E5D9F26024BEBDBD009A526B /* Tests iOS */,
 				E5D9F26B24BEBDBD009A526B /* Tests macOS */,
+				E5438E3324E2AB0B007A3EB7 /* LifeGameWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E5438E3224E2AB0B007A3EB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5438E3C24E2AB0D007A3EB7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5D9F24F24BEBDBD009A526B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -761,6 +860,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E5438E3024E2AB0B007A3EB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
+				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
+				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5D9F24D24BEBDBD009A526B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -854,6 +963,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E5438E3F24E2AB0D007A3EB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5438E3324E2AB0B007A3EB7 /* LifeGameWidgetExtension */;
+			targetProxy = E5438E3E24E2AB0D007A3EB7 /* PBXContainerItemProxy */;
+		};
 		E5D9F26324BEBDBD009A526B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E5D9F25024BEBDBD009A526B /* LifeGameApp (iOS) */;
@@ -867,6 +981,53 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		E5438E4224E2AB0D007A3EB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P437HSA6PY;
+				INFOPLIST_FILE = LifeGameWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.penginmura.LifeGameApp.LifeGameWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5438E4324E2AB0D007A3EB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P437HSA6PY;
+				INFOPLIST_FILE = LifeGameWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.penginmura.LifeGameApp.LifeGameWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		E5D9F27924BEBDBD009A526B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -982,6 +1143,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1006,6 +1168,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1169,6 +1332,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E5438E4424E2AB0D007A3EB7 /* Build configuration list for PBXNativeTarget "LifeGameWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5438E4224E2AB0D007A3EB7 /* Debug */,
+				E5438E4324E2AB0D007A3EB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E5D9F24824BEBDBC009A526B /* Build configuration list for PBXProject "LifeGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1229,6 +1401,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		E51836EA24C0AA3B00DDE3A6 /* LifeGame */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
+			productName = LifeGame;
+		};
+		E5438E4824E2ADE3007A3EB7 /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
