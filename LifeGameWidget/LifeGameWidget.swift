@@ -8,37 +8,60 @@
 import WidgetKit
 import SwiftUI
 import LifeGame
+import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct Provider: TimelineProvider {
     let preset = BoardPreset.nebura
     
     func placeholder(in context: Context) -> LifeGameEntry {
-        return LifeGameEntry(date: Date(),
-                             relevance: LifeGameData(title: preset.displayText, board: preset.board.board))
+        let data = LifeGameData(title: "Title", board: Board(size: 12, cell: Cell.die))
+        return LifeGameEntry(date: Date(), relevance: data)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (LifeGameEntry) -> ()) {
-        let entry = LifeGameEntry(date: Date(),
-                                  relevance: LifeGameData(title: preset.displayText, board: preset.board.board))
+        let preset = BoardPreset.nebura
+        let data = LifeGameData(title: preset.displayText, board: preset.board.board)
+        let entry = LifeGameEntry(date: Date(), relevance: data)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<LifeGameEntry>) -> ()) {
-        var entries: [LifeGameEntry] = []
-
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-            
-            // とりあえずランダムでチョイスするだけ
-            let preset = BoardPreset.allCases.randomElement()!
-            let data = LifeGameData(title: preset.displayText, board: preset.board.board.trimed(by: { $0 == .die}).extended(by: .die))
-            let entry = LifeGameEntry(date: entryDate, relevance: data)
-            entries.append(entry)
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
         }
+        
+        Firestore.firestore()
+            .collection("presets")
+            .order(by: "title")
+            .getDocuments  { (snapshot, error) in
+                guard let snapshot = snapshot else {
+                    print("Error fetching snapshot results: \(error!)")
+                    return
+                }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+                let documents = snapshot.documents.map { document in
+                    try! document.data(as: BoardDocument.self)!
+                }
+                
+                var entries: [LifeGameEntry] = []
+
+                let currentDate = Date()
+                for hourOffset in 0 ..< 5 {
+                    // とりあえず分単位で更新
+                    let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
+                    
+                    // とりあえずランダムでチョイスするだけ
+                    let document = documents.randomElement()!
+                    let data = LifeGameData(title: document.title, board: document.makeBoard().extended(by: .die))
+                    let entry = LifeGameEntry(date: entryDate, relevance: data)
+                    entries.append(entry)
+                }
+
+                let timeline = Timeline(entries: entries, policy: .atEnd)
+                completion(timeline)
+            }
     }
 }
 

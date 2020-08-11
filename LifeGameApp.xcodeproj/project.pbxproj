@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1369F172EE87A88EB8BC8A55 /* Pods_LifeGameApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */; };
 		1822143613200647A35FCC94 /* Pods_LifeGameApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */; };
+		41C3D101E9EE82668B5A2801 /* Pods_LifeGameWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
@@ -47,6 +48,8 @@
 		E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA924DD101900DBC175 /* PresetListView.swift */; };
 		E55F7AAC24DD119700DBC175 /* BoardThumnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AAB24DD119700DBC175 /* BoardThumnailView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
+		E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
+		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
 		E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
 		E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536824D51B9F003B4C9E /* UserDefault.swift */; };
@@ -132,7 +135,10 @@
 		5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameApp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7A71B08C1E69D8B9FD780F /* Pods-LifeGameApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		7B8D922A10122D0343FF5654 /* Pods-LifeGameApp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (macOS).release.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-LifeGameWidgetExtension/Pods-LifeGameWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-LifeGameWidgetExtension/Pods-LifeGameWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 				E5438E3724E2AB0B007A3EB7 /* SwiftUI.framework in Frameworks */,
 				E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */,
 				E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */,
+				41C3D101E9EE82668B5A2801 /* Pods_LifeGameWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +255,8 @@
 				462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */,
 				6C7A71B08C1E69D8B9FD780F /* Pods-LifeGameApp (macOS).debug.xcconfig */,
 				7B8D922A10122D0343FF5654 /* Pods-LifeGameApp (macOS).release.xcconfig */,
+				8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */,
+				B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -514,6 +523,7 @@
 				5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */,
 				23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */,
 				E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */,
+				A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -583,6 +593,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5438E4424E2AB0D007A3EB7 /* Build configuration list for PBXNativeTarget "LifeGameWidgetExtension" */;
 			buildPhases = (
+				9FB5C6AD63839C6A3B003C83 /* [CP] Check Pods Manifest.lock */,
 				E5438E3024E2AB0B007A3EB7 /* Sources */,
 				E5438E3124E2AB0B007A3EB7 /* Frameworks */,
 				E5438E3224E2AB0B007A3EB7 /* Resources */,
@@ -741,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5438E3C24E2AB0D007A3EB7 /* Assets.xcassets in Resources */,
+				E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +791,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9FB5C6AD63839C6A3B003C83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LifeGameWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E0B774C9379B3627793D2983 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -865,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
+				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
 			);
@@ -983,6 +1018,7 @@
 /* Begin XCBuildConfiguration section */
 		E5438E4224E2AB0D007A3EB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1006,6 +1042,7 @@
 		};
 		E5438E4324E2AB0D007A3EB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
