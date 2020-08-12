@@ -13,6 +13,9 @@ struct BoardThumbnailImage: View {
     
     var board: Board<Cell>
     var cellColor: Color?
+    var cacheKey: String?
+    
+    private let cacheStorage = ThumbnailImageCacheStorage.shared
     
     var body: some View {
         Image(uiImage: thumbnailImage)
@@ -38,7 +41,21 @@ struct BoardThumbnailImage: View {
     }
 
     private var thumbnailImage: UIImage {
-        let scale = max(2, 200 / board.size)
+        guard let key = cacheKey else {
+            return renderImage()
+        }
+        
+        if let image = cacheStorage.value(forKey: key) {
+            return image
+        } else {
+            let image = renderImage()
+            cacheStorage.store(key: key, image: image)
+            return image
+        }
+    }
+    
+    private func renderImage() -> UIImage {
+        let scale = max(2, 140 / board.size)
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
         
         return UIGraphicsImageRenderer(size: size)
@@ -70,7 +87,7 @@ struct BoardThumnailImage_Previews: PreviewProvider {
         view(preset: .nebura, colorScheme: .light)
         view(preset: .spaceShip, colorScheme: .dark)
     }
-    
+
     static func view(preset: BoardPreset, colorScheme: ColorScheme) -> some View {
         BoardThumbnailImage(board: preset.board.board)
             .previewLayout(.fixed(width: 200.0, height: 200.0))

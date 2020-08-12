@@ -43,6 +43,9 @@
 		E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */; };
 		E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5438E4824E2ADE3007A3EB7 /* LifeGame */; };
+		E547C30A24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
+		E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
+		E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
 		E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E54904AF24DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
 		E54904B024DD5E2D003AE7C7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54904AE24DD5E2D003AE7C7 /* BoardView.swift */; };
@@ -170,6 +173,7 @@
 		E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameWidget.swift; sourceTree = "<group>"; };
 		E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5438E3D24E2AB0D007A3EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		E54904AE24DD5E2D003AE7C7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -320,6 +324,14 @@
 				E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		E547C30824E3F4AA0022DF3A /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		E54904AB24DD5D6F003AE7C7 /* BoardSelect */ = {
@@ -588,6 +600,7 @@
 		E5FA934A24C07A3D00229AAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E547C30824E3F4AA0022DF3A /* Cache */,
 				E52FE5DB24DC00E100D93764 /* Firestore */,
 				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 				E5CE237224C199F200BC5820 /* LifeGameContext.swift */,
@@ -931,6 +944,7 @@
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
+				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
@@ -967,6 +981,7 @@
 				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
 				E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
+				E547C30A24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
@@ -1013,6 +1028,7 @@
 				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */,
 				E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */,
+				E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
