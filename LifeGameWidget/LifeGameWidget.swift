@@ -33,7 +33,7 @@ struct Provider: TimelineProvider {
         }
         
         Firestore.firestore()
-            .collection("presets")
+            .collection("presets2")
             .order(by: "title")
             .getDocuments  { (snapshot, error) in
                 guard let snapshot = snapshot else {

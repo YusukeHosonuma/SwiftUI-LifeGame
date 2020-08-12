@@ -13,7 +13,7 @@ final class FirestoreBoardRepository: ObservableObject {
     
     init() {
         Firestore.firestore()
-            .collection("presets")
+            .collection("presets2")
             .order(by: "title")
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else {

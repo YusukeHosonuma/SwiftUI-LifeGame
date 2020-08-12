@@ -15,6 +15,7 @@ struct BoardDocument: Codable, Identifiable {
     var title: String
     var size: Int
     var cells: [Int]
+    var stared: Bool // TODO: 暫定（そのうち複数ユーザに対応させるつもり）
 }
 
 extension BoardDocument {
@@ -23,6 +24,7 @@ extension BoardDocument {
         self.title = title
         size = board.size
         cells = board.cells.map(\.rawValue)
+        stared = false
     }
     
     func makeBoard() -> Board<Cell> {

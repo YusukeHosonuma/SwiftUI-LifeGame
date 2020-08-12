@@ -7,13 +7,15 @@
 
 import SwiftUI
 import LifeGame
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct BoardSelectView: View {
     @EnvironmentObject var setting: SettingEnvironment
     
     @Binding var isPresented: Bool
     var boardDocuments: [BoardDocument]
-
+    
     // MARK: View
     
     var body: some View {
@@ -25,8 +27,20 @@ struct BoardSelectView: View {
                             Button(action: { tapCell(board: item) }) {
                                 BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                             }
+                            .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                                Button(action: { toggleStared(item) }) {
+                                    if item.stared {
+                                        Text("お気に入り解除")
+                                        Image(systemName: "star.slash")
+                                    } else {
+                                        Text("お気に入り")
+                                        Image(systemName: "star")
+                                    }
+                                }
+                            }
                         }
                     }
+                    .padding()
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
@@ -51,6 +65,17 @@ struct BoardSelectView: View {
     }
     
     // MARK: Actions
+    
+    private func toggleStared(_ document: BoardDocument) {
+        var newDocument = document
+        newDocument.stared.toggle()
+
+        // TODO: refactor
+        try! Firestore.firestore()
+            .collection("presets2")
+            .document(document.id!)
+            .setData(from: newDocument)
+    }
     
     private func tapChangeStyleButton() {
         withAnimation {
