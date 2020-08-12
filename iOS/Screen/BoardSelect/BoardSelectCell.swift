@@ -31,7 +31,7 @@ struct BoardSelectCell: View {
                             .foregroundColor(.yellow)
                     }
                 }
-                .font(.caption)
+                .font(.system(.caption, design: .monospaced))
             }
 
         case .list:
@@ -39,7 +39,7 @@ struct BoardSelectCell: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("\(item.title)")
-                            .font(.caption)
+                            .font(.system(.caption, design: .monospaced))
                             .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                             .fixedSize(horizontal: true, vertical: true)
                         Spacer()
