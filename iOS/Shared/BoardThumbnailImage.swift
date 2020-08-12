@@ -41,9 +41,11 @@ struct BoardThumbnailImage: View {
     }
 
     private var thumbnailImage: UIImage {
-        guard let key = cacheKey else {
+        guard let cacheKey = cacheKey else {
             return renderImage()
         }
+        
+        let key = "\(cacheKey)-\(fillColor.hashValue)-\(gridColor.hashValue)"
         
         if let image = cacheStorage.value(forKey: key) {
             return image
