@@ -77,12 +77,14 @@ struct LifeGameData {
 }
 
 struct LifeGameWidgetEntryView : View {
-    var entry: Provider.Entry
+    @Environment(\.colorScheme) private var colorScheme
     
+    var entry: Provider.Entry
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                BoardThumbnailImage(board: entry.relevance.board)
+                BoardThumbnailImage(board: entry.relevance.board, cellColor: cellColor)
                 Text(entry.relevance.title)
                     .font(.system(.footnote, design: .monospaced))
                     .foregroundColor(.gray)
@@ -91,6 +93,15 @@ struct LifeGameWidgetEntryView : View {
             Spacer()
         }
         .padding()
+    }
+    
+    var cellColor: Color {
+        switch colorScheme {
+        case .light: return UserDefaultSettingGroup.shared.lightModeColor
+        case .dark:  return UserDefaultSettingGroup.shared.darkModeColor
+        @unknown default:
+            fatalError()
+        }
     }
 }
 

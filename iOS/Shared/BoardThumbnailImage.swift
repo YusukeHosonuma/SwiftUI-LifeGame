@@ -12,6 +12,7 @@ struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     
     var board: Board<Cell>
+    var cellColor: Color?
     
     var body: some View {
         Image(uiImage: thumbnailImage)
@@ -21,9 +22,13 @@ struct BoardThumbnailImage: View {
     }
     
     private var fillColor: CGColor {
-        colorScheme == .dark
-            ? CGColor(red: 1, green: 1, blue: 1, alpha: 1)
-            : CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        if let color = cellColor {
+            return UIColor(color).cgColor
+        } else {
+            return colorScheme == .dark
+                ? CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+                : CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        }
     }
     
     private var gridColor: CGColor {
