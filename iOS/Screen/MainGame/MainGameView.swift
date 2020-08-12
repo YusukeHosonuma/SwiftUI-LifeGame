@@ -16,22 +16,20 @@ struct MainGameView: View {
     @ObservedObject var viewModel: MainGameViewModel
 
     // For register:
-    // @State var title: String = ""
+//     @State var title: String = ""
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 // For register:
                 //
-                // TextField("Title", text: $title)
-                // Button("Save") {
-                //    let trimed = viewModel.board.board.trimed(by: { $0 == .die }).centering(by:{ $0 == .die })
-                //     let document = BoardDocument(title: title, board: LifeGameBoard(board: trimed))
-                //     _ = try! Firestore.firestore()
-                //         .collection("presets")
-                //         .addDocument(from: document)
-                //     title = ""
-                // }
+//                TextField("Title", text: $title)
+//                Button("Save") {
+//                    let trimed = viewModel.board.board.trimed(by: { $0 == .die }).centering(by:{ $0 == .die })
+//                    let document = BoardDocument(title: title, board: LifeGameBoard(board: trimed))
+//                    FirestoreBoardRepository.shared.add(document)
+//                    title = ""
+//                }
                 
                 HeaderView(generation: viewModel.board.generation, size: viewModel.board.size)
                 .padding([.horizontal])

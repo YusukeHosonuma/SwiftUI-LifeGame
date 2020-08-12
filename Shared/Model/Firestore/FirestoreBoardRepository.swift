@@ -10,6 +10,8 @@ import FirebaseFirestoreSwift
 
 protocol FirestoreBoardRepositoryProtorol: ObservableObject  {
     var items: [BoardDocument] { get }
+    
+    func add(_ document: BoardDocument)
     func get(by id :String, handler: @escaping (BoardDocument) -> Void)
     func getAll(handler: @escaping ([BoardDocument]) -> Void) // TODO: そのうち Combine にする
     func update(_ document: BoardDocument)
@@ -39,6 +41,11 @@ final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepository
 
                 self.items = documents
             }
+    }
+    
+    func add(_ document: BoardDocument) {
+        _ = try! collection
+            .addDocument(from: document)
     }
     
     func get(by id :String, handler: @escaping (BoardDocument) -> Void) {

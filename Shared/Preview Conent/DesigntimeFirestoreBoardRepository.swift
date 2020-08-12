@@ -11,6 +11,10 @@ final class DesigntimeFirestoreBoardRepository: FirestoreBoardRepositoryProtorol
         BoardDocument(id: "2", title: "Spaceship", board: BoardPreset.spaceShip.board),
     ]
     
+    func add(_ document: BoardDocument) {
+        items.append(document)
+    }
+
     func get(by id: String, handler: @escaping (BoardDocument) -> Void) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         handler(item)
