@@ -29,15 +29,13 @@ struct BoardThumbnailImage: View {
             return UIColor(color).cgColor
         } else {
             return colorScheme == .dark
-                ? CGColor(red: 1, green: 1, blue: 1, alpha: 1)
-                : CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+                ? UIColor(Color.white).cgColor
+                : UIColor(Color.black).cgColor
         }
     }
     
     private var gridColor: CGColor {
-        colorScheme == .dark
-            ? CGColor(gray: 0.5, alpha: 0.3)
-            : CGColor(gray: 0.5, alpha: 0.5)
+        UIColor(Color.gray.opacity(0.3)).cgColor
     }
 
     private var thumbnailImage: UIImage {
