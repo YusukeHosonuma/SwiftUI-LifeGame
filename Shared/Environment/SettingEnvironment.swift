@@ -31,8 +31,8 @@ final class SettingEnvironment: ObservableObject {
     
     init() {
         // Restore
-        lightModeColor = UserDefaultSetting.shared.lightModeColor
-        darkModeColor = UserDefaultSetting.shared.darkModeColor
+        lightModeColor = UserDefaultSettingGroup.shared.lightModeColor
+        darkModeColor = UserDefaultSettingGroup.shared.darkModeColor
         boardSize = UserDefaultSetting.shared.boardSize
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
@@ -63,16 +63,20 @@ final class SettingEnvironment: ObservableObject {
             }
             .store(in: &cancellables)
         #endif
+
+        // App Groups
         
-        // Subscribe changes
         $lightModeColor
             .dropFirst()
-            .assign(to: \.lightModeColor, on: UserDefaultSetting.shared)
+            .assign(to: \.lightModeColor, on: UserDefaultSettingGroup.shared)
             .store(in: &cancellables)
         $darkModeColor
             .dropFirst()
-            .assign(to: \.darkModeColor, on: UserDefaultSetting.shared)
+            .assign(to: \.darkModeColor, on: UserDefaultSettingGroup.shared)
             .store(in: &cancellables)
+        
+        // App only
+
         $boardSize
             .dropFirst()
             .assign(to: \.boardSize, on: UserDefaultSetting.shared)

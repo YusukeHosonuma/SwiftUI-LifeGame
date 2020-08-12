@@ -20,12 +20,6 @@ final class UserDefaultSetting {
     static let DefaultBoardSelectDisplayStyle: BoardSelectStyle = .grid
     #endif
 
-    @UserDefault(key: "lightModeColor", defaultValue: DefaultLightModeColor)
-    var lightModeColor: Color
-
-    @UserDefault(key: "darkModeColor", defaultValue: DefaultDarkModeColor)
-    var darkModeColor: Color
-
     @UserDefault(key: "boardSize", defaultValue: DefaultBoardSize)
     var boardSize: Int
 

@@ -22,6 +22,14 @@
 		E518213324CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E518213424CC2E5300ABD16B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E51836EA24C0AA3B00DDE3A6 /* LifeGame */; };
+		E518C88F24E3670C00B02027 /* UserDefaultGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */; };
+		E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */; };
+		E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */; };
+		E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */; };
+		E518C89524E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */; };
+		E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */; };
+		E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */; };
+		E518C89824E3690600B02027 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518213224CC2E5300ABD16B /* Color+.swift */; };
 		E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardSelectView.swift */; };
@@ -147,6 +155,10 @@
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
 		E518213224CC2E5300ABD16B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		E518C88C24E3639700B02027 /* LifeGameApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LifeGameApp.entitlements; sourceTree = "<group>"; };
+		E518C88D24E363AC00B02027 /* LifeGameWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LifeGameWidgetExtension.entitlements; sourceTree = "<group>"; };
+		E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultGroup.swift; sourceTree = "<group>"; };
+		E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultSettingGroup.swift; sourceTree = "<group>"; };
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
 		E52FE5E024DC03C100D93764 /* BoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectView.swift; sourceTree = "<group>"; };
 		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
@@ -290,6 +302,7 @@
 		E5438E3824E2AB0B007A3EB7 /* LifeGameWidget */ = {
 			isa = PBXGroup;
 			children = (
+				E518C88D24E363AC00B02027 /* LifeGameWidgetExtension.entitlements */,
 				E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */,
 				E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */,
 				E5438E3D24E2AB0D007A3EB7 /* Info.plist */,
@@ -342,6 +355,7 @@
 			children = (
 				E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */,
 				E571536824D51B9F003B4C9E /* UserDefault.swift */,
+				E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -366,6 +380,7 @@
 		E5A153D424CC5C620030A1D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E518C88C24E3639700B02027 /* LifeGameApp.entitlements */,
 				E5D9F25424BEBDBD009A526B /* Info.plist */,
 			);
 			path = Resources;
@@ -564,6 +579,7 @@
 				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 				E5CE237224C199F200BC5820 /* LifeGameContext.swift */,
 				E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */,
+				E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -899,9 +915,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
+				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
+				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
+				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
+				E518C89524E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,12 +949,14 @@
 				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
+				E518C88F24E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
 				E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
 				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
+				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
@@ -960,6 +982,7 @@
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
+				E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */,
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
@@ -976,6 +999,7 @@
 				E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
+				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1046,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/LifeGameWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				INFOPLIST_FILE = LifeGameWidget/Info.plist;
@@ -1046,6 +1071,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/LifeGameWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				INFOPLIST_FILE = LifeGameWidget/Info.plist;
@@ -1183,6 +1209,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = P437HSA6PY;
@@ -1208,6 +1235,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = P437HSA6PY;
