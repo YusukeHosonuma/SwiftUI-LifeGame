@@ -13,8 +13,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Provider: TimelineProvider {
-    let preset = BoardPreset.nebura
-    
     func placeholder(in context: Context) -> LifeGameEntry {
         let data = LifeGameData(title: "Title", board: Board(size: 12, cell: Cell.die))
         return LifeGameEntry(date: Date(), relevance: data)
@@ -32,19 +30,8 @@ struct Provider: TimelineProvider {
             FirebaseApp.configure()
         }
         
-        Firestore.firestore()
-            .collection("presets2")
-            .order(by: "title")
-            .getDocuments  { (snapshot, error) in
-                guard let snapshot = snapshot else {
-                    print("Error fetching snapshot results: \(error!)")
-                    return
-                }
-
-                let documents = snapshot.documents.map { document in
-                    try! document.data(as: BoardDocument.self)!
-                }
-                
+        FirestoreBoardRepository.shared
+            .getAll { documents in
                 var entries: [LifeGameEntry] = []
 
                 let currentDate = Date()
