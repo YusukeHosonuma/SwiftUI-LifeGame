@@ -76,6 +76,9 @@
 		E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
+		E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
+		E5B7519B24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */; };
+		E5B7519C24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
@@ -186,6 +189,7 @@
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5A7911B24D64A1000648813 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigntimeFirestoreBoardRepository.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
 		E5CE237224C199F200BC5820 /* LifeGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameContext.swift; sourceTree = "<group>"; };
@@ -451,6 +455,14 @@
 			path = Part;
 			sourceTree = "<group>";
 		};
+		E5B7519924E3DD400004D8AE /* Preview Conent */ = {
+			isa = PBXGroup;
+			children = (
+				E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */,
+			);
+			path = "Preview Conent";
+			sourceTree = "<group>";
+		};
 		E5D9F24424BEBDBC009A526B = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +487,7 @@
 				E518212E24CC27B900ABD16B /* Environment */,
 				E5FA934E24C07ACE00229AAA /* Extensions */,
 				E571536424D51B5B003B4C9E /* Util */,
+				E5B7519924E3DD400004D8AE /* Preview Conent */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -914,6 +927,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */,
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
@@ -957,6 +971,7 @@
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
+				E5B7519B24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
@@ -989,6 +1004,7 @@
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E54904B024DD5E2D003AE7C7 /* BoardView.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
+				E5B7519C24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E55F7AAC24DD119700DBC175 /* BoardThumnailView.swift in Sources */,

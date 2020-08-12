@@ -13,7 +13,7 @@ private let settingEnvironment: SettingEnvironment = .shared
 
 @main
 struct Application: App {
-    @StateObject var boardRepository = FirestoreBoardRepository()
+    @StateObject var boardRepository = FirestoreBoardRepository.shared
     @StateObject var viewModel = MainGameViewModel()
     #if os(macOS)
     @StateObject var fileManager = LifeGameFileManager()
@@ -56,19 +56,8 @@ struct Application: App {
                     
                     // TODO: ユーザが編集していた場合は上書きしてしまうことになるので、ちょっと考える。
                     
-                    Firestore.firestore()
-                        .collection("presets")
-                        .document(documentID)
-                        .getDocument { (snapshot, error) in
-                            guard let snapshot = snapshot else {
-                                print("Error fetching snapshot results: \(error!)")
-                                return
-                            }
-                            
-                            guard let document = try! snapshot.data(as: BoardDocument.self) else {
-                                fatalError()
-                            }
-                            
+                    boardRepository
+                        .get(by: documentID) { (document) in
                             let board = document.makeBoard()
                             LifeGameContext.shared.setBoard(board)
                         }

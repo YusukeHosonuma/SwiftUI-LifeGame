@@ -20,19 +20,39 @@ struct BoardSelectCell: View {
             VStack {
                 BoardThumbnailImage(board: item.makeBoard().extended(by: .die))
                     .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
-                Text(item.title)
-                    .font(.caption)
-                    .fixedSize(horizontal: true, vertical: true)
-                    .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
+
+                HStack {
+                    Text(item.title)
+                        .lineLimit(1)
+                        .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
+                    Spacer()
+                    if item.stared {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    }
+                }
+                .font(.system(.caption, design: .monospaced))
             }
 
         case .list:
             VStack(spacing: 0) {
-                HStack() {
-                    Text("\(item.title)")
-                        .font(.caption)
-                        .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
-                        .fixedSize(horizontal: true, vertical: true)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(item.title)")
+                            .font(.system(.caption, design: .monospaced))
+                            .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
+                            .fixedSize(horizontal: true, vertical: true)
+                        Spacer()
+                        Group {
+                            if item.stared {
+                                Image(systemName: "star.fill")
+                            } else {
+                                Image(systemName: "star")
+                            }
+                        }
+                        .font(.footnote)
+                        .foregroundColor(.yellow)
+                    }
                     Spacer()
                     BoardThumbnailImage(board: item.makeBoard().extended(by: .die))
                         .frame(width: 60, height: 60, alignment: .center)
