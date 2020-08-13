@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+extension Color {
+    var cgColor: CGColor {
+        #if os(macOS)
+        return NSColor(self).cgColor
+        #else
+        return UIColor(self).cgColor
+        #endif
+    }
+}
+
 extension Color: RawRepresentable {
     public var rawValue: Data {
         #if os(macOS)
