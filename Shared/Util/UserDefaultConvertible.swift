@@ -13,6 +13,17 @@ protocol UserDefaultConvertible {
     func object() -> Any
 }
 
+extension Bool: UserDefaultConvertible {
+    init?(with object: Any) {
+        guard let value = object as? Bool else { return nil }
+        self = value
+    }
+    
+    func object() -> Any {
+        self
+    }
+}
+
 extension Int: UserDefaultConvertible {
     init?(with object: Any) {
         guard let value = object as? Int else { return nil }
