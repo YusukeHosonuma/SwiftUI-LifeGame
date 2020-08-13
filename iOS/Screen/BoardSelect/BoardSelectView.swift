@@ -7,8 +7,6 @@
 
 import SwiftUI
 import LifeGame
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     @EnvironmentObject var setting: SettingEnvironment
@@ -55,6 +53,7 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
             return [
                 GridItem(.adaptive(minimum: 100))
             ]
+
         case .list:
             return [
                 GridItem(spacing: 0)

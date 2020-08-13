@@ -8,16 +8,6 @@
 enum BoardSelectStyle: Int, CaseIterable {
     case grid
     case list
-    
-    mutating func toggle() {
-        switch self {
-        case .grid:
-            self = .list
-            
-        case .list:
-            self = .grid
-        }
-    }
 }
 
 extension BoardSelectStyle {
