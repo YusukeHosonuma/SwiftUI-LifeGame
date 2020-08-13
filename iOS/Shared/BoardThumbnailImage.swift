@@ -8,15 +8,15 @@
 import SwiftUI
 import LifeGame
 
+private let cacheStorage = MemoryCacheStorage<UIImage>()
+
 struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     
     var board: Board<Cell>
     var cellColor: Color?
     var cacheKey: String?
-    
-    private let cacheStorage = ThumbnailImageCacheStorage.shared
-    
+        
     var body: some View {
         Image(uiImage: thumbnailImage)
             .antialiased(false)

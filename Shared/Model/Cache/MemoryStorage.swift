@@ -1,23 +1,20 @@
 //
-//  MemoryStorage.swift
+//  MemoryCacheStorage.swift
 //  LifeGameApp
 //
 //  Created by Yusuke Hosonuma on 2020/08/12.
 //
 
 import Foundation
-import UIKit
 
-final class ThumbnailImageCacheStorage {
-    static var shared = ThumbnailImageCacheStorage()
+final class MemoryCacheStorage<T: AnyObject> {
+    private let cache = NSCache<NSString, T>()
     
-    private let cache = NSCache<NSString, UIImage>()
-    
-    func store(key: String, image: UIImage) {
+    func store(key: String, image: T) {
         cache.setObject(image, forKey: key as NSString)
     }
     
-    func value(forKey key: String) -> UIImage? {
+    func value(forKey key: String) -> T? {
         guard let value = cache.object(forKey: key as NSString) else { return nil }
         return value
     }
