@@ -17,7 +17,8 @@ struct PresetListView: View {
             Section(header: Text("Presets")) {
                 ForEach(boardRepository.items) { item in
                     HStack {
-                        BoardThumnailView(board: LifeGameBoard(board: item.makeBoard()))
+                        BoardThumbnailImage(board: item.makeBoard().extended(by: .die), cacheKey: item.id)
+                            .frame(width: 120, height: 120, alignment: .center)
                         Text("\(item.title)")
                     }
                     .contentShape(Rectangle()) // ❗not working in beta4

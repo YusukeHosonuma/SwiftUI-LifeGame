@@ -8,7 +8,13 @@
 import SwiftUI
 import LifeGame
 
-private let cacheStorage = MemoryCacheStorage<UIImage>()
+#if os(macOS)
+private typealias XImage = NSImage
+#else
+private typealias XImage = UIImage
+#endif
+
+private let cacheStorage = MemoryCacheStorage<XImage>()
 
 struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
@@ -18,7 +24,7 @@ struct BoardThumbnailImage: View {
     var cacheKey: String?
         
     var body: some View {
-        Image(uiImage: thumbnailImage)
+        Image(image: thumbnailImage)
             .antialiased(false)
             .resizable()
             .scaledToFit()
@@ -26,19 +32,19 @@ struct BoardThumbnailImage: View {
     
     private var fillColor: CGColor {
         if let color = cellColor {
-            return UIColor(color).cgColor
+            return color.cgColor
         } else {
             return colorScheme == .dark
-                ? UIColor(Color.white).cgColor
-                : UIColor(Color.black).cgColor
+                ? Color.white.cgColor
+                : Color.black.cgColor
         }
     }
     
     private var gridColor: CGColor {
-        UIColor(Color.gray.opacity(0.3)).cgColor
+        Color.gray.opacity(0.3).cgColor
     }
-
-    private var thumbnailImage: UIImage {
+    
+    private var thumbnailImage: XImage {
         guard let cacheKey = cacheKey else {
             return renderImage()
         }
@@ -53,14 +59,14 @@ struct BoardThumbnailImage: View {
             return image
         }
     }
-    
-    private func renderImage() -> UIImage {
+
+    private func renderImage() -> XImage {
         let scale = max(2, 140 / board.size)
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
         
-        return UIGraphicsImageRenderer(size: size)
+        return GraphicsImageRenderer(size: size)
             .image(actions: { context in
-                context.cgContext.setFillColor(fillColor)
+                context.setFillColor(fillColor)
                 
                 for (index, cell) in board.cells.enumerated() {
                     let x = (index % board.size) * scale
@@ -71,7 +77,7 @@ struct BoardThumbnailImage: View {
                 }
                 
                 // Draw grid
-                context.cgContext.setFillColor(gridColor)
+                context.setFillColor(gridColor)
                 for index in 0...board.size + 1 {
                     let length = board.size * scale + 1
                     context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
