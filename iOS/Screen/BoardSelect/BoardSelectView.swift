@@ -18,7 +18,7 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     
     private var fileredItems: [BoardDocument] {
         repository.items
-            .filter { setting.isFilterByStared ? $0.stared : true }
+            .filter(when: setting.isFilterByStared) { $0.stared }
     }
     
     // MARK: View

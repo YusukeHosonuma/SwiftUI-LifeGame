@@ -43,7 +43,7 @@ struct Provider: IntentTimelineProvider {
                 let currentDate = Date()
 
                 let entries: [LifeGameEntry] = documents
-                    .filter { isFilteredByStared ? $0.stared : true } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
+                    .filter(when: isFilteredByStared) { $0.stared } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
                     .shuffled()
                     .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
                     .enumerated()
