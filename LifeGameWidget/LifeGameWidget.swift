@@ -12,41 +12,49 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Provider: TimelineProvider {
+struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> LifeGameEntry {
         let data = LifeGameData(title: "Title", board: Board(size: 12, cell: Cell.die))
         return LifeGameEntry(date: Date(), relevance: data)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (LifeGameEntry) -> ()) {
+    func getSnapshot(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (LifeGameEntry) -> ()) {
         let preset = BoardPreset.nebura
         let data = LifeGameData(title: preset.displayText, board: preset.board.board)
         let entry = LifeGameEntry(date: Date(), relevance: data)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<LifeGameEntry>) -> ()) {
+    func getTimeline(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (Timeline<LifeGameEntry>) -> ()) {
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
         
+        let isFilteredByStared: Bool
+        
+        switch configuration.list {
+        case .all:        isFilteredByStared = false
+        case .staredOnly: isFilteredByStared = true
+        default:          isFilteredByStared = false
+        }
+        
         FirestoreBoardRepository.shared
             .getAll { documents in
-                var entries: [LifeGameEntry] = []
-
                 let currentDate = Date()
-                for hourOffset in 0 ..< 5 {
-                    // とりあえず分単位で更新
-                    let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-                    
-                    // とりあえずランダムでチョイスするだけ
-                    let document = documents.randomElement()!
-                    let data = LifeGameData(title: document.title,
-                                            board: document.makeBoard().extended(by: .die),
-                                            url: URL(string: "board:///\(document.id!)")!, cacheKey: document.id!)
-                    let entry = LifeGameEntry(date: entryDate, relevance: data)
-                    entries.append(entry)
-                }
+
+                let entries: [LifeGameEntry] = documents
+                    .filter { isFilteredByStared ? $0.stared : true } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
+                    .shuffled()
+                    .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
+                    .enumerated()
+                    .map { hourOffset, document in
+                        let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
+                        let data = LifeGameData(title: document.title,
+                                                board: document.makeBoard().extended(by: .die),
+                                                url: URL(string: "board:///\(document.id!)")!,
+                                                cacheKey: document.id!)
+                        return LifeGameEntry(date: entryDate, relevance: data)
+                    }
 
                 let timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
@@ -100,7 +108,7 @@ struct LifeGameWidget: Widget {
     let kind: String = "LifeGameWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: LifeGameConfigIntent.self, provider: Provider()) { entry in
             LifeGameWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Random boards")
