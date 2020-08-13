@@ -13,13 +13,12 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     
     @ObservedObject var repository: Repository // TODO: @EnvironmentObject で受け取れるようにできる❓
     @Binding var isPresented: Bool
-    @State private var isStarOnly = false
 
     // MARK: Computed properties
     
     private var fileredItems: [BoardDocument] {
         repository.items
-            .filter { isStarOnly ? $0.stared : true }
+            .filter { setting.isFilterByStared ? $0.stared : true }
     }
     
     // MARK: View
@@ -72,7 +71,7 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
             
             Divider()
             
-            Toggle(isOn: $isStarOnly) {
+            Toggle(isOn: $setting.isFilterByStared) {
                 Label("Star only", systemImage: "star.fill")
             }
         }, label: {

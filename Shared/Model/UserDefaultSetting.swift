@@ -18,6 +18,7 @@ final class UserDefaultSetting {
     
     #if os(iOS)
     static let DefaultBoardSelectDisplayStyle: BoardSelectStyle = .grid
+    static let DefaultIsFilterByStared: Bool = false
     #endif
 
     @UserDefault(key: "boardSize", defaultValue: DefaultBoardSize)
@@ -32,5 +33,8 @@ final class UserDefaultSetting {
     #if os(iOS)
     @UserDefault(key: "boardSelectDisplayStyle", defaultValue: DefaultBoardSelectDisplayStyle)
     var boardSelectDisplayStyle: BoardSelectStyle
+
+    @UserDefault(key: "isFilterByStared", defaultValue: DefaultIsFilterByStared)
+    var isFilterByStared: Bool
     #endif
 }

@@ -20,6 +20,7 @@ final class SettingEnvironment: ObservableObject {
     @Published var zoomLevel: Int
     #if os(iOS)
     @Published var boardSelectDisplayStyle: BoardSelectStyle
+    @Published var isFilterByStared: Bool
     #endif
     #if os(macOS)
     // TODO:
@@ -39,6 +40,7 @@ final class SettingEnvironment: ObservableObject {
         
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
+        isFilterByStared = UserDefaultSetting.shared.isFilterByStared
         #endif
 
         #if os(macOS)
@@ -95,6 +97,11 @@ final class SettingEnvironment: ObservableObject {
             .dropFirst()
             .assign(to: \.boardSelectDisplayStyle, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
+
+        $isFilterByStared
+            .dropFirst()
+            .assign(to: \.isFilterByStared, on: UserDefaultSetting.shared)
+            .store(in: &cancellables)
         #endif
     }
     
@@ -107,6 +114,7 @@ final class SettingEnvironment: ObservableObject {
         
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.DefaultBoardSelectDisplayStyle
+        isFilterByStared = UserDefaultSetting.DefaultIsFilterByStared
         #endif
     }
 }
