@@ -17,7 +17,7 @@ struct PresetListView: View {
             Section(header: Text("Presets")) {
                 ForEach(boardRepository.items) { item in
                     HStack {
-                        BoardThumbnailImage(board: item.makeBoard().extended(by: .die), cacheKey: item.id)
+                        BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
                             .frame(width: 120, height: 120, alignment: .center)
                         Text("\(item.title)")
                     }

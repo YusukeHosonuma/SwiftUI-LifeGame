@@ -19,10 +19,16 @@ private let cacheStorage = MemoryCacheStorage<XImage>()
 struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     
-    var board: Board<Cell>
-    var cellColor: Color?
-    var cacheKey: String?
-        
+    private let board: Board<Cell>
+    private let cellColor: Color?
+    private let cacheKey: String?
+    
+    init(board: Board<Cell>, cellColor: Color? = nil, cacheKey: String? = nil) {
+        self.board = board.extended(by: .die)
+        self.cellColor = cellColor
+        self.cacheKey = cacheKey
+    }
+    
     var body: some View {
         Image(image: thumbnailImage)
             .antialiased(false)

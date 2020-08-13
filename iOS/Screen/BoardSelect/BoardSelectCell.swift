@@ -18,7 +18,7 @@ struct BoardSelectCell: View {
         switch style {
         case .grid:
             VStack {
-                BoardThumbnailImage(board: item.makeBoard().extended(by: .die), cacheKey: item.id)
+                BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
                     .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
 
                 HStack {
@@ -54,7 +54,7 @@ struct BoardSelectCell: View {
                         .foregroundColor(.yellow)
                     }
                     Spacer()
-                    BoardThumbnailImage(board: item.makeBoard().extended(by: .die), cacheKey: item.id)
+                    BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
                         .frame(width: 60, height: 60, alignment: .center)
                         .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
                 }.padding()
