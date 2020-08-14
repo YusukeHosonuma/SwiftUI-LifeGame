@@ -35,6 +35,9 @@
 		E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardSelectView.swift */; };
 		E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
+		E53EC5D424E60A7B0035AD58 /* BoardRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */; };
+		E53EC60D24E6ACEE0035AD58 /* Functons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC60C24E6ACEE0035AD58 /* Functons.swift */; };
+		E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC60C24E6ACEE0035AD58 /* Functons.swift */; };
 		E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */; };
 		E5438E3724E2AB0B007A3EB7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BA30A924BEE073002D0564 /* SwiftUI.framework */; };
 		E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */; };
@@ -179,6 +182,8 @@
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
 		E52FE5E024DC03C100D93764 /* BoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectView.swift; sourceTree = "<group>"; };
 		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
+		E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRenderView.swift; sourceTree = "<group>"; };
+		E53EC60C24E6ACEE0035AD58 /* Functons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functons.swift; sourceTree = "<group>"; };
 		E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LifeGameWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameWidget.swift; sourceTree = "<group>"; };
@@ -367,6 +372,7 @@
 				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
 				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
+				E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */,
 				E571536824D51B9F003B4C9E /* UserDefault.swift */,
 				E518C88E24E3670C00B02027 /* UserDefaultGroup.swift */,
+				E53EC60C24E6ACEE0035AD58 /* Functons.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -996,6 +1003,7 @@
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
+				E53EC5D424E60A7B0035AD58 /* BoardRenderView.swift in Sources */,
 				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
@@ -1004,6 +1012,7 @@
 				E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
 				E56DBCAF24E4FE3200849CE4 /* Array+.swift in Sources */,
+				E53EC60D24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E547C30A24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
@@ -1058,6 +1067,7 @@
 				E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E5E50A2B24E539C900CD64B6 /* Image+.swift in Sources */,
+				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);

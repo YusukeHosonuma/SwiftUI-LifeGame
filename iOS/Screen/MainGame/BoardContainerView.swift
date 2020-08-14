@@ -11,67 +11,90 @@ import LifeGame
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @ObservedObject var viewModel: MainGameViewModel
-
-    private let padding: CGFloat = 8
     
-    var cellWidth: CGFloat {
-        CGFloat(20 + (setting.zoomLevel - 5) * 2)
+    // MARK: Private properties
+    
+    @State private var currentScale: CGFloat = 1
+    @State private var latestScale: CGFloat = 1
+    @State private var latestPoint = CGPoint.zero
+    @State private var currentPoint = CGPoint.zero
+
+    private let cellRenderSize: Int = 10
+    private let minScale: CGFloat = 0.5
+
+    private var scale: CGFloat {
+        latestScale * currentScale
     }
+    
+    private var offset: CGPoint {
+        CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
+    }
+    
+    // MARK: Views
     
     var body: some View {
         GeometryReader { geometry in
-            VCenter {
-                HCenter {
-                    boardView(geometry: geometry)
-                }
+            VStack {
+                BoardRenderImage(board: viewModel.board.board, cellRenderSize: cellRenderSize)
+                    .border(Color.gray, width: 2)
+                    .scaleEffect(latestScale * currentScale)
+                    .offset(x: offset.x, y: offset.y)
+                    .gesture(dragGesture())
+                    .simultaneousGesture(magnificationGesture())
             }
-            .padding(padding)
-            .frame(width: geometry.size.width, height: geometry.size.width)
-        }
-    }
-    
-    @ViewBuilder
-    private func boardView(geometry: GeometryProxy) -> some View {
-        let boardView = BoardView(board: viewModel.board,
-                  cellWidth: cellWidth,
-                  cellPadding: 1,
-                  lightModeCellColor: setting.lightModeColor,
-                  darkModeCellColor: setting.darkModeColor,
-                  tapCell: viewModel.tapCell)
-        
-        let background = backgroundView()
-            .frame(width: boardView.width, height: boardView.width)
+            .frame(width: geometry.size.width, height: geometry.size.height)
             .clipped()
-        
-        if boardView.width + padding * 2 > geometry.size.width {
-            ScrollView([.vertical, .horizontal], showsIndicators: false) {
-                ZStack {
-                    background
-                    boardView
-                }
-            }
-        } else {
-            ZStack {
-                background
-                boardView
-            }
         }
     }
+
+    // MARK: Gestures
     
-    @ViewBuilder
-    private func backgroundView() -> some View {
-        #if os(macOS)
-        // TODO:
-        EmptyView()
-        #else
-        if let image = setting.backgroundImage {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFill()
-                .opacity(0.8)
-        } else {
-            EmptyView()
-        }
-        #endif
+    private func dragGesture() -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                //
+                // Drag event
+                //
+                currentPoint = CGPoint(x: value.location.x - value.startLocation.x,
+                                       y: value.location.y - value.startLocation.y)
+            }
+            .onEnded { value in
+                //
+                // Drag event
+                //
+                latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
+                currentPoint = CGPoint.zero
+
+                guard value.location == value.startLocation else { return }
+                
+                //
+                // Tap event
+                //
+                let tapX = value.location.x
+                let tapY = value.location.y
+
+                let viewSize = CGFloat(viewModel.board.size * cellRenderSize)
+                let renderSize = viewSize * scale
+                let space = (renderSize - viewSize) / 2
+                let x = (space + tapX - offset.x) / scale
+                let y = (space + tapY - offset.y) / scale
+             
+                let indexX = Int(x / CGFloat(cellRenderSize))
+                let indexY = Int(y / CGFloat(cellRenderSize))
+                
+                viewModel.tapCell(x: within(value: indexX, min: 0, max: viewModel.board.size - 1),
+                                  y: within(value: indexY, min: 0, max: viewModel.board.size - 1))
+            }
+    }
+    
+    private func magnificationGesture() -> some Gesture {
+        MagnificationGesture()
+            .onChanged { value in
+                currentScale = max(value, minScale)
+            }
+            .onEnded { value in
+                latestScale *= currentScale
+                currentScale = 1
+            }
     }
 }
