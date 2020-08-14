@@ -80,6 +80,8 @@
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
+		E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
+		E58F427224E6C71F0062E2FF /* BoardRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
@@ -1037,6 +1039,7 @@
 				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E56DBCB024E4FE3200849CE4 /* Array+.swift in Sources */,
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
+				E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */,
 				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
@@ -1044,6 +1047,7 @@
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
+				E58F427224E6C71F0062E2FF /* BoardRenderView.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
