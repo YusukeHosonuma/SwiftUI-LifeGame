@@ -47,6 +47,7 @@ struct BoardRenderImage: View {
             .image(actions: { context in
                 context.setFillColor(fillColor)
                 
+                // Draw cells
                 for (index, cell) in board.cells.enumerated() {
                     let x = (index % board.size) * scale
                     let y = (index / board.size) * scale
@@ -55,7 +56,7 @@ struct BoardRenderImage: View {
                     }
                 }
                 
-                // Draw grid
+                // Draw grids
                 context.setFillColor(gridColor)
                 for index in 0...board.size + 1 {
                     let length = board.size * scale + 1
