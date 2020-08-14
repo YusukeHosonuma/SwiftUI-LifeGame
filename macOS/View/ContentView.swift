@@ -20,12 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                BoardView(board: viewModel.board,
-                          cellWidth: cellWidth,
-                          cellPadding: 1,
-                          lightModeCellColor: setting.lightModeColor,
-                          darkModeCellColor: setting.darkModeColor,
-                          tapCell: viewModel.tapCell)
+                BoardContainerView(viewModel: viewModel)
                 VStack {
                     Spacer()
                     HStack {
