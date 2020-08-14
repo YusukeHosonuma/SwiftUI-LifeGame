@@ -40,6 +40,8 @@ struct BoardContainerView: View {
                     .scaleEffect(latestScale * currentScale)
                     .offset(x: offset.x, y: offset.y)
                     .gesture(dragGesture())
+                    // Not working in real devices (beta 4)❗
+                    // https://developer.apple.com/forums/thread/653022
                     .simultaneousGesture(magnificationGesture())
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
