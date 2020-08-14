@@ -36,6 +36,7 @@ struct BoardContainerView: View {
         GeometryReader { geometry in
             VStack {
                 BoardRenderImage(board: viewModel.board.board, cellRenderSize: cellRenderSize)
+                    .border(Color.gray, width: 2)
                     .scaleEffect(latestScale * currentScale)
                     .offset(x: offset.x, y: offset.y)
                     .gesture(dragGesture())
@@ -43,9 +44,7 @@ struct BoardContainerView: View {
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
             .clipped()
-            .border(Color.green)
         }
-        .border(Color.red)
     }
 
     // MARK: Gestures
@@ -91,7 +90,7 @@ struct BoardContainerView: View {
     private func magnificationGesture() -> some Gesture {
         MagnificationGesture()
             .onChanged { value in
-                currentScale = max(0.5, minScale)
+                currentScale = max(value, minScale)
             }
             .onEnded { value in
                 latestScale *= currentScale
