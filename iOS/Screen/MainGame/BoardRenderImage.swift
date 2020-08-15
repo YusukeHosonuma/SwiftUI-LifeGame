@@ -1,5 +1,5 @@
 //
-//  BoardRenderView.swift
+//  BoardRenderImage.swift
 //  LifeGameApp (iOS)
 //
 //  Created by Yusuke Hosonuma on 2020/08/14.
@@ -14,25 +14,17 @@ private typealias XImage = NSImage
 private typealias XImage = UIImage
 #endif
 
-struct BoardRenderImage: View {
-    @Environment(\.colorScheme) var colorScheme
-    
+struct BoardRenderImage: View {    
     let board: Board<Cell>
-    let cellColor: Color? = nil
     let cellRenderSize: Int
-    
+    let cellColor: Color
+
     var body: some View {
         Image(image: renderImage())
     }
     
     private var fillColor: CGColor {
-        if let color = cellColor {
-            return color.cgColor
-        } else {
-            return colorScheme == .dark
-                ? Color.white.cgColor
-                : Color.black.cgColor
-        }
+        cellColor.cgColor
     }
     
     private var gridColor: CGColor {
@@ -75,10 +67,14 @@ struct BoardRender_Previews: PreviewProvider {
     }
 
     static func view(preset: BoardPreset, colorScheme: ColorScheme) -> some View {
-        BoardRenderImage(board: preset.board.board, cellRenderSize: 10)
-            .previewLayout(.fixed(width: 200.0, height: 200.0))
-            .colorScheme(colorScheme)
-            .preferredColorScheme(colorScheme)
-            .padding()
+        BoardRenderImage(
+            board: preset.board.board,
+            cellRenderSize: 10,
+            cellColor: colorScheme == .dark ? .white : .black
+        )
+        .previewLayout(.fixed(width: 200.0, height: 200.0))
+        .colorScheme(colorScheme)
+        .preferredColorScheme(colorScheme)
+        .padding()
     }
 }

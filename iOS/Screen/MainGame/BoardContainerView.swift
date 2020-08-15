@@ -11,7 +11,8 @@ import LifeGame
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @ObservedObject var viewModel: MainGameViewModel
-    
+    @Environment(\.colorScheme) var colorScheme
+
     // MARK: Private properties
     
     @State private var currentScale: CGFloat = 1
@@ -35,7 +36,7 @@ struct BoardContainerView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                BoardRenderImage(board: viewModel.board.board, cellRenderSize: cellRenderSize)
+                BoardRenderImage(board: viewModel.board.board, cellRenderSize: cellRenderSize, cellColor: cellColor)
                     .border(Color.gray, width: 2)
                     .scaleEffect(latestScale * currentScale)
                     .offset(x: offset.x, y: offset.y)
@@ -47,6 +48,12 @@ struct BoardContainerView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
             .clipped()
         }
+    }
+    
+    private var cellColor: Color {
+        colorScheme == .dark
+            ? setting.darkModeColor
+            : setting.lightModeColor
     }
 
     // MARK: Gestures

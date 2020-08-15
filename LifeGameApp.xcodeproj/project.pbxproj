@@ -35,7 +35,7 @@
 		E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5E024DC03C100D93764 /* BoardSelectView.swift */; };
 		E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
-		E53EC5D424E60A7B0035AD58 /* BoardRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */; };
+		E53EC5D424E60A7B0035AD58 /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E53EC60D24E6ACEE0035AD58 /* Functons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC60C24E6ACEE0035AD58 /* Functons.swift */; };
 		E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC60C24E6ACEE0035AD58 /* Functons.swift */; };
 		E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */; };
@@ -85,7 +85,7 @@
 		E58D5F4924E782C6000A0345 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */; };
 		E58D5F4A24E782C6000A0345 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */; };
 		E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
-		E58F427224E6C71F0062E2FF /* BoardRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */; };
+		E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
@@ -188,7 +188,7 @@
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
 		E52FE5E024DC03C100D93764 /* BoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectView.swift; sourceTree = "<group>"; };
 		E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreBoardRepository.swift; sourceTree = "<group>"; };
-		E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRenderView.swift; sourceTree = "<group>"; };
+		E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRenderImage.swift; sourceTree = "<group>"; };
 		E53EC60C24E6ACEE0035AD58 /* Functons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functons.swift; sourceTree = "<group>"; };
 		E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LifeGameWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -380,7 +380,7 @@
 				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
 				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
-				E53EC5D324E60A7B0035AD58 /* BoardRenderView.swift */,
+				E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -1013,7 +1013,7 @@
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
-				E53EC5D424E60A7B0035AD58 /* BoardRenderView.swift in Sources */,
+				E53EC5D424E60A7B0035AD58 /* BoardRenderImage.swift in Sources */,
 				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */,
 				E58D5F0D24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
@@ -1057,7 +1057,7 @@
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
-				E58F427224E6C71F0062E2FF /* BoardRenderView.swift in Sources */,
+				E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
