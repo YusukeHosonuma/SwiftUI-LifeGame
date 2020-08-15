@@ -7,10 +7,12 @@
 
 import SwiftUI
 import LifeGame
+import Network
 
 struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     @EnvironmentObject var setting: SettingEnvironment
-    
+    @EnvironmentObject var network: NetworkMonitor
+
     @ObservedObject var repository: Repository // TODO: @EnvironmentObject で受け取れるようにできる❓
     @Binding var isPresented: Bool
 
@@ -27,17 +29,25 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
         NavigationView {
             Group {
                 ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(fileredItems, id: \.id!) { item in
-                            Button(action: { tapCell(board: item) }) {
-                                BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
-                            }
-                            .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                cellContextMenu(item: item)
+                    // Note:
+                    // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
+                    if network.status != .satisfied && repository.items.isEmpty {
+                        Text("Network is offline.")
+                            .foregroundColor(.secondary)
+                            .padding()
+                    } else {
+                        LazyVGrid(columns: columns) {
+                            ForEach(fileredItems, id: \.id!) { item in
+                                Button(action: { tapCell(board: item) }) {
+                                    BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
+                                }
+                                .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                                    cellContextMenu(item: item)
+                                }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
@@ -112,16 +122,41 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
 
 struct BoardSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardSelectView(repository: DesigntimeFirestoreBoardRepository(), isPresented: .constant(true))
+        view(networkStatus: .satisfied,   dataFetched: true,  description: "Normal case.")
+        view(networkStatus: .unsatisfied, dataFetched: false, description: "Data is not fetched and network is offline.")
+        view(networkStatus: .satisfied,   dataFetched: false, description: "Wait to fetch data.")
+    }
 
-        // Note:
-        // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
-        //
-        // ```
-        // EmptyView()
-        //     .sheet(isPresented: .constant(true)) {
-        //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
-        //     }
-        // ```
+    // Note:
+    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
+    //
+    // ```
+    // EmptyView()
+    //     .sheet(isPresented: .constant(true)) {
+    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
+    //     }
+    // ```
+
+    static func view(networkStatus: NWPath.Status, dataFetched: Bool, description: String) -> some View {
+        let repository = dataFetched ? DesigntimeFirestoreBoardRepository() : DesigntimeFirestoreBoardRepository(documents: [])
+        
+        return VStack {
+            Text(description)
+                .foregroundColor(.red)
+                .font(.subheadline)
+                .bold()
+                .padding()
+            HStack {
+                BoardSelectView(repository: repository, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+                BoardSelectView(repository: repository, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.light)
+            }
+        }
+        .previewLayout(.fixed(width: 800, height: 300))
     }
 }
