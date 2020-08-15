@@ -5,11 +5,17 @@
 //  Created by Yusuke Hosonuma on 2020/08/12.
 //
 
+private let BoardItems: [BoardDocument] = [
+    BoardDocument(id: "1", title: "Nebura", board: BoardPreset.nebura.board),
+    BoardDocument(id: "2", title: "Spaceship", board: BoardPreset.spaceShip.board),
+]
+
 final class DesigntimeFirestoreBoardRepository: FirestoreBoardRepositoryProtorol {
-    var items: [BoardDocument] = [
-        BoardDocument(id: "1", title: "Nebura", board: BoardPreset.nebura.board),
-        BoardDocument(id: "2", title: "Spaceship", board: BoardPreset.spaceShip.board),
-    ]
+    var items: [BoardDocument]
+    
+    init(documents: [BoardDocument] = BoardItems) {
+        self.items = documents
+    }
     
     func add(_ document: BoardDocument) {
         items.append(document)

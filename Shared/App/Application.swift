@@ -15,6 +15,7 @@ private let settingEnvironment: SettingEnvironment = .shared
 struct Application: App {
     @StateObject var boardRepository = FirestoreBoardRepository.shared
     @StateObject var viewModel = MainGameViewModel()
+    @StateObject var networkMonitor = NetworkMonitor()
     #if os(macOS)
     @StateObject var fileManager = LifeGameFileManager()
     #endif
@@ -50,6 +51,7 @@ struct Application: App {
             RootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
+                .environmentObject(networkMonitor)
                 .onOpenURL { url in
                     let documentID = url.lastPathComponent
                     guard documentID != "0" else { return }
