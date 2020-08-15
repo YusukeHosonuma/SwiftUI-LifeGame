@@ -14,7 +14,7 @@ final class NetworkMonitor: ObservableObject {
     init() {
         NWPathMonitor()
             .publisher()
-            .map { $0.status }
+            .map(\.status)
             .assign(to: &$status)
     }
 
