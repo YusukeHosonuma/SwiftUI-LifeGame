@@ -11,7 +11,8 @@ import LifeGame
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @ObservedObject var viewModel: MainGameViewModel
-    
+    @Environment(\.colorScheme) var colorScheme
+
     // MARK: Private properties
     
     @State private var currentScale: CGFloat = 1
@@ -34,24 +35,42 @@ struct BoardContainerView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                BoardRenderImage(board: viewModel.board.board, cellRenderSize: cellRenderSize)
-                    .border(Color.gray, width: 2)
-                    .scaleEffect(latestScale * currentScale)
-                    .offset(x: offset.x, y: offset.y)
-                    .gesture(dragGesture())
-                    // Not working in real devices (beta 4)❗
-                    // https://developer.apple.com/forums/thread/653022
-                    .simultaneousGesture(magnificationGesture())
+            ZStack {
+                if let image = setting.backgroundImage {
+                    Image(image: image)
+                        .resizable()
+                        .scaledToFill()
+                        .opacity(0.7)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+                BoardRenderImage(
+                    board: viewModel.board.board,
+                    cellRenderSize: cellRenderSize,
+                    cellColor: cellColor
+                )
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
             .clipped()
+            .border(Color.gray, width: 2)
+            .scaleEffect(latestScale * currentScale)
+            .offset(x: offset.x, y: offset.y)
+            .gesture(dragGesture(boardViewSize: geometry.size.width))
+            // Not working in real devices (beta 4)❗
+            // https://developer.apple.com/forums/thread/653022
+            .simultaneousGesture(magnificationGesture())
         }
+        .clipped()
+    }
+    
+    private var cellColor: Color {
+        colorScheme == .dark
+            ? setting.darkModeColor
+            : setting.lightModeColor
     }
 
     // MARK: Gestures
     
-    private func dragGesture() -> some Gesture {
+    private func dragGesture(boardViewSize: CGFloat) -> some Gesture {
         DragGesture(minimumDistance: 0)
             .onChanged { value in
                 //
@@ -75,15 +94,15 @@ struct BoardContainerView: View {
                 let tapX = value.location.x
                 let tapY = value.location.y
 
-                let viewSize = CGFloat(viewModel.board.size * cellRenderSize)
-                let renderSize = viewSize * scale
-                let space = (renderSize - viewSize) / 2
+                let renderSize = boardViewSize * scale
+                let space = (renderSize - boardViewSize) / 2
                 let x = (space + tapX - offset.x) / scale
                 let y = (space + tapY - offset.y) / scale
              
-                let indexX = Int(x / CGFloat(cellRenderSize))
-                let indexY = Int(y / CGFloat(cellRenderSize))
-                
+                let cellSize = boardViewSize / CGFloat(viewModel.board.size)
+                let indexX = Int(x / cellSize)
+                let indexY = Int(y / cellSize)
+
                 viewModel.tapCell(x: within(value: indexX, min: 0, max: viewModel.board.size - 1),
                                   y: within(value: indexY, min: 0, max: viewModel.board.size - 1))
             }

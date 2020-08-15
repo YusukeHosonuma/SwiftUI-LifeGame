@@ -106,8 +106,8 @@ final class SettingEnvironment: ObservableObject {
     }
     
     func resetToDefault() {
-        lightModeColor = UserDefaultSetting.DefaultLightModeColor
-        darkModeColor = UserDefaultSetting.DefaultDarkModeColor
+        lightModeColor = UserDefaultSettingGroup.DefaultLightModeColor
+        darkModeColor = UserDefaultSettingGroup.DefaultDarkModeColor
         boardSize = UserDefaultSetting.DefaultBoardSize
         animationSpeed = UserDefaultSetting.DefaultAnimationSpeed
         zoomLevel = UserDefaultSetting.DefaultZoomLevel

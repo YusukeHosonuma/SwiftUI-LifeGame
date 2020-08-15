@@ -10,8 +10,6 @@ import SwiftUI
 final class UserDefaultSetting {
     static let shared = UserDefaultSetting()
         
-    static let DefaultLightModeColor: Color = .black
-    static let DefaultDarkModeColor: Color = .white
     static let DefaultBoardSize: Int = 13
     static let DefaultAnimationSpeed: Double = 0.5
     static let DefaultZoomLevel: Int = 5
