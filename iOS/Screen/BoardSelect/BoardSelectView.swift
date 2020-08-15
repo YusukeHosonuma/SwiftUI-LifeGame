@@ -30,12 +30,17 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
             Group {
                 ScrollView {
                     // Note:
+                    // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
+                    // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
+                    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
+
+                    // Note:
                     // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
-                    if network.status != .satisfied && repository.items.isEmpty {
-                        Text("Network is offline.")
-                            .foregroundColor(.secondary)
-                            .padding()
-                    } else {
+//                    if network.status != .satisfied && repository.items.isEmpty {
+//                        Text("Network is offline.")
+//                            .foregroundColor(.secondary)
+//                            .padding()
+//                    } else {
                         LazyVGrid(columns: columns) {
                             ForEach(fileredItems, id: \.id!) { item in
                                 Button(action: { tapCell(board: item) }) {
@@ -47,7 +52,7 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                             }
                         }
                         .padding()
-                    }
+//                    }
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
