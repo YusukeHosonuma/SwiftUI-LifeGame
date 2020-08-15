@@ -21,6 +21,7 @@ struct BoardRenderImage: View {
 
     var body: some View {
         Image(image: renderImage())
+            .resizable()
     }
     
     private var fillColor: CGColor {
