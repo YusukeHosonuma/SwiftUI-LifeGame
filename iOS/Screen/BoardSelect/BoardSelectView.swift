@@ -43,6 +43,17 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     var body: some View {
         NavigationView {
             Group {
+                // Note:
+                // Sectionでヘッダーを表示しようとするとレイアウトが壊れてしまう（beta4）❗
+                // LazyVGrid と競合しているようだが、現時点では仕様かバグの判断がつかないため保留。
+                //
+                // ```
+                // List {
+                //     Section(header: Text("History")) { ... }
+                //     Section(header: Text("All")) { ... }
+                // }
+                //
+                
                 ScrollView {
                     VStack {
                         // Note:

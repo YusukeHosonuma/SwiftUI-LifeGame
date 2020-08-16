@@ -16,6 +16,8 @@ final class FirebaseHistoryRepository: ObservableObject {
     private let dispatchGroup = DispatchGroup()
     
     init() {
+        // TODO: あとでアカウントに紐付けて管理するようにする
+        
         Firestore.firestore()
             .collection("histories")
             .order(by: "createdAt", descending: true)
