@@ -28,6 +28,9 @@ final class UserDefaultSetting {
     @UserDefault(key: "zoomLevel", defaultValue: DefaultZoomLevel)
     var zoomLevel: Int
     
+    @UserDefault(key: "backgroundImage", defaultValue: UIImageWrapper(nil))
+    var backgroundImage: UIImageWrapper
+    
     #if os(iOS)
     @UserDefault(key: "boardSelectDisplayStyle", defaultValue: DefaultBoardSelectDisplayStyle)
     var boardSelectDisplayStyle: BoardSelectStyle

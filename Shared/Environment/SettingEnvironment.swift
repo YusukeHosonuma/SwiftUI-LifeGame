@@ -38,32 +38,17 @@ final class SettingEnvironment: ObservableObject {
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
         
+        // FIXME: 背景画像が復元されない。
+        #warning("FIXME: 背景画像が起動時に復元されない（読み取れない）不具合あり。アプリ側のバグの可能性が高く感じるが、現時点ではOS側のバグも考慮。（beta4）")
+        
+        AppLogger.imageLoadBug.notice("[Start] loading background image.")
+        let image = UserDefaultSetting.shared.backgroundImage.image
+        backgroundImage = image
+        AppLogger.imageLoadBug.notice("[End] loading background image: \(image == nil ? "nil" : "found!", privacy: .public)")
+
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
         isFilterByStared = UserDefaultSetting.shared.isFilterByStared
-        #endif
-
-        #if os(macOS)
-        // TODO:
-        #else
-        // TODO: refactor - @UserDefault で簡単にラップできなかったので暫定
-        if let data = UserDefaults.standard.data(forKey: "backgroundImage"), let image = UIImage(data: data) {
-            backgroundImage = image
-        }
-        
-        $backgroundImage
-            .sink { image in
-                if let image = image {
-                    if let data = image.pngData() {
-                        UserDefaults.standard.setValue(data, forKey: "backgroundImage")
-                    } else {
-                        print("error: can't convert to png.")
-                    }
-                } else {
-                    UserDefaults.standard.setValue(nil, forKey: "backgroundImage")
-                }
-            }
-            .store(in: &cancellables)
         #endif
 
         // App Groups
@@ -90,6 +75,11 @@ final class SettingEnvironment: ObservableObject {
         $zoomLevel
             .dropFirst()
             .assign(to: \.zoomLevel, on: UserDefaultSetting.shared)
+            .store(in: &cancellables)
+        $backgroundImage
+            .dropFirst()
+            .map(UIImageWrapper.init)
+            .assign(to: \.backgroundImage, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
         
         #if os(iOS)

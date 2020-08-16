@@ -32,7 +32,7 @@ extension BoardSelectStyle: UserDefaultConvertible {
         self = value
     }
     
-    func object() -> Any {
+    func object() -> Any? {
         self.rawValue
     }
 }

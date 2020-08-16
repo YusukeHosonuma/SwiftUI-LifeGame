@@ -19,12 +19,26 @@ struct UserDefault<T> where T: UserDefaultConvertible {
     
     var wrappedValue: T {
         get {
-            guard let anyValue = UserDefaults.standard.value(forKey: key) else { return defaultValue }
-            guard let value = T(with: anyValue) else { return defaultValue }
+            guard let anyValue = UserDefaults.standard.object(forKey: key) else {
+                AppLogger.imageLoadBug.notice("[UserDefault] Read faled... (not found). (key: \(key, privacy: .public))")
+                return defaultValue
+            }
+            guard let value = T(with: anyValue) else {
+                AppLogger.imageLoadBug.error("[UserDefault] Read faled... (decode is failed). (key: \(key, privacy: .public))")
+                return defaultValue
+            }
+            AppLogger.imageLoadBug.notice("[UserDefault] Read. (key: \(key, privacy: .public))")
             return value
         }
         set {
-            UserDefaults.standard.set(newValue.object(), forKey: key)
+            let localKey = key
+            if let value = newValue.object() {
+                AppLogger.imageLoadBug.notice("[UserDefault] Write. (key: \(localKey, privacy: .public))")
+                UserDefaults.standard.set(value, forKey: key)
+            } else {
+                AppLogger.imageLoadBug.notice("[UserDefault] Remove. (key: \(localKey, privacy: .public))")
+                UserDefaults.standard.removeObject(forKey: key)
+            }
         }
     }
     

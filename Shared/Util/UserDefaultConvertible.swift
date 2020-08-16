@@ -10,7 +10,7 @@ import SwiftUI
 
 protocol UserDefaultConvertible {
     init?(with object: Any)
-    func object() -> Any
+    func object() -> Any?
 }
 
 extension Bool: UserDefaultConvertible {
@@ -19,7 +19,7 @@ extension Bool: UserDefaultConvertible {
         self = value
     }
     
-    func object() -> Any {
+    func object() -> Any? {
         self
     }
 }
@@ -30,7 +30,7 @@ extension Int: UserDefaultConvertible {
         self = value
     }
     
-    func object() -> Any {
+    func object() -> Any? {
         self
     }
 }
@@ -41,7 +41,7 @@ extension Double: UserDefaultConvertible {
         self = value
     }
     
-    func object() -> Any {
+    func object() -> Any? {
         self
     }
 }
@@ -52,7 +52,7 @@ extension Color: UserDefaultConvertible {
         self = color
     }
     
-    func object() -> Any {
+    func object() -> Any? {
         self.rawValue
     }
 }
