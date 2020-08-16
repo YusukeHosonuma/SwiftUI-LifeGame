@@ -34,7 +34,8 @@ struct BoardContainerView: View {
     // MARK: Views
     
     var body: some View {
-        GeometryReader { geometry in
+        AppLogger.imageLoadBug.notice("BoardContainerView.body: \(setting.backgroundImage == nil ? "nil" : "found!", privacy: .public)")
+        return GeometryReader { geometry in
             ZStack {
                 if let image = setting.backgroundImage {
                     Image(image: image)

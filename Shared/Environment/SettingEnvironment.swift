@@ -37,7 +37,10 @@ final class SettingEnvironment: ObservableObject {
         boardSize = UserDefaultSetting.shared.boardSize
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
-        backgroundImage = UserDefaultSetting.shared.backgroundImage.image
+        AppLogger.imageLoadBug.notice("[Start] loading background image.")
+        let image = UserDefaultSetting.shared.backgroundImage.image
+        backgroundImage = image
+        AppLogger.imageLoadBug.notice("[End] loading background image: \(image == nil ? "nil" : "found!", privacy: .public)")
 
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
