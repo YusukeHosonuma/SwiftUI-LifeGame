@@ -12,8 +12,9 @@ import Network
 struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
-
+        
     @ObservedObject var repository: Repository // TODO: @EnvironmentObject で受け取れるようにできる❓
+    @ObservedObject var historyRepository: FirebaseHistoryRepository
     @Binding var isPresented: Bool
 
     // MARK: Computed properties
@@ -23,27 +24,54 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
             .filter(when: setting.isFilterByStared) { $0.stared }
     }
     
+    // Note:
+    // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
+    // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
+    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
+
+    // Note:
+    // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
+    // if network.status != .satisfied && repository.items.isEmpty {
+    //     Text("Network is offline.")
+    //         .foregroundColor(.secondary)
+    //         .padding()
+    // } else {
+    // }
+    
     // MARK: View
 
     var body: some View {
         NavigationView {
             Group {
                 ScrollView {
-                    // Note:
-                    // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
-                    // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
-                    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
+                    VStack {
+                        // Note:
+                        // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
+                        header(title: "History")
+                        if historyRepository.items.isEmpty {
+                            Text("No hitories")
+                                .foregroundColor(.secondary)
+                                .padding()
+                        } else {
+                            ScrollView([.horizontal]) {
+                                LazyHStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
+                                    ForEach(historyRepository.items, id: \.id) { item in
+                                        Button(action: { tapCell(item.board) }) {
+                                            historyCell(item: item.board)
+                                        }
+                                        .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                                            cellContextMenu(item: item.board)
+                                        }
+                                    }
+                                }
+                                .padding([.horizontal, .bottom])
+                            }
+                        }
 
-                    // Note:
-                    // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
-//                    if network.status != .satisfied && repository.items.isEmpty {
-//                        Text("Network is offline.")
-//                            .foregroundColor(.secondary)
-//                            .padding()
-//                    } else {
-                        LazyVGrid(columns: columns) {
+                        header(title: "All")
+                        LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
                             ForEach(fileredItems, id: \.id!) { item in
-                                Button(action: { tapCell(board: item) }) {
+                                Button(action: { tapCell(item) }) {
                                     BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                                 }
                                 .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
@@ -51,8 +79,8 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                                 }
                             }
                         }
-                        .padding()
-//                    }
+                        .padding([.horizontal])
+                    }
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
@@ -60,7 +88,27 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                                 trailing: menu())
         }
     }
-
+    
+    private func header(title: String) -> some View {
+        HStack {
+            Text(title)
+            Spacer()
+        }
+        .font(.headline)
+        .padding([.top, .horizontal])
+    }
+    
+    private func historyCell(item: BoardDocument) -> some View {
+        VStack(alignment: .leading) {
+            BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
+            Text(item.title)
+                .lineLimit(1)
+                .truncationMode(.tail)
+        }
+        .font(.system(.caption, design: .monospaced))
+        .frame(width: 80)
+    }
+    
     private var columns: [GridItem] {
         switch setting.boardSelectDisplayStyle {
         case .grid:
@@ -117,8 +165,11 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     private func tapCancel() {
         isPresented = false
     }
-    
-    private func tapCell(board document: BoardDocument) {
+
+    private func tapCell(_ document: BoardDocument) {
+        let historyDocument = HistoryDocument(boardReference: document.reference)
+        historyRepository.add(historyDocument)
+        
         let board = document.makeBoard()
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         isPresented = false
@@ -152,11 +203,11 @@ struct BoardSelectView_Previews: PreviewProvider {
                 .bold()
                 .padding()
             HStack {
-                BoardSelectView(repository: repository, isPresented: .constant(true))
+                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
                     .environmentObject(SettingEnvironment.shared)
                     .environmentObject(NetworkMonitor(mockStatus: networkStatus))
                     .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
-                BoardSelectView(repository: repository, isPresented: .constant(true))
+                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
                     .environmentObject(SettingEnvironment.shared)
                     .environmentObject(NetworkMonitor(mockStatus: networkStatus))
                     .colorScheme(.light)

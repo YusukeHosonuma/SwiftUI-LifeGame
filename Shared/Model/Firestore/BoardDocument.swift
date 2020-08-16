@@ -5,17 +5,33 @@
 //  Created by Yusuke Hosonuma on 2020/08/06.
 //
 
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 import LifeGame
 
 struct BoardDocument: Codable, Identifiable {
     @DocumentID
     var id: String?
+    var reference: DocumentReference!
     
     var title: String
     var size: Int
     var cells: [Int]
     var stared: Bool // TODO: 暫定（そのうち複数ユーザに対応させるつもり）
+    
+    enum CodingKeys: CodingKey {
+        case id
+        case title
+        case size
+        case cells
+        case stared
+    }
+    
+    init(snapshot: DocumentSnapshot) {
+        var document = try! snapshot.data(as: Self.self)!
+        document.reference = snapshot.reference
+        self = document
+    }
 }
 
 extension BoardDocument {

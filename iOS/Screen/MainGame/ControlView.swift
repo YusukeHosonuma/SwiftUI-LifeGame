@@ -9,6 +9,13 @@ import SwiftUI
 
 struct ControlView: View {
     @EnvironmentObject var boardRepository: FirestoreBoardRepository
+    @EnvironmentObject var historyRepository: FirebaseHistoryRepository
+
+    // TODO:
+    // 以下の問題に対する暫定対処（beta4）❗
+    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
+    @EnvironmentObject var setting: SettingEnvironment
+
     @ObservedObject var viewModel: MainGameViewModel
     
     @State var isPresentedListSheet = false
@@ -42,8 +49,12 @@ struct ControlView: View {
                 Image(systemName: "list.bullet")
             }
             .sheet(isPresented: $isPresentedListSheet) {
-                BoardSelectView(repository: boardRepository,
-                                isPresented: $isPresentedListSheet)
+                BoardSelectView(
+                    repository: boardRepository,
+                    historyRepository: historyRepository,
+                    isPresented: $isPresentedListSheet
+                )
+                .environmentObject(setting)
             }
             
             ActionMenu(viewModel: viewModel) {

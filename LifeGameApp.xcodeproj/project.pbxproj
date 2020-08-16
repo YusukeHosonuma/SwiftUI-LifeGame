@@ -97,6 +97,10 @@
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */; };
 		E5C8D5C124E8E503005DB0FC /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
+		E5CA660F24E903AB00D6D59F /* HistoryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */; };
+		E5CA661024E903AB00D6D59F /* HistoryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */; };
+		E5CA661224E92C0F00D6D59F /* FirebaseHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA661124E92C0F00D6D59F /* FirebaseHistoryRepository.swift */; };
+		E5CA661324E92C0F00D6D59F /* FirebaseHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA661124E92C0F00D6D59F /* FirebaseHistoryRepository.swift */; };
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */; };
@@ -222,6 +226,8 @@
 		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
 		E5C8D5C024E8E503005DB0FC /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDocument.swift; sourceTree = "<group>"; };
+		E5CA661124E92C0F00D6D59F /* FirebaseHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHistoryRepository.swift; sourceTree = "<group>"; };
 		E5CE237224C199F200BC5820 /* LifeGameContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameContext.swift; sourceTree = "<group>"; };
 		E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectStyle.swift; sourceTree = "<group>"; };
 		E5D9F24A24BEBDBC009A526B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -330,7 +336,9 @@
 			isa = PBXGroup;
 			children = (
 				E52FE5DC24DC012A00D93764 /* BoardDocument.swift */,
+				E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */,
 				E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */,
+				E5CA661124E92C0F00D6D59F /* FirebaseHistoryRepository.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -1017,6 +1025,7 @@
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
+				E5CA661224E92C0F00D6D59F /* FirebaseHistoryRepository.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */,
@@ -1024,6 +1033,7 @@
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
+				E5CA660F24E903AB00D6D59F /* HistoryDocument.swift in Sources */,
 				E53EC5D424E60A7B0035AD58 /* BoardRenderImage.swift in Sources */,
 				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
 				E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */,
@@ -1078,10 +1088,12 @@
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
+				E5CA661324E92C0F00D6D59F /* FirebaseHistoryRepository.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
 				E58D5F0E24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
 				E5B7519C24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
+				E5CA661024E903AB00D6D59F /* HistoryDocument.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */,

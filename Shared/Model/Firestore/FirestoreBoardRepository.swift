@@ -35,11 +35,7 @@ final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepository
                     return
                 }
 
-                let documents = snapshot.documents.map { document in
-                    try! document.data(as: BoardDocument.self)!
-                }
-
-                self.items = documents
+                self.items = snapshot.documents.map(BoardDocument.init)
             }
     }
     
