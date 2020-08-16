@@ -37,33 +37,11 @@ final class SettingEnvironment: ObservableObject {
         boardSize = UserDefaultSetting.shared.boardSize
         animationSpeed = UserDefaultSetting.shared.animationSpeed
         zoomLevel = UserDefaultSetting.shared.zoomLevel
-        
+        backgroundImage = UserDefaultSetting.shared.backgroundImage.image
+
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
         isFilterByStared = UserDefaultSetting.shared.isFilterByStared
-        #endif
-
-        #if os(macOS)
-        // TODO:
-        #else
-        // TODO: refactor - @UserDefault で簡単にラップできなかったので暫定
-        if let data = UserDefaults.standard.data(forKey: "backgroundImage"), let image = UIImage(data: data) {
-            backgroundImage = image
-        }
-        
-        $backgroundImage
-            .sink { image in
-                if let image = image {
-                    if let data = image.pngData() {
-                        UserDefaults.standard.setValue(data, forKey: "backgroundImage")
-                    } else {
-                        print("error: can't convert to png.")
-                    }
-                } else {
-                    UserDefaults.standard.setValue(nil, forKey: "backgroundImage")
-                }
-            }
-            .store(in: &cancellables)
         #endif
 
         // App Groups
@@ -90,6 +68,11 @@ final class SettingEnvironment: ObservableObject {
         $zoomLevel
             .dropFirst()
             .assign(to: \.zoomLevel, on: UserDefaultSetting.shared)
+            .store(in: &cancellables)
+        $backgroundImage
+            .dropFirst()
+            .map(UIImageWrapper.init)
+            .assign(to: \.backgroundImage, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
         
         #if os(iOS)

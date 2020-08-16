@@ -24,7 +24,11 @@ struct UserDefault<T> where T: UserDefaultConvertible {
             return value
         }
         set {
-            UserDefaults.standard.set(newValue.object(), forKey: key)
+            if let value = newValue.object() {
+                UserDefaults.standard.set(value, forKey: key)
+            } else {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
         }
     }
     
