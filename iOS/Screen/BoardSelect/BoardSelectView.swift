@@ -12,11 +12,11 @@ import Network
 struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
-    @EnvironmentObject var authentication: Authentication
 
+    var isSignIn: Bool
     @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
-
+    
     // MARK: Computed properties
     
     private var fileredItems: [BoardItem] {
@@ -73,7 +73,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                     // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
                     header(title: "History")
                     BoardSelectHistoryView(
-                        isSignIn: authentication.isSignIn,
+                        isSignIn: isSignIn,
                         items: boardStore.histories,
                         toggleStar: { boardID in
                             self.boardStore.toggleLike(boardID: boardID)
@@ -88,7 +88,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                             }
                             .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
                                 BoardSelectContextMenu(isStared: item.stared) {
-                                    if authentication.isSignIn {
+                                    if isSignIn {
                                         withAnimation {
                                             self.boardStore.toggleLike(boardID: item.boardDocumentID)
                                         }
@@ -154,8 +154,8 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     }
     
     private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
-        if let user = authentication.user {
-            boardStore.addToHistory(boardID: boardDocumentID, user: user)
+        if isSignIn {
+            boardStore.addToHistory(boardID: boardDocumentID)
         }
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         dismiss()

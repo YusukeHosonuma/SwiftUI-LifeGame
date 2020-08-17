@@ -18,7 +18,7 @@ protocol BoardStoreProtocol: ObservableObject {
     var histories: [BoardHistoryItem] { get }
     
     func toggleLike(boardID: String)
-    func addToHistory(boardID: String, user: User)
+    func addToHistory(boardID: String)
 }
 
 // TODO: 認証あり・なしでバッサリとモデルを分けたほうが良い気もする・・・うーん？
@@ -112,7 +112,7 @@ final class BoardStore: BoardStoreProtocol {
         }
     }
     
-    func addToHistory(boardID: String, user: User) {
+    func addToHistory(boardID: String) {
         guard let historyRepository = historyRepository else { preconditionFailure("This method is login required.") }
         
         historyRepository.get(id: boardID) { document in
