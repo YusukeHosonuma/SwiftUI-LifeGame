@@ -8,17 +8,8 @@
 import SwiftUI
 import LifeGame
 
-struct BoardSelectHistoryItem: Identifiable {
-    var id: String { historyID }
-    var historyID: String
-    var boardID: String
-    var title: String
-    var board: Board<Cell>
-    var isStared: Bool
-}
-
 struct BoardSelectHistoryView: View {
-    typealias Item = BoardSelectHistoryItem
+    typealias Item = BoardHistoryItem
     
     let isSignIn: Bool
     let items: [Item]
@@ -40,7 +31,7 @@ struct BoardSelectHistoryView: View {
                             }
                             .contextMenu {
                                 BoardSelectContextMenu(isStared: item.isStared) {
-                                    toggleStar(item.boardID)
+                                    toggleStar(item.boardDocumentID)
                                 }
                             }
                         }
@@ -68,12 +59,12 @@ struct BoardSelectHistoryView: View {
 }
 
 struct BoardSelectHistoryView_Previews: PreviewProvider {
-    typealias Item = BoardSelectHistoryItem
+    typealias Item = BoardHistoryItem
     
     static var previews: some View {
         view(isSignIn: true, items:  [
-            Item(historyID: "0", boardID: "", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, isStared: true),
-            Item(historyID: "1", boardID: "", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, isStared: false),
+            Item(historyID: "0", boardDocumentID: "", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, isStared: true),
+            Item(historyID: "1", boardDocumentID: "", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, isStared: false),
         ])
         view(isSignIn: true, items: [])
         view(isSignIn: false, items: [])

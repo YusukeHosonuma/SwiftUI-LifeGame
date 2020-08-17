@@ -15,6 +15,7 @@ private let settingEnvironment: SettingEnvironment = .shared
 struct Application: App {
     @StateObject var boardRepository = FirestoreBoardRepository.shared
     @StateObject var historyRepository = FirebaseHistoryRepository.shared
+    @StateObject var boardStore = BoardStore.shared
     @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
@@ -54,6 +55,7 @@ struct Application: App {
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
                 .environmentObject(historyRepository)
+                .environmentObject(boardStore)
                 .environmentObject(networkMonitor)
                 .environmentObject(authentication)
                 .onOpenURL { url in

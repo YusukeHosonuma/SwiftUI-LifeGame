@@ -33,29 +33,34 @@ final class FirebaseHistoryRepository: ObservableObject {
             .store(in: &cancellables)
     }
     
-    // TODO: refactor - Repository 以上のことをしているのでそのうち Service を抽出する
+    func get(id: String, handler: @escaping (HistoryDocument?) -> Void) {
+        histories()
+            .document(id)
+            .getDocument { (snapshot, error) in
+                guard let snapshot = snapshot else { fatalError() }
+                if snapshot.exists {
+                    let document = HistoryDocument(snapshot: snapshot)
+                    handler(document)
+                } else {
+                    handler(nil)
+                }
+            }
+    }
     
+    func add(by boardID: String, _ document: HistoryDocument) {
+        try! histories()
+            .document(boardID)
+            .setData(from: document)
+    }
+    
+    // TODO: refactor - Repository 以上のことをしているのでそのうち Service を抽出する
+
     func moveToFirst(id: String) {
         histories()
             .document(id)
             .updateData(["createdAt" : FieldValue.serverTimestamp()])
     }
-    
-    func add(_ document: HistoryDocument) {
-        histories()
-            .whereField("boardReference", isEqualTo: document.boardReference)
-            .getDocuments { (snapshot, error) in
-                guard let snapshot = snapshot else { fatalError() }
 
-                let documents = snapshot.documents.map(HistoryDocument.init)
-                
-                if let document = documents.first {
-                    self.moveToFirst(id: document.id)
-                } else {
-                    _ = try! self.histories().addDocument(from: document)
-                }
-            }
-    }
     
     // MARK: - Private
     

@@ -53,10 +53,7 @@ final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepository
                     return
                 }
                 
-                guard let document = try! snapshot.data(as: BoardDocument.self) else {
-                    fatalError()
-                }
-                
+                let document = BoardDocument(snapshot: snapshot)
                 handler(document)
             }
     }
@@ -70,10 +67,7 @@ final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepository
                     return
                 }
 
-                let documents = snapshot.documents.map { document in
-                    try! document.data(as: BoardDocument.self)!
-                }
-                
+                let documents = snapshot.documents.map(BoardDocument.init)
                 handler(documents)
             }
     }

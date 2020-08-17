@@ -13,7 +13,7 @@ struct BoardSelectContextMenu: View {
     let toggleStar: () -> Void
     
     var body: some View {
-        Button(action: toggleStar) {
+        Button(action: { toggleStar() }) {
             if isStared {
                 Text("Unlike")
                 Image(systemName: "star.slash")

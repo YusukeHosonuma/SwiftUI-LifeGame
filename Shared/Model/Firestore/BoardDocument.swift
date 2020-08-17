@@ -17,7 +17,7 @@ struct BoardDocument: Codable, Identifiable {
     var title: String
     var size: Int
     var cells: [Int]
-    var stared: Bool // TODO: 暫定（そのうち複数ユーザに対応させるつもり）
+    var stared: Bool // TODO: あとで消す
     
     enum CodingKeys: CodingKey {
         case id
@@ -31,6 +31,12 @@ struct BoardDocument: Codable, Identifiable {
         var document = try! snapshot.data(as: Self.self)!
         document.reference = snapshot.reference
         self = document
+    }
+}
+
+extension BoardDocument: Equatable {
+    static func == (lhs: BoardDocument, rhs: BoardDocument) -> Bool {
+        lhs.id! == rhs.id!
     }
 }
 

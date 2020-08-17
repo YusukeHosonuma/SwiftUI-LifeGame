@@ -9,30 +9,19 @@ import SwiftUI
 import LifeGame
 import Network
 
-struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
+struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var authentication: Authentication
 
-    @ObservedObject var repository: Repository // TODO: @EnvironmentObject で受け取れるようにできる❓
-    @ObservedObject var historyRepository: FirebaseHistoryRepository
+    @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
 
     // MARK: Computed properties
     
-    private var fileredItems: [BoardDocument] {
-        repository.items
+    private var fileredItems: [BoardItem] {
+        boardStore.allBoards
             .filter(when: setting.isFilterByStared) { $0.stared }
-    }
-    
-    private var historyItems: [BoardSelectHistoryItem] {
-        historyRepository.items.map { item in
-            BoardSelectHistoryItem(historyID: item.id,
-                                   boardID: item.boardReference.documentID,
-                                   title: item.board.title,
-                                   board: item.board.makeBoard(),
-                                   isStared: item.board.stared)
-        }
     }
     
     private var columns: [GridItem] {
@@ -67,44 +56,45 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
 
     var body: some View {
         NavigationView {
-            Group {
-                // Note:
-                // Sectionでヘッダーを表示しようとするとレイアウトが壊れてしまう（beta4）❗
-                // LazyVGrid と競合しているようだが、現時点では仕様かバグの判断がつかないため保留。
-                //
-                // ```
-                // List {
-                //     Section(header: Text("History")) { ... }
-                //     Section(header: Text("All")) { ... }
-                // }
-                //
-                
-                ScrollView {
-                    VStack {
-                        // Note:
-                        // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
-                        header(title: "History")
-                        BoardSelectHistoryView(
-                            isSignIn: authentication.isSignIn,
-                            items: historyItems,
-                            toggleStar: toggleStar,
-                            tapItem: tapHistoryCell)
-                        
-                        header(title: "All")
-                        LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
-                            ForEach(fileredItems, id: \.id!) { item in
-                                Button(action: { tapCell(item) }) {
-                                    BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
-                                }
-                                .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                    BoardSelectContextMenu(isStared: item.stared) {
-                                        toggleStar(id: item.id!)
+            // Note:
+            // Sectionでヘッダーを表示しようとするとレイアウトが壊れてしまう（beta4）❗
+            // LazyVGrid と競合しているようだが、現時点では仕様かバグの判断がつかないため保留。
+            //
+            // ```
+            // List {
+            //     Section(header: Text("History")) { ... }
+            //     Section(header: Text("All")) { ... }
+            // }
+            // ```
+            ScrollView {
+                VStack {
+                    // Note:
+                    // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
+                    header(title: "History")
+                    BoardSelectHistoryView(
+                        isSignIn: authentication.isSignIn,
+                        items: boardStore.histories,
+                        toggleStar: { boardID in
+                            self.boardStore.toggleLike(boardID: boardID)
+                        },
+                        tapItem: tapHistoryCell)
+                    
+                    header(title: "All")
+                    LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
+                        ForEach(fileredItems) { item in
+                            Button(action: { tapCell(item) }) {
+                                BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
+                            }
+                            .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                                BoardSelectContextMenu(isStared: item.stared) {
+                                    withAnimation {
+                                        self.boardStore.toggleLike(boardID: item.boardDocumentID)
                                     }
                                 }
                             }
                         }
-                        .padding([.horizontal])
                     }
+                    .padding([.horizontal])
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
@@ -142,34 +132,23 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     }
     
     // MARK: Actions
-    
-    // TODO: refactor - Service層なりを抽出する
-    private func toggleStar(id: String) {
-        repository.get(by: id) { (document) in
-            var newDocument = document
-            newDocument.stared.toggle()
-            repository.update(newDocument)
-        }
-    }
 
     private func tapCancel() {
         dismiss()
     }
 
-    private func tapHistoryCell(_ item: BoardSelectHistoryItem) {
-        historyRepository.moveToFirst(id: item.id)
-        LifeGameContext.shared.setBoard(item.board) // TODO: refactor
-        dismiss()
+    private func tapHistoryCell(_ item: BoardHistoryItem) {
+        selectBoard(boardDocumentID: item.boardDocumentID, board: item.board)
     }
     
-    private func tapCell(_ document: BoardDocument) {
-        // TODO: 雑なのであとでちょっと考える
-        if let _ = authentication.user {
-            let historyDocument = HistoryDocument(boardReference: document.reference)
-            historyRepository.add(historyDocument)
+    private func tapCell(_ item: BoardItem) {
+        selectBoard(boardDocumentID: item.boardDocumentID, board: item.board)
+    }
+    
+    private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
+        if let user = authentication.user {
+            boardStore.addToHistory(boardID: boardDocumentID, user: user)
         }
-
-        let board = document.makeBoard()
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         dismiss()
     }
@@ -179,43 +158,43 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     }
 }
 
-struct BoardSelectView_Previews: PreviewProvider {
-    static var previews: some View {
-        view(networkStatus: .satisfied,   dataFetched: true,  description: "Normal case.")
-        view(networkStatus: .unsatisfied, dataFetched: false, description: "Data is not fetched and network is offline.")
-        view(networkStatus: .satisfied,   dataFetched: false, description: "Wait to fetch data.")
-    }
-
-    // Note:
-    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
-    //
-    // ```
-    // EmptyView()
-    //     .sheet(isPresented: .constant(true)) {
-    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
-    //     }
-    // ```
-
-    static func view(networkStatus: NWPath.Status, dataFetched: Bool, description: String) -> some View {
-        let repository = dataFetched ? DesigntimeFirestoreBoardRepository() : DesigntimeFirestoreBoardRepository(documents: [])
-        
-        return VStack {
-            Text(description)
-                .foregroundColor(.red)
-                .font(.subheadline)
-                .bold()
-                .padding()
-            HStack {
-                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-                    .environmentObject(SettingEnvironment.shared)
-                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
-                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-                    .environmentObject(SettingEnvironment.shared)
-                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-                    .colorScheme(.light)
-            }
-        }
-        .previewLayout(.fixed(width: 800, height: 300))
-    }
-}
+//struct BoardSelectView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        view(networkStatus: .satisfied,   dataFetched: true,  description: "Normal case.")
+//        view(networkStatus: .unsatisfied, dataFetched: false, description: "Data is not fetched and network is offline.")
+//        view(networkStatus: .satisfied,   dataFetched: false, description: "Wait to fetch data.")
+//    }
+//
+//    // Note:
+//    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
+//    //
+//    // ```
+//    // EmptyView()
+//    //     .sheet(isPresented: .constant(true)) {
+//    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
+//    //     }
+//    // ```
+//
+//    static func view(networkStatus: NWPath.Status, dataFetched: Bool, description: String) -> some View {
+//        let repository = dataFetched ? DesigntimeFirestoreBoardRepository() : DesigntimeFirestoreBoardRepository(documents: [])
+//        
+//        return VStack {
+//            Text(description)
+//                .foregroundColor(.red)
+//                .font(.subheadline)
+//                .bold()
+//                .padding()
+//            HStack {
+//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
+//                    .environmentObject(SettingEnvironment.shared)
+//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+//                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
+//                    .environmentObject(SettingEnvironment.shared)
+//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+//                    .colorScheme(.light)
+//            }
+//        }
+//        .previewLayout(.fixed(width: 800, height: 300))
+//    }
+//}
