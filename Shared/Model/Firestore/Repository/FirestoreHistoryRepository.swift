@@ -11,26 +11,27 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class FirestoreHistoryRepository: ObservableObject {
-    static let shared = FirestoreHistoryRepository() // 暫定
-    
     @Published var items: [HistoryDocument] = []
-
-    private let authentication: Authentication
     
     private var listenerRegistration: ListenerRegistration?
     private var cancellables: [AnyCancellable] = []
     
-    init(authentication: Authentication = .shared) {
-        self.authentication = authentication
-        self.authentication.$isSignIn
-            .sink { [unowned self] isSignIn in
-                if isSignIn {
-                    self.startListen()
-                } else {
-                    self.stopListen()
-                }
-            }
-            .store(in: &cancellables)
+    private func histories() -> CollectionReference {
+        Firestore.firestore()
+            .collection("users")
+            .document(user.uid)
+            .collection("histories")
+    }
+    
+    private let user: User
+    
+    init(user: User) {
+        self.user = user
+        startListen()
+    }
+    
+    deinit {
+        stopListen() // TODO: 明示的に開放しなくても大丈夫だったりする？
     }
     
     func get(id: String, handler: @escaping (HistoryDocument?) -> Void) {
@@ -63,15 +64,7 @@ final class FirestoreHistoryRepository: ObservableObject {
 
     
     // MARK: - Private
-    
-    private func histories() -> CollectionReference {
-        guard let uid = Auth.auth().currentUser?.uid else { fatalError() }
 
-        return Firestore.firestore()
-            .collection("users")
-            .document(uid)
-            .collection("histories")
-    }
     
     private func startListen() {
         let dispatchGroup = DispatchGroup()

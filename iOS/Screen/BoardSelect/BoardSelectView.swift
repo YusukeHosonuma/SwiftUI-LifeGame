@@ -51,7 +51,8 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     //         .padding()
     // } else {
     // }
-    
+    @State var isPresentedAlert = false
+
     // MARK: View
 
     var body: some View {
@@ -80,17 +81,24 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                         tapItem: tapHistoryCell)
                     
                     header(title: "All")
-                    LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
+                    LazyVGrid(columns: columns) {
                         ForEach(fileredItems) { item in
                             Button(action: { tapCell(item) }) {
                                 BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                             }
                             .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
                                 BoardSelectContextMenu(isStared: item.stared) {
-                                    withAnimation {
-                                        self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                    if authentication.isSignIn {
+                                        withAnimation {
+                                            self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                        }
+                                    } else {
+                                        isPresentedAlert.toggle()
                                     }
                                 }
+                            }
+                            .alert(isPresented: $isPresentedAlert) {
+                                Alert(title: Text("Need login."))
                             }
                         }
                     }

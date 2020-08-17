@@ -14,7 +14,6 @@ private let settingEnvironment: SettingEnvironment = .shared
 @main
 struct Application: App {
     @StateObject var boardRepository = FirestoreBoardRepository.shared
-    @StateObject var historyRepository = FirestoreHistoryRepository.shared
     @StateObject var boardStore = BoardStore.shared
     @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
@@ -54,7 +53,6 @@ struct Application: App {
             RootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
-                .environmentObject(historyRepository)
                 .environmentObject(boardStore)
                 .environmentObject(networkMonitor)
                 .environmentObject(authentication)
