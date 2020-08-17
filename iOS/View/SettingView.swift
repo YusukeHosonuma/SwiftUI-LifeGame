@@ -28,7 +28,7 @@ struct SettingView: View {
         VStack(spacing: 0) {
             Form {
                 Section(
-                    header: Text("Sign-in / Sign-out"),
+                    header: Text("Login"),
                     footer: Text("You can use some personal function when login.")) {
                     SignInOutView()
                 }

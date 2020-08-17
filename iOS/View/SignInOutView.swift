@@ -19,29 +19,31 @@ struct SignInOutView: View {
     @State private var currentNonce: String?
 
     var body: some View {
-        if authentication.isSignIn {
-            Button("Sign out", action: authentication.signOut)
-        } else {
-            SignInWithAppleButton(
-                onRequest: { request in
-                    let nonce = randomNonceString()
-                    currentNonce = nonce
-                    request.nonce = sha256(nonce)
-                    
-                    // Note:
-                    // とりあえず今は何も取得しない。
-                    // request.requestedScopes = [.fullName, .email]
-                },
-                onCompletion: { result in
-                    switch result {
-                    case let .success(authorization):
-                        self.signIn(authorization: authorization)
+        HCenter {
+            if authentication.isSignIn {
+                Button("Sign out", action: authentication.signOut)
+            } else {
+                SignInWithAppleButton(
+                    onRequest: { request in
+                        let nonce = randomNonceString()
+                        currentNonce = nonce
+                        request.nonce = sha256(nonce)
                         
-                    case let .failure(error):
-                        logger.notice("Sign in with Apple is failed. - \(error.localizedDescription)")
-                    }
-                })
-                .frame(width: 300, height: 44)
+                        // Note:
+                        // とりあえず今は何も取得しない。
+                        // request.requestedScopes = [.fullName, .email]
+                    },
+                    onCompletion: { result in
+                        switch result {
+                        case let .success(authorization):
+                            self.signIn(authorization: authorization)
+                            
+                        case let .failure(error):
+                            logger.notice("Sign in with Apple is failed. - \(error.localizedDescription)")
+                        }
+                    })
+                    .frame(width: 240, height: 36)
+            }
         }
     }
     
