@@ -5,6 +5,8 @@
 //  Created by Yusuke Hosonuma on 2020/08/16.
 //
 
+import Combine
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -12,24 +14,72 @@ final class FirebaseHistoryRepository: ObservableObject {
     static let shared = FirebaseHistoryRepository() // 暫定
     
     @Published var items: [HistoryDocument] = []
-  
-    private let dispatchGroup = DispatchGroup()
+
+    private let authentication: Authentication
     
-    init() {
-        // TODO: あとでアカウントに紐付けて管理するようにする
-        
-        Firestore.firestore()
+    private var listenerRegistration: ListenerRegistration?
+    private var cancellables: [AnyCancellable] = []
+    
+    init(authentication: Authentication = .shared) {
+        self.authentication = authentication
+        self.authentication.$isSignIn
+            .sink { [unowned self] isSignIn in
+                if isSignIn {
+                    self.startListen()
+                } else {
+                    self.stopListen()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // TODO: refactor - Repository 以上のことをしているのでそのうち Service を抽出する
+    
+    func moveToFirst(id: String) {
+        histories()
+            .document(id)
+            .updateData(["createdAt" : FieldValue.serverTimestamp()])
+    }
+    
+    func add(_ document: HistoryDocument) {
+        histories()
+            .whereField("boardReference", isEqualTo: document.boardReference)
+            .getDocuments { (snapshot, error) in
+                guard let snapshot = snapshot else { fatalError() }
+
+                let documents = snapshot.documents.map(HistoryDocument.init)
+                
+                if let document = documents.first {
+                    self.moveToFirst(id: document.id)
+                } else {
+                    _ = try! self.histories().addDocument(from: document)
+                }
+            }
+    }
+    
+    // MARK: - Private
+    
+    private func histories() -> CollectionReference {
+        guard let uid = Auth.auth().currentUser?.uid else { fatalError() }
+
+        return Firestore.firestore()
+            .collection("users")
+            .document(uid)
             .collection("histories")
+    }
+    
+    private func startListen() {
+        let dispatchGroup = DispatchGroup()
+
+        listenerRegistration = histories()
             .order(by: "createdAt", descending: true)
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else { fatalError() }
 
-                var documents: [HistoryDocument] = snapshot.documents.map {
-                    try! $0.data(as: HistoryDocument.self)!
-                }
+                var documents = snapshot.documents.map(HistoryDocument.init)
                 
                 for (index, document) in documents.enumerated() {
-                    self.dispatchGroup.enter() // ▶️
+                    dispatchGroup.enter() // ▶️
                     
                     document.boardReference.getDocument { (snapshot, error) in
                         guard let snapshot = snapshot else { fatalError() }
@@ -38,41 +88,17 @@ final class FirebaseHistoryRepository: ObservableObject {
                         newDocument.board = BoardDocument(snapshot: snapshot)
                         documents[index] = newDocument
                         
-                        self.dispatchGroup.leave() // ↩️
+                        dispatchGroup.leave() // ↩️
                     }
                 }
                 
-                self.dispatchGroup.notify(queue: .main) {
+                dispatchGroup.notify(queue: .main) {
                     self.items = documents
                 }
             }
     }
     
-    // TODO: refactor - Repository 以上のことをしているのでそのうち Service を抽出する
-    
-    func add(_ document: HistoryDocument) {
-        Firestore.firestore()
-            .collection("histories")
-            .getDocuments { (snapshot, error) in
-                guard let snapshot = snapshot else { fatalError() }
-
-                let documents = snapshot.documents
-                    .map(HistoryDocument.init)
-                
-                if let exists = documents.first(where: { $0.boardReference == document.boardReference }) {
-                    self.delete(by: exists.id!)
-                }
-                                
-                _ = try! Firestore.firestore()
-                    .collection("histories")
-                    .addDocument(from: document)
-            }
-    }
-    
-    func delete(by id: String) {
-        Firestore.firestore()
-            .collection("histories")
-            .document(id)
-            .delete()
+    private func stopListen() {
+        listenerRegistration?.remove()
     }
 }

@@ -17,6 +17,7 @@ struct Application: App {
     @StateObject var historyRepository = FirebaseHistoryRepository.shared
     @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
+    @StateObject var authentication = Authentication.shared
     #if os(macOS)
     @StateObject var fileManager = LifeGameFileManager()
     #endif
@@ -54,6 +55,7 @@ struct Application: App {
                 .environmentObject(boardRepository)
                 .environmentObject(historyRepository)
                 .environmentObject(networkMonitor)
+                .environmentObject(authentication)
                 .onOpenURL { url in
                     let documentID = url.lastPathComponent
                     guard documentID != "0" else { return }
