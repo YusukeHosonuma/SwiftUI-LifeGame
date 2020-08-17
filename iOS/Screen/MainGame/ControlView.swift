@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ControlView: View {
     @EnvironmentObject var boardRepository: FirestoreBoardRepository
-    @EnvironmentObject var historyRepository: FirebaseHistoryRepository
+    @EnvironmentObject var historyRepository: FirestoreHistoryRepository
 
     // TODO:
     // 以下の問題に対する暫定対処（beta4）❗
     // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var boardStore: BoardStore
 
     @ObservedObject var viewModel: MainGameViewModel
     
@@ -51,8 +52,7 @@ struct ControlView: View {
             }
             .sheet(isPresented: $isPresentedListSheet) {
                 BoardSelectView(
-                    repository: boardRepository,
-                    historyRepository: historyRepository,
+                    boardStore: boardStore,
                     isPresented: $isPresentedListSheet
                 )
                 .environmentObject(setting)
