@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct HistoryDocument: Codable {
-    @DocumentID      var id: String?
+    @DocumentID      var id: String!
     @ServerTimestamp var createdAt: Date?
     var boardReference: DocumentReference
 

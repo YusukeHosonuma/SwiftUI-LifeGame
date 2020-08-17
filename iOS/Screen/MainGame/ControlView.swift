@@ -15,6 +15,7 @@ struct ControlView: View {
     // 以下の問題に対する暫定対処（beta4）❗
     // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
     @EnvironmentObject var setting: SettingEnvironment
+    @EnvironmentObject var authentication: Authentication
 
     @ObservedObject var viewModel: MainGameViewModel
     
@@ -55,6 +56,7 @@ struct ControlView: View {
                     isPresented: $isPresentedListSheet
                 )
                 .environmentObject(setting)
+                .environmentObject(authentication)
             }
             
             ActionMenu(viewModel: viewModel) {

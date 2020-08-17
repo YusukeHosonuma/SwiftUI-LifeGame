@@ -12,7 +12,8 @@ import Network
 struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
-        
+    @EnvironmentObject var authentication: Authentication
+
     @ObservedObject var repository: Repository // TODO: @EnvironmentObject で受け取れるようにできる❓
     @ObservedObject var historyRepository: FirebaseHistoryRepository
     @Binding var isPresented: Bool
@@ -24,6 +25,30 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
             .filter(when: setting.isFilterByStared) { $0.stared }
     }
     
+    private var historyItems: [BoardSelectHistoryItem] {
+        historyRepository.items.map { item in
+            BoardSelectHistoryItem(historyID: item.id,
+                                   boardID: item.boardReference.documentID,
+                                   title: item.board.title,
+                                   board: item.board.makeBoard(),
+                                   isStared: item.board.stared)
+        }
+    }
+    
+    private var columns: [GridItem] {
+        switch setting.boardSelectDisplayStyle {
+        case .grid:
+            return [
+                GridItem(.adaptive(minimum: 100))
+            ]
+
+        case .list:
+            return [
+                GridItem(spacing: 0)
+            ]
+        }
+    }
+
     // Note:
     // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
     // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
@@ -59,26 +84,12 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                         // Note:
                         // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
                         header(title: "History")
-                        if historyRepository.items.isEmpty {
-                            Text("No hitories")
-                                .foregroundColor(.secondary)
-                                .padding()
-                        } else {
-                            ScrollView([.horizontal]) {
-                                LazyHStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
-                                    ForEach(historyRepository.items, id: \.id) { item in
-                                        Button(action: { tapCell(item.board) }) {
-                                            historyCell(item: item.board)
-                                        }
-                                        .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                            cellContextMenu(item: item.board)
-                                        }
-                                    }
-                                }
-                                .padding([.horizontal, .bottom])
-                            }
-                        }
-
+                        BoardSelectHistoryView(
+                            isSignIn: authentication.isSignIn,
+                            items: historyItems,
+                            toggleStar: toggleStar,
+                            tapItem: tapHistoryCell)
+                        
                         header(title: "All")
                         LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
                             ForEach(fileredItems, id: \.id!) { item in
@@ -86,7 +97,9 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                                     BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                                 }
                                 .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                    cellContextMenu(item: item)
+                                    BoardSelectContextMenu(isStared: item.stared) {
+                                        toggleStar(id: item.id!)
+                                    }
                                 }
                             }
                         }
@@ -99,7 +112,7 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
                                 trailing: menu())
         }
     }
-    
+
     private func header(title: String) -> some View {
         HStack {
             Text(title)
@@ -107,31 +120,6 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
         }
         .font(.headline)
         .padding([.top, .horizontal])
-    }
-    
-    private func historyCell(item: BoardDocument) -> some View {
-        VStack(alignment: .leading) {
-            BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
-            Text(item.title)
-                .lineLimit(1)
-                .truncationMode(.tail)
-        }
-        .font(.system(.caption, design: .monospaced))
-        .frame(width: 80)
-    }
-    
-    private var columns: [GridItem] {
-        switch setting.boardSelectDisplayStyle {
-        case .grid:
-            return [
-                GridItem(.adaptive(minimum: 100))
-            ]
-
-        case .list:
-            return [
-                GridItem(spacing: 0)
-            ]
-        }
     }
     
     private func menu() -> some View {
@@ -153,36 +141,40 @@ struct BoardSelectView<Repository: FirestoreBoardRepositoryProtorol> : View {
         })
     }
     
-    private func cellContextMenu(item: BoardDocument) -> some View {
-        Button(action: { toggleStared(item) }) {
-            if item.stared {
-                Text("お気に入り解除")
-                Image(systemName: "star.slash")
-            } else {
-                Text("お気に入り")
-                Image(systemName: "star")
-            }
-        }
-    }
-    
     // MARK: Actions
     
-    private func toggleStared(_ document: BoardDocument) {
-        var newDocument = document
-        newDocument.stared.toggle()
-        repository.update(newDocument)
-    }
-    
-    private func tapCancel() {
-        isPresented = false
+    // TODO: refactor - Service層なりを抽出する
+    private func toggleStar(id: String) {
+        repository.get(by: id) { (document) in
+            var newDocument = document
+            newDocument.stared.toggle()
+            repository.update(newDocument)
+        }
     }
 
+    private func tapCancel() {
+        dismiss()
+    }
+
+    private func tapHistoryCell(_ item: BoardSelectHistoryItem) {
+        historyRepository.moveToFirst(id: item.id)
+        LifeGameContext.shared.setBoard(item.board) // TODO: refactor
+        dismiss()
+    }
+    
     private func tapCell(_ document: BoardDocument) {
-        let historyDocument = HistoryDocument(boardReference: document.reference)
-        historyRepository.add(historyDocument)
-        
+        // TODO: 雑なのであとでちょっと考える
+        if let _ = authentication.user {
+            let historyDocument = HistoryDocument(boardReference: document.reference)
+            historyRepository.add(historyDocument)
+        }
+
         let board = document.makeBoard()
         LifeGameContext.shared.setBoard(board) // TODO: refactor
+        dismiss()
+    }
+    
+    private func dismiss() {
         isPresented = false
     }
 }
