@@ -1,5 +1,5 @@
 //
-//  FirebaseHistoryRepository.swift
+//  FirestoreHistoryRepository.swift
 //  LifeGameApp
 //
 //  Created by Yusuke Hosonuma on 2020/08/16.
@@ -10,8 +10,8 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class FirebaseHistoryRepository: ObservableObject {
-    static let shared = FirebaseHistoryRepository() // 暫定
+final class FirestoreHistoryRepository: ObservableObject {
+    static let shared = FirestoreHistoryRepository() // 暫定
     
     @Published var items: [HistoryDocument] = []
 

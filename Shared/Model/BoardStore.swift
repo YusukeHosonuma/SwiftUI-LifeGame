@@ -29,7 +29,7 @@ final class BoardStore: BoardStoreProtocol {
     
     private let boardRepository: FirestoreBoardRepository = .shared
     private let staredRepository: FirestoreStaredRepository = .shared
-    private let historyRepository: FirebaseHistoryRepository = .shared
+    private let historyRepository: FirestoreHistoryRepository = .shared
     
     private var cancellables: [AnyCancellable] = []
     

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ControlView: View {
     @EnvironmentObject var boardRepository: FirestoreBoardRepository
-    @EnvironmentObject var historyRepository: FirebaseHistoryRepository
+    @EnvironmentObject var historyRepository: FirestoreHistoryRepository
 
     // TODO:
     // 以下の問題に対する暫定対処（beta4）❗
