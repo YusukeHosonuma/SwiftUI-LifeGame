@@ -52,6 +52,7 @@ struct ControlView: View {
             }
             .sheet(isPresented: $isPresentedListSheet) {
                 BoardSelectView(
+                    isSignIn: authentication.isSignIn,
                     boardStore: boardStore,
                     isPresented: $isPresentedListSheet
                 )

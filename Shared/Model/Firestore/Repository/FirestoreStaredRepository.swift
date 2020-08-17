@@ -12,20 +12,19 @@ import FirebaseFirestoreSwift
 import Combine
 
 final class FirestoreStaredRepository {
-    static var shared = FirestoreStaredRepository()
-    
     let items: CurrentValueSubject<[StaredDocument], Never> = .init([])
 
+    private let user: User
+    
     private var stared: CollectionReference {
-        guard let uid = Auth.auth().currentUser?.uid else { fatalError() }
-        
         return Firestore.firestore()
             .collection("users")
-            .document(uid)
+            .document(user.uid)
             .collection("stared")
     }
     
-    init() {
+    init(user: User) {
+        self.user = user
         stared
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else { fatalError() }

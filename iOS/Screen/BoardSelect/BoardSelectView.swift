@@ -12,11 +12,11 @@ import Network
 struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
-    @EnvironmentObject var authentication: Authentication
 
+    var isSignIn: Bool
     @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
-
+    
     // MARK: Computed properties
     
     private var fileredItems: [BoardItem] {
@@ -51,7 +51,8 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     //         .padding()
     // } else {
     // }
-    
+    @State var isPresentedAlert = false
+
     // MARK: View
 
     var body: some View {
@@ -72,7 +73,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                     // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
                     header(title: "History")
                     BoardSelectHistoryView(
-                        isSignIn: authentication.isSignIn,
+                        isSignIn: isSignIn,
                         items: boardStore.histories,
                         toggleStar: { boardID in
                             self.boardStore.toggleLike(boardID: boardID)
@@ -80,17 +81,24 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                         tapItem: tapHistoryCell)
                     
                     header(title: "All")
-                    LazyVGrid(columns: columns, pinnedViews: [.sectionHeaders]) {
+                    LazyVGrid(columns: columns) {
                         ForEach(fileredItems) { item in
                             Button(action: { tapCell(item) }) {
                                 BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                             }
                             .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
                                 BoardSelectContextMenu(isStared: item.stared) {
-                                    withAnimation {
-                                        self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                    if isSignIn {
+                                        withAnimation {
+                                            self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                        }
+                                    } else {
+                                        isPresentedAlert.toggle()
                                     }
                                 }
+                            }
+                            .alert(isPresented: $isPresentedAlert) {
+                                Alert(title: Text("Need login."))
                             }
                         }
                     }
@@ -146,8 +154,8 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     }
     
     private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
-        if let user = authentication.user {
-            boardStore.addToHistory(boardID: boardDocumentID, user: user)
+        if isSignIn {
+            boardStore.addToHistory(boardID: boardDocumentID)
         }
         LifeGameContext.shared.setBoard(board) // TODO: refactor
         dismiss()

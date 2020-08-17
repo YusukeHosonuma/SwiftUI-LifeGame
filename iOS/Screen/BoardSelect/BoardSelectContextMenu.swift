@@ -13,7 +13,7 @@ struct BoardSelectContextMenu: View {
     let toggleStar: () -> Void
     
     var body: some View {
-        Button(action: { toggleStar() }) {
+        Button(action: toggleStar) {
             if isStared {
                 Text("Unlike")
                 Image(systemName: "star.slash")
@@ -22,6 +22,17 @@ struct BoardSelectContextMenu: View {
                 Image(systemName: "star")
             }
         }
+        // Note:
+        // メニューのコンテンツ上での制限なのかアラートは表示できなかった。（beta4）❗
+        // ```
+        // @State var isPresentedAlert = false
+        //
+        // ...
+        //
+        // .alert(isPresented: $isPresentedAlert) {
+        //     Alert(title: Text("Sign-in is needed."))
+        // }
+        // ```
     }
 }
 
