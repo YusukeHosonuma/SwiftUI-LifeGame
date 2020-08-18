@@ -12,7 +12,7 @@
 		41C3D101E9EE82668B5A2801 /* Pods_LifeGameWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
-		E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingView.swift */; };
+		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D124D644E3002D40B6 /* SpeedSliderView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
@@ -72,6 +72,9 @@
 		E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA724DD0D9300DBC175 /* ContentView.swift */; };
 		E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA924DD101900DBC175 /* PresetListView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
+		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
+		E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SettingLoginView.swift */; };
+		E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329E24EBE5CB00281C1E /* SettingAboutView.swift */; };
 		E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */; };
@@ -199,7 +202,7 @@
 		AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-LifeGameWidgetExtension/Pods-LifeGameWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
-		E507EBED24CC1106002A6EC4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
 		E51169D124D644E3002D40B6 /* SpeedSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSliderView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
@@ -236,6 +239,9 @@
 		E55F7AA724DD0D9300DBC175 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E55F7AA924DD101900DBC175 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
+		E562329A24EBE59100281C1E /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
+		E562329C24EBE5B400281C1E /* SettingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLoginView.swift; sourceTree = "<group>"; };
+		E562329E24EBE5CB00281C1E /* SettingAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutView.swift; sourceTree = "<group>"; };
 		E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LifeGameConfig.intentdefinition; sourceTree = "<group>"; };
 		E56DBCAE24E4FE3200849CE4 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConvertible.swift; sourceTree = "<group>"; };
@@ -460,12 +466,24 @@
 			path = "Preview Conent";
 			sourceTree = "<group>";
 		};
+		E56232A024EBE5E400281C1E /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E562329A24EBE59100281C1E /* SettingRootView.swift */,
+				E562329E24EBE5CB00281C1E /* SettingAboutView.swift */,
+				E562329C24EBE5B400281C1E /* SettingLoginView.swift */,
+				E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		E56EF83624DD55820019F30C /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				E5A153D724CC5D390030A1D9 /* Root */,
 				E54904AC24DD5DBD003AE7C7 /* MainGame */,
 				E54904AB24DD5D6F003AE7C7 /* BoardSelect */,
+				E56232A024EBE5E400281C1E /* Setting */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -546,7 +564,6 @@
 		E5A7B4DD24CC5B2700F5AED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E507EBED24CC1106002A6EC4 /* SettingView.swift */,
 				E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */,
 				E574356C24E9767900BB27CA /* SignInOutView.swift */,
 			);
@@ -1105,6 +1122,7 @@
 				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
+				E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */,
 				E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E5529CDF24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift in Sources */,
@@ -1125,6 +1143,7 @@
 				E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E5FA934624C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
+				E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */,
 				E5FA934C24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E5CA660F24E903AB00D6D59F /* HistoryDocument.swift in Sources */,
 				E53EC5D424E60A7B0035AD58 /* BoardRenderImage.swift in Sources */,
@@ -1133,7 +1152,7 @@
 				E58D5F0D24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
 				E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */,
 				E518C88F24E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
-				E507EBEE24CC1106002A6EC4 /* SettingView.swift in Sources */,
+				E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */,
 				E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */,
 				E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */,
 				E56DBCAF24E4FE3200849CE4 /* Array+.swift in Sources */,
@@ -1147,6 +1166,7 @@
 				E58D5F4924E782C6000A0345 /* NetworkMonitor.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
+				E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */,
 				E54A993424EA766C00298388 /* BoardStore.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
