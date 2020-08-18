@@ -1405,7 +1405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent";
+				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
@@ -1431,7 +1431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent";
+				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
@@ -1459,7 +1459,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1486,7 +1486,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
