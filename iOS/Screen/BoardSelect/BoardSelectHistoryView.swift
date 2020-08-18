@@ -40,9 +40,16 @@ struct BoardSelectHistoryView: View {
     private func historyCell(item: Item) -> some View {
         VStack(alignment: .leading) {
             BoardThumbnailImage(board: item.board, cacheKey: item.id)
-            Text(item.title)
-                .lineLimit(1)
-                .truncationMode(.tail)
+            HStack {
+                Text(item.title)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                Spacer()
+                if item.isStared {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }
+            }
         }
         .font(.system(.caption, design: .monospaced))
         .frame(width: 80)
