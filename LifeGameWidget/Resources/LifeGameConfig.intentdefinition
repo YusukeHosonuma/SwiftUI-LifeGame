@@ -27,7 +27,7 @@
 				</dict>
 				<dict>
 					<key>INEnumValueDisplayName</key>
-					<string>all</string>
+					<string>All</string>
 					<key>INEnumValueDisplayNameID</key>
 					<string>Y6V8Py</string>
 					<key>INEnumValueIndex</key>
@@ -37,7 +37,7 @@
 				</dict>
 				<dict>
 					<key>INEnumValueDisplayName</key>
-					<string>stared only</string>
+					<string>Stared (login required)</string>
 					<key>INEnumValueDisplayNameID</key>
 					<string>h6dm2E</string>
 					<key>INEnumValueIndex</key>
@@ -53,7 +53,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>XGToxM</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19G73</string>
+	<string>19G2021</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>12A8179i</string>
 	<key>INIntentDefinitionToolsVersion</key>

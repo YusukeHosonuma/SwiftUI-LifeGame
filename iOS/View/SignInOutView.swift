@@ -76,7 +76,7 @@ struct SignInOutView: View {
                                                   rawNonce: nonce)
 
         Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
+            if let error = error as NSError? {
                 logger.error("Firebase sign-in is failure. - \(error.localizedDescription)")
                 fatalError()
             }
