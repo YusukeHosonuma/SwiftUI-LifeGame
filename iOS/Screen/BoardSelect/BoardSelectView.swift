@@ -78,13 +78,18 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                     }
                     .sectionHeader()
                     
-                    BoardSelectHistoryView(
-                        isSignIn: isSignIn,
-                        items: boardStore.histories,
-                        toggleStar: { boardID in
-                            self.boardStore.toggleLike(boardID: boardID)
-                        },
-                        tapItem: tapHistoryCell)
+                    if isSignIn {
+                        BoardSelectHistoryView(
+                            items: boardStore.histories,
+                            toggleStar: { boardID in
+                                self.boardStore.toggleLike(boardID: boardID)
+                            },
+                            tapItem: tapHistoryCell)
+                    } else {
+                        Text("Need login.")
+                            .foregroundColor(.secondary)
+                            .padding()
+                    }
                     
                     HStack {
                         Text("All")
