@@ -21,7 +21,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     
     private var fileredItems: [BoardItem] {
         boardStore.allBoards
-            .filter(when: setting.isFilterByStared) { $0.stared }
+            .filter(when: isSignIn && setting.isFilterByStared, isIncluded: \.stared)
     }
     
     private var columns: [GridItem] {
@@ -131,8 +131,10 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             
             Divider()
             
-            Toggle(isOn: $setting.isFilterByStared) {
-                Label("Star only", systemImage: "star.fill")
+            if isSignIn {
+                Toggle(isOn: $setting.isFilterByStared) {
+                    Label("Star only", systemImage: "star.fill")
+                }
             }
         }, label: {
             Image(systemName: "ellipsis.circle")
