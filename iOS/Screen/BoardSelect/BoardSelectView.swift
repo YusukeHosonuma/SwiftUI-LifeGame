@@ -21,7 +21,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     
     private var fileredItems: [BoardItem] {
         boardStore.allBoards
-            .filter(when: setting.isFilterByStared) { $0.stared }
+            .filter(when: isSignIn && setting.isFilterByStared, isIncluded: \.stared)
     }
     
     private var columns: [GridItem] {
@@ -58,59 +58,85 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     var body: some View {
         NavigationView {
             // Note:
-            // Sectionでヘッダーを表示しようとするとレイアウトが壊れてしまう（beta4）❗
-            // LazyVGrid と競合しているようだが、現時点では仕様かバグの判断がつかないため保留。
+            // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta4）❗
             //
             // ```
             // List {
             //     Section(header: Text("History")) { ... }
             //     Section(header: Text("All")) { ... }
             // }
+            // .listStyle(InsetListStyle())
             // ```
             ScrollView {
                 VStack {
                     // Note:
-                    // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
-                    header(title: "History")
-                    BoardSelectHistoryView(
-                        isSignIn: isSignIn,
-                        items: boardStore.histories,
-                        toggleStar: { boardID in
-                            self.boardStore.toggleLike(boardID: boardID)
-                        },
-                        tapItem: tapHistoryCell)
-                    
-                    header(title: "All")
-                    LazyVGrid(columns: columns) {
-                        ForEach(fileredItems) { item in
-                            Button(action: { tapCell(item) }) {
-                                BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
-                            }
-                            .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                BoardSelectContextMenu(isStared: item.stared) {
-                                    if isSignIn {
-                                        withAnimation {
-                                            self.boardStore.toggleLike(boardID: item.boardDocumentID)
-                                        }
-                                    } else {
-                                        isPresentedAlert.toggle()
-                                    }
-                                }
-                            }
-                            .alert(isPresented: $isPresentedAlert) {
-                                Alert(title: Text("Need login."))
-                            }
-                        }
-                    }
-                    .padding([.horizontal])
+                    // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
+                    historySection()
+                    allSection()
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
-            .navigationBarItems(leading: Button("Cancel", action: tapCancel),
-                                trailing: menu())
+            .navigationBarItems(leading: Button("Cancel", action: tapCancel))
+        }
+    }
+    
+    @ViewBuilder
+    private func historySection() -> some View {
+        HStack {
+            Text("History")
+            Spacer()
+        }
+        .sectionHeader()
+        
+        if isSignIn {
+            BoardSelectHistoryView(
+                items: boardStore.histories,
+                toggleStar: { boardID in
+                    self.boardStore.toggleLike(boardID: boardID)
+                },
+                tapItem: tapHistoryCell)
+        } else {
+            Text("Need login.").emptyContent()
         }
     }
 
+    @ViewBuilder
+    private func allSection() -> some View {
+        HStack {
+            Text("All")
+            Spacer()
+            menuButton()
+        }
+        .sectionHeader()
+        
+        if network.status != .satisfied && boardStore.allBoards.isEmpty {
+            Text("Network is offline.").emptyContent()
+        } else {
+            LazyVGrid(columns: columns) {
+                ForEach(fileredItems) { item in
+                    Button(action: { tapCell(item) }) {
+                        BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
+                    }
+                    .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                        BoardSelectContextMenu(isStared: item.stared) {
+                            if isSignIn {
+                                withAnimation {
+                                    self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                }
+                            } else {
+                                isPresentedAlert.toggle()
+                            }
+                        }
+                    }
+                    .alert(isPresented: $isPresentedAlert) {
+                        Alert(title: Text("Need login."))
+                    }
+                }
+            }
+            .padding([.horizontal])
+        }
+    }
+    
     private func header(title: String) -> some View {
         HStack {
             Text(title)
@@ -120,9 +146,9 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         .padding([.top, .horizontal])
     }
     
-    private func menu() -> some View {
+    private func menuButton() -> some View {
         Menu(content: {
-            Picker(selection: $setting.boardSelectDisplayStyle, label: Text("Picker Name")) {
+            Picker(selection: $setting.boardSelectDisplayStyle, label: Text("")) {
                 ForEach(BoardSelectStyle.allCases, id: \.rawValue) { style in
                     Label(style.text, systemImage: style.imageName)
                         .tag(style)
@@ -131,8 +157,10 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             
             Divider()
             
-            Toggle(isOn: $setting.isFilterByStared) {
-                Label("Star only", systemImage: "star.fill")
+            if isSignIn {
+                Toggle(isOn: $setting.isFilterByStared) {
+                    Label("Star only", systemImage: "star.fill")
+                }
             }
         }, label: {
             Image(systemName: "ellipsis.circle")
@@ -166,43 +194,74 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     }
 }
 
-//struct BoardSelectView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        view(networkStatus: .satisfied,   dataFetched: true,  description: "Normal case.")
-//        view(networkStatus: .unsatisfied, dataFetched: false, description: "Data is not fetched and network is offline.")
-//        view(networkStatus: .satisfied,   dataFetched: false, description: "Wait to fetch data.")
-//    }
-//
-//    // Note:
-//    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
-//    //
-//    // ```
-//    // EmptyView()
-//    //     .sheet(isPresented: .constant(true)) {
-//    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
-//    //     }
-//    // ```
-//
-//    static func view(networkStatus: NWPath.Status, dataFetched: Bool, description: String) -> some View {
-//        let repository = dataFetched ? DesigntimeFirestoreBoardRepository() : DesigntimeFirestoreBoardRepository(documents: [])
-//        
-//        return VStack {
-//            Text(description)
-//                .foregroundColor(.red)
-//                .font(.subheadline)
-//                .bold()
-//                .padding()
-//            HStack {
-//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-//                    .environmentObject(SettingEnvironment.shared)
-//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-//                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
-//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-//                    .environmentObject(SettingEnvironment.shared)
-//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-//                    .colorScheme(.light)
-//            }
-//        }
-//        .previewLayout(.fixed(width: 800, height: 300))
-//    }
-//}
+private extension View {
+    func sectionHeader() -> some View {
+        self.font(.headline).padding([.top, .horizontal])
+    }
+}
+
+struct BoardSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        view("Normal case. (Sign-in)",
+             isSignIn: true, networkStatus: .satisfied,   existHistory: true, dataFetched: true)
+        
+        view("Normal case. (Sign-out)",
+             isSignIn: false, networkStatus: .satisfied,   existHistory: true, dataFetched: true)
+        
+        view("Data is not fetched and network is offline.",
+             isSignIn: true, networkStatus: .unsatisfied, existHistory: true, dataFetched: false)
+        
+        view("Wait to fetch data.",
+             isSignIn: true, networkStatus: .satisfied,   existHistory: true, dataFetched: false)
+    }
+
+    // Note:
+    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
+    //
+    // ```
+    // EmptyView()
+    //     .sheet(isPresented: .constant(true)) {
+    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
+    //     }
+    // ```
+
+    static func view(_ description: String, isSignIn: Bool, networkStatus: NWPath.Status, existHistory: Bool, dataFetched: Bool) -> some View {
+        let boardStore = DesigntimeBoardStore(allBoards: dataFetched ? allBoards : [],
+                                              histories: existHistory ? histories : [])
+        
+        return Group {
+            VStack {
+                Text(description)
+                    .foregroundColor(.red)
+                    .font(.subheadline)
+                    .bold()
+                    .padding()
+                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+            }
+            VStack {
+                Text(description)
+                    .foregroundColor(.red)
+                    .font(.subheadline)
+                    .bold()
+                    .padding()
+                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.light)
+            }
+        }
+    }
+    
+    static let allBoards: [BoardItem] = [
+        .init(boardDocumentID: "1", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, stared: true),
+        .init(boardDocumentID: "2", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, stared: false),
+    ]
+    
+    static let histories: [BoardHistoryItem] = [
+        .init(historyID: "1", boardDocumentID: "1", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, isStared: true),
+        .init(historyID: "2", boardDocumentID: "2", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, isStared: false),
+    ]
+}

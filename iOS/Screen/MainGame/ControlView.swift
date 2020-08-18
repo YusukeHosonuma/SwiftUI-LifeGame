@@ -17,6 +17,7 @@ struct ControlView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var boardStore: BoardStore
+    @EnvironmentObject var network: NetworkMonitor
 
     @ObservedObject var viewModel: MainGameViewModel
     
@@ -58,6 +59,7 @@ struct ControlView: View {
                 )
                 .environmentObject(setting)
                 .environmentObject(authentication)
+                .environmentObject(network)
             }
             
             ActionMenu(viewModel: viewModel) {
