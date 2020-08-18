@@ -93,9 +93,9 @@
 		E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356C24E9767900BB27CA /* SignInOutView.swift */; };
 		E574356E24E9767900BB27CA /* SignInOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356C24E9767900BB27CA /* SignInOutView.swift */; };
 		E574357024E97CF900BB27CA /* BoardSelectHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */; };
-		E574357124E97CF900BB27CA /* BoardSelectHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */; };
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
+		E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
 		E58D5F0D24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */; };
 		E58D5F0E24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */; };
@@ -470,6 +470,7 @@
 		E571536424D51B5B003B4C9E /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				E5C8D5C024E8E503005DB0FC /* AppLogger.swift */,
 				E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */,
 				E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */,
 				E571536824D51B9F003B4C9E /* UserDefault.swift */,
@@ -581,7 +582,6 @@
 			isa = PBXGroup;
 			children = (
 				E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */,
-				E5C8D5C024E8E503005DB0FC /* AppLogger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1151,6 +1151,7 @@
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
 				E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */,
 				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
+				E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
 				E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
@@ -1158,7 +1159,6 @@
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E507482024CD4E45003811B5 /* HCenter.swift in Sources */,
 				E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */,
-				E574357124E97CF900BB27CA /* BoardSelectHistoryView.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
@@ -1400,7 +1400,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
@@ -1426,7 +1426,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
@@ -1456,10 +1456,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/Resources/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1483,10 +1483,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/Resources/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

@@ -34,9 +34,12 @@ struct BoardContainerView: View {
     // MARK: Views
     
     var body: some View {
+        #if os(iOS)
         AppLogger.imageLoadBug.notice("BoardContainerView.body: \(setting.backgroundImage == nil ? "nil" : "found!", privacy: .public)")
+        #endif
         return GeometryReader { geometry in
             ZStack {
+                #if os(iOS)
                 if let image = setting.backgroundImage {
                     Image(image: image)
                         .resizable()
@@ -44,6 +47,7 @@ struct BoardContainerView: View {
                         .opacity(0.7)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 }
+                #endif
                 BoardRenderImage(
                     board: viewModel.board.board,
                     cellRenderSize: cellRenderSize,

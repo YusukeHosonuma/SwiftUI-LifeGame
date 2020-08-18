@@ -41,10 +41,12 @@ final class SettingEnvironment: ObservableObject {
         // FIXME: 背景画像が復元されない。
         #warning("FIXME: 背景画像が起動時に復元されない（読み取れない）不具合あり。アプリ側のバグの可能性が高く感じるが、現時点ではOS側のバグも考慮。（beta4）")
         
+        #if os(iOS)
         AppLogger.imageLoadBug.notice("[Start] loading background image.")
         let image = UserDefaultSetting.shared.backgroundImage.image
         backgroundImage = image
         AppLogger.imageLoadBug.notice("[End] loading background image: \(image == nil ? "nil" : "found!", privacy: .public)")
+        #endif
 
         #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
@@ -76,13 +78,13 @@ final class SettingEnvironment: ObservableObject {
             .dropFirst()
             .assign(to: \.zoomLevel, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
+        
+        #if os(iOS)
         $backgroundImage
             .dropFirst()
             .map(UIImageWrapper.init)
             .assign(to: \.backgroundImage, on: UserDefaultSetting.shared)
             .store(in: &cancellables)
-        
-        #if os(iOS)
         $boardSelectDisplayStyle
             .dropFirst()
             .assign(to: \.boardSelectDisplayStyle, on: UserDefaultSetting.shared)
