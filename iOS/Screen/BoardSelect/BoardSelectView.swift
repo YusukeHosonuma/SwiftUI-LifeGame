@@ -168,43 +168,95 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     }
 }
 
-//struct BoardSelectView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        view(networkStatus: .satisfied,   dataFetched: true,  description: "Normal case.")
-//        view(networkStatus: .unsatisfied, dataFetched: false, description: "Data is not fetched and network is offline.")
-//        view(networkStatus: .satisfied,   dataFetched: false, description: "Wait to fetch data.")
-//    }
-//
-//    // Note:
-//    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
-//    //
-//    // ```
-//    // EmptyView()
-//    //     .sheet(isPresented: .constant(true)) {
-//    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
-//    //     }
-//    // ```
-//
-//    static func view(networkStatus: NWPath.Status, dataFetched: Bool, description: String) -> some View {
-//        let repository = dataFetched ? DesigntimeFirestoreBoardRepository() : DesigntimeFirestoreBoardRepository(documents: [])
-//        
-//        return VStack {
-//            Text(description)
-//                .foregroundColor(.red)
-//                .font(.subheadline)
-//                .bold()
-//                .padding()
-//            HStack {
-//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-//                    .environmentObject(SettingEnvironment.shared)
-//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-//                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
-//                BoardSelectView(repository: repository, historyRepository: .shared, isPresented: .constant(true))
-//                    .environmentObject(SettingEnvironment.shared)
-//                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-//                    .colorScheme(.light)
-//            }
-//        }
-//        .previewLayout(.fixed(width: 800, height: 300))
-//    }
-//}
+final class DesigntimeBoardStore: BoardStoreProtocol {
+    @Published var allBoards: [BoardItem]
+    @Published var histories: [BoardHistoryItem]
+    
+    init(allBoards: [BoardItem], histories: [BoardHistoryItem]) {
+        self.allBoards = allBoards
+        self.histories = histories
+    }
+    
+    func toggleLike(boardID: String) {
+        if let index = allBoards.firstIndex(where: { $0.id == boardID }) {
+            var item = allBoards[index]
+            item.stared.toggle()
+            allBoards[index] = item
+        }
+        
+        if let index = histories.firstIndex(where: { $0.id == boardID }) {
+            var item = histories[index]
+            item.isStared.toggle()
+            histories[index] = item
+        }
+    }
+    
+    func addToHistory(boardID: String) {
+    }
+}
+
+struct BoardSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        view("Normal case. (Sign-in)",
+             isSignIn: true, networkStatus: .satisfied,   existHistory: true, dataFetched: true)
+        
+        view("Normal case. (Sign-out)",
+             isSignIn: false, networkStatus: .satisfied,   existHistory: true, dataFetched: true)
+        
+        view("Data is not fetched and network is offline.",
+             isSignIn: true, networkStatus: .unsatisfied, existHistory: true, dataFetched: false)
+        
+        view("Wait to fetch data.",
+             isSignIn: true, networkStatus: .satisfied,   existHistory: true, dataFetched: false)
+    }
+
+    // Note:
+    // Sheet style is not working in normal-preview (when live-preview is working) in beta4❗
+    //
+    // ```
+    // EmptyView()
+    //     .sheet(isPresented: .constant(true)) {
+    //         BoardListView(isPresented: .constant(true), boardDocuments: boards)
+    //     }
+    // ```
+
+    static func view(_ description: String, isSignIn: Bool, networkStatus: NWPath.Status, existHistory: Bool, dataFetched: Bool) -> some View {
+        let boardStore = DesigntimeBoardStore(allBoards: dataFetched ? allBoards : [],
+                                              histories: existHistory ? histories : [])
+        
+        return Group {
+            VStack {
+                Text(description)
+                    .foregroundColor(.red)
+                    .font(.subheadline)
+                    .bold()
+                    .padding()
+                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+            }
+            VStack {
+                Text(description)
+                    .foregroundColor(.red)
+                    .font(.subheadline)
+                    .bold()
+                    .padding()
+                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                    .environmentObject(SettingEnvironment.shared)
+                    .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .colorScheme(.light)
+            }
+        }
+    }
+    
+    static let allBoards: [BoardItem] = [
+        .init(boardDocumentID: "1", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, stared: true),
+        .init(boardDocumentID: "2", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, stared: false),
+    ]
+    
+    static let histories: [BoardHistoryItem] = [
+        .init(historyID: "1", boardDocumentID: "1", title: BoardPreset.nebura.displayText, board: BoardPreset.nebura.board.board, isStared: true),
+        .init(historyID: "2", boardDocumentID: "2", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, isStared: false),
+    ]
+}
