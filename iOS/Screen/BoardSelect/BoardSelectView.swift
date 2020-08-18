@@ -71,7 +71,13 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                 VStack {
                     // Note:
                     // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
-                    header(title: "History")
+                    
+                    HStack {
+                        Text("History")
+                        Spacer()
+                    }
+                    .sectionHeader()
+                    
                     BoardSelectHistoryView(
                         isSignIn: isSignIn,
                         items: boardStore.histories,
@@ -80,14 +86,12 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                         },
                         tapItem: tapHistoryCell)
                     
-                    
                     HStack {
                         Text("All")
                         Spacer()
                         menuButton()
                     }
-                    .font(.headline)
-                    .padding([.top, .horizontal])
+                    .sectionHeader()
 
                     LazyVGrid(columns: columns) {
                         ForEach(fileredItems) { item in
@@ -172,6 +176,14 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     
     private func dismiss() {
         isPresented = false
+    }
+}
+
+private extension View {
+    func sectionHeader() -> some View {
+        self
+            .font(.headline)
+            .padding([.top, .horizontal])
     }
 }
 
