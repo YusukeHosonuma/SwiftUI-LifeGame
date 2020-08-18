@@ -17,7 +17,7 @@ struct RootView: View {
                     Image(systemName: "square.grid.3x3.fill.square")
                     Text("Play")
                 }
-            SettingView()
+            SettingRootView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")

@@ -17,7 +17,7 @@ final class Authentication: ObservableObject {
     static var shared = Authentication()
     
     @Published var isSignIn: Bool = false
-    @Published var user: User?
+    @Published var user: User? // TODO: 独自の型に変更したい
     @Published var repositories: AuthenticationRepositories?
     
     private init() {
@@ -36,6 +36,12 @@ final class Authentication: ObservableObject {
             }
         }
     }
+    
+    #if DEBUG
+    init(mockSignIn: Bool) { // TODO: とりあえずやっつけ
+        isSignIn = mockSignIn
+    }
+    #endif
     
     func signOut() {
         do {
