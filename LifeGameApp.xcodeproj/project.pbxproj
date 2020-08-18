@@ -63,6 +63,7 @@
 		E54A993524EA766C00298388 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993324EA766C00298388 /* BoardStore.swift */; };
 		E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
 		E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */; };
+		E5529CDF24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDE24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift */; };
 		E558A97324DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E558A97424DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
@@ -109,8 +110,6 @@
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
-		E5B7519B24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */; };
-		E5B7519C24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
 		E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */; };
@@ -226,6 +225,7 @@
 		E54A993324EA766C00298388 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		E5529CDE24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigntimeBoardStore.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
 		E55F7AA524DD0C1000DBC175 /* MacRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRootView.swift; sourceTree = "<group>"; };
@@ -249,7 +249,6 @@
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5A7911B24D64A1000648813 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
-		E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigntimeFirestoreBoardRepository.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
@@ -450,6 +449,14 @@
 			path = MainGame;
 			sourceTree = "<group>";
 		};
+		E5529CDD24EB6AA0004A6EB4 /* Preview Conent */ = {
+			isa = PBXGroup;
+			children = (
+				E5529CDE24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift */,
+			);
+			path = "Preview Conent";
+			sourceTree = "<group>";
+		};
 		E56EF83624DD55820019F30C /* Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,7 +573,6 @@
 		E5B7519924E3DD400004D8AE /* Preview Conent */ = {
 			isa = PBXGroup;
 			children = (
-				E5B7519A24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift */,
 			);
 			path = "Preview Conent";
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				E5A7B4DD24CC5B2700F5AED9 /* View */,
 				E5C8D5BD24E8D483005DB0FC /* Model */,
 				E5A153D424CC5C620030A1D9 /* Resources */,
+				E5529CDD24EB6AA0004A6EB4 /* Preview Conent */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1082,6 +1089,7 @@
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
+				E5529CDF24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift in Sources */,
 				E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */,
 				E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E5C8D5C124E8E503005DB0FC /* AppLogger.swift in Sources */,
@@ -1123,7 +1131,6 @@
 				E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
 				E54A993424EA766C00298388 /* BoardStore.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
-				E5B7519B24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E5238DFF24EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
 				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
@@ -1169,7 +1176,6 @@
 				E5CA661324E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
 				E58D5F0E24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
-				E5B7519C24E3DD6D0004D8AE /* DesigntimeFirestoreBoardRepository.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E5CA661024E903AB00D6D59F /* HistoryDocument.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
@@ -1399,7 +1405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
@@ -1425,7 +1431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/LifeGameApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "iOS/Preview\\ Conent Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
@@ -1453,6 +1459,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1479,6 +1486,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Conent";
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

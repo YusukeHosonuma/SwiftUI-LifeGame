@@ -71,60 +71,72 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                 VStack {
                     // Note:
                     // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
-                    
-                    HStack {
-                        Text("History")
-                        Spacer()
-                    }
-                    .sectionHeader()
-                    
-                    if isSignIn {
-                        BoardSelectHistoryView(
-                            items: boardStore.histories,
-                            toggleStar: { boardID in
-                                self.boardStore.toggleLike(boardID: boardID)
-                            },
-                            tapItem: tapHistoryCell)
-                    } else {
-                        Text("Need login.").emptyContent()
-                    }
-                    
-                    HStack {
-                        Text("All")
-                        Spacer()
-                        menuButton()
-                    }
-                    .sectionHeader()
-
-                    LazyVGrid(columns: columns) {
-                        ForEach(fileredItems) { item in
-                            Button(action: { tapCell(item) }) {
-                                BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
-                            }
-                            .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
-                                BoardSelectContextMenu(isStared: item.stared) {
-                                    if isSignIn {
-                                        withAnimation {
-                                            self.boardStore.toggleLike(boardID: item.boardDocumentID)
-                                        }
-                                    } else {
-                                        isPresentedAlert.toggle()
-                                    }
-                                }
-                            }
-                            .alert(isPresented: $isPresentedAlert) {
-                                Alert(title: Text("Need login."))
-                            }
-                        }
-                    }
-                    .padding([.horizontal])
+                    historySection()
+                    allSection()
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
             .navigationBarItems(leading: Button("Cancel", action: tapCancel))
         }
     }
+    
+    @ViewBuilder
+    private func historySection() -> some View {
+        HStack {
+            Text("History")
+            Spacer()
+        }
+        .sectionHeader()
+        
+        if isSignIn {
+            BoardSelectHistoryView(
+                items: boardStore.histories,
+                toggleStar: { boardID in
+                    self.boardStore.toggleLike(boardID: boardID)
+                },
+                tapItem: tapHistoryCell)
+        } else {
+            Text("Need login.").emptyContent()
+        }
+    }
 
+    @ViewBuilder
+    private func allSection() -> some View {
+        HStack {
+            Text("All")
+            Spacer()
+            menuButton()
+        }
+        .sectionHeader()
+        
+        if network.status != .satisfied && boardStore.allBoards.isEmpty {
+            Text("Network is offline.").emptyContent()
+        } else {
+            LazyVGrid(columns: columns) {
+                ForEach(fileredItems) { item in
+                    Button(action: { tapCell(item) }) {
+                        BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
+                    }
+                    .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                        BoardSelectContextMenu(isStared: item.stared) {
+                            if isSignIn {
+                                withAnimation {
+                                    self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                }
+                            } else {
+                                isPresentedAlert.toggle()
+                            }
+                        }
+                    }
+                    .alert(isPresented: $isPresentedAlert) {
+                        Alert(title: Text("Need login."))
+                    }
+                }
+            }
+            .padding([.horizontal])
+        }
+    }
+    
     private func header(title: String) -> some View {
         HStack {
             Text(title)
@@ -184,36 +196,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
 
 private extension View {
     func sectionHeader() -> some View {
-        self
-            .font(.headline)
-            .padding([.top, .horizontal])
-    }
-}
-
-final class DesigntimeBoardStore: BoardStoreProtocol {
-    @Published var allBoards: [BoardItem]
-    @Published var histories: [BoardHistoryItem]
-    
-    init(allBoards: [BoardItem], histories: [BoardHistoryItem]) {
-        self.allBoards = allBoards
-        self.histories = histories
-    }
-    
-    func toggleLike(boardID: String) {
-        if let index = allBoards.firstIndex(where: { $0.id == boardID }) {
-            var item = allBoards[index]
-            item.stared.toggle()
-            allBoards[index] = item
-        }
-        
-        if let index = histories.firstIndex(where: { $0.id == boardID }) {
-            var item = histories[index]
-            item.isStared.toggle()
-            histories[index] = item
-        }
-    }
-    
-    func addToHistory(boardID: String) {
+        self.font(.headline).padding([.top, .horizontal])
     }
 }
 
