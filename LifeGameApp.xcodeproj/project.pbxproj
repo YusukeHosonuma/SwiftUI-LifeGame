@@ -127,6 +127,10 @@
 		E5D9F27424BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
 		E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */; };
+		E5E0067E24EB8B1900A4EA02 /* WidgetDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */; };
+		E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* BoardItem.swift */; };
+		E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
+		E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238DFE24EAC29E0087B9B0 /* StaredDocument.swift */; };
 		E5E50A2524E52C5300CD64B6 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */; };
 		E5E50A2624E52EE000CD64B6 /* BoardThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */; };
 		E5E50A2724E5327E00CD64B6 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */; };
@@ -271,6 +275,7 @@
 		E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E5D9F27224BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataFetcher.swift; sourceTree = "<group>"; };
 		E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 		E5E50A2924E539C900CD64B6 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectCell.swift; sourceTree = "<group>"; };
@@ -400,11 +405,9 @@
 		E5438E3824E2AB0B007A3EB7 /* LifeGameWidget */ = {
 			isa = PBXGroup;
 			children = (
-				E518C88D24E363AC00B02027 /* LifeGameWidgetExtension.entitlements */,
-				E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */,
+				E5E0067C24EB8AF700A4EA02 /* Resources */,
 				E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */,
-				E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */,
-				E5438E3D24E2AB0D007A3EB7 /* Info.plist */,
+				E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */,
 			);
 			path = LifeGameWidget;
 			sourceTree = "<group>";
@@ -679,6 +682,17 @@
 				A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5E0067C24EB8AF700A4EA02 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E518C88D24E363AC00B02027 /* LifeGameWidgetExtension.entitlements */,
+				E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */,
+				E5438E3B24E2AB0D007A3EB7 /* Assets.xcassets */,
+				E5438E3D24E2AB0D007A3EB7 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E5FA934424C05E8F00229AAA /* Styles */ = {
@@ -1067,12 +1081,16 @@
 				E5E50A2824E535AD00CD64B6 /* GraphicsImageRenderer.swift in Sources */,
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
+				E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */,
 				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
 				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
+				E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
+				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
+				E5E0067E24EB8B1900A4EA02 /* WidgetDataFetcher.swift in Sources */,
 				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
 				E518C89524E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);
@@ -1240,10 +1258,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/LifeGameWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/Resources/LifeGameWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
-				INFOPLIST_FILE = LifeGameWidget/Info.plist;
+				INFOPLIST_FILE = LifeGameWidget/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1265,10 +1283,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/LifeGameWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LifeGameWidget/Resources/LifeGameWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P437HSA6PY;
-				INFOPLIST_FILE = LifeGameWidget/Info.plist;
+				INFOPLIST_FILE = LifeGameWidget/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

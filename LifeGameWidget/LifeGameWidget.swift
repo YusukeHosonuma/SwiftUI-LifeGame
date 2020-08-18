@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import LifeGame
 import Firebase
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -28,6 +29,13 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (Timeline<LifeGameEntry>) -> ()) {
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
+            
+            // ref: https://firebase.google.com/docs/auth/ios/single-sign-on?hl=ja
+            do {
+                try Auth.auth().useUserAccessGroup("P437HSA6PY.shared")
+            } catch let error as NSError {
+                fatalError("Error changing user access group: \(error.localizedDescription)")
+            }
         }
         
         let isFilteredByStared: Bool
@@ -37,28 +45,49 @@ struct Provider: IntentTimelineProvider {
         case .staredOnly: isFilteredByStared = true
         default:          isFilteredByStared = false
         }
+
+        let currentDate = Date()
+
+        WidgetDataFetcher.shared.fetch { items in
+            let entries: [LifeGameEntry] = items
+                .filter(when: Auth.auth().currentUser != nil && isFilteredByStared) { $0.stared }
+                .shuffled()
+                .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
+                .enumerated()
+                .map { hourOffset, document in
+                    let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
+                    let data = LifeGameData(title: document.title,
+                                            board: document.board.extended(by: .die),
+                                            url: URL(string: "board:///\(document.id)")!,
+                                            cacheKey: document.id)
+                    return LifeGameEntry(date: entryDate, relevance: data)
+                }
+
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
+        }
         
-        FirestoreBoardRepository.shared
-            .getAll { documents in
-                let currentDate = Date()
-
-                let entries: [LifeGameEntry] = documents
-                    .filter(when: isFilteredByStared) { $0.stared } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
-                    .shuffled()
-                    .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
-                    .enumerated()
-                    .map { hourOffset, document in
-                        let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-                        let data = LifeGameData(title: document.title,
-                                                board: document.makeBoard().extended(by: .die),
-                                                url: URL(string: "board:///\(document.id!)")!,
-                                                cacheKey: document.id!)
-                        return LifeGameEntry(date: entryDate, relevance: data)
-                    }
-
-                let timeline = Timeline(entries: entries, policy: .atEnd)
-                completion(timeline)
-            }
+//        FirestoreBoardRepository.shared
+//            .getAll { documents in
+//                //let currentDate = Date()
+//
+//                let entries: [LifeGameEntry] = documents
+//                    .filter(when: isFilteredByStared) { $0.stared } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
+//                    .shuffled()
+//                    .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
+//                    .enumerated()
+//                    .map { hourOffset, document in
+//                        let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
+//                        let data = LifeGameData(title: document.title,
+//                                                board: document.makeBoard().extended(by: .die),
+//                                                url: URL(string: "board:///\(document.id!)")!,
+//                                                cacheKey: document.id!)
+//                        return LifeGameEntry(date: entryDate, relevance: data)
+//                    }
+//
+//                let timeline = Timeline(entries: entries, policy: .atEnd)
+//                completion(timeline)
+//            }
     }
 }
 

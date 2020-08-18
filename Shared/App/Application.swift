@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 // TODO: プレビュー時でもインスタンス化されてるのでコスト
 private let settingEnvironment: SettingEnvironment = .shared
@@ -25,6 +26,13 @@ struct Application: App {
     init() {
         FirebaseApp.configure()
 
+        // ref: https://firebase.google.com/docs/auth/ios/single-sign-on?hl=ja
+        do {
+            try Auth.auth().useUserAccessGroup("P437HSA6PY.shared")
+        } catch let error as NSError {
+            fatalError("Error changing user access group: \(error.localizedDescription)")
+        }
+        
         #if os(macOS)
         // TODO: How can disable scroll-bounce in mac?
         #elseif os(iOS)
