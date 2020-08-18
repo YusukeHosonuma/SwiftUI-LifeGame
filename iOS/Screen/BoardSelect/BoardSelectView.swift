@@ -58,19 +58,19 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     var body: some View {
         NavigationView {
             // Note:
-            // Sectionでヘッダーを表示しようとするとレイアウトが壊れてしまう（beta4）❗
-            // LazyVGrid と競合しているようだが、現時点では仕様かバグの判断がつかないため保留。
+            // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta4）❗
             //
             // ```
             // List {
             //     Section(header: Text("History")) { ... }
             //     Section(header: Text("All")) { ... }
             // }
+            // .listStyle(InsetListStyle())
             // ```
             ScrollView {
                 VStack {
                     // Note:
-                    // ここで`VStack`をもう一度利用しようとするとクラッシュする（beta4）❗
+                    // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
                     header(title: "History")
                     BoardSelectHistoryView(
                         isSignIn: isSignIn,
@@ -80,7 +80,15 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                         },
                         tapItem: tapHistoryCell)
                     
-                    header(title: "All")
+                    
+                    HStack {
+                        Text("All")
+                        Spacer()
+                        menuButton()
+                    }
+                    .font(.headline)
+                    .padding([.top, .horizontal])
+
                     LazyVGrid(columns: columns) {
                         ForEach(fileredItems) { item in
                             Button(action: { tapCell(item) }) {
@@ -106,8 +114,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                 }
             }
             .navigationBarTitle("Select board", displayMode: .inline)
-            .navigationBarItems(leading: Button("Cancel", action: tapCancel),
-                                trailing: menu())
+            .navigationBarItems(leading: Button("Cancel", action: tapCancel))
         }
     }
 
@@ -120,9 +127,9 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         .padding([.top, .horizontal])
     }
     
-    private func menu() -> some View {
+    private func menuButton() -> some View {
         Menu(content: {
-            Picker(selection: $setting.boardSelectDisplayStyle, label: Text("Picker Name")) {
+            Picker(selection: $setting.boardSelectDisplayStyle, label: Text("")) {
                 ForEach(BoardSelectStyle.allCases, id: \.rawValue) { style in
                     Label(style.text, systemImage: style.imageName)
                         .tag(style)

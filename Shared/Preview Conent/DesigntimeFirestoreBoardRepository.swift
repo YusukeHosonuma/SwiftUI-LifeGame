@@ -5,6 +5,8 @@
 //  Created by Yusuke Hosonuma on 2020/08/12.
 //
 
+// TODO: あとで消す
+
 private let BoardItems: [BoardDocument] = [
     BoardDocument(id: "1", title: "Nebura", board: BoardPreset.nebura.board),
     BoardDocument(id: "2", title: "Spaceship", board: BoardPreset.spaceShip.board),
