@@ -86,9 +86,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                             },
                             tapItem: tapHistoryCell)
                     } else {
-                        Text("Need login.")
-                            .foregroundColor(.secondary)
-                            .padding()
+                        Text("Need login.").emptyContent()
                     }
                     
                     HStack {

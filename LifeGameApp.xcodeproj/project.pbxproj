@@ -62,6 +62,7 @@
 		E54A993424EA766C00298388 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993324EA766C00298388 /* BoardStore.swift */; };
 		E54A993524EA766C00298388 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993324EA766C00298388 /* BoardStore.swift */; };
 		E54B7AF124DB0043005E1B55 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B7AF024DB0043005E1B55 /* HeaderView.swift */; };
+		E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */; };
 		E558A97324DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E558A97424DB70D00012E443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
@@ -224,6 +225,7 @@
 		E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreStaredRepository.swift; sourceTree = "<group>"; };
 		E54A993324EA766C00298388 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 		E54B7AF024DB0043005E1B55 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		E558A97224DB70D00012E443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
 		E55F7AA524DD0C1000DBC175 /* MacRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRootView.swift; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 				E5B0572624CC3441005EE1AA /* Part */,
 				E5FA934424C05E8F00229AAA /* Styles */,
 				E5A153D624CC5C910030A1D9 /* Screen */,
+				E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
+				E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */,
 				E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E5C8D5C124E8E503005DB0FC /* AppLogger.swift in Sources */,
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,

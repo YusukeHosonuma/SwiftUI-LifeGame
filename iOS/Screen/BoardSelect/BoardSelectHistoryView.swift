@@ -17,9 +17,7 @@ struct BoardSelectHistoryView: View {
     
     var body: some View {
         if items.isEmpty {
-            Text("No hitories.")
-                .foregroundColor(.secondary)
-                .padding()
+            Text("No hitories.").emptyContent()
         } else {
             ScrollView([.horizontal]) {
                 LazyHStack(spacing: 16) {
