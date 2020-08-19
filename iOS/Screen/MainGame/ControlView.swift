@@ -11,13 +11,22 @@ struct ControlView: View {
     @EnvironmentObject var boardRepository: FirestoreBoardRepository
     @EnvironmentObject var historyRepository: FirestoreHistoryRepository
 
-    // TODO:
-    // 以下の問題に対する暫定対処（beta4）❗
+    // Note:
+    // 以下の問題は beta5 で解決されたように感じるが、再現性が不明なので一旦コメントで残しておく❗
     // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
-    @EnvironmentObject var setting: SettingEnvironment
-    @EnvironmentObject var authentication: Authentication
+    //
+    // ```
+    // @EnvironmentObject var setting: SettingEnvironment
+    // @EnvironmentObject var authentication: Authentication
+    // @EnvironmentObject var network: NetworkMonitor
+    // ...
+    //
+    // .environmentObject(setting)
+    // .environmentObject(authentication)
+    // .environmentObject(network)
+    // ```
+    
     @EnvironmentObject var boardStore: BoardStore
-    @EnvironmentObject var network: NetworkMonitor
 
     @ObservedObject var viewModel: MainGameViewModel
     
@@ -53,13 +62,9 @@ struct ControlView: View {
             }
             .sheet(isPresented: $isPresentedListSheet) {
                 BoardSelectView(
-                    isSignIn: authentication.isSignIn,
                     boardStore: boardStore,
                     isPresented: $isPresentedListSheet
                 )
-                .environmentObject(setting)
-                .environmentObject(authentication)
-                .environmentObject(network)
             }
             
             ActionMenu(viewModel: viewModel) {
