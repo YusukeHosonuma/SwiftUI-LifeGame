@@ -39,11 +39,11 @@ struct SettingRootView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle()) // Note: 明示的に指定しないと iPad でサイドバー表示になってしまう
+            .listStyle(GroupedListStyle())
             .navigationTitle("Settings")
-            
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle()) // Note: 明示的に指定しないと iPad でサイドバー表示になってしまう
     }
     
     private func logoutConfirmAlert() -> Alert {
