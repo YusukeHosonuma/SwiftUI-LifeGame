@@ -20,7 +20,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                // Note:
+                // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（beta5）❗
                 BoardContainerView(viewModel: viewModel)
+                    .padding(40)
+                    .aspectRatio(1.0, contentMode: .fit)
+
                 VStack {
                     Spacer()
                     HStack {
