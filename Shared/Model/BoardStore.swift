@@ -24,7 +24,7 @@ protocol BoardStoreProtocol: ObservableObject {
 // TODO: 認証あり・なしでバッサリとモデルを分けたほうが良い気もする・・・うーん？
 
 final class BoardStore: BoardStoreProtocol {
-    static var shared = BoardStore()
+    static let shared = BoardStore()
     
     @Published var allBoards: [BoardItem] = []
     @Published var histories: [BoardHistoryItem] = []

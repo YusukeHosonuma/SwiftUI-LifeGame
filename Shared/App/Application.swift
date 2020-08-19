@@ -9,11 +9,9 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-// TODO: プレビュー時でもインスタンス化されてるのでコスト
-private let settingEnvironment: SettingEnvironment = .shared
-
 @main
 struct Application: App {
+    @StateObject var settingEnvironment = SettingEnvironment.shared
     @StateObject var boardRepository = FirestoreBoardRepository.shared
     @StateObject var boardStore = BoardStore.shared
     @StateObject var viewModel = MainGameViewModel()
