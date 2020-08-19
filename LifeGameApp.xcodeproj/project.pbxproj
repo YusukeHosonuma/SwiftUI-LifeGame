@@ -74,7 +74,7 @@
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
 		E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
-		E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SettingLoginView.swift */; };
+		E562329D24EBE5B400281C1E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
 		E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329E24EBE5CB00281C1E /* SettingAboutView.swift */; };
 		E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
@@ -241,7 +241,7 @@
 		E55F7AA924DD101900DBC175 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E562329A24EBE59100281C1E /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
-		E562329C24EBE5B400281C1E /* SettingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLoginView.swift; sourceTree = "<group>"; };
+		E562329C24EBE5B400281C1E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E562329E24EBE5CB00281C1E /* SettingAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutView.swift; sourceTree = "<group>"; };
 		E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LifeGameConfig.intentdefinition; sourceTree = "<group>"; };
 		E56DBCAE24E4FE3200849CE4 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -467,12 +467,19 @@
 			path = "Preview Conent";
 			sourceTree = "<group>";
 		};
+		E560B3D524ED389800F55117 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				E562329C24EBE5B400281C1E /* SignInView.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		E56232A024EBE5E400281C1E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				E562329A24EBE59100281C1E /* SettingRootView.swift */,
 				E562329E24EBE5CB00281C1E /* SettingAboutView.swift */,
-				E562329C24EBE5B400281C1E /* SettingLoginView.swift */,
 				E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */,
 			);
 			path = Setting;
@@ -485,6 +492,7 @@
 				E54904AC24DD5DBD003AE7C7 /* MainGame */,
 				E54904AB24DD5D6F003AE7C7 /* BoardSelect */,
 				E56232A024EBE5E400281C1E /* Setting */,
+				E560B3D524ED389800F55117 /* SignIn */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -1167,7 +1175,7 @@
 				E58D5F4924E782C6000A0345 /* NetworkMonitor.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
-				E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */,
+				E562329D24EBE5B400281C1E /* SignInView.swift in Sources */,
 				E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */,
 				E54A993424EA766C00298388 /* BoardStore.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,

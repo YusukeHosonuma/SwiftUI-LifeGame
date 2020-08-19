@@ -36,7 +36,7 @@ struct SettingRootView: View {
                                 isPresentedLogin.toggle()
                             }
                             .sheet(isPresented: $isPresentedLogin) {
-                                SettingLoginView(isPresented: $isPresentedLogin)
+                                SignInView(isPresented: $isPresentedLogin)
                             }
                         }
                     }

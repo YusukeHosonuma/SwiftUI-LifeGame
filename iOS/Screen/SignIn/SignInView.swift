@@ -11,7 +11,7 @@ import os
 import FirebaseAuth
 import CryptoKit
 
-private let logger = Logger(subsystem: "LifeGameApp", category: "SettingLoginView")
+private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
 
 struct SignInView: View {
     @EnvironmentObject var authentication: Authentication
