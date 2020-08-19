@@ -72,8 +72,9 @@
 		E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA724DD0D9300DBC175 /* ContentView.swift */; };
 		E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA924DD101900DBC175 /* PresetListView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
+		E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
-		E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SettingLoginView.swift */; };
+		E562329D24EBE5B400281C1E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
 		E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329E24EBE5CB00281C1E /* SettingAboutView.swift */; };
 		E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52FE5DC24DC012A00D93764 /* BoardDocument.swift */; };
 		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
@@ -112,6 +113,9 @@
 		E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
+		E5B706D424ED4DE500787B82 /* SheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B706D324ED4DE500787B82 /* SheetButton.swift */; };
+		E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B706D324ED4DE500787B82 /* SheetButton.swift */; };
+		E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */; };
 		E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5BA30B824BF05BC002D0564 /* MainGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */; };
@@ -240,7 +244,7 @@
 		E55F7AA924DD101900DBC175 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E562329A24EBE59100281C1E /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
-		E562329C24EBE5B400281C1E /* SettingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLoginView.swift; sourceTree = "<group>"; };
+		E562329C24EBE5B400281C1E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E562329E24EBE5CB00281C1E /* SettingAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutView.swift; sourceTree = "<group>"; };
 		E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LifeGameConfig.intentdefinition; sourceTree = "<group>"; };
 		E56DBCAE24E4FE3200849CE4 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5A7911B24D64A1000648813 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5BA30B724BF05BC002D0564 /* MainGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewModel.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
@@ -466,12 +471,19 @@
 			path = "Preview Conent";
 			sourceTree = "<group>";
 		};
+		E560B3D524ED389800F55117 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				E562329C24EBE5B400281C1E /* SignInView.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		E56232A024EBE5E400281C1E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				E562329A24EBE59100281C1E /* SettingRootView.swift */,
 				E562329E24EBE5CB00281C1E /* SettingAboutView.swift */,
-				E562329C24EBE5B400281C1E /* SettingLoginView.swift */,
 				E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */,
 			);
 			path = Setting;
@@ -484,6 +496,7 @@
 				E54904AC24DD5DBD003AE7C7 /* MainGame */,
 				E54904AB24DD5D6F003AE7C7 /* BoardSelect */,
 				E56232A024EBE5E400281C1E /* Setting */,
+				E560B3D524ED389800F55117 /* SignIn */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -589,6 +602,15 @@
 				E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */,
 			);
 			path = Part;
+			sourceTree = "<group>";
+		};
+		E5B706D624ED4DEE00787B82 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */,
+				E5B706D324ED4DE500787B82 /* SheetButton.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E5B7519924E3DD400004D8AE /* Preview Conent */ = {
@@ -737,7 +759,7 @@
 				E5B0572624CC3441005EE1AA /* Part */,
 				E5FA934424C05E8F00229AAA /* Styles */,
 				E5A153D624CC5C910030A1D9 /* Screen */,
-				E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */,
+				E5B706D624ED4DEE00787B82 /* Util */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1164,9 +1186,11 @@
 				E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */,
 				E574357024E97CF900BB27CA /* BoardSelectHistoryView.swift in Sources */,
 				E58D5F4924E782C6000A0345 /* NetworkMonitor.swift in Sources */,
+				E5B706D424ED4DE500787B82 /* SheetButton.swift in Sources */,
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
-				E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */,
+				E562329D24EBE5B400281C1E /* SignInView.swift in Sources */,
+				E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */,
 				E54A993424EA766C00298388 /* BoardStore.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
@@ -1192,6 +1216,7 @@
 				E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
+				E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */,
 				E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,
 				E571536724D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
@@ -1207,6 +1232,7 @@
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
+				E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */,
 				E574356E24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E54A993524EA766C00298388 /* BoardStore.swift in Sources */,

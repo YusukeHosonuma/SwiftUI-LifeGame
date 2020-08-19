@@ -9,12 +9,14 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-// TODO: プレビュー時でもインスタンス化されてるのでコスト
-private let settingEnvironment: SettingEnvironment = .shared
-
 @main
 struct Application: App {
-    @StateObject var boardRepository = FirestoreBoardRepository.shared
+
+    // Note: ✅
+    // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
+    
+    @StateObject var settingEnvironment = SettingEnvironment.shared
+    @StateObject var boardRepository = FirestoreBoardRepository.shared // TODO: Mac側のアカウント対応が終わったら不要になるはず。
     @StateObject var boardStore = BoardStore.shared
     @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
@@ -76,6 +78,12 @@ struct Application: App {
                             LifeGameContext.shared.setBoard(board)
                         }
                 }
+        }
+        .commands {
+            // Note:
+            // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta5）❗
+            LifeGameCommands(viewModel: viewModel,
+                             boardRepository: boardRepository)
         }
         #endif
         

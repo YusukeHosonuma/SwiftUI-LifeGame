@@ -14,7 +14,7 @@ struct AuthenticationRepositories {
 
 final class Authentication: ObservableObject {
     
-    static var shared = Authentication()
+    static let shared = Authentication()
     
     @Published var isSignIn: Bool = false
     @Published var user: User? // TODO: 独自の型に変更したい

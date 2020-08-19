@@ -11,13 +11,14 @@ import os
 import FirebaseAuth
 import CryptoKit
 
-private let logger = Logger(subsystem: "LifeGameApp", category: "SettingLoginView")
+private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
 
 struct SignInView: View {
     @EnvironmentObject var authentication: Authentication
 
     @Binding private var isPresented: Bool
     @State private var isPresentedLoginFailedAlert = false
+    @State private var isDisplayProgress = false
     
     init(isPresented: Binding<Bool>) {
         _isPresented = isPresented
@@ -28,28 +29,34 @@ struct SignInView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("You can use personal feature.").bold()
-                    Group {
-                        Label("Favorite", systemImage: "checkmark.circle.fill")
-                        Label("Selected history", systemImage: "checkmark.circle.fill")
+            ZStack {
+                VStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("You can use personal feature.").bold()
+                        Group {
+                            Label("Favorite", systemImage: "checkmark.circle.fill")
+                            Label("Selected history", systemImage: "checkmark.circle.fill")
+                        }
+                        .foregroundColor(.secondary)
                     }
-                    .foregroundColor(.secondary)
+                    .font(.title3)
+                    .padding([.bottom], 100)
+                    
+                    SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
+                        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                        .frame(width: 280, height: 44)
+                        .padding()
+                        .alert(isPresented: $isPresentedLoginFailedAlert) {
+                            Alert(title: Text("Login is failed."))
+                        }
                 }
-                .font(.title3)
-                .padding([.bottom], 100)
+                .navigationTitle("Sign-in")
+                .navigationBarItems(leading: Button("Cancel", action: dismiss))
                 
-                SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
-                    .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-                    .frame(width: 280, height: 44)
-                    .padding()
-                    .alert(isPresented: $isPresentedLoginFailedAlert) {
-                        Alert(title: Text("Login is failed."))
-                    }
+                if isDisplayProgress {
+                    ProgressView("Sign-in")
+                }
             }
-            .navigationTitle("Sign-in")
-            .navigationBarItems(leading: Button("Cancel", action: dismiss))
         }
     }
     
@@ -82,6 +89,8 @@ struct SignInView: View {
     }
     
     private func signIn(authorization: ASAuthorization) {
+        isDisplayProgress = true
+        
         // TODO: エラー処理は細かく精査してないので、とりあえず`fatalError`にして失敗した時にすぐに気付けるようにしておく。
         
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
@@ -108,11 +117,14 @@ struct SignInView: View {
                                                   rawNonce: nonce)
 
         Auth.auth().signIn(with: credential) { (authResult, error) in
+            isDisplayProgress = false
+
             if let error = error as NSError? {
                 logger.error("Firebase sign-in is failure. - \(error.localizedDescription)")
                 isPresentedLoginFailedAlert.toggle()
+            } else {
+                isPresented = false
             }
-            isPresented = false
         }
     }
 }

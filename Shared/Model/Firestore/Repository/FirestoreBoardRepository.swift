@@ -18,7 +18,7 @@ protocol FirestoreBoardRepositoryProtorol: ObservableObject  {
 }
 
 final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepositoryProtorol {
-    static var shared = FirestoreBoardRepository()
+    static let shared = FirestoreBoardRepository()
     
     @Published var items: [BoardDocument] = []
     

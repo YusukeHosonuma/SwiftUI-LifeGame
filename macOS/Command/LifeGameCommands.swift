@@ -12,11 +12,14 @@ import UniformTypeIdentifiers
 struct LifeGameCommands: Commands {    
     @ObservedObject var viewModel: MainGameViewModel
     @ObservedObject var boardRepository: FirestoreBoardRepository
+    #if os(macOS)
     @ObservedObject var fileManager: LifeGameFileManager
-
+    #endif
+    
     var body: some Commands {
         // TODO: 将来的にはドキュメントベースのアプリで構築することも検討
 
+        #if os(macOS)
         CommandGroup(before: .saveItem) {
             Section {
                 Button("Open...", action: open)
@@ -32,7 +35,8 @@ struct LifeGameCommands: Commands {
                 Button("Export Presets...", action: exportPresets)
             }
         }
-        
+        #endif
+
         CommandMenu("Game") {
             Section {
                 // TODO: macOS-beta4 bug (maybe...)❗
@@ -60,6 +64,7 @@ struct LifeGameCommands: Commands {
     
     // MARK: Actions
 
+    #if os(macOS)
     private func saveAs() {
         fileManager.saveAs(board: viewModel.board.board)
     }
@@ -77,4 +82,5 @@ struct LifeGameCommands: Commands {
         let presets = boardRepository.items.map(BoardPresetFile.init)
         fileManager.exportPresets(presets)
     }
+    #endif
 }
