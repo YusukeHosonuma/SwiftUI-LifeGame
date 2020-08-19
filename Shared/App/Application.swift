@@ -77,6 +77,12 @@ struct Application: App {
                         }
                 }
         }
+        .commands {
+            // Note:
+            // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta5）❗
+            LifeGameCommands(viewModel: viewModel,
+                             boardRepository: boardRepository)
+        }
         #endif
         
         #if os(macOS)

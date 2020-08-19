@@ -72,6 +72,7 @@
 		E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA724DD0D9300DBC175 /* ContentView.swift */; };
 		E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA924DD101900DBC175 /* PresetListView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
+		E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
 		E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SettingLoginView.swift */; };
 		E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329E24EBE5CB00281C1E /* SettingAboutView.swift */; };
@@ -1167,6 +1168,7 @@
 				E5FA935024C07AE300229AAA /* Collection+.swift in Sources */,
 				E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
 				E562329D24EBE5B400281C1E /* SettingLoginView.swift in Sources */,
+				E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */,
 				E54A993424EA766C00298388 /* BoardStore.swift in Sources */,
 				E518C89324E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
