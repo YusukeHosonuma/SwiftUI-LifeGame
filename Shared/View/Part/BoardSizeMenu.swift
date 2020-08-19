@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: mac側も`ActionMenu.swift`のバージョンに切り替えて、このクラスは（たぶん）削除する
+
 let PresetBoardSizes: [Int] = [15, 25, 40, 60]
 
 struct BoardSizeMenu: View {

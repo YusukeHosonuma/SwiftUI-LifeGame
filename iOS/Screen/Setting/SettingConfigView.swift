@@ -34,11 +34,7 @@ struct SettingConfigView: View {
                     }
                 }
             }
-            
-            Section(header: Text("Board")) {
-                BoardSizeMenu(size: $setting.boardSize)
-            }
-            
+
             Section(header: Text("Background Image")) {
                 HCenter {
                     if let _ = setting.backgroundImage {
