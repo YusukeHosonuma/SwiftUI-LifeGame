@@ -14,37 +14,52 @@ import CryptoKit
 private let logger = Logger(subsystem: "LifeGameApp", category: "SettingLoginView")
 
 struct SettingLoginView: View {
-    @Environment(\.colorScheme) var colorScheme
-
     @EnvironmentObject var authentication: Authentication
+
+    @Binding private var isPresented: Bool
+    @State private var isPresentedLoginFailedAlert = false
+    
+    init(isPresented: Binding<Bool>) {
+        _isPresented = isPresented
+    }
+    
+    @Environment(\.colorScheme) private var colorScheme
     @State private var currentNonce: String?
 
     var body: some View {
-        if authentication.isSignIn {
-            Button("Sign out", action: authentication.signOut)
-        } else {
+        NavigationView {
             VStack {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("You can use personal feature.").bold()
                     Group {
-                        Label("Favorite", systemImage: "checkmark.square.fill")
-                        Label("Selected history", systemImage: "checkmark.square.fill")
+                        Label("Favorite", systemImage: "checkmark.circle.fill")
+                        Label("Selected history", systemImage: "checkmark.circle.fill")
                     }
                     .foregroundColor(.secondary)
                 }
                 .font(.title3)
-                .padding([.bottom], 40)
+                .padding([.bottom], 100)
                 
                 SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
                     .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
                     .frame(width: 280, height: 44)
                     .padding()
+                    .alert(isPresented: $isPresentedLoginFailedAlert) {
+                        Alert(title: Text("Login is failed."))
+                    }
             }
-            .navigationTitle("Login")
+            .navigationTitle("Sign-in")
+            .navigationBarItems(leading: Button("Cancel", action: dismiss))
         }
     }
     
-    // MARK: - Actions
+    // MARK: Actions
+    
+    private func dismiss() {
+        isPresented = false
+    }
+    
+    // MARK: Private
     
     private func onRequest(request: ASAuthorizationAppleIDRequest) {
         let nonce = randomNonceString()
@@ -95,25 +110,26 @@ struct SettingLoginView: View {
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error as NSError? {
                 logger.error("Firebase sign-in is failure. - \(error.localizedDescription)")
-                fatalError()
+                isPresentedLoginFailedAlert.toggle()
             }
+            isPresented = false
         }
     }
 }
 
 struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingLoginView()
+        SettingLoginView(isPresented: .constant(true))
             .environmentObject(Authentication(mockSignIn: false))
             .colorScheme(.dark)
             .preferredColorScheme(.dark)
 
-        SettingLoginView()
+        SettingLoginView(isPresented: .constant(true))
             .environmentObject(Authentication(mockSignIn: false))
             .colorScheme(.light)
             .preferredColorScheme(.light)
 
-        SettingLoginView()
+        SettingLoginView(isPresented: .constant(true))
             .environmentObject(Authentication(mockSignIn: true))
             .colorScheme(.light)
             .preferredColorScheme(.light)
