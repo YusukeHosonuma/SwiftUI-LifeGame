@@ -29,20 +29,17 @@ struct ActionMenu<Label>: View where Label: View {
     
     @ViewBuilder
     private func content() -> some View {
-        // Note:
-        // バグか仕様なのか分からないが、実際のボタン表示は逆順になる。（Xcode 12 beta3）
-        //
-        // ...
-        // -----
-        // Random
-        //
+
+        // Note: ✅
+        // 表示順はメニューの起点からとなる。（表示方向が上か下かで順番は変わる）
+        
         Button(action: { isPresentedClearAlert.toggle() }) {
             HStack {
                 Text("Clear")
                 Image(systemName: "xmark.circle")
             }
         }
-        .foregroundColor(.red) // TODO: not working in beta3
+        .foregroundColor(.red) // TODO: not working in beta5❗
         .alert(isPresented: $isPresentedClearAlert, content: clearAlert)
         
         Divider()
