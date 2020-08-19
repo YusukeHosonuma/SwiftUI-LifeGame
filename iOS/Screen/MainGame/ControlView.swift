@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ControlView: View {
-    @EnvironmentObject var boardRepository: FirestoreBoardRepository
     @EnvironmentObject var historyRepository: FirestoreHistoryRepository
 
     // Note:
