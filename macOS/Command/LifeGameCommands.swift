@@ -35,7 +35,7 @@ struct LifeGameCommands: Commands {
         
         CommandMenu("Game") {
             Section {
-                // TODO: beta4 bug (maybe...)❗
+                // TODO: macOS-beta4 bug (maybe...)❗
                 // Not update disabled state when viewModel was changed.
 
                 Button("Start", action: viewModel.tapPlayButton)

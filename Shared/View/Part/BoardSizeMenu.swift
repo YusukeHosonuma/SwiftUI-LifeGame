@@ -25,7 +25,7 @@ struct BoardSizeMenu: View {
         }, label: {
             #if os(macOS)
             // Note❗
-            // Crash when use `Button` in macOS. (beta4)
+            // Crash when use `Button`. (macOS-beta4)
             Text("\(size) x \(size)")
             #else
             Button("\(size) x \(size)") {}

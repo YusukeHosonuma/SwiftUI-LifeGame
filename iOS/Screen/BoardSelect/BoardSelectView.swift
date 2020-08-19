@@ -38,19 +38,6 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         }
     }
 
-    // Note:
-    // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
-    // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
-    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
-
-    // Note:
-    // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
-    // if network.status != .satisfied && repository.items.isEmpty {
-    //     Text("Network is offline.")
-    //         .foregroundColor(.secondary)
-    //         .padding()
-    // } else {
-    // }
     @State var isPresentedAlert = false
 
     // MARK: View
@@ -69,8 +56,6 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             // ```
             ScrollView {
                 VStack {
-                    // Note:
-                    // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
                     historySection()
                     allSection()
                 }
@@ -241,7 +226,7 @@ struct BoardSelectView_Previews: PreviewProvider {
                     .environmentObject(SettingEnvironment.shared)
                     .environmentObject(NetworkMonitor(mockStatus: networkStatus))
                     .environmentObject(Authentication(mockSignIn: isSignIn))
-                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta4）❗
             }
             VStack {
                 Text(description)

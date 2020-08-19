@@ -22,17 +22,6 @@ struct BoardSelectContextMenu: View {
                 Image(systemName: "star")
             }
         }
-        // Note:
-        // メニューのコンテンツ上での制限なのかアラートは表示できなかった。（beta4）❗
-        // ```
-        // @State var isPresentedAlert = false
-        //
-        // ...
-        //
-        // .alert(isPresented: $isPresentedAlert) {
-        //     Alert(title: Text("Sign-in is needed."))
-        // }
-        // ```
     }
 }
 
