@@ -11,8 +11,12 @@ import FirebaseAuth
 
 @main
 struct Application: App {
+
+    // Note: ✅
+    // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
+    
     @StateObject var settingEnvironment = SettingEnvironment.shared
-    @StateObject var boardRepository = FirestoreBoardRepository.shared
+    @StateObject var boardRepository = FirestoreBoardRepository.shared // TODO: Mac側のアカウント対応が終わったら不要になるはず。
     @StateObject var boardStore = BoardStore.shared
     @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
