@@ -62,7 +62,7 @@ struct SettingConfigView: View {
                 }
             }
         }
-        .navigationBarTitle("Game Config")
+        .navigationTitle("Game Config")
     }
 
     private var configuration: PHPickerConfiguration {

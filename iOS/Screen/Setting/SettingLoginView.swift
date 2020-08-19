@@ -40,7 +40,7 @@ struct SettingLoginView: View {
                     .frame(width: 280, height: 44)
                     .padding()
             }
-            .navigationBarTitle("Login")
+            .navigationTitle("Login")
         }
     }
     
