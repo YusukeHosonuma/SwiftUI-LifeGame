@@ -48,19 +48,15 @@ struct ControlView: View {
 
             Spacer()
             
-            Button(action: { isPresentedListSheet.toggle() }) {
+            SheetButton(by: $isPresentedListSheet) {
                 Image(systemName: "list.bullet")
+            } content: {
+                BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
+                     .environmentObject(setting)
+                     .environmentObject(authentication)
+                     .environmentObject(network)
             }
-            .sheet(isPresented: $isPresentedListSheet) {
-                BoardSelectView(
-                    boardStore: boardStore,
-                    isPresented: $isPresentedListSheet
-                )
-                 .environmentObject(setting)
-                 .environmentObject(authentication)
-                 .environmentObject(network)
-            }
-            
+
             ActionMenu(viewModel: viewModel) {
                 Button(action: viewModel.tapNextButton) {
                     Image(systemName: "ellipsis")

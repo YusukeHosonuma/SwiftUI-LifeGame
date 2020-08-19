@@ -32,10 +32,7 @@ struct SettingRootView: View {
                             Button("Sign-out", action: { isPresentedConfirmLogoutAlert.toggle() })
                                 .alert(isPresented: $isPresentedConfirmLogoutAlert, content: logoutConfirmAlert)
                         } else {
-                            Button("Sign-in") {
-                                isPresentedLogin.toggle()
-                            }
-                            .sheet(isPresented: $isPresentedLogin) {
+                            SheetButton("Sign-in", by: $isPresentedLogin) {
                                 SignInView(isPresented: $isPresentedLogin)
                             }
                         }
