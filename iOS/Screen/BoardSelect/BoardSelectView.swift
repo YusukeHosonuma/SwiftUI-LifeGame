@@ -12,8 +12,8 @@ import Network
 struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
+    @EnvironmentObject var authentication: Authentication
 
-    var isSignIn: Bool
     @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
     
@@ -21,7 +21,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     
     private var fileredItems: [BoardItem] {
         boardStore.allBoards
-            .filter(when: isSignIn && setting.isFilterByStared, isIncluded: \.stared)
+            .filter(when: authentication.isSignIn && setting.isFilterByStared, isIncluded: \.stared)
     }
     
     private var columns: [GridItem] {
@@ -38,19 +38,6 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         }
     }
 
-    // Note:
-    // 実機で2回目のレンダリング実行時に`NetworkMonitor`が見つからなくてクラッシュする不具合がある。（beta4時点）❗
-    // 以下のような解決情報もあるが、現時点では仕様かどうかの見極めがつかないので一旦コメントアウト（実際、SettingEnvironment は問題ない）
-    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
-
-    // Note:
-    // 既にプリセットが取得できている場合はオフラインでも何も表示しない。
-    // if network.status != .satisfied && repository.items.isEmpty {
-    //     Text("Network is offline.")
-    //         .foregroundColor(.secondary)
-    //         .padding()
-    // } else {
-    // }
     @State var isPresentedAlert = false
 
     // MARK: View
@@ -58,7 +45,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     var body: some View {
         NavigationView {
             // Note:
-            // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta4）❗
+            // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta5）❗
             //
             // ```
             // List {
@@ -69,13 +56,12 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             // ```
             ScrollView {
                 VStack {
-                    // Note:
-                    // ここで`VStack`をもう一度利用しようとするとクラッシュする。paddingで調整すれば問題ないが（beta4）❗
                     historySection()
                     allSection()
                 }
             }
-            .navigationBarTitle("Select board", displayMode: .inline)
+            .navigationTitle("Select board")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Button("Cancel", action: tapCancel))
         }
     }
@@ -88,7 +74,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         }
         .sectionHeader()
         
-        if isSignIn {
+        if authentication.isSignIn {
             BoardSelectHistoryView(
                 items: boardStore.histories,
                 toggleStar: { boardID in
@@ -117,9 +103,9 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                     Button(action: { tapCell(item) }) {
                         BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
                     }
-                    .contextMenu { // beta4 時点だとコンテンツ自体が半透明になって見づらくなる問題あり❗
+                    .contextMenu { // コンテンツ自体が半透明になって見づらくなる問題あり。仕様？（beta5）❗
                         BoardSelectContextMenu(isStared: item.stared) {
-                            if isSignIn {
+                            if authentication.isSignIn {
                                 withAnimation {
                                     self.boardStore.toggleLike(boardID: item.boardDocumentID)
                                 }
@@ -157,7 +143,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             
             Divider()
             
-            if isSignIn {
+            if authentication.isSignIn {
                 Toggle(isOn: $setting.isFilterByStared) {
                     Label("Star only", systemImage: "star.fill")
                 }
@@ -182,7 +168,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     }
     
     private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
-        if isSignIn {
+        if authentication.isSignIn {
             boardStore.addToHistory(boardID: boardDocumentID)
         }
         LifeGameContext.shared.setBoard(board) // TODO: refactor
@@ -236,10 +222,11 @@ struct BoardSelectView_Previews: PreviewProvider {
                     .font(.subheadline)
                     .bold()
                     .padding()
-                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                BoardSelectView(boardStore: boardStore, isPresented: .constant(true))
                     .environmentObject(SettingEnvironment.shared)
                     .environmentObject(NetworkMonitor(mockStatus: networkStatus))
-                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta 4）❗
+                    .environmentObject(Authentication(mockSignIn: isSignIn))
+                    .colorScheme(.dark) // preferredColorScheme だと期待どおりに動かない（beta4）❗
             }
             VStack {
                 Text(description)
@@ -247,9 +234,10 @@ struct BoardSelectView_Previews: PreviewProvider {
                     .font(.subheadline)
                     .bold()
                     .padding()
-                BoardSelectView(isSignIn: isSignIn, boardStore: boardStore, isPresented: .constant(true))
+                BoardSelectView(boardStore: boardStore, isPresented: .constant(true))
                     .environmentObject(SettingEnvironment.shared)
                     .environmentObject(NetworkMonitor(mockStatus: networkStatus))
+                    .environmentObject(Authentication(mockSignIn: isSignIn))
                     .colorScheme(.light)
             }
         }

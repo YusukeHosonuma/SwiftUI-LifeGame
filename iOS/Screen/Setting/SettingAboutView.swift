@@ -22,7 +22,7 @@ struct SettingAboutView: View {
             }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle("About")
+        .navigationTitle("About")
     }
 }
 

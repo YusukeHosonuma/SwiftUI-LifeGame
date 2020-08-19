@@ -53,7 +53,7 @@ struct Application: App {
             LifeGameCommands(viewModel: viewModel,
                              boardRepository: boardRepository,
                              fileManager: fileManager)
-                // ❗API is not supported in beta4
+                // ❗API is not supported in macOS-beta4
                 // .environmentObject(boardRepository)
         }
         #else

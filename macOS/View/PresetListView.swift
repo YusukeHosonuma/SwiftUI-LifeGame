@@ -21,7 +21,7 @@ struct PresetListView: View {
                             .frame(width: 120, height: 120, alignment: .center)
                         Text("\(item.title)")
                     }
-                    .contentShape(Rectangle()) // ❗not working in beta4
+                    .contentShape(Rectangle()) // ❗not working in macOS-beta4
                     .onTapGesture {
                         tapCell(board: item)
                     }

@@ -26,7 +26,7 @@ struct SettingRootView: View {
                 }
             }
             .listStyle(GroupedListStyle()) // Note: 明示的に指定しないと iPad でサイドバー表示になってしまう
-            .navigationBarTitle("Settings")
+            .navigationTitle("Settings")
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
