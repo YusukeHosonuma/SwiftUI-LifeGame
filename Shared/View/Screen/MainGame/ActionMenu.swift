@@ -7,7 +7,11 @@
 
 import SwiftUI
 
+private let PresetSizes = [16, 32, 64, 96, 128]
+
 struct ActionMenu<Label>: View where Label: View {
+    @EnvironmentObject var setting: SettingEnvironment
+    
     @ObservedObject var viewModel: MainGameViewModel
     
     let label: () -> Label
@@ -47,6 +51,19 @@ struct ActionMenu<Label>: View where Label: View {
             HStack {
                 Text("Random")
                 Image(systemName: "square.grid.2x2.fill")
+            }
+        }
+
+        Divider()
+        
+        Picker("", selection: $setting.boardSize) {
+            ForEach(PresetSizes, id: \.self) { size in
+                Button(action: { setting.boardSize = size }) {
+                    HStack {
+                        Text("\(size) x \(size)")
+                        Image(systemName: "square.grid.2x2")
+                    }
+                }
             }
         }
     }

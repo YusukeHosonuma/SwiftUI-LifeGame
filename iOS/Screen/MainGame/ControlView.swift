@@ -58,7 +58,7 @@ struct ControlView: View {
             }
 
             ActionMenu(viewModel: viewModel) {
-                Button(action: viewModel.tapNextButton) {
+                Button(action: {}) {
                     Image(systemName: "ellipsis")
                 }
             }
