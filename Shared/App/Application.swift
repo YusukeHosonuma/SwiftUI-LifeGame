@@ -45,6 +45,11 @@ struct Application: App {
     
     var body: some Scene {
         #if os(macOS)
+
+        // Note:
+        // `WindowGroup`をもう一つ宣言しても無視されてしまいマルチウィンドウのアプリにはならない。（beta5❗）
+        // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
+        
         WindowGroup {
             MacRootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
