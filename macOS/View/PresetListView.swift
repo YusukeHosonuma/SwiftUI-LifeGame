@@ -20,8 +20,9 @@ struct PresetListView: View {
                         BoardThumbnailImage(board: item.makeBoard(), cacheKey: item.id)
                             .frame(width: 120, height: 120, alignment: .center)
                         Text("\(item.title)")
+                        Spacer()
                     }
-                    .contentShape(Rectangle()) // ❗not working in macOS-beta4
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         tapCell(board: item)
                     }
