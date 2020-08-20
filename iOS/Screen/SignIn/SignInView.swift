@@ -51,7 +51,11 @@ struct SignInView: View {
                         }
                 }
                 .navigationTitle("Sign-in")
-                .navigationBarItems(leading: Button("Cancel", action: dismiss))
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel", action: dismiss)
+                    }
+                }
                 
                 if isDisplayProgress {
                     ProgressView("Sign-in")

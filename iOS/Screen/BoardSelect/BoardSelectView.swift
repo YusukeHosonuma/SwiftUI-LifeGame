@@ -62,7 +62,11 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             }
             .navigationTitle("Select board")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("Cancel", action: tapCancel))
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", action: tapCancel)
+                }
+            }
         }
     }
     
