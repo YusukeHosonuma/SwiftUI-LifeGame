@@ -57,7 +57,7 @@ struct Provider: IntentTimelineProvider {
                 .map { hourOffset, document in
                     let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
                     let data = LifeGameData(title: document.title,
-                                            board: document.board.extended(by: .die),
+                                            board: document.board.extended(by: .die, count: 1),
                                             url: URL(string: "board:///\(document.id)")!,
                                             cacheKey: document.id)
                     return LifeGameEntry(date: entryDate, relevance: data)

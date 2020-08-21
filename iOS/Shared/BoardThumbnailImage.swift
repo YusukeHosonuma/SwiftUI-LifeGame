@@ -24,7 +24,7 @@ struct BoardThumbnailImage: View {
     private let cacheKey: String?
     
     init(board: Board<Cell>, cellColor: Color? = nil, cacheKey: String? = nil) {
-        self.board = board.extended(by: .die)
+        self.board = board.extended(by: .die, count: 1)
         self.cellColor = cellColor
         self.cacheKey = cacheKey
     }
