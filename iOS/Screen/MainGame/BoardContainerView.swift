@@ -81,7 +81,6 @@ struct BoardContainerView: View {
                 //
                 // Drag event
                 //
-                
                 let x = value.location.x - value.startLocation.x
                 let y = value.location.y - value.startLocation.y
                 
@@ -105,8 +104,7 @@ struct BoardContainerView: View {
                         currentPoint = CGPoint.zero
                     }
                 } else {
-                    latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
-                    currentPoint = CGPoint.zero
+                    updatePoint()
                 }
 
                 guard value.location == value.startLocation else { return }
@@ -142,11 +140,8 @@ struct BoardContainerView: View {
                 currentPoint = CGPoint(x: x - latestPoint.x, y: y - latestPoint.y)
             }
             .onEnded { value in
-                latestScale *= currentScale
-                currentScale = 1
-
-                latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
-                currentPoint = CGPoint.zero
+                updateScale()
+                updatePoint()
 
                 // Adjust the board to stay within range.
                 withAnimation {
@@ -160,5 +155,17 @@ struct BoardContainerView: View {
                     }
                 }
             }
+    }
+    
+    // Private
+    
+    private func updateScale() {
+        latestScale *= currentScale
+        currentScale = 1
+    }
+    
+    private func updatePoint() {
+        latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
+        currentPoint = CGPoint.zero
     }
 }
