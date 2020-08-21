@@ -91,8 +91,8 @@ struct BoardContainerView: View {
                 if scale < 1.0 {
                     space = -space
                 }
-                currentPoint = CGPoint(x: min(space - latestPoint.x, max(-space - latestPoint.x, x)),
-                                       y: min(space - latestPoint.y, max(-space - latestPoint.y, y)))
+                currentPoint = CGPoint(x: within(value: x, min: -space - latestPoint.x, max: space - latestPoint.x),
+                                       y: within(value: y, min: -space - latestPoint.y, max: space - latestPoint.y))
             }
             .onEnded { value in
                 //
@@ -155,8 +155,8 @@ struct BoardContainerView: View {
                     if latestScale < 1.0 {
                         latestPoint = CGPoint.zero
                     } else {
-                        latestPoint = CGPoint(x: min(space, max(-space, latestPoint.x)),
-                                              y: min(space, max(-space, latestPoint.y)))
+                        latestPoint = CGPoint(x: within(value: latestPoint.x, min: -space, max: space),
+                                              y: within(value: latestPoint.y, min: -space, max: space))
                     }
                 }
             }
