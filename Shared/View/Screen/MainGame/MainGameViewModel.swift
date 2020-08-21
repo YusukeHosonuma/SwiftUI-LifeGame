@@ -50,6 +50,10 @@ final class MainGameViewModel: ObservableObject {
 
     // MARK: - Actions
     
+    func setBoard(board: LifeGameBoard) {
+        _context.setLifeGameBoard(board)
+    }
+    
     func tapCell(x: Int, y: Int) {
         _context.toggle(x: x, y: y)
     }

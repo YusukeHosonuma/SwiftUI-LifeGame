@@ -57,6 +57,13 @@ struct ActionMenu<Content>: View where Content: View {
         Divider()
 
         Picker("", selection: $setting.boardSize) {
+            
+            // Note:
+            // `DisclosureGroup`は表示されるもののタップしても展開されない。`Picker`の外側に配置するとレイアウト崩れ（beta 5）❗
+            // ```
+            // DisclosureGroup("Size") { ... }
+            // ```
+            
             ForEach(PresetSizes, id: \.self) { size in
                 Label("\(size) x \(size)", systemImage: "square.grid.2x2")
             }

@@ -105,6 +105,10 @@ final class LifeGameContext {
         _board.value = LifeGameBoard(board: newBoard)
     }
     
+    func setLifeGameBoard(_ board: LifeGameBoard) {
+        _board.value = board
+    }
+    
     // TODO: remove (meybe...)
     func setPreset(_ preset: BoardPreset) {
         _board.value.clear()
@@ -167,6 +171,10 @@ final private class StopState: BaseState {
         }
     }
     
+    override func stop() -> StateExecutor? {
+        { _ in self }
+    }
+
     override func next() -> StateExecutor? {
         {
             $0._board.value.next()
