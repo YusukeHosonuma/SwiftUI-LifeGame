@@ -11,6 +11,8 @@ import Foundation
 import SwiftUI
 import os
 
+// TODO: 最初のノリで作ったはいいけど完全に負債なので早くリファクタリングして。どうぞ。
+
 final class LifeGameContext {
     private static let _logger = Logger(subsystem: "tech.penginmura.LifeGameApp", category: "UserDefaults") // TODO: refactor
     
@@ -37,7 +39,7 @@ final class LifeGameContext {
     
     private init(setting: SettingEnvironment = .shared) {
         _setting = setting
-        _board = .init(LifeGameBoard(size: 13))
+        _board = .init(LifeGameBoard(size: setting.boardSize))
         _speed = .init(setting.animationSpeed)
         
         _setting.$animationSpeed
@@ -45,9 +47,10 @@ final class LifeGameContext {
             .store(in: &_cancellables)
 
         _setting.$boardSize
+            .dropFirst()
             .sink { [weak self] size in
                 guard let self = self else { return }
-                self._board.value = LifeGameBoard(size: size)
+                self._board.value.changeBoardSize(to: size)
             }
             .store(in: &_cancellables)
     }

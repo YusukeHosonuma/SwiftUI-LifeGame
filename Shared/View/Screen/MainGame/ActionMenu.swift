@@ -9,18 +9,18 @@ import SwiftUI
 
 private let PresetSizes = [16, 32, 64, 96, 128]
 
-struct ActionMenu<Label>: View where Label: View {
+struct ActionMenu<Content>: View where Content: View {
     @EnvironmentObject var setting: SettingEnvironment
     
     @ObservedObject var viewModel: MainGameViewModel
     
-    let label: () -> Label
+    let label: () -> Content
     
     // MARK: Private
     
     @State private var isPresentedClearAlert = false
     
-    init(viewModel: MainGameViewModel, @ViewBuilder label: @escaping () -> Label) {
+    init(viewModel: MainGameViewModel, @ViewBuilder label: @escaping () -> Content) {
         self.viewModel = viewModel
         self.label = label
     }
@@ -55,15 +55,10 @@ struct ActionMenu<Label>: View where Label: View {
         }
 
         Divider()
-        
+
         Picker("", selection: $setting.boardSize) {
             ForEach(PresetSizes, id: \.self) { size in
-                Button(action: { setting.boardSize = size }) {
-                    HStack {
-                        Text("\(size) x \(size)")
-                        Image(systemName: "square.grid.2x2")
-                    }
-                }
+                Label("\(size) x \(size)", systemImage: "square.grid.2x2")
             }
         }
     }
