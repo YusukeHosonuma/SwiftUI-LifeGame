@@ -30,17 +30,10 @@ struct Application: App {
 
         // ref: https://firebase.google.com/docs/auth/ios/single-sign-on?hl=ja
         do {
-            try Auth.auth().useUserAccessGroup("P437HSA6PY.shared")
+            try Auth.auth().useUserAccessGroup("P437HSA6PY.shared") // TODO: そのうちチームIDを除外したい
         } catch let error as NSError {
             fatalError("Error changing user access group: \(error.localizedDescription)")
         }
-        
-        #if os(macOS)
-        // TODO: How can disable scroll-bounce in mac?
-        #elseif os(iOS)
-        // ref: https://stackoverflow.com/a/59926791
-        UIScrollView.appearance().bounces = false
-        #endif
     }
     
     var body: some Scene {
