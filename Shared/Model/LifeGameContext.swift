@@ -167,6 +167,10 @@ final private class StopState: BaseState {
         }
     }
     
+    override func stop() -> StateExecutor? {
+        { _ in self }
+    }
+
     override func next() -> StateExecutor? {
         {
             $0._board.value.next()

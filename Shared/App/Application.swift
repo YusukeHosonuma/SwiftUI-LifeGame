@@ -11,7 +11,8 @@ import FirebaseAuth
 
 @main
 struct Application: App {
-
+    @Environment(\.scenePhase) private var scenePhase
+    
     // Note: ✅
     // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
     
@@ -75,6 +76,22 @@ struct Application: App {
                             let board = document.makeBoard()
                             LifeGameContext.shared.setBoard(board)
                         }
+                }
+                .onChange(of: scenePhase) { phase in
+                    switch phase {
+                    case .active:
+                        AppLogger.appLifecycle.info("Will active...")
+                        
+                    case .inactive:
+                        AppLogger.appLifecycle.info("Will inactive...")
+                        viewModel.tapStopButton()
+                        
+                    case .background:
+                        AppLogger.appLifecycle.info("Will background...")
+
+                    @unknown default:
+                        fatalError()
+                    }
                 }
         }
         .commands {

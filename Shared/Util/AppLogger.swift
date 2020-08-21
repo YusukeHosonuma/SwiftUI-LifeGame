@@ -9,4 +9,5 @@ import os
 
 enum AppLogger {
     static let imageLoadBug = Logger(subsystem: "LifeGameApp", category: "imageLoadBug")
+    static let appLifecycle = Logger(subsystem: "LifeGameApp", category: "app.lifecycle")
 }
