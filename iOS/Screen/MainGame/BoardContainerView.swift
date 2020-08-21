@@ -62,11 +62,11 @@ struct BoardContainerView: View {
             .gesture(dragGesture(boardViewSize: geometry.size.width))
             // Not working in real devices (beta 5)❗
             // https://developer.apple.com/forums/thread/653022
-            .simultaneousGesture(magnificationGesture())
+            .simultaneousGesture(magnificationGesture(boardViewSize: geometry.size.width))
         }
         .clipped()
     }
-    
+
     private var cellColor: Color {
         colorScheme == .dark
             ? setting.darkModeColor
@@ -81,15 +81,33 @@ struct BoardContainerView: View {
                 //
                 // Drag event
                 //
-                currentPoint = CGPoint(x: value.location.x - value.startLocation.x,
-                                       y: value.location.y - value.startLocation.y)
+                
+                let x = value.location.x - value.startLocation.x
+                let y = value.location.y - value.startLocation.y
+                
+                // Make board keep in the range.
+                let renderSize = boardViewSize * scale
+                var space = (renderSize - boardViewSize) / 2
+                if scale < 1.0 {
+                    space = -space
+                }
+                currentPoint = CGPoint(x: min(space - latestPoint.x, max(-space - latestPoint.x, x)),
+                                       y: min(space - latestPoint.y, max(-space - latestPoint.y, y)))
             }
             .onEnded { value in
                 //
                 // Drag event
                 //
-                latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
-                currentPoint = CGPoint.zero
+                if scale < 1.0 {
+                    // Adjust point to origin point.
+                    withAnimation {
+                        latestPoint = CGPoint.zero
+                        currentPoint = CGPoint.zero
+                    }
+                } else {
+                    latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
+                    currentPoint = CGPoint.zero
+                }
 
                 guard value.location == value.startLocation else { return }
                 
@@ -113,14 +131,34 @@ struct BoardContainerView: View {
             }
     }
     
-    private func magnificationGesture() -> some Gesture {
+    private func magnificationGesture(boardViewSize: CGFloat) -> some Gesture {
         MagnificationGesture()
             .onChanged { value in
                 currentScale = max(value, minScale)
+                
+                // Scale from the center of visual range.
+                let x = latestPoint.x * currentScale
+                let y = latestPoint.y * currentScale
+                currentPoint = CGPoint(x: x - latestPoint.x, y: y - latestPoint.y)
             }
             .onEnded { value in
                 latestScale *= currentScale
                 currentScale = 1
+
+                latestPoint = CGPoint(x: latestPoint.x + currentPoint.x, y: latestPoint.y + currentPoint.y)
+                currentPoint = CGPoint.zero
+
+                // Adjust the board to stay within range.
+                withAnimation {
+                    let renderSize = boardViewSize * latestScale
+                    let space = (renderSize - boardViewSize) / 2
+                    if latestScale < 1.0 {
+                        latestPoint = CGPoint.zero
+                    } else {
+                        latestPoint = CGPoint(x: min(space, max(-space, latestPoint.x)),
+                                              y: min(space, max(-space, latestPoint.y)))
+                    }
+                }
             }
     }
 }
