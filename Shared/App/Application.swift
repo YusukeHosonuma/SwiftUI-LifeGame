@@ -8,10 +8,14 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
+import LifeGame
 
 @main
 struct Application: App {
     @Environment(\.scenePhase) private var scenePhase
+    
+    // TODO: とりあえず実験的に`@AppStorage`を使ってみたが、ボードの状態を保存するのは用途として間違っているので、たぶん将来的に削除する。
+    @AppStorage(wrappedValue: LifeGameBoard(size: 32), "currentBoard") private var currentBoard: LifeGameBoard
     
     // Note: ✅
     // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
@@ -77,6 +81,9 @@ struct Application: App {
                             LifeGameContext.shared.setBoard(board)
                         }
                 }
+                .onAppear {
+                    viewModel.setBoard(board: currentBoard)
+                }
                 .onChange(of: scenePhase) { phase in
                     switch phase {
                     case .active:
@@ -85,7 +92,8 @@ struct Application: App {
                     case .inactive:
                         AppLogger.appLifecycle.info("Will inactive...")
                         viewModel.tapStopButton()
-                        
+                        currentBoard = viewModel.board // タスクスイッチャーから直接killされると`background`を介さないのでここで保存
+
                     case .background:
                         AppLogger.appLifecycle.info("Will background...")
 
