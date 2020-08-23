@@ -10,14 +10,8 @@ import SwiftUI
 struct MacRootView: View {
     @ObservedObject var viewModel: MainGameViewModel
     
-    @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
-
-    @Environment(\.colorScheme) private var colorScheme
-
-    @State private var isPresentedLoginFailedAlert = false
-    @State private var isSignInProgress = false
 
     private var title: String {
         fileManager.latestURL?.lastPathComponent ?? "Untitled"
@@ -25,41 +19,7 @@ struct MacRootView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Presets")) {
-                    Text("Random")
-                        .onTapGesture(perform: viewModel.tapRandomButton)
-                }
-
-                Section(header: Text("Animation Speed")) {
-                    Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
-                }
-                
-                Section(header: Text("Sign-in")) {
-                    HCenter {
-                        if authentication.isSignIn {
-                            Button("Logout") {
-                                authentication.signOut()
-                            }
-                        } else {
-                            if isSignInProgress {
-                                ProgressView()
-                            } else {
-                                SignInButton(inProgress: $isSignInProgress, completion: signInCompletion)
-                                    .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-                                    .frame(height: 36)
-                                    .padding()
-                                    .alert(isPresented: $isPresentedLoginFailedAlert) {
-                                        Alert(title: Text("Login is failed."))
-                                    }
-                            }
-                        }
-                    }
-                }
-            }
-            .listStyle(SidebarListStyle())
-            .frame(minWidth: 212, idealWidth: 212, maxWidth: 212, maxHeight: .infinity)
-            
+            MacNavigationView(viewModel: viewModel)
             ContentView(viewModel: viewModel, zoomLevel: setting.zoomLevel)
         }
         .navigationTitle(title)
@@ -115,12 +75,6 @@ struct MacRootView: View {
                     Image(systemName: "minus.magnifyingglass")
                 }
             }
-        }
-    }
-    
-    private func signInCompletion(error: Error?) -> Void {
-        if let _ = error {
-            isPresentedLoginFailedAlert.toggle()
         }
     }
 }

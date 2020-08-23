@@ -107,6 +107,7 @@
 		E57F07B224F267470057B2D1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
 		E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
 		E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
+		E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */; };
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
 		E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
@@ -272,6 +273,7 @@
 		E574356924E972F900BB27CA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectHistoryView.swift; sourceTree = "<group>"; };
 		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
 		E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
 		E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWPathMonitor+Publisher.swift"; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
 				E55F7AA924DD101900DBC175 /* PresetListView.swift */,
@@ -1264,6 +1267,7 @@
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
+				E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */,
