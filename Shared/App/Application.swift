@@ -8,14 +8,17 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
+import FirebaseCore
 import LifeGame
 
 @main
 struct Application: App {
     @Environment(\.scenePhase) private var scenePhase
     
+    #if os(iOS)
     // TODO: とりあえず実験的に`@AppStorage`を使ってみたが、ボードの状態を保存するのは用途として間違っているので、たぶん将来的に削除する。
     @AppStorage(wrappedValue: LifeGameBoard(size: 32), "currentBoard") private var currentBoard: LifeGameBoard
+    #endif
     
     // Note: ✅
     // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
@@ -57,6 +60,7 @@ struct Application: App {
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
                 .environmentObject(fileManager)
+                .environmentObject(authentication)
         }
         .commands {
             LifeGameCommands(viewModel: viewModel,

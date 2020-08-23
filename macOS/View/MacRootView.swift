@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MacRootView: View {
     @ObservedObject var viewModel: MainGameViewModel
+    
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
 
@@ -18,27 +19,7 @@ struct MacRootView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Presets")) {
-//                    ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-//                        Text(preset.displayText)
-//                            .onTapGesture {
-//                                viewModel.selectPreset(preset)
-//                            }
-//                    }
-//                    Divider()
-                    
-                    Text("Random")
-                        .onTapGesture(perform: viewModel.tapRandomButton)
-                }
-
-                Section(header: Text("Animation Speed")) {
-                    Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
-                }
-            }
-            .listStyle(SidebarListStyle())
-            .frame(minWidth: 212, idealWidth: 212, maxWidth: 212, maxHeight: .infinity)
-            
+            MacNavigationView(viewModel: viewModel)
             ContentView(viewModel: viewModel, zoomLevel: setting.zoomLevel)
         }
         .navigationTitle(title)

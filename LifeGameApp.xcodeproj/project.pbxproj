@@ -103,9 +103,11 @@
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E574356A24E972F900BB27CA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356924E972F900BB27CA /* Authentication.swift */; };
 		E574356B24E972F900BB27CA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356924E972F900BB27CA /* Authentication.swift */; };
-		E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356C24E9767900BB27CA /* SignInOutView.swift */; };
-		E574356E24E9767900BB27CA /* SignInOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356C24E9767900BB27CA /* SignInOutView.swift */; };
 		E574357024E97CF900BB27CA /* BoardSelectHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */; };
+		E57F07B224F267470057B2D1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
+		E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
+		E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
+		E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */; };
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
 		E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
@@ -269,8 +271,9 @@
 		E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSizeMenu.swift; sourceTree = "<group>"; };
 		E573BD8124D053F90096BF75 /* LifeGameCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameCommands.swift; sourceTree = "<group>"; };
 		E574356924E972F900BB27CA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		E574356C24E9767900BB27CA /* SignInOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInOutView.swift; sourceTree = "<group>"; };
 		E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectHistoryView.swift; sourceTree = "<group>"; };
+		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
 		E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
 		E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWPathMonitor+Publisher.swift"; sourceTree = "<group>"; };
@@ -500,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				E562329C24EBE5B400281C1E /* SignInView.swift */,
+				E57F07B324F267720057B2D1 /* SignInButton.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -604,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */,
-				E574356C24E9767900BB27CA /* SignInOutView.swift */,
 				E51FD74C24F20917002981F4 /* AppTextEditor.swift */,
 			);
 			path = View;
@@ -614,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
 				E55F7AA924DD101900DBC175 /* PresetListView.swift */,
@@ -1173,9 +1177,9 @@
 				E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
 				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
+				E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */,
-				E574356D24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E5529CDF24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift in Sources */,
 				E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */,
@@ -1243,6 +1247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */,
 				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E56DBCB024E4FE3200849CE4 /* Array+.swift in Sources */,
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
@@ -1261,6 +1266,8 @@
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
+				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
+				E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */,
@@ -1269,7 +1276,6 @@
 				E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */,
-				E574356E24E9767900BB27CA /* SignInOutView.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E54A993524EA766C00298388 /* BoardStore.swift in Sources */,
 				E526A07824EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,

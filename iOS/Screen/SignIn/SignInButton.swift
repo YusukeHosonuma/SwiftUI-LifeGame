@@ -1,55 +1,58 @@
 //
-//  SignInOutView.swift
+//  SignInButton.swift
 //  LifeGameApp
 //
-//  Created by Yusuke Hosonuma on 2020/08/16.
+//  Created by Yusuke Hosonuma on 2020/08/23.
 //
 
+import AuthenticationServices
 import SwiftUI
+import os
 import FirebaseAuth
 import CryptoKit
-import AuthenticationServices
-import os
 
-private let logger = Logger(subsystem: "LifeGameApp", category: "SignInOutView")
+private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
 
-struct SignInOutView: View {
-    @EnvironmentObject var authentication: Authentication
+struct SignInButton: View {
+    @Binding private var inProgress: Bool
+    private let completion: (Error?) -> Void
 
     @State private var currentNonce: String?
-
-    var body: some View {
-        HCenter {
-            if authentication.isSignIn {
-                Button("Sign out", action: authentication.signOut)
-            } else {
-                SignInWithAppleButton(
-                    onRequest: { request in
-                        let nonce = randomNonceString()
-                        currentNonce = nonce
-                        request.nonce = sha256(nonce)
-                        
-                        // Note:
-                        // とりあえず今は何も取得しない。
-                        // request.requestedScopes = [.fullName, .email]
-                    },
-                    onCompletion: { result in
-                        switch result {
-                        case let .success(authorization):
-                            self.signIn(authorization: authorization)
-                            
-                        case let .failure(error):
-                            logger.notice("Sign in with Apple is failed. - \(error.localizedDescription)")
-                        }
-                    })
-                    .frame(width: 240, height: 36)
-            }
-        }
+    
+    init(inProgress: Binding<Bool>, completion: @escaping (Error?) -> Void) {
+        _inProgress = inProgress
+        self.completion = completion
     }
     
-    // MARK: - Actions
+    var body: some View {
+        SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
+    }
     
+    // MARK: Private
+    
+    private func onRequest(request: ASAuthorizationAppleIDRequest) {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        request.nonce = sha256(nonce)
+        
+        // Note:
+        // とりあえず今は何も取得しない。
+        // request.requestedScopes = [.fullName, .email]
+    }
+    
+    private func onCompletion(result: Result<ASAuthorization, Error>) {
+        switch result {
+        case let .success(authorization):
+            self.signIn(authorization: authorization)
+            
+        case let .failure(error):
+            logger.notice("Sign in with Apple is failed. - \(error.localizedDescription)")
+        }
+    }
+
     private func signIn(authorization: ASAuthorization) {
+        inProgress = true
+        
         // TODO: エラー処理は細かく精査してないので、とりあえず`fatalError`にして失敗した時にすぐに気付けるようにしておく。
         
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
@@ -76,17 +79,21 @@ struct SignInOutView: View {
                                                   rawNonce: nonce)
 
         Auth.auth().signIn(with: credential) { (authResult, error) in
+            inProgress = false
+
             if let error = error as NSError? {
                 logger.error("Firebase sign-in is failure. - \(error.localizedDescription)")
-                fatalError()
+                completion(error)
+            } else {
+                completion(nil)
             }
         }
     }
 }
 
-struct SignInOutView_Previews: PreviewProvider {
+struct SignInButton_Previews: PreviewProvider {
     static var previews: some View {
-        SignInOutView()
+        SignInButton(inProgress: .constant(false), completion: { _ in })
     }
 }
 
