@@ -9,8 +9,15 @@ import SwiftUI
 
 struct MacRootView: View {
     @ObservedObject var viewModel: MainGameViewModel
+    
+    @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
+
+    @Environment(\.colorScheme) private var colorScheme
+
+    @State private var isPresentedLoginFailedAlert = false
+    @State private var isSignInProgress = false
 
     private var title: String {
         fileManager.latestURL?.lastPathComponent ?? "Untitled"
@@ -20,20 +27,34 @@ struct MacRootView: View {
         NavigationView {
             List {
                 Section(header: Text("Presets")) {
-//                    ForEach(BoardPreset.allCases, id: \.rawValue) { preset in
-//                        Text(preset.displayText)
-//                            .onTapGesture {
-//                                viewModel.selectPreset(preset)
-//                            }
-//                    }
-//                    Divider()
-                    
                     Text("Random")
                         .onTapGesture(perform: viewModel.tapRandomButton)
                 }
 
                 Section(header: Text("Animation Speed")) {
                     Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+                }
+                
+                Section(header: Text("Sign-in")) {
+                    HCenter {
+                        if authentication.isSignIn {
+                            Button("Logout") {
+                                authentication.signOut()
+                            }
+                        } else {
+                            if isSignInProgress {
+                                ProgressView()
+                            } else {
+                                SignInButton(inProgress: $isSignInProgress, completion: signInCompletion)
+                                    .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                                    .frame(height: 36)
+                                    .padding()
+                                    .alert(isPresented: $isPresentedLoginFailedAlert) {
+                                        Alert(title: Text("Login is failed."))
+                                    }
+                            }
+                        }
+                    }
                 }
             }
             .listStyle(SidebarListStyle())
@@ -94,6 +115,12 @@ struct MacRootView: View {
                     Image(systemName: "minus.magnifyingglass")
                 }
             }
+        }
+    }
+    
+    private func signInCompletion(error: Error?) -> Void {
+        if let _ = error {
+            isPresentedLoginFailedAlert.toggle()
         }
     }
 }

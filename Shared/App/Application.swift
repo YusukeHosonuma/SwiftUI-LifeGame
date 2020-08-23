@@ -60,6 +60,7 @@ struct Application: App {
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
                 .environmentObject(fileManager)
+                .environmentObject(authentication)
         }
         .commands {
             LifeGameCommands(viewModel: viewModel,
