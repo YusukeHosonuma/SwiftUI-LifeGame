@@ -12,13 +12,11 @@ private let LimitDescriptionCount = 400
 struct FeedbackView: View {
     @StateObject private var feedbackManager: FeedbackManager
     @Binding private var isPresented: Bool
-    @State private var isPresentedInvalidAlert = false
-    @State private var isPresentedSendConfirmAlert = false
-    @State private var isPresentedSentAlert = false
+    @State private var presentedAlert: Alerts?
 
     init(isPresented: Binding<Bool>, userID: String) {
         _isPresented = isPresented
-        _feedbackManager = StateObject(wrappedValue: FeedbackManager(userID: userID)) // TODO: ✅ やや実験的
+        _feedbackManager = StateObject(wrappedValue: FeedbackManager(userID: userID)) // TODO: ✅ Experimental
     }
 
     var body: some View {
@@ -29,18 +27,9 @@ struct FeedbackView: View {
                         ForEach(FeedbackCategory.allCases) { Text($0.description).tag($0) }
                     }
                 }
-                .alert(isPresented: $isPresentedInvalidAlert) {
-                    Alert(title: Text("Please input title and description."))
-                }
-                
                 Section(header: Text("Title")) {
                     TextField("Example: It crashed when I tapped the button.", text: $feedbackManager.title)
                 }
-                .alert(isPresented: $isPresentedSentAlert) {
-                    Alert(title: Text("Thanks for feedback!"),
-                          dismissButton: .default(Text("OK")) { isPresented = false })
-                }
-                
                 Section(
                     header: HStack {
                         Text("Description")
@@ -48,21 +37,14 @@ struct FeedbackView: View {
                         Text("\(feedbackManager.content.count) / \(LimitDescriptionCount)")
                             .foregroundColor(feedbackManager.content.count == LimitDescriptionCount ? .red : nil)
                     },
-                    footer: Text("Please enter less than \(LimitDescriptionCount) characters.")) {
+                    footer: Text("Please enter less than \(LimitDescriptionCount) characters.")
+                ) {
                     AppTextEditor(text: $feedbackManager.content, placeholder: "Please fill in freely.", limit: LimitDescriptionCount)
                         .lineLimit(nil)
                         .frame(height: 100)
                 }
-
             }
-            // Note:
-            // `.alert()`をチェーンさせるような書き方はできないらしい。（おそらく元のViewが存在しないとNG）
-            // また`ToolbarItem`内の`Button`に`.alert()`してもダメらしい。（beta5）❗
-            .alert(isPresented: $isPresentedSendConfirmAlert) {
-                Alert(title: Text("Send feedback?"),
-                      primaryButton: .default(Text("Send"), action: tapSendAlertButton),
-                      secondaryButton: .cancel())
-            }
+            .alert(item: $presentedAlert) { $0.alert }
             .listStyle(GroupedListStyle())
             .navigationTitle("Feedback")
             .navigationBarTitleDisplayMode(.inline)
@@ -77,6 +59,28 @@ struct FeedbackView: View {
         }
     }
     
+    // MARK: Alert
+
+    private func showAlert(_ type: AlertType) {
+        let alert: Alerts
+
+        switch type {
+        case .invalid:
+            alert = .invalid
+            
+        case .sendConfirm:
+            alert = .sendConfirm {
+                feedbackManager.send()
+                showAlert(.thanks)
+            }
+            
+        case .thanks:
+            alert = .thanks { isPresented = false }
+        }
+
+        self.presentedAlert = alert
+    }
+    
     // MARK: Action
     
     private func tapCancelButton() {
@@ -86,15 +90,46 @@ struct FeedbackView: View {
     // TODO: テストしやすくするなら、このあたりも`FeedbackManager`に移したほうがよいかも。
     private func tapSendToolbarButton() {
         guard feedbackManager.isValid() else {
-            isPresentedInvalidAlert.toggle()
+            showAlert(.invalid)
             return
         }
-        isPresentedSendConfirmAlert.toggle()
+        showAlert(.sendConfirm)
+    }
+}
+
+private enum AlertType {
+    case invalid
+    case sendConfirm
+    case thanks
+}
+
+private enum Alerts: Identifiable {
+    case invalid
+    case sendConfirm(action: () -> Void)
+    case thanks(action: () -> Void)
+
+    var alert: Alert {
+        switch self {
+        case .invalid:
+            return Alert(title: Text("Please input title and description."))
+            
+        case let .sendConfirm(action):
+            return Alert(title: Text("Send feedback?"),
+                         primaryButton: .default(Text("Send"), action: action),
+                         secondaryButton: .cancel())
+            
+        case let .thanks(action):
+            return Alert(title: Text("Thanks for feedback!"),
+                         dismissButton: .default(Text("OK"), action: action))
+        }
     }
 
-    private func tapSendAlertButton() {
-        feedbackManager.send()
-        isPresentedSentAlert.toggle()
+    var id: Int {
+        switch self {
+        case .invalid:        return 0
+        case .sendConfirm(_): return 1
+        case .thanks(_):      return 2
+        }
     }
 }
 
