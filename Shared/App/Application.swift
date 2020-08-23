@@ -39,6 +39,10 @@ struct Application: App {
         } catch let error as NSError {
             fatalError("Error changing user access group: \(error.localizedDescription)")
         }
+        
+        #if os(iOS)
+        UITextView.appearance().backgroundColor = .clear
+        #endif
     }
     
     var body: some Scene {
