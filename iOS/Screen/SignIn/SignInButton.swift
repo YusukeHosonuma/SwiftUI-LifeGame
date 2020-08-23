@@ -14,9 +14,9 @@ import CryptoKit
 private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
 
 struct SignInButton: View {
+    @Binding private var inProgress: Bool
     private let completion: (Error?) -> Void
 
-    @Binding private var inProgress: Bool
     @State private var currentNonce: String?
     
     init(inProgress: Binding<Bool>, completion: @escaping (Error?) -> Void) {
@@ -83,7 +83,7 @@ struct SignInButton: View {
 
             if let error = error as NSError? {
                 logger.error("Firebase sign-in is failure. - \(error.localizedDescription)")
-                completion(error)                
+                completion(error)
             } else {
                 completion(nil)
             }
