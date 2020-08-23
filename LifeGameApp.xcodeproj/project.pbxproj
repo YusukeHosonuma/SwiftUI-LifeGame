@@ -139,6 +139,8 @@
 		E5CE237324C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5CE237424C199F200BC5820 /* LifeGameContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE237224C199F200BC5820 /* LifeGameContext.swift */; };
 		E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */; };
+		E5D7E5C924F27B6E00B56A71 /* BoardSelectHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */; };
+		E5D7E5CA24F27B9800B56A71 /* BoardSelectContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A992E24EA12F700298388 /* BoardSelectContextMenu.swift */; };
 		E5D9F26624BEBDBD009A526B /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F26524BEBDBD009A526B /* Tests_iOS.swift */; };
 		E5D9F27124BEBDBD009A526B /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */; };
 		E5D9F27324BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
@@ -503,7 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				E562329C24EBE5B400281C1E /* SignInView.swift */,
-				E57F07B324F267720057B2D1 /* SignInButton.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -631,6 +632,7 @@
 				E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */,
 				E5B0572724CC3465005EE1AA /* CellView.swift */,
 				E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */,
+				E57F07B324F267720057B2D1 /* SignInButton.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1248,6 +1250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */,
+				E5D7E5C924F27B6E00B56A71 /* BoardSelectHistoryView.swift in Sources */,
 				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
 				E56DBCB024E4FE3200849CE4 /* Array+.swift in Sources */,
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
@@ -1269,6 +1272,7 @@
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
 				E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
+				E5D7E5CA24F27B9800B56A71 /* BoardSelectContextMenu.swift in Sources */,
 				E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E54904AD24DD5DF0003AE7C7 /* MainGameViewModel.swift in Sources */,
 				E58D5F4A24E782C6000A0345 /* NetworkMonitor.swift in Sources */,

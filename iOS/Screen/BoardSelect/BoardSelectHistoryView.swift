@@ -22,14 +22,17 @@ struct BoardSelectHistoryView: View {
             ScrollView([.horizontal]) {
                 LazyHStack(spacing: 16) {
                     ForEach(items) { item in
-                        Button(action: { tapItem(item) }) {
-                            historyCell(item: item)
-                        }
-                        .contextMenu {
-                            BoardSelectContextMenu(isStared: item.isStared) {
-                                toggleStar(item.boardDocumentID)
+                        historyCell(item: item)
+                            .contextMenu {
+                                BoardSelectContextMenu(isStared: item.isStared) {
+                                    toggleStar(item.boardDocumentID)
+                                }
                             }
-                        }
+                            // Note:
+                            // Macでは`Button`を使用するとネイティブのボタンの見た目になってしまうため`.onTapGesture`を利用する必要がある（beta5）❗
+                            .onTapGesture {
+                                tapItem(item)
+                            }
                     }
                 }
                 .padding([.horizontal, .bottom])
