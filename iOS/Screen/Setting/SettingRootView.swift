@@ -12,7 +12,8 @@ struct SettingRootView: View {
 
     @State private var isPresentedLogin = false
     @State private var isPresentedConfirmLogoutAlert = false
-    
+    @State private var isPresentedFeedbackSheet = false
+
     var body: some View {
         NavigationView {
             List {
@@ -24,6 +25,19 @@ struct SettingRootView: View {
                 Section {
                     NavigationLink(destination: SettingConfigView()) {
                         Label("Game Config", systemImage: "gearshape")
+                    }
+                }
+                Section(footer: Text("Login is needed.")) {
+                    Button(action: { isPresentedFeedbackSheet.toggle() }) {
+                        Label("Feedback", systemImage: "exclamationmark.bubble")
+                    }
+                    .disabled(!authentication.isSignIn)
+                    .sheet(isPresented: $isPresentedFeedbackSheet) {
+                        // Note:
+                        // プログラミングミスでシートが表示されてしまった場合は空っぽのシートが表示される。
+                        if let userID = authentication.user?.uid {
+                            FeedbackView(isPresented: $isPresentedFeedbackSheet, userID: userID)
+                        }
                     }
                 }
                 Section(footer: Text("You can use some personal feature when login.")) {

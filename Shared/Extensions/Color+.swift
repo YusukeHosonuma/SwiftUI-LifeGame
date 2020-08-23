@@ -12,6 +12,10 @@ import SwiftUI
 // 固定値の`Color`でも変換できないことがあったので、解決されるまでは現状のextensionを残す。（macOS-beta5）❗
 
 extension Color {
+    static var placeholderText: Color {
+        Color(UIColor.placeholderText)
+    }
+
     var cgColor: CGColor {
         #if os(macOS)
         return NSColor(self).cgColor
