@@ -18,13 +18,22 @@ enum FeedbackCategory: String, CaseIterable, Identifiable, Codable {
 }
 
 struct FeedbackDocument: Codable {
+
     @DocumentID var id: String!
+    @ServerTimestamp var createdAt: Date?
     var reference: DocumentReference!
 
     var title: String
     var content: String
     var category: FeedbackCategory
     var senderUserID: String
+    
+    init(title: String, content: String, category: FeedbackCategory, senderUserID: String) {
+        self.title = title
+        self.content = content
+        self.category = category
+        self.senderUserID = senderUserID
+    }
 }
 
 extension FeedbackDocument {
