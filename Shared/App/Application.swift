@@ -59,6 +59,7 @@ struct Application: App {
             MacRootView(viewModel: viewModel)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
+                .environmentObject(boardStore)
                 .environmentObject(fileManager)
                 .environmentObject(authentication)
         }
