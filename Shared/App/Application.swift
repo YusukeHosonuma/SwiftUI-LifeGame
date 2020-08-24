@@ -23,10 +23,11 @@ struct Application: App {
     // Note: ✅
     // SwiftUI 以外の文脈で参照する必要がなければ、`.shared`を用意しなくてもよい。
     
+    @StateObject var boardManager = BoardManager.shared
+    @StateObject var gameManager = GameManager.shared
     @StateObject var settingEnvironment = SettingEnvironment.shared
     @StateObject var boardRepository = FirestoreBoardRepository.shared // TODO: Mac側のアカウント対応が終わったら不要になるはず。
     @StateObject var boardStore = BoardStore.shared
-    @StateObject var viewModel = MainGameViewModel()
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
     #if os(macOS)
@@ -72,7 +73,9 @@ struct Application: App {
         }
         #else
         WindowGroup {
-            RootView(viewModel: viewModel)
+            RootView()
+                .environmentObject(boardManager)
+                .environmentObject(gameManager)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
                 .environmentObject(boardStore)
@@ -87,11 +90,11 @@ struct Application: App {
                     boardRepository
                         .get(by: documentID) { (document) in
                             let board = document.makeBoard()
-                            LifeGameContext.shared.setBoard(board)
+                            boardManager.setBoard(board: board)
                         }
                 }
                 .onAppear {
-                    viewModel.setBoard(board: currentBoard)
+                    boardManager.setLifeGameBoard(board: currentBoard)
                 }
                 .onChange(of: scenePhase) { phase in
                     switch phase {
@@ -100,8 +103,8 @@ struct Application: App {
                         
                     case .inactive:
                         AppLogger.appLifecycle.info("Will inactive...")
-                        viewModel.tapStopButton()
-                        currentBoard = viewModel.board // タスクスイッチャーから直接killされると`background`を介さないのでここで保存
+                        gameManager.stop()
+                        currentBoard = boardManager.board // タスクスイッチャーから直接killされると`background`を介さないのでここで保存
 
                     case .background:
                         AppLogger.appLifecycle.info("Will background...")
@@ -114,7 +117,7 @@ struct Application: App {
         .commands {
             // Note:
             // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta5）❗
-            LifeGameCommands(viewModel: viewModel,
+            LifeGameCommands(gameManager: gameManager,
                              boardRepository: boardRepository)
         }
         #endif

@@ -11,17 +11,15 @@ private let PresetSizes = [16, 32, 64, 96, 128]
 
 struct ActionMenu<Content>: View where Content: View {
     @EnvironmentObject var setting: SettingEnvironment
-    
-    @ObservedObject var viewModel: MainGameViewModel
-    
+    @EnvironmentObject var gameManager: GameManager
+        
     let label: () -> Content
     
     // MARK: Private
     
     @State private var isPresentedClearAlert = false
     
-    init(viewModel: MainGameViewModel, @ViewBuilder label: @escaping () -> Content) {
-        self.viewModel = viewModel
+    init(@ViewBuilder label: @escaping () -> Content) {
         self.label = label
     }
 
@@ -37,7 +35,7 @@ struct ActionMenu<Content>: View where Content: View {
         // Note: ✅
         // 表示順はメニューの起点からとなる。（表示方向が上か下かで順番は変わる）
         
-        Button(action: viewModel.tapClear) {
+        Button(action: gameManager.clear) {
             HStack {
                 Text("Clear")
                 Image(systemName: "xmark.circle")
@@ -47,7 +45,7 @@ struct ActionMenu<Content>: View where Content: View {
         
         Divider()
         
-        Button(action: viewModel.tapRandomButton) {
+        Button(action: gameManager.generateRandom) {
             HStack {
                 Text("Random")
                 Image(systemName: "square.grid.2x2.fill")

@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 // MARK: - Main view
 
 struct MainGameView: View {
-    @ObservedObject var viewModel: MainGameViewModel
+    @EnvironmentObject var boardManager: BoardManager
 
     // For register:
 //     @State var title: String = ""
@@ -31,20 +31,20 @@ struct MainGameView: View {
 //                    title = ""
 //                }
                 
-                HeaderView(generation: viewModel.board.generation, size: viewModel.board.size)
+                HeaderView(generation: boardManager.board.generation, size: boardManager.board.size)
                 .padding([.horizontal])
 
                 Spacer()
                 
-                BoardContainerView(viewModel: viewModel)
+                BoardContainerView()
                     .frame(width: geometry.size.width, height: geometry.size.width)
                 
                 Spacer()
                 
-                SpeedSliderView(viewModel: viewModel)
+                SpeedSliderView()
                     .padding([.horizontal])
                 
-                ControlView(viewModel: viewModel)
+                ControlView()
                     .padding()
             }
         }
@@ -63,7 +63,7 @@ struct MainGameView_Previews: PreviewProvider {
     }
 
     static func view(_ colorScheme: ColorScheme) -> some View {
-        MainGameView(viewModel: MainGameViewModel())
+        MainGameView()
             .previewDevice("iPhone SE (2nd generation)")
             .preferredColorScheme(colorScheme)
     }
