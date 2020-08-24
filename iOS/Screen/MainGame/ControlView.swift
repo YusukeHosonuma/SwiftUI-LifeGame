@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ControlView: View {
     @EnvironmentObject var historyRepository: FirestoreHistoryRepository
+    @EnvironmentObject var gameManager: GameManager
 
     // Note:
     // 仕様かバグか判断がつかないので暫定対処（beta5）❗
@@ -18,8 +19,6 @@ struct ControlView: View {
     @EnvironmentObject var network: NetworkMonitor
     
     @EnvironmentObject var boardStore: BoardStore
-
-    @ObservedObject var viewModel: MainGameViewModel
     
     @State var isPresentedListSheet = false
     
@@ -27,24 +26,12 @@ struct ControlView: View {
     
     var body: some View {
         HStack {
-            // TODO: やっつけなのであとでリファクタ
-            if !viewModel.playButtonDisabled {
-                Button(action: viewModel.tapPlayButton) {
-                    Image(systemName: "play.fill")
-                }
-                .disabled(viewModel.playButtonDisabled)
+            if gameManager.state == .stop {
+                playButton()
             } else {
-                Button(action: viewModel.tapStopButton) {
-                    Image(systemName: "stop.fill")
-                }
-                .buttonStyle(ButtonStyleCircle(color: .orange))
-                .disabled(viewModel.stopButtonDisabled)
+                stopButton()
             }
-
-            Button(action: viewModel.tapNextButton) {
-                Image(systemName: "arrow.right.to.line.alt")
-            }
-            .disabled(viewModel.nextButtonDisabled)
+            nextButton()
 
             Spacer()
             
@@ -57,13 +44,35 @@ struct ControlView: View {
                      .environmentObject(network)
             }
 
-            ActionMenu(viewModel: viewModel) {
+            ActionMenuButton {
                 Button(action: {}) {
                     Image(systemName: "ellipsis")
                 }
             }
         }
         .buttonStyle(ButtonStyleCircle())
+    }
+    
+    private func playButton() -> some View {
+        Button(action: gameManager.play) {
+            Image(systemName: "play.fill")
+        }
+        .enabled(gameManager.state.canPlay)
+    }
+    
+    private func stopButton() -> some View {
+        Button(action: gameManager.stop) {
+            Image(systemName: "stop.fill")
+        }
+        .buttonStyle(ButtonStyleCircle(color: .orange))
+        .enabled(gameManager.state.canStop)
+    }
+    
+    private func nextButton() -> some View {
+        Button(action: gameManager.next) {
+            Image(systemName: "arrow.right.to.line.alt")
+        }
+        .enabled(gameManager.state.canNext)
     }
 }
 

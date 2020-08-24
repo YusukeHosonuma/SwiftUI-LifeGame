@@ -10,7 +10,7 @@ import LifeGame
 import UniformTypeIdentifiers
 
 struct LifeGameCommands: Commands {    
-    @ObservedObject var viewModel: MainGameViewModel
+    @ObservedObject var gameManager: GameManager
     @ObservedObject var boardRepository: FirestoreBoardRepository
     #if os(macOS)
     @ObservedObject var fileManager: LifeGameFileManager
@@ -42,21 +42,21 @@ struct LifeGameCommands: Commands {
                 // TODO: macOS-beta4 bug (maybe...)❗
                 // Not update disabled state when viewModel was changed.
 
-                Button("Start", action: viewModel.tapPlayButton)
+                Button("Start", action: gameManager.play)
                     .keyboardShortcut("r")
-                    .disabled(viewModel.playButtonDisabled)
-                
-                Button("Stop", action: viewModel.tapStopButton)
+                    .disabled(gameManager.state.canPlay)
+
+                Button("Stop", action: gameManager.stop)
                     .keyboardShortcut("x")
-                    .disabled(viewModel.stopButtonDisabled)
-                
-                Button("Next", action: viewModel.tapNextButton)
+                    .disabled(gameManager.state.canStop)
+
+                Button("Next", action: gameManager.next)
                     .keyboardShortcut("n") // Next
-                    .disabled(viewModel.nextButtonDisabled)
+                    .disabled(gameManager.state.canNext)
             }
             
             Section {
-                Button("Clear", action: viewModel.tapClear)
+                Button("Clear", action: gameManager.clear)
                     .keyboardShortcut("k", modifiers: [.command, .shift])
             }
         }

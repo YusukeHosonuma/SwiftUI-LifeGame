@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct RootView: View {
-    @ObservedObject var viewModel: MainGameViewModel
-    
     var body: some View {
         TabView {
-            MainGameView(viewModel: viewModel)
+            MainGameView()
                 .tabItem {
                     Image(systemName: "square.grid.3x3.fill.square")
                     Text("Play")
@@ -28,6 +26,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(viewModel: MainGameViewModel())
+        RootView()
     }
 }

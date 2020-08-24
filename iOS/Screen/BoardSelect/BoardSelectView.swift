@@ -13,6 +13,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var gameManager: GameManager
 
     @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
@@ -175,7 +176,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         if authentication.isSignIn {
             boardStore.addToHistory(boardID: boardDocumentID)
         }
-        LifeGameContext.shared.setBoard(board) // TODO: refactor
+        gameManager.setBoard(board: board)
         dismiss()
     }
     

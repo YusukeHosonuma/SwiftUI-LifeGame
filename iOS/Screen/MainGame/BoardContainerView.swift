@@ -10,9 +10,10 @@ import LifeGame
 
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment
-    @ObservedObject var viewModel: MainGameViewModel
+    @EnvironmentObject var boardManager: BoardManager
     @Environment(\.colorScheme) var colorScheme
 
+    
     // MARK: Private properties
     
     @State private var currentScale: CGFloat = 1
@@ -49,7 +50,7 @@ struct BoardContainerView: View {
                 }
                 #endif
                 BoardRenderImage(
-                    board: viewModel.board.board,
+                    board: boardManager.board.board,
                     cellRenderSize: cellRenderSize,
                     cellColor: cellColor
                 )
@@ -120,12 +121,12 @@ struct BoardContainerView: View {
                 let x = (space + tapX - offset.x) / scale
                 let y = (space + tapY - offset.y) / scale
              
-                let cellSize = boardViewSize / CGFloat(viewModel.board.size)
+                let cellSize = boardViewSize / CGFloat(boardManager.board.size)
                 let indexX = Int(x / cellSize)
                 let indexY = Int(y / cellSize)
 
-                viewModel.tapCell(x: within(value: indexX, min: 0, max: viewModel.board.size - 1),
-                                  y: within(value: indexY, min: 0, max: viewModel.board.size - 1))
+                boardManager.tapCell(x: within(value: indexX, min: 0, max: boardManager.board.size - 1),
+                                     y: within(value: indexY, min: 0, max: boardManager.board.size - 1))
             }
     }
     
