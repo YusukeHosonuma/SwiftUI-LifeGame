@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MacRootView: View {
-    @ObservedObject var viewModel: MainGameViewModel
-    
+    @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
 
@@ -19,8 +18,8 @@ struct MacRootView: View {
     
     var body: some View {
         NavigationView {
-            MacNavigationView(viewModel: viewModel)
-            ContentView(viewModel: viewModel, zoomLevel: setting.zoomLevel)
+            MacNavigationView()
+            ContentView(zoomLevel: setting.zoomLevel)
         }
         .navigationTitle(title)
         .toolbar {
@@ -29,28 +28,28 @@ struct MacRootView: View {
             }
 
             ToolbarItem(placement: .status) {
-                Button(action: viewModel.tapPlayButton) {
+                Button(action: gameManager.play) {
                     Image(systemName: "play.fill")
                 }
-                .disabled(viewModel.playButtonDisabled)
+                .enabled(gameManager.state.canPlay)
             }
             
             ToolbarItem(placement: .status) {
-                Button(action: viewModel.tapStopButton) {
+                Button(action: gameManager.stop) {
                     Image(systemName: "stop.fill")
                 }
-                .disabled(viewModel.stopButtonDisabled)
+                .enabled(gameManager.state.canStop)
             }
             
             ToolbarItem(placement: .status) {
-                Button(action: viewModel.tapNextButton) {
+                Button(action: gameManager.next) {
                     Image(systemName: "arrow.right.to.line.alt")
                 }
-                .disabled(viewModel.nextButtonDisabled)
+                .enabled(gameManager.state.canNext)
             }
             
             ToolbarItem(placement: .status) {
-                Button(action: viewModel.tapClear) {
+                Button(action: gameManager.clear) {
                     Image(systemName: "trash")
                 }
             }

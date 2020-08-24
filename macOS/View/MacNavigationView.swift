@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MacNavigationView: View {
-    @ObservedObject var viewModel: MainGameViewModel
+    @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var authentication: Authentication
 
     @Environment(\.colorScheme) private var colorScheme
@@ -16,19 +16,16 @@ struct MacNavigationView: View {
     @State private var isPresentedLoginFailedAlert = false
     @State private var isSignInProgress = false
     
-    init(viewModel: MainGameViewModel) {
-        self.viewModel = viewModel
-    }
 
     var body: some View {
         List {
             Section(header: Text("Presets")) {
                 Text("Random")
-                    .onTapGesture(perform: viewModel.tapRandomButton)
+                    .onTapGesture(perform: gameManager.generateRandom)
             }
 
             Section(header: Text("Animation Speed")) {
-                Slider(value: $viewModel.speed, in: 0...1, onEditingChanged: viewModel.onSliderChanged)
+                Slider(value: $gameManager.speed, in: 0...1, onEditingChanged: gameManager.speedChanged)
             }
             
             Section(header: Text("Sign-in")) {
