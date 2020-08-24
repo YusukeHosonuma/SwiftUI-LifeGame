@@ -57,7 +57,9 @@ struct Application: App {
         // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
         
         WindowGroup {
-            MacRootView(viewModel: viewModel)
+            MacRootView()
+                .environmentObject(boardManager)
+                .environmentObject(gameManager)
                 .environmentObject(settingEnvironment)
                 .environmentObject(boardRepository)
                 .environmentObject(boardStore)
@@ -65,7 +67,9 @@ struct Application: App {
                 .environmentObject(authentication)
         }
         .commands {
-            LifeGameCommands(viewModel: viewModel,
+            
+            LifeGameCommands(boardManager: boardManager,
+                             gameManager: gameManager,
                              boardRepository: boardRepository,
                              fileManager: fileManager)
                 // ❗API is not supported in macOS-beta4

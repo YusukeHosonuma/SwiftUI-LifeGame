@@ -10,6 +10,7 @@ import LifeGame
 
 struct PresetListView: View {
     @EnvironmentObject var boardRepository: FirestoreBoardRepository
+    @EnvironmentObject var gameManager: GameManager
     
     var body: some View {
         // TODO: Use Lazy
@@ -36,7 +37,7 @@ struct PresetListView: View {
     
     private func tapCell(board document: BoardDocument) {
         let board = document.makeBoard()
-        LifeGameContext.shared.setBoard(board) // TODO: refactor
+        gameManager.setBoard(board: board)
     }
 }
 

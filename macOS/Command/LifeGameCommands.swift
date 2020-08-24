@@ -9,7 +9,8 @@ import SwiftUI
 import LifeGame
 import UniformTypeIdentifiers
 
-struct LifeGameCommands: Commands {    
+struct LifeGameCommands: Commands {
+    @ObservedObject var boardManager: BoardManager // TODO: パフォーマンス的に少し無駄かも
     @ObservedObject var gameManager: GameManager
     @ObservedObject var boardRepository: FirestoreBoardRepository
     #if os(macOS)
@@ -39,7 +40,7 @@ struct LifeGameCommands: Commands {
 
         CommandMenu("Game") {
             Section {
-                // TODO: macOS-beta4 bug (maybe...)❗
+                // TODO: macOS-beta5 bug (maybe...)❗
                 // Not update disabled state when viewModel was changed.
 
                 Button("Start", action: gameManager.play)
@@ -66,16 +67,17 @@ struct LifeGameCommands: Commands {
 
     #if os(macOS)
     private func saveAs() {
-        fileManager.saveAs(board: viewModel.board.board)
+        // FIXME: `@Published`なので厳密に言えば陳腐化した値を読んでしまう可能性がありえそう。なので直したほうがベター。
+        fileManager.saveAs(board: boardManager.board.board)
     }
     
     private func save() {
-        fileManager.save(board: viewModel.board.board)
+        fileManager.save(board: boardManager.board.board)
     }
     
     private func open() {
         guard let board = fileManager.open() else { return }
-        viewModel.loadBoard(board)
+        gameManager.setBoard(board: board)
     }
     
     private func exportPresets() {

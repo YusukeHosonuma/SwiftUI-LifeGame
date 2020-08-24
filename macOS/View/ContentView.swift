@@ -8,12 +8,12 @@
 import SwiftUI
 import LifeGame
 
+// TODO: 名前変更
 struct ContentView: View {
+    @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var boardStore: BoardStore
-
-    @ObservedObject var viewModel: MainGameViewModel
 
     var zoomLevel: Int
 
@@ -27,7 +27,7 @@ struct ContentView: View {
                 // Note:
                 // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（beta5）❗
                 VStack {
-                    BoardContainerView(viewModel: viewModel)
+                    BoardContainerView()
                         .padding(40)
                         .aspectRatio(1.0, contentMode: .fit)
 
@@ -49,7 +49,7 @@ struct ContentView: View {
 
                 VStack {
                     HStack {
-                        Text("Generation: \(viewModel.board.generation)")
+                        Text("Generation: \(boardManager.board.generation)")
                             .foregroundColor(.white)
                         Spacer()
                     }
@@ -75,7 +75,7 @@ struct ContentView: View {
         if authentication.isSignIn {
             boardStore.addToHistory(boardID: boardDocumentID)
         }
-        LifeGameContext.shared.setBoard(board)
+        boardManager.setBoard(board: board)
     }
 }
 
