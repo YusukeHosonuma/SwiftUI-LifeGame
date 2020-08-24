@@ -9,6 +9,9 @@ import SwiftUI
 import LifeGame
 import Combine
 
+// Important ✅
+// このクラスのプロパティ`board`はアニメーション中に頻繁に更新されるため、本当に必要な箇所以外では`GameManager`を経由して処理すること。
+
 final class BoardManager: ObservableObject {
     static let shared = BoardManager()
 

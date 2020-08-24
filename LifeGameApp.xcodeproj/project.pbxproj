@@ -633,6 +633,7 @@
 		E5B7519924E3DD400004D8AE /* Preview Conent */ = {
 			isa = PBXGroup;
 			children = (
+				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 			);
 			path = "Preview Conent";
 			sourceTree = "<group>";
@@ -751,6 +752,28 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E5F535F624F341E000D2DC25 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				E574356924E972F900BB27CA /* Authentication.swift */,
+				E5261AA724F3228100218CDD /* BoardManager.swift */,
+				E54A993324EA766C00298388 /* BoardStore.swift */,
+				E5261AAA24F33F1800218CDD /* GameManager.swift */,
+				E51FD74E24F20BA7002981F4 /* FeedbackManager.swift */,
+				E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		E5F535F724F341EB00D2DC25 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */,
+				E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */,
+			);
+			path = UserDefault;
+			sourceTree = "<group>";
+		};
 		E5FA934424C05E8F00229AAA /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,18 +806,11 @@
 		E5FA934A24C07A3D00229AAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E5F535F624F341E000D2DC25 /* Observable */,
 				E526A07224EAB06D00D76ECD /* Entity */,
 				E547C30824E3F4AA0022DF3A /* Cache */,
 				E52FE5DB24DC00E100D93764 /* Firestore */,
-				E54A993324EA766C00298388 /* BoardStore.swift */,
-				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
-				E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */,
-				E518C89224E3684A00B02027 /* UserDefaultSettingGroup.swift */,
-				E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */,
-				E574356924E972F900BB27CA /* Authentication.swift */,
-				E51FD74E24F20BA7002981F4 /* FeedbackManager.swift */,
-				E5261AA724F3228100218CDD /* BoardManager.swift */,
-				E5261AAA24F33F1800218CDD /* GameManager.swift */,
+				E5F535F724F341EB00D2DC25 /* UserDefault */,
 			);
 			path = Model;
 			sourceTree = "<group>";
