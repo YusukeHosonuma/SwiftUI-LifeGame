@@ -57,17 +57,10 @@ struct Application: App {
         // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
         
         WindowGroup {
-            MacRootView()
-                .environmentObject(boardManager)
-                .environmentObject(gameManager)
-                .environmentObject(settingEnvironment)
-                .environmentObject(boardRepository)
-                .environmentObject(boardStore)
+            configureCommonEnvironmentObject(MacRootView())
                 .environmentObject(fileManager)
-                .environmentObject(authentication)
         }
         .commands {
-            
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
                              boardRepository: boardRepository,
@@ -75,16 +68,14 @@ struct Application: App {
                 // ❗API is not supported in macOS-beta4
                 // .environmentObject(boardRepository)
         }
+
+        Settings {
+            PreferenceView()
+                .environmentObject(settingEnvironment)
+        }
         #else
         WindowGroup {
-            RootView()
-                .environmentObject(boardManager)
-                .environmentObject(gameManager)
-                .environmentObject(settingEnvironment)
-                .environmentObject(boardRepository)
-                .environmentObject(boardStore)
-                .environmentObject(networkMonitor)
-                .environmentObject(authentication)
+            configureCommonEnvironmentObject(RootView())
                 .onOpenURL { url in
                     let documentID = url.lastPathComponent
                     guard documentID != "0" else { return }
@@ -121,16 +112,23 @@ struct Application: App {
         .commands {
             // Note:
             // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta5）❗
-            LifeGameCommands(gameManager: gameManager,
+            LifeGameCommands(boardManager: boardManager,
+                             gameManager: gameManager,
                              boardRepository: boardRepository)
         }
         #endif
-        
-        #if os(macOS)
-        Settings {
-            PreferenceView()
-                .environmentObject(settingEnvironment)
-        }
-        #endif
+    }
+    
+    // MARK: Private
+    
+    private func configureCommonEnvironmentObject<T: View>(_ view: T) -> some View {
+        view
+            .environmentObject(boardManager)
+            .environmentObject(gameManager)
+            .environmentObject(settingEnvironment)
+            .environmentObject(boardRepository)
+            .environmentObject(boardStore)
+            .environmentObject(authentication)
+            .environmentObject(networkMonitor)
     }
 }
