@@ -82,7 +82,6 @@
 		E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BF0C424D2C67700AAD125 /* VCenter.swift */; };
 		E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA524DD0C1000DBC175 /* MacRootView.swift */; };
 		E55F7AA824DD0D9300DBC175 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA724DD0D9300DBC175 /* ContentView.swift */; };
-		E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F7AA924DD101900DBC175 /* PresetListView.swift */; };
 		E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */; };
 		E560B3D424ED1E7200F55117 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
@@ -267,7 +266,6 @@
 		E55BF0C424D2C67700AAD125 /* VCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCenter.swift; sourceTree = "<group>"; };
 		E55F7AA524DD0C1000DBC175 /* MacRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRootView.swift; sourceTree = "<group>"; };
 		E55F7AA724DD0D9300DBC175 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E55F7AA924DD101900DBC175 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
 		E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E562329A24EBE59100281C1E /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
 		E562329C24EBE5B400281C1E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -607,12 +605,11 @@
 		E5A7B4DE24CC5B3200F5AED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
-				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
+				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
-				E55F7AA924DD101900DBC175 /* PresetListView.swift */,
 				E57FE78F24F36F66009D8677 /* BoardListView.swift */,
+				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1270,7 +1267,6 @@
 				E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */,
 				E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
-				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
 				E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */,
 				E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,

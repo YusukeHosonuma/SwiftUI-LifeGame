@@ -70,7 +70,8 @@ struct MacRootView: View {
                     }
                 }
                 
-                // TODO: refactor
+                // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
+                
                 ToolbarItem(placement: .status) {
                     Button(action: {
                         if setting.zoomLevel < 10 {
