@@ -26,7 +26,7 @@ struct BoardListView: View {
                 // Note:
                 // 画面上部ギリギリに設置されてしまい`.padding`も効かない（macOS-beta5）❗
                 Section(header: Text("Search options")) {
-                    Toggle("Star only", isOn: $setting.isFilterByStared)
+                    Toggle("Star only", isOn: $setting.isFilterByStared.animation())
                         .enabled(authentication.isSignIn)
                 }
             }
