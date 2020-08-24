@@ -38,36 +38,28 @@ struct MacRootView: View {
                 }
 
                 ToolbarItem(placement: .navigation) {
-                    Button(action: { isPresentedSheet.toggle() }) {
-                        Label("All", systemImage: "square.grid.2x2.fill")
+                    IconButton(systemName: "square.grid.2x2.fill") {
+                        isPresentedSheet.toggle()
                     }
                 }
                 
                 ToolbarItem(placement: .status) {
-                    Button(action: gameManager.play) {
-                        Image(systemName: "play.fill")
-                    }
-                    .enabled(gameManager.state.canPlay)
+                    IconButton(systemName: "play.fill", action: gameManager.play)
+                        .enabled(gameManager.state.canPlay)
                 }
                 
                 ToolbarItem(placement: .status) {
-                    Button(action: gameManager.stop) {
-                        Image(systemName: "stop.fill")
-                    }
-                    .enabled(gameManager.state.canStop)
+                    IconButton(systemName: "stop.fill", action: gameManager.stop)
+                        .enabled(gameManager.state.canStop)
                 }
                 
                 ToolbarItem(placement: .status) {
-                    Button(action: gameManager.next) {
-                        Image(systemName: "arrow.right.to.line.alt")
-                    }
-                    .enabled(gameManager.state.canNext)
+                    IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
+                        .enabled(gameManager.state.canNext)
                 }
                 
                 ToolbarItem(placement: .status) {
-                    Button(action: gameManager.clear) {
-                        Image(systemName: "trash")
-                    }
+                    IconButton(systemName: "trash", action: gameManager.clear)
                 }
                 
                 // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
