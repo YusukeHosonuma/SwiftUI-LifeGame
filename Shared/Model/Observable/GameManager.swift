@@ -17,9 +17,9 @@ extension GameManager {
         case play
         case pause
         
-        var canPlay: Bool { self != .stop }
-        var canStop: Bool { self != .play }
-        var canNext: Bool { self != .stop }
+        var canPlay: Bool { self == .stop }
+        var canStop: Bool { self == .play }
+        var canNext: Bool { self == .stop }
     }
 }
 

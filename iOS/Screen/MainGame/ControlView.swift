@@ -26,10 +26,10 @@ struct ControlView: View {
     
     var body: some View {
         HStack {
-            if gameManager.state == .play {
-                stopButton()
-            } else {
+            if gameManager.state == .stop {
                 playButton()
+            } else {
+                stopButton()
             }
             nextButton()
 
@@ -44,7 +44,7 @@ struct ControlView: View {
                      .environmentObject(network)
             }
 
-            ActionMenu {
+            ActionMenuButton {
                 Button(action: {}) {
                     Image(systemName: "ellipsis")
                 }
@@ -57,7 +57,7 @@ struct ControlView: View {
         Button(action: gameManager.play) {
             Image(systemName: "play.fill")
         }
-        .disabled(gameManager.state.canPlay)
+        .enabled(gameManager.state.canPlay)
     }
     
     private func stopButton() -> some View {
@@ -65,14 +65,14 @@ struct ControlView: View {
             Image(systemName: "stop.fill")
         }
         .buttonStyle(ButtonStyleCircle(color: .orange))
-        .disabled(gameManager.state.canStop)
+        .enabled(gameManager.state.canStop)
     }
     
     private func nextButton() -> some View {
         Button(action: gameManager.next) {
             Image(systemName: "arrow.right.to.line.alt")
         }
-        .disabled(gameManager.state.canNext)
+        .enabled(gameManager.state.canNext)
     }
 }
 

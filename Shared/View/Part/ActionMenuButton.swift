@@ -9,7 +9,7 @@ import SwiftUI
 
 private let PresetSizes = [16, 32, 64, 96, 128]
 
-struct ActionMenu<Content>: View where Content: View {
+struct ActionMenuButton<Content>: View where Content: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var gameManager: GameManager
         

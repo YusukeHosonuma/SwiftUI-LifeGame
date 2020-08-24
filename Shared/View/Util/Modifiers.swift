@@ -13,3 +13,8 @@ extension Text {
     }
 }
 
+extension View {
+    func enabled(_ condition: Bool) -> some View {
+        self.disabled(!condition)
+    }
+}

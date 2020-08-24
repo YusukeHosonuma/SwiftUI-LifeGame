@@ -123,8 +123,8 @@
 		E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
-		E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
-		E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenu.swift */; };
+		E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
+		E5A7911D24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B706D424ED4DE500787B82 /* SheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B706D324ED4DE500787B82 /* SheetButton.swift */; };
@@ -283,7 +283,7 @@
 		E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWPathMonitor+Publisher.swift"; sourceTree = "<group>"; };
 		E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E5A7911B24D64A1000648813 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
+		E5A7911B24D64A1000648813 /* ActionMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenuButton.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
@@ -616,7 +616,7 @@
 				E5B0572724CC3465005EE1AA /* CellView.swift */,
 				E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */,
 				E57F07B324F267720057B2D1 /* SignInButton.swift */,
-				E5A7911B24D64A1000648813 /* ActionMenu.swift */,
+				E5A7911B24D64A1000648813 /* ActionMenuButton.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1177,7 +1177,7 @@
 				E5E6EB1624DFF33E0012E911 /* BoardThumbnailImage.swift in Sources */,
 				E51FD74D24F20917002981F4 /* AppTextEditor.swift in Sources */,
 				E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
-				E5A7911C24D64A1000648813 /* ActionMenu.swift in Sources */,
+				E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
@@ -1251,7 +1251,7 @@
 			files = (
 				E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */,
 				E5D7E5C924F27B6E00B56A71 /* BoardSelectHistoryView.swift in Sources */,
-				E5A7911D24D64A1000648813 /* ActionMenu.swift in Sources */,
+				E5A7911D24D64A1000648813 /* ActionMenuButton.swift in Sources */,
 				E56DBCB024E4FE3200849CE4 /* Array+.swift in Sources */,
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
 				E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */,
