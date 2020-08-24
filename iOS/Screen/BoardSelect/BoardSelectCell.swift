@@ -18,12 +18,14 @@ struct BoardSelectCell: View {
         switch style {
         case .grid:
             VStack {
+                // TODO: 実は`matchedGeometryEffect`って要らないのでは？
                 BoardThumbnailImage(board: item.board, cacheKey: item.id)
                     .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
 
                 HStack {
                     Text(item.title)
                         .lineLimit(1)
+                        .foregroundColor(.accentColor)
                         .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                     Spacer()
                     if item.stared {
@@ -42,6 +44,7 @@ struct BoardSelectCell: View {
                             .font(.system(.caption, design: .monospaced))
                             .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                             .fixedSize(horizontal: true, vertical: true)
+                            .foregroundColor(.accentColor)
                         Spacer()
                         Group {
                             if item.stared {

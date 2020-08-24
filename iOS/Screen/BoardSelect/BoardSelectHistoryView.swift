@@ -47,6 +47,7 @@ struct BoardSelectHistoryView: View {
                 Text(item.title)
                     .lineLimit(1)
                     .truncationMode(.tail)
+                    .foregroundColor(.accentColor)
                 Spacer()
                 if item.isStared {
                     Image(systemName: "star.fill")
