@@ -16,62 +16,72 @@ struct MacRootView: View {
         fileManager.latestURL?.lastPathComponent ?? "Untitled"
     }
     
+    @State var isPresentedSheet = false
+    
     var body: some View {
-        NavigationView {
-            MacNavigationView()
-            ContentView(zoomLevel: setting.zoomLevel)
-        }
-        .navigationTitle(title)
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                BoardSizeMenu(size: $setting.boardSize)
+        GeometryReader { geometry in
+            NavigationView {
+                MacNavigationView()
+                ContentView(zoomLevel: setting.zoomLevel)
+                    .sheet(isPresented: $isPresentedSheet) {
+                        // Note:
+                        // とりあえずウィンドウサイズよりちょっと小さめで表示してみる。
+                        BoardListView(isPresented: $isPresentedSheet)
+                            .frame(idealWidth: geometry.size.width * 0.8,
+                                   idealHeight: geometry.size.height * 0.8)
+                    }
             }
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    BoardSizeMenu(size: $setting.boardSize)
+                }
 
-            ToolbarItem(placement: .status) {
-                Button(action: gameManager.play) {
-                    Image(systemName: "play.fill")
-                }
-                .enabled(gameManager.state.canPlay)
-            }
-            
-            ToolbarItem(placement: .status) {
-                Button(action: gameManager.stop) {
-                    Image(systemName: "stop.fill")
-                }
-                .enabled(gameManager.state.canStop)
-            }
-            
-            ToolbarItem(placement: .status) {
-                Button(action: gameManager.next) {
-                    Image(systemName: "arrow.right.to.line.alt")
-                }
-                .enabled(gameManager.state.canNext)
-            }
-            
-            ToolbarItem(placement: .status) {
-                Button(action: gameManager.clear) {
-                    Image(systemName: "trash")
-                }
-            }
-            
-            // TODO: refactor
-            ToolbarItem(placement: .status) {
-                Button(action: {
-                    if setting.zoomLevel < 10 {
-                        setting.zoomLevel += 1
+                ToolbarItem(placement: .navigation) {
+                    IconButton(systemName: "square.grid.2x2.fill") {
+                        isPresentedSheet.toggle()
                     }
-                }) {
-                    Image(systemName: "plus.magnifyingglass")
                 }
-            }
-            
-            ToolbarItem(placement: .status) {
-                Button(action: {
-                    if 0 < setting.zoomLevel {
-                        setting.zoomLevel -= 1
+                
+                ToolbarItem(placement: .status) {
+                    IconButton(systemName: "play.fill", action: gameManager.play)
+                        .enabled(gameManager.state.canPlay)
+                }
+                
+                ToolbarItem(placement: .status) {
+                    IconButton(systemName: "stop.fill", action: gameManager.stop)
+                        .enabled(gameManager.state.canStop)
+                }
+                
+                ToolbarItem(placement: .status) {
+                    IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
+                        .enabled(gameManager.state.canNext)
+                }
+                
+                ToolbarItem(placement: .status) {
+                    IconButton(systemName: "trash", action: gameManager.clear)
+                }
+                
+                // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
+                
+                ToolbarItem(placement: .status) {
+                    Button(action: {
+                        if setting.zoomLevel < 10 {
+                            setting.zoomLevel += 1
+                        }
+                    }) {
+                        Image(systemName: "plus.magnifyingglass")
                     }
-                }) {
-                    Image(systemName: "minus.magnifyingglass")
+                }
+                
+                ToolbarItem(placement: .status) {
+                    Button(action: {
+                        if 0 < setting.zoomLevel {
+                            setting.zoomLevel -= 1
+                        }
+                    }) {
+                        Image(systemName: "minus.magnifyingglass")
+                    }
                 }
             }
         }
