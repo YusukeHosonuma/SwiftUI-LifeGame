@@ -18,10 +18,9 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSize: Int
     @Published var animationSpeed: Double
     @Published var zoomLevel: Int
-    #if os(iOS)
     @Published var boardSelectDisplayStyle: BoardSelectStyle
     @Published var isFilterByStared: Bool
-    #endif
+
     #if os(macOS)
     // TODO:
     #else
@@ -48,10 +47,8 @@ final class SettingEnvironment: ObservableObject {
         AppLogger.imageLoadBug.notice("[End] loading background image: \(image == nil ? "nil" : "found!", privacy: .public)")
         #endif
 
-        #if os(iOS)
         boardSelectDisplayStyle = UserDefaultSetting.shared.boardSelectDisplayStyle
         isFilterByStared = UserDefaultSetting.shared.isFilterByStared
-        #endif
 
         // App Groups
         

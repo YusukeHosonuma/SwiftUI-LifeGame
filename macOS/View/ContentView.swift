@@ -8,10 +8,9 @@
 import SwiftUI
 import LifeGame
 
-// TODO: 名前変更
 struct ContentView: View {
-    @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var setting: SettingEnvironment
+    @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var boardStore: BoardStore
 
@@ -22,45 +21,42 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Note:
-                // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（beta5）❗
-                VStack {
-                    BoardContainerView()
-                        .padding(40)
-                        .aspectRatio(1.0, contentMode: .fit)
-
-                    if authentication.isSignIn {
-                        HStack {
-                            Text("History")
-                                .foregroundColor(.secondary)
-                                .padding(.leading)
-                            Spacer()
-                        }
-                        BoardSelectHistoryView(
-                            items: boardStore.histories,
-                            toggleStar: toggleStar,
-                            tapItem: tapHistoryCell
-                        )
-                        .frame(height: 120, alignment: .leading)
-                    }
-                }
-
-                VStack {
+        ZStack {
+            // Note:
+            // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（beta5）❗
+            VStack {
+                BoardContainerView()
+                    .padding(40)
+                    .aspectRatio(1.0, contentMode: .fit)
+                
+                if authentication.isSignIn {
                     HStack {
-                        Text("Generation: \(boardManager.board.generation)")
-                            .foregroundColor(.white)
+                        Text("History")
+                            .foregroundColor(.secondary)
+                            .padding(.leading)
                         Spacer()
                     }
+                    BoardSelectHistoryView(
+                        items: boardStore.histories,
+                        toggleStar: toggleStar,
+                        tapItem: tapHistoryCell
+                    )
+                    .frame(height: 120, alignment: .leading)
+                }
+            }
+            
+            VStack {
+                HStack {
+                    Text("Generation: \(boardManager.board.generation)")
+                        .foregroundColor(.white)
                     Spacer()
                 }
-                .padding()
+                Spacer()
             }
-            PresetListView()
+            .padding()
         }
     }
-    
+
     // TODO: iOS版とほとんど同じ処理なので`BoardSelectHistoryView`に責務を移動したほうが良さそう。（そのうち）
     
     private func toggleStar(boardID: String) {

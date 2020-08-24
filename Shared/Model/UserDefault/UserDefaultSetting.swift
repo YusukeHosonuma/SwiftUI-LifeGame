@@ -14,10 +14,8 @@ final class UserDefaultSetting {
     static let DefaultAnimationSpeed: Double = 0.5
     static let DefaultZoomLevel: Int = 5
     
-    #if os(iOS)
     static let DefaultBoardSelectDisplayStyle: BoardSelectStyle = .grid
     static let DefaultIsFilterByStared: Bool = false
-    #endif
 
     @UserDefault(key: "boardSize", defaultValue: DefaultBoardSize)
     var boardSize: Int
@@ -31,11 +29,11 @@ final class UserDefaultSetting {
     #if os(iOS)
     @UserDefault(key: "backgroundImage", defaultValue: UIImageWrapper(nil))
     var backgroundImage: UIImageWrapper
-    
+    #endif
+
     @UserDefault(key: "boardSelectDisplayStyle", defaultValue: DefaultBoardSelectDisplayStyle)
     var boardSelectDisplayStyle: BoardSelectStyle
 
     @UserDefault(key: "isFilterByStared", defaultValue: DefaultIsFilterByStared)
     var isFilterByStared: Bool
-    #endif
 }

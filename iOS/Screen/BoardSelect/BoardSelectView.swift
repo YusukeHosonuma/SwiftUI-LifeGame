@@ -17,35 +17,13 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
 
     @ObservedObject var boardStore: BoardStore
     @Binding var isPresented: Bool
-    
-    // MARK: Computed properties
-    
-    private var fileredItems: [BoardItem] {
-        boardStore.allBoards
-            .filter(when: authentication.isSignIn && setting.isFilterByStared, isIncluded: \.stared)
-    }
-    
-    private var columns: [GridItem] {
-        switch setting.boardSelectDisplayStyle {
-        case .grid:
-            return [
-                GridItem(.adaptive(minimum: 100))
-            ]
-
-        case .list:
-            return [
-                GridItem(spacing: 0)
-            ]
-        }
-    }
-
-    @State var isPresentedAlert = false
 
     // MARK: View
 
     var body: some View {
         NavigationView {
             // Note:
+            //
             // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta5）❗
             //
             // ```
@@ -55,6 +33,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             // }
             // .listStyle(InsetListStyle())
             // ```
+            //
             ScrollView {
                 VStack {
                     historySection()
@@ -103,28 +82,9 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         if network.status != .satisfied && boardStore.allBoards.isEmpty {
             Text("Network is offline.").emptyContent()
         } else {
-            LazyVGrid(columns: columns) {
-                ForEach(fileredItems) { item in
-                    Button(action: { tapCell(item) }) {
-                        BoardSelectCell(item: item, style: setting.boardSelectDisplayStyle)
-                    }
-                    .contextMenu { // コンテンツ自体が半透明になって見づらくなる問題あり。仕様？（beta5）❗
-                        BoardSelectContextMenu(isStared: item.stared) {
-                            if authentication.isSignIn {
-                                withAnimation {
-                                    self.boardStore.toggleLike(boardID: item.boardDocumentID)
-                                }
-                            } else {
-                                isPresentedAlert.toggle()
-                            }
-                        }
-                    }
-                    .alert(isPresented: $isPresentedAlert) {
-                        Alert(title: Text("Need login."))
-                    }
-                }
-            }
-            .padding([.horizontal])
+            AllBoardSelectView(displayStyle: setting.boardSelectDisplayStyle,
+                               isFilterByStared: setting.isFilterByStared,
+                               didSelect: tapCell)
         }
     }
     

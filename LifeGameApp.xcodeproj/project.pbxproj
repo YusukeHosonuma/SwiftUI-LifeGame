@@ -111,6 +111,11 @@
 		E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
 		E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
 		E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */; };
+		E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */; };
+		E57FE78E24F36C76009D8677 /* BoardSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */; };
+		E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE78F24F36F66009D8677 /* BoardListView.swift */; };
+		E57FE79224F37F96009D8677 /* AllBoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */; };
+		E57FE79324F37F96009D8677 /* AllBoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */; };
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
 		E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
@@ -278,6 +283,8 @@
 		E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectHistoryView.swift; sourceTree = "<group>"; };
 		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
+		E57FE78F24F36F66009D8677 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
+		E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBoardSelectView.swift; sourceTree = "<group>"; };
 		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
 		E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
 		E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWPathMonitor+Publisher.swift"; sourceTree = "<group>"; };
@@ -605,6 +612,7 @@
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
 				E55F7AA924DD101900DBC175 /* PresetListView.swift */,
+				E57FE78F24F36F66009D8677 /* BoardListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 				E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */,
 				E57F07B324F267720057B2D1 /* SignInButton.swift */,
 				E5A7911B24D64A1000648813 /* ActionMenuButton.swift */,
+				E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1199,6 +1208,7 @@
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E54A992F24EA12F700298388 /* BoardSelectContextMenu.swift in Sources */,
+				E57FE79224F37F96009D8677 /* AllBoardSelectView.swift in Sources */,
 				E548F6BC24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift in Sources */,
 				E52FE5E124DC03C100D93764 /* BoardSelectView.swift in Sources */,
 				E52FE5DD24DC012A00D93764 /* BoardDocument.swift in Sources */,
@@ -1251,12 +1261,14 @@
 			files = (
 				E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */,
 				E5D7E5C924F27B6E00B56A71 /* BoardSelectHistoryView.swift in Sources */,
+				E57FE78E24F36C76009D8677 /* BoardSelectCell.swift in Sources */,
 				E5A7911D24D64A1000648813 /* ActionMenuButton.swift in Sources */,
 				E56DBCB024E4FE3200849CE4 /* Array+.swift in Sources */,
 				E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */,
 				E58F427124E6C6FF0062E2FF /* BoardContainerView.swift in Sources */,
 				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
 				E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */,
+				E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */,
 				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E55F7AAA24DD101900DBC175 /* PresetListView.swift in Sources */,
 				E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */,
@@ -1268,6 +1280,7 @@
 				E51FD75624F20EE1002981F4 /* FirestoreFeedbackRepository.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
 				E5261AAC24F33F1800218CDD /* GameManager.swift in Sources */,
+				E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
@@ -1306,6 +1319,7 @@
 				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
+				E57FE79324F37F96009D8677 /* AllBoardSelectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
