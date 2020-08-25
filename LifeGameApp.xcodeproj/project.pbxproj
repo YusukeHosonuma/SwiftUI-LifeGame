@@ -70,6 +70,9 @@
 		E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
 		E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
 		E548F6BC24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E548F6BB24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift */; };
+		E54A63A924F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
+		E54A63AA24F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
+		E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
 		E54A992F24EA12F700298388 /* BoardSelectContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A992E24EA12F700298388 /* BoardSelectContextMenu.swift */; };
 		E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
 		E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
@@ -263,6 +266,7 @@
 		E5438E3D24E2AB0D007A3EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		E548F6BB24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LifeGameBoard+RawRepresentable.swift"; sourceTree = "<group>"; };
+		E54A63A824F4F25100084964 /* BoardExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardExample.swift; sourceTree = "<group>"; };
 		E54A992E24EA12F700298388 /* BoardSelectContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectContextMenu.swift; sourceTree = "<group>"; };
 		E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreStaredRepository.swift; sourceTree = "<group>"; };
 		E54A993324EA766C00298388 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
@@ -837,6 +841,7 @@
 				E547C30824E3F4AA0022DF3A /* Cache */,
 				E52FE5DB24DC00E100D93764 /* Firestore */,
 				E5F535F724F341EB00D2DC25 /* UserDefault */,
+				E54A63A824F4F25100084964 /* BoardExample.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1184,6 +1189,7 @@
 				E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */,
 				E56A422824E2BB6800F9AC24 /* BoardDocument.swift in Sources */,
 				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
+				E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
 				E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
@@ -1225,6 +1231,7 @@
 				E5261AA824F3228100218CDD /* BoardManager.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
+				E54A63A924F4F25100084964 /* BoardExample.swift in Sources */,
 				E54A992F24EA12F700298388 /* BoardSelectContextMenu.swift in Sources */,
 				E57FE79224F37F96009D8677 /* AllBoardSelectView.swift in Sources */,
 				E548F6BC24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift in Sources */,
@@ -1327,6 +1334,7 @@
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5238E0024EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
+				E54A63AA24F4F25100084964 /* BoardExample.swift in Sources */,
 				E51FD75024F20BA7002981F4 /* FeedbackManager.swift in Sources */,
 				E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */,
 				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,

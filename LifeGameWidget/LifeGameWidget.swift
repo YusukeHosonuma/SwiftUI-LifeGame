@@ -15,14 +15,13 @@ import FirebaseFirestoreSwift
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> LifeGameEntry {
-        let data = LifeGameData(title: "Title", board: Board(size: 12, cell: Cell.die))
-        return LifeGameEntry(date: Date(), relevance: data)
+        let data = BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) }
+        return LifeGameEntry(date: Date(), relevance: LifeGameData(boards: data))
     }
 
     func getSnapshot(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (LifeGameEntry) -> ()) {
-        let preset = BoardPreset.nebura
-        let data = LifeGameData(title: preset.displayText, board: preset.board.board)
-        let entry = LifeGameEntry(date: Date(), relevance: data)
+        let data = BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) }
+        let entry = LifeGameEntry(date: Date(), relevance: LifeGameData(boards: data))
         completion(entry)
     }
 
@@ -52,42 +51,25 @@ struct Provider: IntentTimelineProvider {
             let entries: [LifeGameEntry] = items
                 .filter(when: Auth.auth().currentUser != nil && isFilteredByStared) { $0.stared }
                 .shuffled()
-                .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
+                .group(by: 4)
+                .prefix(5)
                 .enumerated()
-                .map { hourOffset, document in
+                .map { hourOffset, documents in
                     let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-                    let data = LifeGameData(title: document.title,
-                                            board: document.board.extended(by: .die, count: 1),
-                                            url: URL(string: "board:///\(document.id)")!,
-                                            cacheKey: document.id)
-                    return LifeGameEntry(date: entryDate, relevance: data)
+                    
+                    let data = documents.map { document in
+                        BoardData(title: document.title,
+                                  board: document.board,
+                                  url: URL(string: "board:///\(document.id)")!,
+                                  cacheKey: document.id)
+                    }
+                    
+                    return LifeGameEntry(date: entryDate, relevance: LifeGameData(boards: data))
                 }
 
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         }
-        
-//        FirestoreBoardRepository.shared
-//            .getAll { documents in
-//                //let currentDate = Date()
-//
-//                let entries: [LifeGameEntry] = documents
-//                    .filter(when: isFilteredByStared) { $0.stared } // 大した件数でも無いので Firestore でなくロジックでフィルターしてしまう
-//                    .shuffled()
-//                    .prefix(5) // TODO: とりあえず5つだけ（デバッグしやすさも兼ねて）
-//                    .enumerated()
-//                    .map { hourOffset, document in
-//                        let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-//                        let data = LifeGameData(title: document.title,
-//                                                board: document.makeBoard().extended(by: .die),
-//                                                url: URL(string: "board:///\(document.id!)")!,
-//                                                cacheKey: document.id!)
-//                        return LifeGameEntry(date: entryDate, relevance: data)
-//                    }
-//
-//                let timeline = Timeline(entries: entries, policy: .atEnd)
-//                completion(timeline)
-//            }
     }
 }
 
@@ -97,6 +79,10 @@ struct LifeGameEntry: TimelineEntry {
 }
 
 struct LifeGameData {
+    var boards: [BoardData]
+}
+
+struct BoardData {
     var title: String
     var board: Board<Cell>
     var url: URL = URL(string: "board:///0")!
@@ -104,22 +90,39 @@ struct LifeGameData {
 }
 
 struct LifeGameWidgetEntryView : View {
+    @Environment(\.widgetFamily) private var widgetFamily
     @Environment(\.colorScheme) private var colorScheme
     
     var entry: Provider.Entry
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                BoardThumbnailImage(board: entry.relevance.board, cellColor: cellColor, cacheKey: entry.relevance.cacheKey)
-                Text(entry.relevance.title)
-                    .font(.system(.footnote, design: .monospaced))
-                    .foregroundColor(.gray)
+        if widgetFamily == .systemSmall {
+            HStack {
+                boardView(data: entry.relevance.boards.first!)
+                Spacer()
             }
-            .widgetURL(entry.relevance.url)
-            Spacer()
+            .padding()
+            .widgetURL(entry.relevance.boards.first!.url)
+        } else {
+            HStack {
+                ForEach(entry.relevance.boards, id: \.title) { data in
+                    Link(destination: data.url) {
+                        boardView(data: data)
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
+    }
+    
+    func boardView(data: BoardData) -> some View {
+        VStack(alignment: .leading) {
+            BoardThumbnailImage(board: data.board, cellColor: cellColor, cacheKey: data.cacheKey)
+            Text(data.title)
+                .font(.system(.caption2, design: .monospaced))
+                .foregroundColor(.gray)
+                .lineLimit(1)
+        }
     }
     
     var cellColor: Color {
@@ -142,14 +145,14 @@ struct LifeGameWidget: Widget {
         }
         .configurationDisplayName("Random boards")
         .description("Enjoy random boards on Home screen.")
-        .supportedFamilies([.systemSmall]) // とりあえず Small のみ
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
 struct LifeGameWidget_Previews: PreviewProvider {
     static let preset = BoardPreset.nebura
     static let entry = LifeGameEntry(date: Date(),
-                                     relevance: LifeGameData(title: preset.displayText, board: preset.board.board))
+                                     relevance: LifeGameData(boards: [BoardData(title: preset.displayText, board: preset.board.board)]))
     
     static var previews: some View {
         view(colorScheme: .light)
