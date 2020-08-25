@@ -103,6 +103,8 @@ struct MacFeedbackView: View {
     }
     
     // MARK: Alert
+    
+    // TODO: あんま見通しよくないので`MacRootView`のシートのような形式のほうがいいのかも。
 
     private func showAlert(_ type: FeedbackAlertType) {
         let alert: FeedbackAlerts
