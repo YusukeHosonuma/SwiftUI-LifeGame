@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-private let LimitDescriptionCount = 400
-
 struct MacFeedbackView: View {
     
     // MARK: Inputs
@@ -49,9 +47,16 @@ struct MacFeedbackView: View {
 
             sectionGroup(title: "Description") {
                 itemGroup(description: "Please fill in freely:") {
-                    TextEditor(text: $feedbackManager.content)
-                        .frame(height: 120)
-                        .textFieldStyle(SquareBorderTextFieldStyle())
+                    AppTextEditor(
+                        text: $feedbackManager.content,
+                        placeholder: "Please fill in freely.", // Not work in Mac
+                        limit: FeedbackManager.limitDescriptionCount
+                    )
+                    .lineLimit(nil)
+                    .frame(height: 120)
+                    
+                    Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
+                        .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
                 }
             }
             

@@ -15,7 +15,7 @@ import SwiftUI
 /// ```
 struct AppTextEditor: View {
     @Binding private var text: String
-    private var placeholder: String
+    private var placeholder: String // TODO: Macではプレースホルダは機能しない
     private var limit: Int?
     
     init(text: Binding<String>, placeholder: String, limit: Int? = nil) {
