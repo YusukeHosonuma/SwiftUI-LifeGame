@@ -1,5 +1,5 @@
 //
-//  WidgetDataFetcher.swift
+//  DataFetcher.swift
 //  LifeGameWidgetExtension
 //
 //  Created by Yusuke Hosonuma on 2020/08/18.
@@ -11,10 +11,10 @@ import FirebaseAuth
 
 // TODO: BoardStore と共通してる処理もあるので、Service として切り出すことを検討
 
-final class WidgetDataFetcher {
+final class DataFetcher {
     typealias Handler = ([BoardItem]) -> Void
 
-    static let shared = WidgetDataFetcher()
+    static let shared = DataFetcher()
     
     func fetch(handler: @escaping Handler) {
         if let user = Auth.auth().currentUser {
