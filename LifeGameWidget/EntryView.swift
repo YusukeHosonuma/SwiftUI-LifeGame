@@ -17,14 +17,14 @@ struct EntryView : View {
     var body: some View {
         if widgetFamily == .systemSmall {
             HStack {
-                boardView(data: entry.relevance.boards.first!)
+                boardView(data: entry.relevance.first!)
                 Spacer()
             }
             .padding()
-            .widgetURL(entry.relevance.boards.first!.url)
+            .widgetURL(entry.relevance.first!.url)
         } else {
             HStack {
-                ForEach(entry.relevance.boards, id: \.title) { data in
+                ForEach(entry.relevance, id: \.title) { data in
                     Link(destination: data.url) {
                         boardView(data: data)
                     }
@@ -56,8 +56,7 @@ struct EntryView : View {
 
 struct LifeGameWidget_Previews: PreviewProvider {
     static let preset = BoardPreset.nebura
-    static let entry = Entry(date: Date(),
-                                     relevance: LifeGameData(boards: [BoardData(title: preset.displayText, board: preset.board.board)]))
+    static let entry = Entry(date: Date(), relevance: exampleData)
     
     static var previews: some View {
         view(colorScheme: .light)

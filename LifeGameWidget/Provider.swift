@@ -10,7 +10,7 @@ import LifeGame
 import Firebase
 import FirebaseAuth
 
-private let exampleData = LifeGameData(boards: BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) })
+let exampleData = BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) }
 
 struct Provider: IntentTimelineProvider {
 
@@ -61,7 +61,7 @@ struct Provider: IntentTimelineProvider {
                                   cacheKey: document.id)
                     }
                     
-                    return Entry(date: entryDate, relevance: LifeGameData(boards: data))
+                    return Entry(date: entryDate, relevance: data)
                 }
 
             let timeline = Timeline(entries: entries, policy: .atEnd)

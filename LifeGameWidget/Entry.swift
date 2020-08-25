@@ -10,11 +10,7 @@ import LifeGame
 
 struct Entry: TimelineEntry {
     var date: Date
-    let relevance: LifeGameData
-}
-
-struct LifeGameData {
-    var boards: [BoardData]
+    let relevance: [BoardData]
 }
 
 struct BoardData {
