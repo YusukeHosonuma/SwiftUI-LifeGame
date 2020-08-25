@@ -73,6 +73,9 @@
 		E54A63A924F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
 		E54A63AA24F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
 		E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63A824F4F25100084964 /* BoardExample.swift */; };
+		E54A63AD24F4F31800084964 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63AC24F4F31800084964 /* EntryView.swift */; };
+		E54A63AF24F4F35800084964 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63AE24F4F35800084964 /* Entry.swift */; };
+		E54A63B124F4F3B400084964 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A63B024F4F3B400084964 /* Provider.swift */; };
 		E54A992F24EA12F700298388 /* BoardSelectContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A992E24EA12F700298388 /* BoardSelectContextMenu.swift */; };
 		E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
 		E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
@@ -160,7 +163,7 @@
 		E5D9F27424BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
 		E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */; };
-		E5E0067E24EB8B1900A4EA02 /* WidgetDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */; };
+		E5E0067E24EB8B1900A4EA02 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E0067D24EB8B1900A4EA02 /* DataFetcher.swift */; };
 		E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* BoardItem.swift */; };
 		E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
 		E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238DFE24EAC29E0087B9B0 /* StaredDocument.swift */; };
@@ -267,6 +270,9 @@
 		E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		E548F6BB24F01315006D6F66 /* LifeGameBoard+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LifeGameBoard+RawRepresentable.swift"; sourceTree = "<group>"; };
 		E54A63A824F4F25100084964 /* BoardExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardExample.swift; sourceTree = "<group>"; };
+		E54A63AC24F4F31800084964 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		E54A63AE24F4F35800084964 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		E54A63B024F4F3B400084964 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		E54A992E24EA12F700298388 /* BoardSelectContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectContextMenu.swift; sourceTree = "<group>"; };
 		E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreStaredRepository.swift; sourceTree = "<group>"; };
 		E54A993324EA766C00298388 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
@@ -324,7 +330,7 @@
 		E5D9F27024BEBDBD009A526B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E5D9F27224BEBDBD009A526B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
-		E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataFetcher.swift; sourceTree = "<group>"; };
+		E5E0067D24EB8B1900A4EA02 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 		E5E50A2924E539C900CD64B6 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectCell.swift; sourceTree = "<group>"; };
@@ -466,7 +472,10 @@
 			children = (
 				E5E0067C24EB8AF700A4EA02 /* Resources */,
 				E5438E3924E2AB0B007A3EB7 /* LifeGameWidget.swift */,
-				E5E0067D24EB8B1900A4EA02 /* WidgetDataFetcher.swift */,
+				E54A63B024F4F3B400084964 /* Provider.swift */,
+				E54A63AC24F4F31800084964 /* EntryView.swift */,
+				E54A63AE24F4F35800084964 /* Entry.swift */,
+				E5E0067D24EB8B1900A4EA02 /* DataFetcher.swift */,
 			);
 			path = LifeGameWidget;
 			sourceTree = "<group>";
@@ -1183,6 +1192,8 @@
 				E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */,
 				E56DBCB324E4FFF400849CE4 /* Array+.swift in Sources */,
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
+				E54A63AD24F4F31800084964 /* EntryView.swift in Sources */,
+				E54A63AF24F4F35800084964 /* Entry.swift in Sources */,
 				E5E50A2824E535AD00CD64B6 /* GraphicsImageRenderer.swift in Sources */,
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
@@ -1196,7 +1207,8 @@
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
 				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
-				E5E0067E24EB8B1900A4EA02 /* WidgetDataFetcher.swift in Sources */,
+				E54A63B124F4F3B400084964 /* Provider.swift in Sources */,
+				E5E0067E24EB8B1900A4EA02 /* DataFetcher.swift in Sources */,
 				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
 				E518C89524E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);
