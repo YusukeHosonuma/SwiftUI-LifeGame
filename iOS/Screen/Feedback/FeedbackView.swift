@@ -12,7 +12,7 @@ private let LimitDescriptionCount = 400
 struct FeedbackView: View {
     @StateObject private var feedbackManager: FeedbackManager
     @Binding private var isPresented: Bool
-    @State private var presentedAlert: Alerts?
+    @State private var presentedAlert: FeedbackAlerts?
 
     init(isPresented: Binding<Bool>, userID: String) {
         _isPresented = isPresented
@@ -61,8 +61,8 @@ struct FeedbackView: View {
     
     // MARK: Alert
 
-    private func showAlert(_ type: AlertType) {
-        let alert: Alerts
+    private func showAlert(_ type: FeedbackAlertType) {
+        let alert: FeedbackAlerts
 
         switch type {
         case .invalid:

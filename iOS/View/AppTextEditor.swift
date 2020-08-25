@@ -9,6 +9,10 @@ import SwiftUI
 
 // ref: https://lostmoa.com/blog/AddPlaceholderTextToSwiftUITextEditor/
 
+/// Please call below before uses.
+/// ```
+/// UITextView.appearance().backgroundColor = .clear
+/// ```
 struct AppTextEditor: View {
     @Binding private var text: String
     private var placeholder: String

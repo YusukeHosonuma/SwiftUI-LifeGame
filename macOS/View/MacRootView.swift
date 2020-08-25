@@ -7,84 +7,120 @@
 
 import SwiftUI
 
+extension MacRootView {
+    private enum SheetType: Int, Identifiable {
+        case boardSelect
+        case feedback
+        
+        var id: Int { rawValue }
+    }
+}
+
 struct MacRootView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
+    @EnvironmentObject var authentication: Authentication
 
     private var title: String {
         fileManager.latestURL?.lastPathComponent ?? "Untitled"
     }
     
-    @State var isPresentedSheet = false
+    @State private var presentedSheet: SheetType?
     
+    @State var isPresentedSheet = false
+    @State var isPresentedFeedbackSheet = false
+    
+
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
                 MacNavigationView()
                 ContentView(zoomLevel: setting.zoomLevel)
-                    .sheet(isPresented: $isPresentedSheet) {
-                        // Note:
-                        // とりあえずウィンドウサイズよりちょっと小さめで表示してみる。
-                        BoardListView(isPresented: $isPresentedSheet)
-                            .frame(idealWidth: geometry.size.width * 0.8,
-                                   idealHeight: geometry.size.height * 0.8)
+                    .sheet(item: $presentedSheet) {
+                        switch $0 {
+                        case .boardSelect:
+                            // Note:
+                            // とりあえずウィンドウサイズよりちょっと小さめで表示してみる。
+                            BoardListView(dismiss: dismissSheet)
+                                .frame(idealWidth: geometry.size.width * 0.8,
+                                       idealHeight: geometry.size.height * 0.8)
+                            
+                        case .feedback:
+                            if let uid = authentication.user?.uid {
+                                MacFeedbackView(dismiss: dismissSheet, userID: uid)
+                            }
+                        }
                     }
             }
             .navigationTitle(title)
             .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    BoardSizeMenu(size: $setting.boardSize)
-                }
+                Group {
+                    ToolbarItem(placement: .navigation) {
+                        BoardSizeMenu(size: $setting.boardSize)
+                    }
 
-                ToolbarItem(placement: .navigation) {
-                    IconButton(systemName: "square.grid.2x2.fill") {
-                        isPresentedSheet.toggle()
+                    ToolbarItem(placement: .navigation) {
+                        IconButton(systemName: "square.grid.2x2.fill") {
+                            presentedSheet = .boardSelect
+                        }
                     }
                 }
                 
-                ToolbarItem(placement: .status) {
-                    IconButton(systemName: "play.fill", action: gameManager.play)
-                        .enabled(gameManager.state.canPlay)
-                }
-                
-                ToolbarItem(placement: .status) {
-                    IconButton(systemName: "stop.fill", action: gameManager.stop)
-                        .enabled(gameManager.state.canStop)
-                }
-                
-                ToolbarItem(placement: .status) {
-                    IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
-                        .enabled(gameManager.state.canNext)
-                }
-                
-                ToolbarItem(placement: .status) {
-                    IconButton(systemName: "trash", action: gameManager.clear)
-                }
-                
-                // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
-                
-                ToolbarItem(placement: .status) {
-                    Button(action: {
-                        if setting.zoomLevel < 10 {
-                            setting.zoomLevel += 1
-                        }
-                    }) {
-                        Image(systemName: "plus.magnifyingglass")
+                Group {
+                    ToolbarItem(placement: .status) {
+                        IconButton(systemName: "play.fill", action: gameManager.play)
+                            .enabled(gameManager.state.canPlay)
                     }
-                }
-                
-                ToolbarItem(placement: .status) {
-                    Button(action: {
-                        if 0 < setting.zoomLevel {
-                            setting.zoomLevel -= 1
+                    
+                    ToolbarItem(placement: .status) {
+                        IconButton(systemName: "stop.fill", action: gameManager.stop)
+                            .enabled(gameManager.state.canStop)
+                    }
+                    
+                    ToolbarItem(placement: .status) {
+                        IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
+                            .enabled(gameManager.state.canNext)
+                    }
+                    
+                    ToolbarItem(placement: .status) {
+                        IconButton(systemName: "trash", action: gameManager.clear)
+                    }
+
+                    // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
+                    
+                    ToolbarItem(placement: .status) {
+                        Button(action: {
+                            if setting.zoomLevel < 10 {
+                                setting.zoomLevel += 1
+                            }
+                        }) {
+                            Image(systemName: "plus.magnifyingglass")
                         }
-                    }) {
-                        Image(systemName: "minus.magnifyingglass")
+                    }
+                    
+                    ToolbarItem(placement: .status) {
+                        Button(action: {
+                            if 0 < setting.zoomLevel {
+                                setting.zoomLevel -= 1
+                            }
+                        }) {
+                            Image(systemName: "minus.magnifyingglass")
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .status) {
+                        IconButton(systemName: "exclamationmark.bubble") {
+                            presentedSheet = .feedback
+                        }
                     }
                 }
             }
         }
+    }
+        
+    private func dismissSheet() {
+        presentedSheet = nil
     }
 }
 
