@@ -10,16 +10,16 @@ import LifeGame
 import Firebase
 import FirebaseAuth
 
+private let exampleData = LifeGameData(boards: BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) })
+
 struct Provider: IntentTimelineProvider {
+
     func placeholder(in context: Context) -> Entry {
-        let data = BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) }
-        return Entry(date: Date(), relevance: LifeGameData(boards: data))
+        Entry(date: Date(), relevance: exampleData)
     }
 
     func getSnapshot(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (Entry) -> ()) {
-        let data = BoardExample.allCases.map { BoardData(title: $0.data.title, board: $0.data.board) }
-        let entry = Entry(date: Date(), relevance: LifeGameData(boards: data))
-        completion(entry)
+        completion(Entry(date: Date(), relevance: exampleData))
     }
 
     func getTimeline(for configuration: LifeGameConfigIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {

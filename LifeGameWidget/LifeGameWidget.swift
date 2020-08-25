@@ -7,9 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import LifeGame
-import Firebase
-import FirebaseAuth
 
 @main
 struct LifeGameWidget: Widget {
