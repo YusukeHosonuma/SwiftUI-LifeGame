@@ -138,6 +138,10 @@
 		E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */; };
 		E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
+		E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526724F4951500AAE321 /* MacFeedbackView.swift */; };
+		E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */; };
+		E5C2526C24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */; };
+		E5C2526D24F4A7F900AAE321 /* AppTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FD74C24F20917002981F4 /* AppTextEditor.swift */; };
 		E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */; };
 		E5C8D5C124E8E503005DB0FC /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
 		E5CA660F24E903AB00D6D59F /* HistoryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */; };
@@ -295,6 +299,8 @@
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		E5C2526724F4951500AAE321 /* MacFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFeedbackView.swift; sourceTree = "<group>"; };
+		E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAlerts.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
 		E5C8D5C024E8E503005DB0FC /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDocument.swift; sourceTree = "<group>"; };
@@ -613,6 +619,7 @@
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
 				E57FE78F24F36F66009D8677 /* BoardListView.swift */,
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
+				E5C2526724F4951500AAE321 /* MacFeedbackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -646,6 +653,14 @@
 				E5FA934B24C07A5500229AAA /* BoardPreset.swift */,
 			);
 			path = "Preview Conent";
+			sourceTree = "<group>";
+		};
+		E5C2526924F49D1800AAE321 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		E5C8D5BD24E8D483005DB0FC /* Model */ = {
@@ -805,6 +820,7 @@
 		E5FA934924C0799700229AAA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E5C2526924F49D1800AAE321 /* Alert */,
 				E507481D24CD4E17003811B5 /* Layout */,
 				E5B0572624CC3441005EE1AA /* Part */,
 				E5FA934424C05E8F00229AAA /* Styles */,
@@ -1202,6 +1218,7 @@
 				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
 				E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
+				E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
 				E5CA661224E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
@@ -1288,11 +1305,13 @@
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
 				E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
+				E5C2526D24F4A7F900AAE321 /* AppTextEditor.swift in Sources */,
 				E5D7E5CA24F27B9800B56A71 /* BoardSelectContextMenu.swift in Sources */,
 				E518C89024E3670C00B02027 /* UserDefaultGroup.swift in Sources */,
 				E58D5F4A24E782C6000A0345 /* NetworkMonitor.swift in Sources */,
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
+				E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */,
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
@@ -1318,6 +1337,7 @@
 				E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E5E50A2B24E539C900CD64B6 /* Image+.swift in Sources */,
+				E5C2526C24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
 				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,

@@ -9,16 +9,19 @@ import SwiftUI
 import LifeGame
 
 struct BoardListView: View {
+    
+    // MARK: Environments
+    
     @EnvironmentObject private var setting: SettingEnvironment
     @EnvironmentObject private var authentication: Authentication
     @EnvironmentObject private var boardStore: BoardStore
     @EnvironmentObject private var gameManager: GameManager
 
-    @Binding private var isPresented: Bool
+    // MARK: Inputs
+    
+    let dismiss: () -> Void
 
-    init(isPresented: Binding<Bool>) {
-        _isPresented = isPresented
-    }
+    // MARK: Views
     
     var body: some View {
         NavigationView {
@@ -61,14 +64,10 @@ struct BoardListView: View {
         gameManager.setBoard(board: item.board)
         dismiss()
     }
-    
-    private func dismiss() {
-        isPresented = false
-    }
 }
 
 struct BoardListView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardListView(isPresented: .constant(true))
+        BoardListView(dismiss: {})
     }
 }

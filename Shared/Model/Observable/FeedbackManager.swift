@@ -9,6 +9,8 @@ import SwiftUI
 
 final class FeedbackManager: ObservableObject {
     
+    static let limitDescriptionCount = 400
+    
     @Published var title = ""
     @Published var content = ""
     @Published var selectedCategory = FeedbackCategory.proposal

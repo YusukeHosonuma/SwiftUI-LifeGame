@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-private let LimitDescriptionCount = 400
-
 struct FeedbackView: View {
     @StateObject private var feedbackManager: FeedbackManager
     @Binding private var isPresented: Bool
-    @State private var presentedAlert: Alerts?
+    @State private var presentedAlert: FeedbackAlerts?
 
     init(isPresented: Binding<Bool>, userID: String) {
         _isPresented = isPresented
@@ -34,14 +32,18 @@ struct FeedbackView: View {
                     header: HStack {
                         Text("Description")
                         Spacer()
-                        Text("\(feedbackManager.content.count) / \(LimitDescriptionCount)")
-                            .foregroundColor(feedbackManager.content.count == LimitDescriptionCount ? .red : nil)
+                        Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
+                            .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
                     },
-                    footer: Text("Please enter less than \(LimitDescriptionCount) characters.")
+                    footer: Text("Please enter less than \(FeedbackManager.limitDescriptionCount) characters.")
                 ) {
-                    AppTextEditor(text: $feedbackManager.content, placeholder: "Please fill in freely.", limit: LimitDescriptionCount)
-                        .lineLimit(nil)
-                        .frame(height: 100)
+                    AppTextEditor(
+                        text: $feedbackManager.content,
+                        placeholder: "Please fill in freely.", // Not work in Mac
+                        limit: FeedbackManager.limitDescriptionCount
+                    )
+                    .lineLimit(nil)
+                    .frame(height: 100)
                 }
             }
             .alert(item: $presentedAlert) { $0.alert }
@@ -61,8 +63,8 @@ struct FeedbackView: View {
     
     // MARK: Alert
 
-    private func showAlert(_ type: AlertType) {
-        let alert: Alerts
+    private func showAlert(_ type: FeedbackAlertType) {
+        let alert: FeedbackAlerts
 
         switch type {
         case .invalid:

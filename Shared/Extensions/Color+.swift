@@ -8,11 +8,13 @@
 import SwiftUI
 
 extension Color {
-    #if os(iOS)
     static var placeholderText: Color {
-        Color(UIColor.placeholderText)
+        #if os(macOS)
+        return Color(NSColor.placeholderTextColor)
+        #else
+        return Color(UIColor.placeholderText)
+        #endif
     }
-    #endif
     
     // Note:
     // beta5 から標準で`cgColor`プロパティが用意されたが、返却値がOptional型になっており、
