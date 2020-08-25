@@ -19,43 +19,60 @@ struct FeedbackView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Type")) {
-                    Picker("What type of feedback?", selection: $feedbackManager.selectedCategory) {
-                        ForEach(FeedbackCategory.allCases) { Text($0.description).tag($0) }
+            ScrollViewReader { scroll in
+                List {
+                    Section(header: Text("Type")) {
+                        Picker("What type of feedback?", selection: $feedbackManager.selectedCategory) {
+                            ForEach(FeedbackCategory.allCases) { Text($0.description).tag($0) }
+                        }
+                    }
+
+                    Section(header: Text("Title")) {
+                        TextField("Example: It crashed when I tapped the button.", text: $feedbackManager.title)
+                    }
+
+                    Section(
+                        header: HStack {
+                            Text("Description")
+                            Spacer()
+                            Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
+                                .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
+                        },
+                        footer: Text("Please enter less than \(FeedbackManager.limitDescriptionCount) characters.")
+                    ) {
+                        // Note:
+                        // 現状、iPhone SE だとキーボード表示時にテキストエディタが隠れてしまう問題がある。（beta5）❗
+                        // （ただし、スクロールすればいいだけなので大した問題ではない）
+                        AppTextEditor(
+                            text: $feedbackManager.content,
+                            placeholder: "Please fill in freely.", // Not work in Mac
+                            limit: FeedbackManager.limitDescriptionCount
+                        )
+                        // Note:
+                        // `focusable`というモディファイアが以前はあったようだが現在は見つけられない。（beta5）❗
+                        // 意図せずbeta5のSDKから除外されてしまったか、それともドキュメントの更新漏れ？
+                        // https://developer.apple.com/documentation/swiftui/button/focusable(_:onfocuschange:)
+                        .onTapGesture {
+                            // Note:
+                            // `.sheet`で表示されたViewの場合に`scrollTo`が機能しない（beta5）❗
+                            scroll.scrollTo(42, anchor: .bottom)
+                        }
+                        .lineLimit(nil)
+                        .frame(height: 100)
+                        .id(42)
                     }
                 }
-                Section(header: Text("Title")) {
-                    TextField("Example: It crashed when I tapped the button.", text: $feedbackManager.title)
-                }
-                Section(
-                    header: HStack {
-                        Text("Description")
-                        Spacer()
-                        Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
-                            .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
-                    },
-                    footer: Text("Please enter less than \(FeedbackManager.limitDescriptionCount) characters.")
-                ) {
-                    AppTextEditor(
-                        text: $feedbackManager.content,
-                        placeholder: "Please fill in freely.", // Not work in Mac
-                        limit: FeedbackManager.limitDescriptionCount
-                    )
-                    .lineLimit(nil)
-                    .frame(height: 100)
-                }
-            }
-            .alert(item: $presentedAlert) { $0.alert }
-            .listStyle(GroupedListStyle())
-            .navigationTitle("Feedback")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", action: tapCancelButton)
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button("Send", action: tapSendToolbarButton)
+                .alert(item: $presentedAlert) { $0.alert }
+                .listStyle(GroupedListStyle())
+                .navigationTitle("Feedback")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel", action: tapCancelButton)
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Send", action: tapSendToolbarButton)
+                    }
                 }
             }
         }
