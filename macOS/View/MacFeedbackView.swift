@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// Note:
+// Light mode ではきれいに表示されない問題がある。（macOS-beta5）❗
+
 struct MacFeedbackView: View {
     
     // MARK: Inputs
@@ -54,9 +57,13 @@ struct MacFeedbackView: View {
                     )
                     .lineLimit(nil)
                     .frame(height: 120)
+                    .border(Color.placeholderText)
                     
-                    Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
-                        .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
+                    HStack {
+                        Spacer()
+                        Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
+                            .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : Color.placeholderText)
+                    }
                 }
             }
             

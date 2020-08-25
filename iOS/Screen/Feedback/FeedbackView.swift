@@ -35,7 +35,7 @@ struct FeedbackView: View {
                         Text("\(feedbackManager.content.count) / \(FeedbackManager.limitDescriptionCount)")
                             .foregroundColor(feedbackManager.content.count >= FeedbackManager.limitDescriptionCount ? .red : nil)
                     },
-                    footer: Text("Please enter less than \(LimitDescriptionCount) characters.")
+                    footer: Text("Please enter less than \(FeedbackManager.limitDescriptionCount) characters.")
                 ) {
                     AppTextEditor(
                         text: $feedbackManager.content,
