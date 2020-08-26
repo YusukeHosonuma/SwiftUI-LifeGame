@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1369F172EE87A88EB8BC8A55 /* Pods_LifeGameApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */; };
-		1822143613200647A35FCC94 /* Pods_LifeGameApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */; };
-		41C3D101E9EE82668B5A2801 /* Pods_LifeGameWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
@@ -66,6 +63,9 @@
 		E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1524DFF33E0012E911 /* BoardThumbnailImage.swift */; };
 		E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5438E4824E2ADE3007A3EB7 /* LifeGame */; };
+		E54668A524F6229E00DEBB2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E54668A424F6229E00DEBB2F /* FirebaseFirestore */; };
+		E54668A724F6229E00DEBB2F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E54668A624F6229E00DEBB2F /* FirebaseFirestoreSwift */; };
+		E54668A924F6240D00DEBB2F /* Firebase in Frameworks */ = {isa = PBXBuildFile; productRef = E54668A824F6240D00DEBB2F /* Firebase */; };
 		E547C30A24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
 		E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
 		E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547C30924E3F4CF0022DF3A /* MemoryStorage.swift */; };
@@ -135,6 +135,11 @@
 		E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E598686124D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
 		E598686224D434FC0010DC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E598686024D434FC0010DC73 /* Assets.xcassets */; };
+		E5A5811024F61A8C0074C734 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5810F24F61A8C0074C734 /* FirebaseFirestore */; };
+		E5A5811224F61A8C0074C734 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5811124F61A8C0074C734 /* FirebaseFirestoreSwift */; };
+		E5A5811424F61C000074C734 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5811324F61C000074C734 /* FirebaseAuth */; };
+		E5A5811624F61C0E0074C734 /* Firebase in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5811524F61C0E0074C734 /* Firebase */; };
+		E5A5811824F6210E0074C734 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5811724F6210E0074C734 /* FirebaseAuth */; };
 		E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
 		E5A7911D24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
@@ -143,6 +148,11 @@
 		E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B706D324ED4DE500787B82 /* SheetButton.swift */; };
 		E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5529CDB24EB66F4004A6EB4 /* Modifiers.swift */; };
 		E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DFF7924DC09BC00DC8F4F /* FirestoreBoardRepository.swift */; };
+		E5B9BFC224F617AC001CC1FA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC124F617AC001CC1FA /* FirebaseFirestore */; };
+		E5B9BFC424F617AC001CC1FA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC324F617AC001CC1FA /* FirebaseFirestoreSwift */; };
+		E5B9BFC624F617AC001CC1FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC524F617AC001CC1FA /* FirebaseAuth */; };
+		E5B9BFC824F617AC001CC1FA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC724F617AC001CC1FA /* FirebaseCore */; };
+		E5B9BFCA24F617AC001CC1FA /* Firebase in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC924F617AC001CC1FA /* Firebase */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526724F4951500AAE321 /* MacFeedbackView.swift */; };
 		E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */; };
@@ -225,15 +235,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameApp__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (iOS).release.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS).release.xcconfig"; sourceTree = "<group>"; };
-		5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameApp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C7A71B08C1E69D8B9FD780F /* Pods-LifeGameApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
-		7B8D922A10122D0343FF5654 /* Pods-LifeGameApp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (macOS).release.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS).release.xcconfig"; sourceTree = "<group>"; };
-		8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-LifeGameWidgetExtension/Pods-LifeGameWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeGameWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameApp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeGameWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-LifeGameWidgetExtension/Pods-LifeGameWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
@@ -346,10 +347,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A5811624F61C0E0074C734 /* Firebase in Frameworks */,
+				E5A5811224F61A8C0074C734 /* FirebaseFirestoreSwift in Frameworks */,
+				E5A5811424F61C000074C734 /* FirebaseAuth in Frameworks */,
 				E5438E3724E2AB0B007A3EB7 /* SwiftUI.framework in Frameworks */,
+				E5A5811024F61A8C0074C734 /* FirebaseFirestore in Frameworks */,
 				E5438E3624E2AB0B007A3EB7 /* WidgetKit.framework in Frameworks */,
 				E5438E4924E2ADE3007A3EB7 /* LifeGame in Frameworks */,
-				41C3D101E9EE82668B5A2801 /* Pods_LifeGameWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,9 +361,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B9BFCA24F617AC001CC1FA /* Firebase in Frameworks */,
 				E51836EB24C0AA3B00DDE3A6 /* LifeGame in Frameworks */,
+				E5B9BFC624F617AC001CC1FA /* FirebaseAuth in Frameworks */,
 				E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */,
-				1369F172EE87A88EB8BC8A55 /* Pods_LifeGameApp__iOS_.framework in Frameworks */,
+				E5B9BFC224F617AC001CC1FA /* FirebaseFirestore in Frameworks */,
+				E5B9BFC824F617AC001CC1FA /* FirebaseCore in Frameworks */,
+				E5B9BFC424F617AC001CC1FA /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,8 +375,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E54668A924F6240D00DEBB2F /* Firebase in Frameworks */,
 				E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */,
-				1822143613200647A35FCC94 /* Pods_LifeGameApp__macOS_.framework in Frameworks */,
+				E5A5811824F6210E0074C734 /* FirebaseAuth in Frameworks */,
+				E54668A524F6229E00DEBB2F /* FirebaseFirestore in Frameworks */,
+				E54668A724F6229E00DEBB2F /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,12 +403,6 @@
 		9E13C87229874903F6FA62E0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */,
-				462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */,
-				6C7A71B08C1E69D8B9FD780F /* Pods-LifeGameApp (macOS).debug.xcconfig */,
-				7B8D922A10122D0343FF5654 /* Pods-LifeGameApp (macOS).release.xcconfig */,
-				8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */,
-				B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -771,10 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				E5BA30A924BEE073002D0564 /* SwiftUI.framework */,
-				5D9C446802C7A581A1B1F890 /* Pods_LifeGameApp__iOS_.framework */,
-				23FF821A29C37F65529EFA64 /* Pods_LifeGameApp__macOS_.framework */,
 				E5438E3524E2AB0B007A3EB7 /* WidgetKit.framework */,
-				A971D37833B053710206BB7B /* Pods_LifeGameWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -884,7 +886,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5438E4424E2AB0D007A3EB7 /* Build configuration list for PBXNativeTarget "LifeGameWidgetExtension" */;
 			buildPhases = (
-				9FB5C6AD63839C6A3B003C83 /* [CP] Check Pods Manifest.lock */,
 				E5438E3024E2AB0B007A3EB7 /* Sources */,
 				E5438E3124E2AB0B007A3EB7 /* Frameworks */,
 				E5438E3224E2AB0B007A3EB7 /* Resources */,
@@ -896,6 +897,10 @@
 			name = LifeGameWidgetExtension;
 			packageProductDependencies = (
 				E5438E4824E2ADE3007A3EB7 /* LifeGame */,
+				E5A5810F24F61A8C0074C734 /* FirebaseFirestore */,
+				E5A5811124F61A8C0074C734 /* FirebaseFirestoreSwift */,
+				E5A5811324F61C000074C734 /* FirebaseAuth */,
+				E5A5811524F61C0E0074C734 /* Firebase */,
 			);
 			productName = LifeGameWidgetExtension;
 			productReference = E5438E3424E2AB0B007A3EB7 /* LifeGameWidgetExtension.appex */;
@@ -905,11 +910,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5D9F27B24BEBDBD009A526B /* Build configuration list for PBXNativeTarget "LifeGameApp (iOS)" */;
 			buildPhases = (
-				E915B579C1859190105D6D49 /* [CP] Check Pods Manifest.lock */,
 				E5D9F24D24BEBDBD009A526B /* Sources */,
 				E5D9F24E24BEBDBD009A526B /* Frameworks */,
 				E5D9F24F24BEBDBD009A526B /* Resources */,
-				E0B774C9379B3627793D2983 /* [CP] Embed Pods Frameworks */,
 				E5438E4124E2AB0D007A3EB7 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -921,6 +924,11 @@
 			packageProductDependencies = (
 				E5BA30B524BEE444002D0564 /* LifeGame */,
 				E51836EA24C0AA3B00DDE3A6 /* LifeGame */,
+				E5B9BFC124F617AC001CC1FA /* FirebaseFirestore */,
+				E5B9BFC324F617AC001CC1FA /* FirebaseFirestoreSwift */,
+				E5B9BFC524F617AC001CC1FA /* FirebaseAuth */,
+				E5B9BFC724F617AC001CC1FA /* FirebaseCore */,
+				E5B9BFC924F617AC001CC1FA /* Firebase */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = E5D9F25124BEBDBD009A526B /* LifeGameApp.app */;
@@ -930,11 +938,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5D9F27E24BEBDBD009A526B /* Build configuration list for PBXNativeTarget "LifeGameApp (macOS)" */;
 			buildPhases = (
-				EFA8A94933992B81D0046CC4 /* [CP] Check Pods Manifest.lock */,
 				E5D9F25524BEBDBD009A526B /* Sources */,
 				E5D9F25624BEBDBD009A526B /* Frameworks */,
 				E5D9F25724BEBDBD009A526B /* Resources */,
-				FF31EA23227D21466E02A37F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -943,6 +949,10 @@
 			name = "LifeGameApp (macOS)";
 			packageProductDependencies = (
 				E58CC55C24CB99D600048A0A /* LifeGame */,
+				E5A5811724F6210E0074C734 /* FirebaseAuth */,
+				E54668A424F6229E00DEBB2F /* FirebaseFirestore */,
+				E54668A624F6229E00DEBB2F /* FirebaseFirestoreSwift */,
+				E54668A824F6240D00DEBB2F /* Firebase */,
 			);
 			productName = "LifeGameApp (macOS)";
 			productReference = E5D9F25924BEBDBD009A526B /* LifeGameApp.app */;
@@ -1023,6 +1033,7 @@
 			mainGroup = E5D9F24424BEBDBC009A526B;
 			packageReferences = (
 				E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */,
+				E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = E5D9F25224BEBDBD009A526B /* Products */;
 			projectDirPath = "";
@@ -1080,109 +1091,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9FB5C6AD63839C6A3B003C83 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LifeGameWidgetExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E0B774C9379B3627793D2983 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (iOS)/Pods-LifeGameApp (iOS)-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E915B579C1859190105D6D49 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LifeGameApp (iOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFA8A94933992B81D0046CC4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LifeGameApp (macOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF31EA23227D21466E02A37F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeGameApp (macOS)/Pods-LifeGameApp (macOS)-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E5438E3024E2AB0B007A3EB7 /* Sources */ = {
@@ -1404,7 +1312,6 @@
 /* Begin XCBuildConfiguration section */
 		E5438E4224E2AB0D007A3EB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C71BB272D7515A34A8C5096 /* Pods-LifeGameWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1429,7 +1336,6 @@
 		};
 		E5438E4324E2AB0D007A3EB7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9214727D98C358F821964EB /* Pods-LifeGameWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1566,7 +1472,6 @@
 		};
 		E5D9F27C24BEBDBD009A526B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA4808E2DBA26DB7C461E341 /* Pods-LifeGameApp (iOS).debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1592,7 +1497,6 @@
 		};
 		E5D9F27D24BEBDBD009A526B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 462FD68D509C302C01C06A52 /* Pods-LifeGameApp (iOS).release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1619,7 +1523,6 @@
 		};
 		E5D9F27F24BEBDBD009A526B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C7A71B08C1E69D8B9FD780F /* Pods-LifeGameApp (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1646,7 +1549,6 @@
 		};
 		E5D9F28024BEBDBD009A526B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B8D922A10122D0343FF5654 /* Pods-LifeGameApp (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1828,6 +1730,14 @@
 				kind = branch;
 			};
 		};
+		E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = "6.31-spm-beta";
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1841,10 +1751,75 @@
 			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
 		};
+		E54668A424F6229E00DEBB2F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E54668A624F6229E00DEBB2F /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		E54668A824F6240D00DEBB2F /* Firebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = Firebase;
+		};
 		E58CC55C24CB99D600048A0A /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E51836E924C0AA3B00DDE3A6 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
+		};
+		E5A5810F24F61A8C0074C734 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E5A5811124F61A8C0074C734 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		E5A5811324F61C000074C734 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E5A5811524F61C0E0074C734 /* Firebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = Firebase;
+		};
+		E5A5811724F6210E0074C734 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E5B9BFC124F617AC001CC1FA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E5B9BFC324F617AC001CC1FA /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		E5B9BFC524F617AC001CC1FA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E5B9BFC724F617AC001CC1FA /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		E5B9BFC924F617AC001CC1FA /* Firebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B9BFC024F617AC001CC1FA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = Firebase;
 		};
 		E5BA30B524BEE444002D0564 /* LifeGame */ = {
 			isa = XCSwiftPackageProductDependency;
