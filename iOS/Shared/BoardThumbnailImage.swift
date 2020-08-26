@@ -16,6 +16,8 @@ private typealias XImage = UIImage
 
 private let cacheStorage = MemoryCacheStorage<XImage>()
 
+// TODO: 内部的に BoardRenderImage を利用するようにしたい。
+
 struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     

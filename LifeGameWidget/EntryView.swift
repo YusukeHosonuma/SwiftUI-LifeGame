@@ -15,32 +15,18 @@ struct EntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        if widgetFamily == .systemSmall {
-            HStack {
-                boardView(data: entry.relevance.first!)
-                Spacer()
-            }
-            .padding()
-            .widgetURL(entry.relevance.first!.url)
-        } else {
-            HStack {
-                ForEach(entry.relevance, id: \.title) { data in
-                    Link(destination: data.url) {
-                        boardView(data: data)
-                    }
-                }
-            }
-            .padding()
-        }
-    }
-    
-    func boardView(data: BoardData) -> some View {
-        VStack(alignment: .leading) {
-            BoardThumbnailImage(board: data.board, cellColor: cellColor, cacheKey: data.cacheKey)
-            Text(data.title)
-                .font(.system(.caption2, design: .monospaced))
-                .foregroundColor(.gray)
-                .lineLimit(1)
+        switch widgetFamily {
+        case .systemSmall:
+            small(data: entry.relevance.first!)
+            
+        case .systemMedium:
+            medium(data: entry.relevance)
+            
+        case .systemLarge:
+            large(data: entry.relevance.first!)
+            
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -52,6 +38,51 @@ struct EntryView : View {
             fatalError()
         }
     }
+    
+    func small(data: BoardData) -> some View {
+        HStack {
+            boardView(data: data)
+            Spacer()
+        }
+        .font(.system(.caption2, design: .monospaced))
+        .lineLimit(1)
+        .padding()
+        .widgetURL(data.url)
+    }
+    
+    func medium(data: [BoardData]) -> some View {
+        HStack {
+            ForEach(data, id: \.title) { data in
+                Link(destination: data.url) {
+                    boardView(data: data)
+                }
+            }
+        }
+        .font(.system(.caption2, design: .monospaced))
+        .lineLimit(1)
+        .padding()
+    }
+    
+    func large(data: BoardData) -> some View {
+        VStack {
+            BoardRenderImage(board: data.board.extended(by: .die, count: 1),
+                             cellRenderSize: 40,
+                             cellColor: cellColor)
+            Text(data.title)
+                .foregroundColor(.gray)
+        }
+        .font(.system(.headline, design: .monospaced))
+        .padding()
+        .widgetURL(data.url)
+    }
+    
+    func boardView(data: BoardData) -> some View {
+        VStack(alignment: .leading) {
+            BoardThumbnailImage(board: data.board, cellColor: cellColor, cacheKey: data.cacheKey)
+            Text(data.title)
+                .foregroundColor(.gray)
+        }
+    }
 }
 
 struct LifeGameWidget_Previews: PreviewProvider {
@@ -59,13 +90,16 @@ struct LifeGameWidget_Previews: PreviewProvider {
     static let entry = Entry(date: Date(), relevance: exampleData)
     
     static var previews: some View {
-        view(colorScheme: .light)
-        view(colorScheme: .dark)
+        view(family: .systemSmall,  colorScheme: .light)
+        view(family: .systemMedium, colorScheme: .light)
+        view(family: .systemMedium, colorScheme: .dark)
+        view(family: .systemLarge,  colorScheme: .light)
+        view(family: .systemLarge,  colorScheme: .dark)
     }
     
-    static func view(colorScheme: ColorScheme) -> some View {
+    static func view(family: WidgetFamily, colorScheme: ColorScheme) -> some View {
         EntryView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: family))
             // Dark is not work in beta 6❗
             .colorScheme(colorScheme)
             .preferredColorScheme(colorScheme)

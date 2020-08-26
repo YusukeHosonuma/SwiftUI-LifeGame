@@ -48,7 +48,7 @@ struct Provider: IntentTimelineProvider {
             let entries: [Entry] = items
                 .filter(when: Auth.auth().currentUser != nil && isFilteredByStared) { $0.stared }
                 .shuffled()
-                .group(by: 4)
+                .group(by: boardCount(family: context.family))
                 .prefix(5)
                 .enumerated()
                 .map { hourOffset, documents in
@@ -66,6 +66,18 @@ struct Provider: IntentTimelineProvider {
 
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
+        }
+    }
+    
+    // MARK: Private
+    
+    private func boardCount(family: WidgetFamily) -> Int {
+        switch family {
+        case .systemSmall:  return 1
+        case .systemMedium: return 4
+        case .systemLarge:  return 1
+        @unknown default:
+            fatalError()
         }
     }
 }

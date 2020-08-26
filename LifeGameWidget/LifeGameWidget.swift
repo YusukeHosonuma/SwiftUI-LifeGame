@@ -18,6 +18,6 @@ struct LifeGameWidget: Widget {
         }
         .configurationDisplayName("Random boards")
         .description("Enjoy random boards on Home screen.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
