@@ -21,7 +21,7 @@ struct PreferenceView: View {
                 }
             }
             // Note:
-            // フレームサイズで制限しないとすごくでかく表示される。（macOS-beta5）
+            // フレームサイズで制限しないとすごくでかく表示される。（macOS-beta 5）
             .frame(width: 240, height: 40)
             
             ColorPicker(selection: $setting.darkModeColor) {
