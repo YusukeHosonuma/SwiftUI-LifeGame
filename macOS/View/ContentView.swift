@@ -23,7 +23,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             // Note:
-            // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（beta5）❗
+            // 現時点ではウィンドウが再フォーカスされるとViewのサイズが不正になる不具合あり（macOS-beta 5）❗
             VStack {
                 BoardContainerView()
                     .padding(40)

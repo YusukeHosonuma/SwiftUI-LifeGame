@@ -27,7 +27,8 @@ struct BoardSizeMenu: View {
         }, label: {
             #if os(macOS)
             // Note:
-            // beta5 でクラッシュはしなくなったが、`Button`を利用すると現在の選択が正しく表示されない. (macOS-beta5)
+            // beta 5 でクラッシュはしなくなったが、`Button`を利用すると現在の選択が正しく表示されない. (macOS-beta 5)
+            // （もしかして Picker を利用するのが正しかったりするのかも）
             Text("\(size) x \(size)")
             #else
             Button("\(size) x \(size)") {}

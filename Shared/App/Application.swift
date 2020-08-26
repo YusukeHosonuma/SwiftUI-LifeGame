@@ -53,7 +53,7 @@ struct Application: App {
         #if os(macOS)
 
         // Note:
-        // `WindowGroup`をもう一つ宣言しても無視されてしまいマルチウィンドウのアプリにはならない。（beta5❗）
+        // `WindowGroup`をもう一つ宣言しても無視されてしまいマルチウィンドウのアプリにはならない。（macOS-beta 5❗）
         // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
         
         WindowGroup {
@@ -61,12 +61,16 @@ struct Application: App {
                 .environmentObject(fileManager)
         }
         .commands {
+            // Note: ✅
+            // `Commands`には environmentObject を利用できない仕様っぽい。
+            //
+            // ```
+            // .environmentObject(boardRepository)
+            // ```
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
                              boardRepository: boardRepository,
                              fileManager: fileManager)
-                // ❗API is not supported in macOS-beta4
-                // .environmentObject(boardRepository)
         }
 
         Settings {
@@ -111,7 +115,7 @@ struct Application: App {
         }
         .commands {
             // Note:
-            // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta5）❗
+            // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta 6）❗
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
                              boardRepository: boardRepository)

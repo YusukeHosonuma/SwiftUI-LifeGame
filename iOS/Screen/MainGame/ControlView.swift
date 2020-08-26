@@ -12,7 +12,8 @@ struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
 
     // Note:
-    // 仕様かバグか判断がつかないので暫定対処（beta5）❗
+    // 仕様かバグか判断がつかないので暫定対処（beta 6）❗
+    
     // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
@@ -39,9 +40,10 @@ struct ControlView: View {
                 Image(systemName: "list.bullet")
             } content: {
                 BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
-                     .environmentObject(setting)
-                     .environmentObject(authentication)
-                     .environmentObject(network)
+                    // 今回もとりあえず再現するか待つ。（beta 6）✅
+                    // .environmentObject(setting)
+                    // .environmentObject(authentication)
+                    // .environmentObject(network)
             }
 
             ActionMenuButton {

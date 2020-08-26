@@ -24,7 +24,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         NavigationView {
             // Note:
             //
-            // Sectionでヘッダーを表示した場合、コンテキストメニューがSectionの領域全体に対するものになってしまう（beta5）❗
+            // Sectionでヘッダーを表示した場合、コンテキストメニューがシート全体に対するものになってしまう（beta 6）❗
             //
             // ```
             // List {

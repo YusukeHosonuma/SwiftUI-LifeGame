@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Note:
-// Light mode ではきれいに表示されない問題がある。（macOS-beta5）❗
+// Light mode ではきれいに表示されない問題がある。（macOS-beta 5）❗
 
 struct MacFeedbackView: View {
     
@@ -81,7 +81,7 @@ struct MacFeedbackView: View {
 
         // Note:
         // 標準のフィードバックアシスタントのように下部のツールバーに配置したいが方法が不明。。
-        // `.bottomBar`のplacementは削除されてしまったのかもしれない。（macOS-beta5）❗
+        // `.bottomBar`のplacementは削除されてしまったのかもしれない。（macOS-beta 5）❗
         // ref: https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-toolbar-and-add-buttons-to-it
         //
         // ```
@@ -130,7 +130,7 @@ struct MacFeedbackView: View {
                 feedbackManager.send()
                 
                 // Note:
-                // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta5）❗
+                // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta 5）❗
                 //
                 // ```
                 // dismissAlert() // 事前にdismissしてもしなくてもNG

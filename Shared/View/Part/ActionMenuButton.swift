@@ -41,7 +41,7 @@ struct ActionMenuButton<Content>: View where Content: View {
                 Image(systemName: "xmark.circle")
             }
         }
-        .foregroundColor(.red) // TODO: not working in beta5❗
+        .foregroundColor(.red) // TODO: not working in beta 6❗
         
         Divider()
         
@@ -57,7 +57,7 @@ struct ActionMenuButton<Content>: View where Content: View {
         Picker("", selection: $setting.boardSize) {
             
             // Note:
-            // `DisclosureGroup`は表示されるもののタップしても展開されない。`Picker`の外側に配置するとレイアウト崩れ（beta 5）❗
+            // `DisclosureGroup`は表示されるもののタップしても展開されない。`Picker`の外側に配置するとレイアウト崩れ（beta 6）❗
             // ```
             // DisclosureGroup("Size") { ... }
             // ```

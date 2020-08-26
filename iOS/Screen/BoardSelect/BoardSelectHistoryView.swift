@@ -29,7 +29,7 @@ struct BoardSelectHistoryView: View {
                                 }
                             }
                             // Note:
-                            // Macでは`Button`を使用するとネイティブのボタンの見た目になってしまうため`.onTapGesture`を利用する必要がある（beta5）❗
+                            // Macでは`Button`を使用するとネイティブのボタンの見た目になってしまうため`.onTapGesture`を利用する必要がある（macOS-beta 5）❗
                             .onTapGesture {
                                 tapItem(item)
                             }

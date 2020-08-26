@@ -41,7 +41,7 @@ struct FeedbackView: View {
                         footer: Text("Please enter less than \(FeedbackManager.limitDescriptionCount) characters.")
                     ) {
                         // Note:
-                        // 現状、iPhone SE だとキーボード表示時にテキストエディタが隠れてしまう問題がある。（beta5）❗
+                        // 現状、iPhone SE だとキーボード表示時にテキストエディタが隠れてしまう問題がある。（beta 6）❗
                         // （ただし、スクロールすればいいだけなので大した問題ではない）
                         AppTextEditor(
                             text: $feedbackManager.content,
@@ -49,12 +49,11 @@ struct FeedbackView: View {
                             limit: FeedbackManager.limitDescriptionCount
                         )
                         // Note:
-                        // `focusable`というモディファイアが以前はあったようだが現在は見つけられない。（beta5）❗
-                        // 意図せずbeta5のSDKから除外されてしまったか、それともドキュメントの更新漏れ？
+                        // `focusable`というモディファイアが以前はあったようだが現在は見つけられない。（beta 6）❗
                         // https://developer.apple.com/documentation/swiftui/button/focusable(_:onfocuschange:)
                         .onTapGesture {
                             // Note:
-                            // `.sheet`で表示されたViewの場合に`scrollTo`が機能しない（beta5）❗
+                            // `.sheet`で表示されたViewの場合に`scrollTo`が機能しない（beta 6）❗
                             scroll.scrollTo(42, anchor: .bottom)
                         }
                         .lineLimit(nil)

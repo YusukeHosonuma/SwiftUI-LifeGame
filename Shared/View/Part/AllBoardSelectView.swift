@@ -83,7 +83,7 @@ struct AllBoardSelectView: View {
     }
     
     // Note:
-    // `.sheet`で表示されたビューに対して`.toolbar`が機能しない。NavigationViewで囲っても同様。（macOS-beta5）❗
+    // `.sheet`で表示されたビューに対して`.toolbar`が機能しない。NavigationViewで囲っても同様。（macOS-beta 5）❗
     //
     // ```
     // .toolbar {

@@ -12,21 +12,23 @@ struct BoardSelectCell: View {
     var item: BoardItem
     var style: BoardSelectStyle
     
-    @Namespace private var nspace
+    // @Namespace private var nspace
 
     var body: some View {
         switch style {
         case .grid:
             VStack {
                 // TODO: 実は`matchedGeometryEffect`って要らないのでは？
+                // （beta 6 時点でも安定しないので一旦コメントアウト）
+                
                 BoardThumbnailImage(board: item.board, cacheKey: item.id)
-                    .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
+                    //.matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
 
                 HStack {
                     Text(item.title)
                         .lineLimit(1)
                         .foregroundColor(.accentColor)
-                        .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
+                        //.matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                     Spacer()
                     if item.stared {
                         Image(systemName: "star.fill")
@@ -42,7 +44,7 @@ struct BoardSelectCell: View {
                     VStack(alignment: .leading) {
                         Text("\(item.title)")
                             .font(.system(.caption, design: .monospaced))
-                            .matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
+                            //.matchedGeometryEffect(id: "title-\(item.title)", in: nspace)
                             .fixedSize(horizontal: true, vertical: true)
                             .foregroundColor(.accentColor)
                         Spacer()
@@ -59,7 +61,7 @@ struct BoardSelectCell: View {
                     Spacer()
                     BoardThumbnailImage(board: item.board, cacheKey: item.id)
                         .frame(width: 60, height: 60, alignment: .center)
-                        .matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
+                        //.matchedGeometryEffect(id: "thumbnail-\(item.title)", in: nspace)
                 }.padding()
                 Divider()
             }

@@ -38,7 +38,7 @@ final class SettingEnvironment: ObservableObject {
         zoomLevel = UserDefaultSetting.shared.zoomLevel
         
         // FIXME: 背景画像が復元されない。
-        #warning("FIXME: 背景画像が起動時に復元されない（読み取れない）不具合あり。アプリ側のバグの可能性が高く感じるが、現時点ではOS側のバグも考慮。（beta4）")
+        #warning("FIXME: 背景画像が起動時に復元されない（読み取れない）不具合あり。アプリ側のバグの可能性が高く感じるが、現時点ではOS側のバグも考慮。（beta 6）")
         
         #if os(iOS)
         AppLogger.imageLoadBug.notice("[Start] loading background image.")
