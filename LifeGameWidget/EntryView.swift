@@ -66,7 +66,7 @@ struct LifeGameWidget_Previews: PreviewProvider {
     static func view(colorScheme: ColorScheme) -> some View {
         EntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-            // Dark is not work in beta4❗
+            // Dark is not work in beta 6❗
             .colorScheme(colorScheme)
             .preferredColorScheme(colorScheme)
     }
