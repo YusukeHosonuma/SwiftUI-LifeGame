@@ -65,8 +65,9 @@ struct EntryView : View {
     
     func large(data: BoardData) -> some View {
         VStack {
+            // TODO: こっちも画像キャッシュしないとキツそう・・・そのうち
             BoardRenderImage(board: data.board.extended(by: .die, count: 1),
-                             cellRenderSize: 40,
+                             cellRenderSize: 200 / data.board.size,
                              cellColor: cellColor)
             Text(data.title)
                 .foregroundColor(.gray)
