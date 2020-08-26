@@ -8,7 +8,7 @@ The Conway's Game of Life that build with SwiftUI.
 
 ## Requirements
 
-- Xcode 12 (beta 4)
+- Xcode 12 (beta 5)
 - macOS Catalina
   - **macOS Big Sur is required when build macOS app**
 
