@@ -28,6 +28,7 @@ final class GameManager: ObservableObject {
 
     @Published var isPlaying: Bool = false
     @Published var speed: Double = 0.5
+    @Published var scale: CGFloat = 1.0
     @Published var state: State = .stop
 
     private let boardManager: BoardManager = .shared

@@ -11,7 +11,6 @@
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
-		E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D124D644E3002D40B6 /* SpeedSliderView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
@@ -196,6 +195,8 @@
 		E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5FA935024C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
 		E5FA935124C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
+		E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
+		E5FE1B2F24F710C90012D61E /* SpeedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,7 +241,6 @@
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
-		E51169D124D644E3002D40B6 /* SpeedSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSliderView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
@@ -343,6 +343,8 @@
 		E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleRounded.swift; sourceTree = "<group>"; };
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
 		E5FA934F24C07AE300229AAA /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleChangeButton.swift; sourceTree = "<group>"; };
+		E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,10 +522,11 @@
 			isa = PBXGroup;
 			children = (
 				E5D9F24B24BEBDBC009A526B /* MainGameView.swift */,
-				E51169D424D64546002D40B6 /* ControlView.swift */,
-				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
-				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
+				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
+				E51169D424D64546002D40B6 /* ControlView.swift */,
+				E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */,
+				E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -1136,6 +1139,7 @@
 				E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */,
+				E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
@@ -1149,6 +1153,7 @@
 				E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
+				E5FE1B2F24F710C90012D61E /* SpeedControlView.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
 				E5CA661224E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
@@ -1197,7 +1202,6 @@
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E51FD74F24F20BA7002981F4 /* FeedbackManager.swift in Sources */,
 				E5238DFF24EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
-				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5A975B224F680080020FA06 /* BoardGridImage.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
