@@ -196,6 +196,7 @@
 		E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934B24C07A5500229AAA /* BoardPreset.swift */; };
 		E5FA935024C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
 		E5FA935124C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
+		E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +344,7 @@
 		E5FA934524C05F5100229AAA /* ButtonStyleRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleRounded.swift; sourceTree = "<group>"; };
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
 		E5FA934F24C07AE300229AAA /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleChangeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +526,7 @@
 				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
 				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
+				E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -1136,6 +1139,7 @@
 				E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */,
+				E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */,
 				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,

@@ -25,18 +25,7 @@ struct SpeedSliderView: View {
             }
             .padding(.trailing, 40)
             
-            Menu {
-                ForEach(scales, id: \.self) { scale in
-                    Button("\(scale)%") {
-                        withAnimation {
-                            gameManager.scale = CGFloat(scale) / 100
-                        }
-                    }
-                }
-            } label: {
-                Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
-                    .font(.largeTitle)
-            }
+            ScaleChangeButton(scale: $gameManager.scale)
         }
     }
 }
