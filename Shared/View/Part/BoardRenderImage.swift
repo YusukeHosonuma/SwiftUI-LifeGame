@@ -14,22 +14,23 @@ private typealias XImage = NSImage
 private typealias XImage = UIImage
 #endif
 
-struct BoardRenderImage: View {    
+struct BoardRenderImage: View {
     let board: Board<Cell>
     let cellRenderSize: Int
-    let cellColor: Color
-
+    let cellColor: CGColor
+    
+    init(board: Board<Cell>, cellRenderSize: Int, cellColor: Color) {
+        self.board = board
+        self.cellRenderSize = cellRenderSize
+        self.cellColor = cellColor.cgColor
+    }
+    
     var body: some View {
-        Image(image: renderImage())
-            .resizable()
-    }
-    
-    private var fillColor: CGColor {
-        cellColor.cgColor
-    }
-    
-    private var gridColor: CGColor {
-        Color.gray.opacity(0.5).cgColor
+        ZStack {
+            Image(image: renderImage())
+                .resizable()
+            BoardGridImage(cellRenderSize: cellRenderSize, boardSize: board.size)
+        }
     }
 
     private func renderImage() -> XImage {
@@ -37,26 +38,27 @@ struct BoardRenderImage: View {
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
         
         return GraphicsImageRenderer(size: size)
-            .image(actions: { context in
-                context.setFillColor(fillColor)
+            .image { context in
+                context.setFillColor(cellColor)
+                
+                #warning("すべてのセルを走査してるためパフォーマンス的には悪い。")
+                
+                // Note:
+                // ライフゲームの性質上、空白のセルは多めになるので、その分だけ走査コストを減らすことができる。
+                // （ただしその為には内部のデータ構造を見直す必要がある）
+                //
+                // しかし、パフォーマンス上のボトルネックがここなのか判断がつかないので、
+                // Instruments でパフォーマンスを計測してから対応したほうがよさそう。
                 
                 // Draw cells
                 for (index, cell) in board.cells.enumerated() {
-                    let x = (index % board.size) * scale
-                    let y = (index / board.size) * scale
                     if cell == .alive {
+                        let x = (index % board.size) * scale
+                        let y = (index / board.size) * scale
                         context.fill(CGRect(origin: CGPoint(x: x + 1, y: y + 1), size: CGSize(width: scale - 1, height: scale - 1)))
                     }
                 }
-                
-                // Draw grids
-                context.setFillColor(gridColor)
-                for index in 0...board.size + 1 {
-                    let length = board.size * scale + 1
-                    context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
-                    context.fill(CGRect(x: 0, y: scale * index, width: length, height: 1)) // horizontal lines
-                }
-            })
+            }
     }
 }
 

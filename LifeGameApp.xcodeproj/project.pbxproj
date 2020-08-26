@@ -142,6 +142,8 @@
 		E5A5811824F6210E0074C734 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E5A5811724F6210E0074C734 /* FirebaseAuth */; };
 		E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
 		E5A7911D24D64A1000648813 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7911B24D64A1000648813 /* ActionMenuButton.swift */; };
+		E5A975B224F680080020FA06 /* BoardGridImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A975B124F680080020FA06 /* BoardGridImage.swift */; };
+		E5A975B324F680080020FA06 /* BoardGridImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A975B124F680080020FA06 /* BoardGridImage.swift */; };
 		E5B0572824CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B0572924CC3465005EE1AA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0572724CC3465005EE1AA /* CellView.swift */; };
 		E5B706D424ED4DE500787B82 /* SheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B706D324ED4DE500787B82 /* SheetButton.swift */; };
@@ -307,6 +309,7 @@
 		E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E598686024D434FC0010DC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5A7911B24D64A1000648813 /* ActionMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenuButton.swift; sourceTree = "<group>"; };
+		E5A975B124F680080020FA06 /* BoardGridImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGridImage.swift; sourceTree = "<group>"; };
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
@@ -652,6 +655,7 @@
 				E5A7911B24D64A1000648813 /* ActionMenuButton.swift */,
 				E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */,
 				E528BABD24F38BAF00F4A49E /* IconButton.swift */,
+				E5A975B124F680080020FA06 /* BoardGridImage.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1194,6 +1198,7 @@
 				E51FD74F24F20BA7002981F4 /* FeedbackManager.swift in Sources */,
 				E5238DFF24EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
 				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
+				E5A975B224F680080020FA06 /* BoardGridImage.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5E50A2A24E539C900CD64B6 /* Image+.swift in Sources */,
@@ -1251,6 +1256,7 @@
 				E5261AA924F3228100218CDD /* BoardManager.swift in Sources */,
 				E51FD75324F20DC0002981F4 /* FeedbackDocument.swift in Sources */,
 				E5CA661024E903AB00D6D59F /* HistoryDocument.swift in Sources */,
+				E5A975B324F680080020FA06 /* BoardGridImage.swift in Sources */,
 				E5FA935124C07AE300229AAA /* Collection+.swift in Sources */,
 				E5FA934324C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
 				E5238E0024EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
