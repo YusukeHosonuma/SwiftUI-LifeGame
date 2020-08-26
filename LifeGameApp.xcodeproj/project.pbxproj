@@ -11,7 +11,6 @@
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
-		E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D124D644E3002D40B6 /* SpeedSliderView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
 		E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */; };
@@ -242,7 +241,6 @@
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
-		E51169D124D644E3002D40B6 /* SpeedSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedSliderView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E518212F24CC27CC00ABD16B /* SettingEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnvironment.swift; sourceTree = "<group>"; };
@@ -524,10 +522,9 @@
 			isa = PBXGroup;
 			children = (
 				E5D9F24B24BEBDBC009A526B /* MainGameView.swift */,
-				E51169D424D64546002D40B6 /* ControlView.swift */,
-				E51169D124D644E3002D40B6 /* SpeedSliderView.swift */,
-				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
+				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
+				E51169D424D64546002D40B6 /* ControlView.swift */,
 				E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */,
 				E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */,
 			);
@@ -1205,7 +1202,6 @@
 				E571536924D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E51FD74F24F20BA7002981F4 /* FeedbackManager.swift in Sources */,
 				E5238DFF24EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
-				E51169D224D644E3002D40B6 /* SpeedSliderView.swift in Sources */,
 				E5A975B224F680080020FA06 /* BoardGridImage.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,

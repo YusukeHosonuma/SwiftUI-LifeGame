@@ -26,33 +26,44 @@ struct ControlView: View {
     // MARK: View
     
     var body: some View {
-        HStack {
-            if gameManager.state == .stop {
-                playButton()
-            } else {
-                stopButton()
+        VStack(spacing: 16) {
+            // Speed / Scale
+            HStack {
+                SpeedControlView(speed: $gameManager.speed, onEditingChanged: gameManager.speedChanged)
+                    .padding(.trailing, 40)
+                
+                ScaleChangeButton(scale: $gameManager.scale)
             }
-            nextButton()
-
-            Spacer()
             
-            SheetButton(by: $isPresentedListSheet) {
-                Image(systemName: "list.bullet")
-            } content: {
-                BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
-                    // 今回もとりあえず再現するか待つ。（beta 6）✅
-                    // .environmentObject(setting)
-                    // .environmentObject(authentication)
-                    // .environmentObject(network)
-            }
+            // Play/Stop, Next, Menus
+            HStack {
+                if gameManager.state == .stop {
+                    playButton()
+                } else {
+                    stopButton()
+                }
+                nextButton()
 
-            ActionMenuButton {
-                Button(action: {}) {
-                    Image(systemName: "ellipsis")
+                Spacer()
+                
+                SheetButton(by: $isPresentedListSheet) {
+                    Image(systemName: "list.bullet")
+                } content: {
+                    BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
+                        // 今回もとりあえず再現するか待つ。（beta 6）✅
+                        // .environmentObject(setting)
+                        // .environmentObject(authentication)
+                        // .environmentObject(network)
+                }
+
+                ActionMenuButton {
+                    Button(action: {}) {
+                        Image(systemName: "ellipsis")
+                    }
                 }
             }
+            .buttonStyle(ButtonStyleCircle())
         }
-        .buttonStyle(ButtonStyleCircle())
     }
     
     private func playButton() -> some View {

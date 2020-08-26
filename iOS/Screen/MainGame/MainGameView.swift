@@ -15,22 +15,9 @@ import FirebaseFirestoreSwift
 struct MainGameView: View {
     @EnvironmentObject var boardManager: BoardManager
 
-    // For register:
-//     @State var title: String = ""
-    
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                // For register:
-                //
-//                TextField("Title", text: $title)
-//                Button("Save") {
-//                    let trimed = viewModel.board.board.trimed(by: { $0 == .die }).centering(by:{ $0 == .die })
-//                    let document = BoardDocument(title: title, board: LifeGameBoard(board: trimed))
-//                    FirestoreBoardRepository.shared.add(document)
-//                    title = ""
-//                }
-                
                 HeaderView(generation: boardManager.board.generation, size: boardManager.board.size)
                 .padding([.horizontal])
 
@@ -40,9 +27,6 @@ struct MainGameView: View {
                     .frame(width: geometry.size.width, height: geometry.size.width)
                 
                 Spacer()
-                
-                SpeedSliderView()
-                    .padding([.horizontal])
                 
                 ControlView()
                     .padding()
