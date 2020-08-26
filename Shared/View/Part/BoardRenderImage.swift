@@ -41,6 +41,15 @@ struct BoardRenderImage: View {
             .image { context in
                 context.setFillColor(cellColor)
                 
+                #warning("すべてのセルを走査してるためパフォーマンス的には悪い。")
+                
+                // Note:
+                // ライフゲームの性質上、空白のセルは多めになるので、その分だけ走査コストを減らすことができる。
+                // （ただしその為には内部のデータ構造を見直す必要がある）
+                //
+                // しかし、パフォーマンス上のボトルネックがここなのか判断がつかないので、
+                // Instruments でパフォーマンスを計測してから対応したほうがよさそう。
+                
                 // Draw cells
                 for (index, cell) in board.cells.enumerated() {
                     if cell == .alive {
