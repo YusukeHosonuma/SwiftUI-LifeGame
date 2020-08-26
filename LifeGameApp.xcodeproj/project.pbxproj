@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
+		E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A975B124F680080020FA06 /* BoardGridImage.swift */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
@@ -1120,10 +1122,12 @@
 				E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
+				E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */,
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
 				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
 				E54A63B124F4F3B400084964 /* Provider.swift in Sources */,
 				E5E0067E24EB8B1900A4EA02 /* DataFetcher.swift in Sources */,
+				E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */,
 				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
 				E518C89524E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 			);
