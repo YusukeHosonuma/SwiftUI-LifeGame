@@ -11,13 +11,13 @@ import LifeGame
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var boardManager: BoardManager
+    @EnvironmentObject var gameManager: GameManager
+
     @Environment(\.colorScheme) var colorScheme
 
-    
     // MARK: Private properties
     
     @State private var currentScale: CGFloat = 1
-    @State private var latestScale: CGFloat = 1
     @State private var latestPoint = CGPoint.zero
     @State private var currentPoint = CGPoint.zero
 
@@ -25,7 +25,7 @@ struct BoardContainerView: View {
     private let minScale: CGFloat = 0.5
 
     private var scale: CGFloat {
-        latestScale * currentScale
+        gameManager.scale * currentScale
     }
     
     private var offset: CGPoint {
@@ -58,10 +58,15 @@ struct BoardContainerView: View {
             }
             .clipped()
             .border(Color.gray, width: 2)
-            .scaleEffect(latestScale * currentScale)
+            .scaleEffect(scale)
             .offset(x: offset.x, y: offset.y)
             .gesture(dragGesture(boardViewSize: geometry.size.width))
             .simultaneousGesture(magnificationGesture(boardViewSize: geometry.size.width))
+            .onChange(of: gameManager.scale) { scale in
+                withAnimation {
+                    adjustBoardPoint(boardViewSize: geometry.size.width, scale: scale)
+                }
+            }
         }
         .clipped()
     }
@@ -141,25 +146,24 @@ struct BoardContainerView: View {
             .onEnded { value in
                 updateScale()
                 updatePoint()
-
-                // Adjust the board to stay within range.
-                withAnimation {
-                    let renderSize = boardViewSize * latestScale
-                    let space = (renderSize - boardViewSize) / 2
-                    if latestScale < 1.0 {
-                        latestPoint = CGPoint.zero
-                    } else {
-                        latestPoint = CGPoint(x: within(value: latestPoint.x, min: -space, max: space),
-                                              y: within(value: latestPoint.y, min: -space, max: space))
-                    }
-                }
             }
     }
     
     // Private
     
+    private func adjustBoardPoint(boardViewSize: CGFloat, scale: CGFloat) {
+        let renderSize = boardViewSize * gameManager.scale
+        let space = (renderSize - boardViewSize) / 2
+        if scale < 1.0 {
+            latestPoint = CGPoint.zero
+        } else {
+            latestPoint = CGPoint(x: within(value: latestPoint.x, min: -space, max: space),
+                                  y: within(value: latestPoint.y, min: -space, max: space))
+        }
+    }
+
     private func updateScale() {
-        latestScale *= currentScale
+        gameManager.scale *= currentScale
         currentScale = 1
     }
     
