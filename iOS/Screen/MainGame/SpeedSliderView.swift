@@ -15,15 +15,8 @@ struct SpeedSliderView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "speedometer")
-                .foregroundColor(.secondary)
-                .font(.title2)
-            
-            Slider(value: $gameManager.speed,
-                   in: 0...1,
-                   onEditingChanged: gameManager.speedChanged) {
-            }
-            .padding(.trailing, 40)
+            SpeedControlView(speed: $gameManager.speed, onEditingChanged: gameManager.speedChanged)
+                .padding(.trailing, 40)
             
             ScaleChangeButton(scale: $gameManager.scale)
         }

@@ -197,6 +197,7 @@
 		E5FA935024C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
 		E5FA935124C07AE300229AAA /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA934F24C07AE300229AAA /* Collection+.swift */; };
 		E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
+		E5FE1B2F24F710C90012D61E /* SpeedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +346,7 @@
 		E5FA934B24C07A5500229AAA /* BoardPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreset.swift; sourceTree = "<group>"; };
 		E5FA934F24C07AE300229AAA /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
 		E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleChangeButton.swift; sourceTree = "<group>"; };
+		E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,6 +529,7 @@
 				E51169CE24D64446002D40B6 /* BoardContainerView.swift */,
 				E54B7AF024DB0043005E1B55 /* HeaderView.swift */,
 				E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */,
+				E5FE1B2E24F710C90012D61E /* SpeedControlView.swift */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -1153,6 +1156,7 @@
 				E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
+				E5FE1B2F24F710C90012D61E /* SpeedControlView.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
 				E5CA661224E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
