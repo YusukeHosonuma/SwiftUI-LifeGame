@@ -31,7 +31,7 @@ final class FirestoreHistoryRepository: ObservableObject {
     }
     
     deinit {
-        stopListen() // TODO: 明示的に開放しなくても大丈夫だったりする？
+        stopListen()
     }
     
     func get(id: String, handler: @escaping (HistoryDocument?) -> Void) {

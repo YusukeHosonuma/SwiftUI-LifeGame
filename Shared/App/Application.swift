@@ -84,7 +84,9 @@ struct Application: App {
                     let documentID = url.lastPathComponent
                     guard documentID != "0" else { return }
                     
-                    // TODO: ユーザが編集していた場合は上書きしてしまうことになるので、ちょっと考える。
+                    // Note:
+                    // 賛否はあるかもだが、何も尋ねずに現状の盤面を上書きしてしまう仕様にする。
+                    // （都度、アラートがでてもうっとおしいだけなので）
                     
                     boardRepository
                         .get(by: documentID) { (document) in

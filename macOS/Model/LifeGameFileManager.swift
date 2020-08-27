@@ -10,7 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import LifeGame
 
-// TODO: 適切なエラーハンドリングとかはそのうち
+// TODO: fileImporter / fileExporter を使った実装に変更する。
 
 final class LifeGameFileManager: ObservableObject {
     @Published var latestURL: URL?

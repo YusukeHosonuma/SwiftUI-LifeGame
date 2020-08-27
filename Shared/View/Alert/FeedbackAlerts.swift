@@ -34,7 +34,6 @@ enum FeedbackAlerts: Identifiable {
         }
     }
 
-    // TODO: なんかいいやり方あったっけ？
     var id: Int {
         switch self {
         case .invalid:        return 0
