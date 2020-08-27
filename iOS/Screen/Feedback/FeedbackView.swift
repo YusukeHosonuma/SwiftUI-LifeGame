@@ -7,14 +7,41 @@
 
 import SwiftUI
 
+private enum FeedbackAlert: Int, Identifiable {
+    case invalid
+    case sendConfirm
+    case thanks
+    
+    var id: Int { rawValue }
+    
+    static func invalidAlert() -> Alert {
+        Alert(title: Text("Please input title and description."))
+    }
+    
+    static func sendConfirmAlert(tapSend: @escaping () -> Void) -> Alert {
+        Alert(
+            title: Text("Send feedback?"),
+            primaryButton: .default(Text("Send"), action: tapSend),
+            secondaryButton: .cancel()
+        )
+    }
+    
+    static func thanksAlert(tapOK: @escaping () -> Void) -> Alert {
+        Alert(
+            title: Text("Thanks for feedback!"),
+            dismissButton: .default(Text("OK"), action: tapOK)
+        )
+    }
+}
+
 struct FeedbackView: View {
     @StateObject private var feedbackManager: FeedbackManager
     @Binding private var isPresented: Bool
-    @State private var presentedAlert: FeedbackAlerts?
+    @State private var presentedAlert: FeedbackAlert?
 
     init(isPresented: Binding<Bool>, userID: String) {
         _isPresented = isPresented
-        _feedbackManager = StateObject(wrappedValue: FeedbackManager(userID: userID)) // TODO: ✅ Experimental
+        _feedbackManager = StateObject(wrappedValue: FeedbackManager(userID: userID)) // ✅ Experimental
     }
 
     var body: some View {
@@ -61,7 +88,7 @@ struct FeedbackView: View {
                         .id(42)
                     }
                 }
-                .alert(item: $presentedAlert) { $0.alert }
+                .alert(item: $presentedAlert, content: showAlert)
                 .listStyle(GroupedListStyle())
                 .navigationTitle("Feedback")
                 .navigationBarTitleDisplayMode(.inline)
@@ -79,26 +106,24 @@ struct FeedbackView: View {
     
     // MARK: Alert
 
-    private func showAlert(_ type: FeedbackAlertType) {
-        let alert: FeedbackAlerts
-
+    private func showAlert(type: FeedbackAlert) -> Alert {
         switch type {
         case .invalid:
-            alert = .invalid
+            return FeedbackAlert.invalidAlert()
             
         case .sendConfirm:
-            alert = .sendConfirm {
+            return FeedbackAlert.sendConfirmAlert(tapSend: {
                 feedbackManager.send()
-                showAlert(.thanks)
-            }
-            
-        case .thanks:
-            alert = .thanks { isPresented = false }
-        }
+                presentedAlert = .thanks
+            })
 
-        self.presentedAlert = alert
+        case .thanks:
+            return FeedbackAlert.thanksAlert(tapOK: {
+                isPresented = false
+            })
+        }
     }
-    
+
     // MARK: Action
     
     private func tapCancelButton() {
@@ -108,48 +133,13 @@ struct FeedbackView: View {
     // TODO: テストしやすくするなら、このあたりも`FeedbackManager`に移したほうがよいかも。
     private func tapSendToolbarButton() {
         guard feedbackManager.isValid() else {
-            showAlert(.invalid)
+            presentedAlert = .invalid
             return
         }
-        showAlert(.sendConfirm)
+        presentedAlert = .sendConfirm
     }
 }
 
-private enum AlertType {
-    case invalid
-    case sendConfirm
-    case thanks
-}
-
-private enum Alerts: Identifiable {
-    case invalid
-    case sendConfirm(action: () -> Void)
-    case thanks(action: () -> Void)
-
-    var alert: Alert {
-        switch self {
-        case .invalid:
-            return Alert(title: Text("Please input title and description."))
-            
-        case let .sendConfirm(action):
-            return Alert(title: Text("Send feedback?"),
-                         primaryButton: .default(Text("Send"), action: action),
-                         secondaryButton: .cancel())
-            
-        case let .thanks(action):
-            return Alert(title: Text("Thanks for feedback!"),
-                         dismissButton: .default(Text("OK"), action: action))
-        }
-    }
-
-    var id: Int {
-        switch self {
-        case .invalid:        return 0
-        case .sendConfirm(_): return 1
-        case .thanks(_):      return 2
-        }
-    }
-}
 
 struct FeedbackView_Previews: PreviewProvider {
     static var previews: some View {
