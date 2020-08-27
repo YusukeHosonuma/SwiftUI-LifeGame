@@ -10,6 +10,8 @@ import SwiftUI
 // Note:
 // Light mode ではきれいに表示されない問題がある。（macOS-beta 5）❗
 
+// TODO: Mac版も`FeedbackView.swift`のように修正する。（アラートは共通化したい）
+
 struct MacFeedbackView: View {
     
     // MARK: Inputs
