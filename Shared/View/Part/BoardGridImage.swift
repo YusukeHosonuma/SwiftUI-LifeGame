@@ -17,7 +17,6 @@ struct BoardGridImage: View {
     let cellRenderSize: Int
     let boardSize: Int
 
-    // TODO: 透過しないほうが本当は高速。どうしてもパフォーマンスに納得行かない時に検討する。
     private let gridColor: CGColor = Color.gray.opacity(0.3).cgColor
 
     var body: some View {

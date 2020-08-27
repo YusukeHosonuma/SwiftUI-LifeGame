@@ -41,7 +41,7 @@ struct ActionMenuButton<Content>: View where Content: View {
                 Image(systemName: "xmark.circle")
             }
         }
-        .foregroundColor(.red) // TODO: not working in beta 6❗
+        .foregroundColor(.red) // Note: not working in beta 6❗
         
         Divider()
         

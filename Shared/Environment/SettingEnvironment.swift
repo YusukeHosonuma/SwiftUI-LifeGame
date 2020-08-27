@@ -9,6 +9,9 @@ import SwiftUI
 import Combine
 
 // TODO: もう少しうまくやれそうな気もする。というかこのクラスが過剰になるのでは？
+//
+// 以下の実装パターンがよさそう。
+// https://fivestars.blog/swiftui/app-scene-storage.html
 
 final class SettingEnvironment: ObservableObject {
     static let shared: SettingEnvironment = .init()
@@ -21,9 +24,7 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSelectDisplayStyle: BoardSelectStyle
     @Published var isFilterByStared: Bool
 
-    #if os(macOS)
-    // TODO:
-    #else
+    #if os(iOS)
     @Published var backgroundImage: UIImage?
     #endif
 

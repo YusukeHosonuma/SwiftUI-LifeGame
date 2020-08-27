@@ -38,7 +38,7 @@ final class Authentication: ObservableObject {
     }
     
     #if DEBUG
-    init(mockSignIn: Bool) { // TODO: とりあえずやっつけ
+    init(mockSignIn: Bool) {
         isSignIn = mockSignIn
     }
     #endif

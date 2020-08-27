@@ -17,7 +17,7 @@ struct BoardDocument: Codable, Identifiable {
     var title: String
     var size: Int
     var cells: [Int]
-    var stared: Bool // TODO: あとで消す
+    var stared: Bool // TODO: あとで消す（Firestore のスキームを整理するタイミングで）
     
     enum CodingKeys: CodingKey {
         case id
