@@ -24,9 +24,9 @@ struct BoardSelectHistoryView: View {
                     ForEach(items) { item in
                         historyCell(item: item)
                             .contextMenu {
-                                BoardSelectContextMenu(isStared: item.isStared) {
+                                BoardSelectContextMenu(isStared: .init(get: { item.isStared }, set: { _ in
                                     toggleStar(item.boardDocumentID)
-                                }
+                                }))
                             }
                             // Note:
                             // Macでは`Button`を使用するとネイティブのボタンの見た目になってしまうため`.onTapGesture`を利用する必要がある（macOS-beta 5）❗

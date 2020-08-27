@@ -63,7 +63,7 @@ struct AllBoardSelectView: View {
                         didSelect(item)
                     }
                     .contextMenu {
-                        BoardSelectContextMenu(isStared: item.stared) {
+                        BoardSelectContextMenu(isStared: .init(get: { item.stared }, set: { _ in
                             if authentication.isSignIn {
                                 withAnimation {
                                     self.boardStore.toggleLike(boardID: item.boardDocumentID)
@@ -71,9 +71,8 @@ struct AllBoardSelectView: View {
                             } else {
                                 isPresentedAlert.toggle()
                             }
-                        }
+                        }))
                     }
-                
             }
         }
         .padding([.horizontal])

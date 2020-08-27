@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-// TODO: Binding<Bool> を使うのがセオリーではあるが・・・
 struct BoardSelectContextMenu: View {
-    let isStared: Bool
-    let toggleStar: () -> Void
+    
+    // MARK: Inputs
+
+    @Binding var isStared: Bool
+    
+    // MARK: View
     
     var body: some View {
-        Button(action: toggleStar) {
+        Button(action: { isStared.toggle() }) {
             if isStared {
                 Text("Unlike")
                 Image(systemName: "star.slash")
@@ -29,7 +32,7 @@ struct BoardSelectContextMenu_Previews: PreviewProvider {
     static var previews: some View {
         Button("Please long-press") {}
             .contextMenu {
-                BoardSelectContextMenu(isStared: true, toggleStar: {})
+                BoardSelectContextMenu(isStared: .init(get: { true }, set: { _ in }))
             }
     }
 }
