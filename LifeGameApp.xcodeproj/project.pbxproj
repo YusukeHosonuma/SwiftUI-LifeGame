@@ -13,6 +13,7 @@
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
 		E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */; };
+		E50DF85D24F9065A00ED26D8 /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
@@ -1249,6 +1250,7 @@
 				E58F427224E6C71F0062E2FF /* BoardRenderImage.swift in Sources */,
 				E51FD75624F20EE1002981F4 /* FirestoreFeedbackRepository.swift in Sources */,
 				E518213424CC2E5300ABD16B /* Color+.swift in Sources */,
+				E50DF85D24F9065A00ED26D8 /* ScaleChangeButton.swift in Sources */,
 				E5261AAC24F33F1800218CDD /* GameManager.swift in Sources */,
 				E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
