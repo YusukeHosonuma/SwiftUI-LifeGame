@@ -120,7 +120,7 @@
 		E57F07B224F267470057B2D1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
 		E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
 		E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
-		E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */; };
+		E57F07B724F2725E0057B2D1 /* MacSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacSidebar.swift */; };
 		E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */; };
 		E57FE78E24F36C76009D8677 /* BoardSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */; };
 		E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE78F24F36F66009D8677 /* BoardListView.swift */; };
@@ -305,7 +305,7 @@
 		E574356924E972F900BB27CA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectHistoryView.swift; sourceTree = "<group>"; };
 		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
-		E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
+		E57F07B624F2725E0057B2D1 /* MacSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSidebar.swift; sourceTree = "<group>"; };
 		E57FE78F24F36F66009D8677 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
 		E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBoardSelectView.swift; sourceTree = "<group>"; };
 		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
@@ -653,7 +653,7 @@
 			children = (
 				E50DF85A24F903E100ED26D8 /* AppKit */,
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
-				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
+				E57F07B624F2725E0057B2D1 /* MacSidebar.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
 				E57FE78F24F36F66009D8677 /* BoardListView.swift */,
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
@@ -1256,7 +1256,7 @@
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
-				E57F07B724F2725E0057B2D1 /* MacNavigationView.swift in Sources */,
+				E57F07B724F2725E0057B2D1 /* MacSidebar.swift in Sources */,
 				E52FE5DE24DC012A00D93764 /* BoardDocument.swift in Sources */,
 				E5C2526D24F4A7F900AAE321 /* AppTextEditor.swift in Sources */,
 				E5D7E5CA24F27B9800B56A71 /* BoardSelectContextMenu.swift in Sources */,

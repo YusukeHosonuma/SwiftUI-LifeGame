@@ -31,7 +31,7 @@ struct MacRootView: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
-                MacNavigationView()
+                MacSidebar()
                 ContentView(zoomLevel: setting.zoomLevel)
                     .sheet(item: $presentedSheet) {
                         switch $0 {

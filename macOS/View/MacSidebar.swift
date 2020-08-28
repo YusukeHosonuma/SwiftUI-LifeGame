@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MacNavigationView: View {
+struct MacSidebar: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var authentication: Authentication
 
@@ -16,7 +16,6 @@ struct MacNavigationView: View {
     @State private var isPresentedLoginFailedAlert = false
     @State private var isSignInProgress = false
     
-
     var body: some View {
         List {
             Section(header: Text("Presets")) {
