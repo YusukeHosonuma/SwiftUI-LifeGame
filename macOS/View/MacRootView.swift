@@ -57,6 +57,10 @@ struct MacRootView: View {
             .toolbar {
                 Group {
                     ToolbarItem(placement: .navigation) {
+                        IconButton(systemName: "sidebar.left", action: AppKitWrapper.toggleSidebar)
+                    }
+                    
+                    ToolbarItem(placement: .navigation) {
                         BoardSizeMenu(size: $setting.boardSize)
                     }
 
@@ -118,7 +122,7 @@ struct MacRootView: View {
             }
         }
     }
-        
+    
     private func dismissSheet() {
         presentedSheet = nil
     }

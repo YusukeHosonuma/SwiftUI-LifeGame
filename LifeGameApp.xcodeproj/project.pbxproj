@@ -12,6 +12,7 @@
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507482024CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
+		E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
@@ -242,6 +243,7 @@
 /* Begin PBXFileReference section */
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
+		E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitWrapper.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,14 @@
 				E507481E24CD4E45003811B5 /* HCenter.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		E50DF85A24F903E100ED26D8 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */,
+			);
+			path = AppKit;
 			sourceTree = "<group>";
 		};
 		E518212E24CC27B900ABD16B /* Environment */ = {
@@ -640,6 +650,7 @@
 		E5A7B4DE24CC5B3200F5AED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E50DF85A24F903E100ED26D8 /* AppKit */,
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E57F07B624F2725E0057B2D1 /* MacNavigationView.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
@@ -1281,6 +1292,7 @@
 				E5E50A2B24E539C900CD64B6 /* Image+.swift in Sources */,
 				E5C2526C24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
 				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
+				E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E57FE79324F37F96009D8677 /* AllBoardSelectView.swift in Sources */,
