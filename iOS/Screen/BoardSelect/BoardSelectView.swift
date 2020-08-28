@@ -52,21 +52,27 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
     
     @ViewBuilder
     private func historySection() -> some View {
-        HStack {
-            Text("History")
-            Spacer()
-        }
-        .sectionHeader()
-        
-        if authentication.isSignIn {
-            BoardSelectHistoryView(
-                items: boardStore.histories,
-                toggleStar: { boardID in
-                    self.boardStore.toggleLike(boardID: boardID)
-                },
-                tapItem: tapHistoryCell)
-        } else {
-            Text("Need login.").emptyContent()
+        VStack {
+            HStack {
+                Text("History")
+                Spacer()
+            }
+            .sectionHeader()
+            
+            VStack {
+                if authentication.isSignIn {
+                    BoardSelectHistoryView(
+                        items: boardStore.histories,
+                        toggleStar: { boardID in
+                            self.boardStore.toggleLike(boardID: boardID)
+                        },
+                        tapItem: tapHistoryCell
+                    )
+                } else {
+                    Text("Need login.").emptyContent()
+                }
+            }
+            .frame(height: 100)
         }
     }
 
