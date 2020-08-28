@@ -48,7 +48,6 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Text("Generation: \(boardManager.board.generation)")
-                        .foregroundColor(.white)
                     Spacer()
                 }
                 Spacer()

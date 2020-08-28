@@ -10,8 +10,6 @@ import SwiftUI
 // Note:
 // Light mode ではきれいに表示されない問題がある。（macOS-beta 5）❗
 
-// TODO: Mac版も`FeedbackView.swift`のように修正する。（アラートは共通化したい）
-
 struct MacFeedbackView: View {
     
     // MARK: Inputs
@@ -22,7 +20,7 @@ struct MacFeedbackView: View {
     // MARK: Local
     
     @State private var isPresentedAlertConfirm = false
-    @State private var presentedAlert: FeedbackAlerts?
+    @State private var presentedAlert: FeedbackAlert?
 
     // MARK: Initializer
     
@@ -73,12 +71,37 @@ struct MacFeedbackView: View {
                 Button("Cancel", action: dismiss)
                 Spacer()
                 Button("Continue") {
-                    showAlert(.sendConfirm)
+                    presentedAlert = .sendConfirm
                 }
                 .enabled(feedbackManager.isValid())
             }
         }
-        .alert(item: $presentedAlert) { $0.alert }
+        .alert(item: $presentedAlert) { type in
+            switch type {
+            case .invalid:
+                return FeedbackAlert.invalidAlert()
+                
+            case .sendConfirm:
+                return FeedbackAlert.sendConfirmAlert(tapSend: {
+                    feedbackManager.send()
+                    
+                    // Note:
+                    // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta 5）❗
+                    //
+                    // ```
+                    // dismissAlert() // 事前にdismissしてもしなくてもNG
+                    // showAlert(.thanks)
+                    // ```
+                    //
+                    // そのためとりあえずフィードバック画面を閉じるだけに留める。
+                    dismissAlert()
+                    dismiss()
+                })
+
+            case .thanks:
+                preconditionFailure()
+            }
+        }
         .padding()
 
         // Note:
@@ -117,18 +140,14 @@ struct MacFeedbackView: View {
     }
     
     // MARK: Alert
-    
-    // TODO: あんま見通しよくないので`MacRootView`のシートのような形式のほうがいいのかも。
 
-    private func showAlert(_ type: FeedbackAlertType) {
-        let alert: FeedbackAlerts
-
+    private func showAlert(type: FeedbackAlert) -> Alert {
         switch type {
         case .invalid:
-            preconditionFailure() // TODO: iOS版も.invalidを除外してしまっても良いかも
+            return FeedbackAlert.invalidAlert()
             
         case .sendConfirm:
-            alert = .sendConfirm {
+            return FeedbackAlert.sendConfirmAlert(tapSend: {
                 feedbackManager.send()
                 
                 // Note:
@@ -142,17 +161,14 @@ struct MacFeedbackView: View {
                 // そのためとりあえずフィードバック画面を閉じるだけに留める。
                 dismissAlert()
                 dismiss()
-            }
-            
-        case .thanks:
-            alert = .thanks {
-                dismissAlert()
-                dismiss()
-            }
-        }
+            })
 
-        self.presentedAlert = alert
+        case .thanks:
+            preconditionFailure()
+        }
     }
+    
+    // MARK: Action
     
     private func dismissAlert() {
         self.presentedAlert = nil
