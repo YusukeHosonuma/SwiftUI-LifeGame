@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-// Note:
-// Light mode ではきれいに表示されない問題がある。（macOS-beta 5）❗
-
 struct MacFeedbackView: View {
     
     // MARK: Inputs
