@@ -14,12 +14,6 @@ struct ContentView: View {
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var boardStore: BoardStore
 
-    var zoomLevel: Int
-
-    private var cellWidth: CGFloat {
-        CGFloat(20 + (zoomLevel - 5) * 2)
-    }
-
     var body: some View {
         ZStack {
             // Note:
