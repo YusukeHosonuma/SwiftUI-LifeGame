@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-private let PresetSizes = [16, 32, 64, 96, 128]
-
 struct ActionMenuButton<Content>: View where Content: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var gameManager: GameManager
@@ -54,17 +52,6 @@ struct ActionMenuButton<Content>: View where Content: View {
 
         Divider()
 
-        Picker("", selection: $setting.boardSize) {
-            
-            // Note:
-            // `DisclosureGroup`は表示されるもののタップしても展開されない。`Picker`の外側に配置するとレイアウト崩れ（beta 6）❗
-            // ```
-            // DisclosureGroup("Size") { ... }
-            // ```
-            
-            ForEach(PresetSizes, id: \.self) { size in
-                Label("\(size) x \(size)", systemImage: "square.grid.2x2")
-            }
-        }
+        BoardSizePicker(selection: $setting.boardSize)
     }
 }

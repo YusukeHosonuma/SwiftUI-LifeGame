@@ -27,15 +27,11 @@ struct MacRootView: View {
     }
     
     @State private var presentedSheet: SheetType?
-    
-    @State var isPresentedSheet = false
-    @State var isPresentedFeedbackSheet = false
-    
 
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
-                MacNavigationView()
+                MacSidebar()
                 ContentView(zoomLevel: setting.zoomLevel)
                     .sheet(item: $presentedSheet) {
                         switch $0 {
@@ -58,12 +54,9 @@ struct MacRootView: View {
                 Group {
                     ToolbarItem(placement: .navigation) {
                         IconButton(systemName: "sidebar.left", action: AppKitWrapper.toggleSidebar)
+                            .keyboardShortcut("b", modifiers: .command)
                     }
                     
-                    ToolbarItem(placement: .navigation) {
-                        BoardSizeMenu(size: $setting.boardSize)
-                    }
-
                     ToolbarItem(placement: .navigation) {
                         IconButton(systemName: "square.grid.2x2.fill") {
                             presentedSheet = .boardSelect
@@ -91,28 +84,14 @@ struct MacRootView: View {
                         IconButton(systemName: "trash", action: gameManager.clear)
                     }
 
-                    // TODO: Macアプリによくある拡大率をプルダウンから選ぶUIに変更したい。
-                    
                     ToolbarItem(placement: .status) {
-                        Button(action: {
-                            if setting.zoomLevel < 10 {
-                                setting.zoomLevel += 1
-                            }
-                        }) {
-                            Image(systemName: "plus.magnifyingglass")
-                        }
+                        ScaleChangeButton(scale: $gameManager.scale)
                     }
-                    
+
                     ToolbarItem(placement: .status) {
-                        Button(action: {
-                            if 0 < setting.zoomLevel {
-                                setting.zoomLevel -= 1
-                            }
-                        }) {
-                            Image(systemName: "minus.magnifyingglass")
-                        }
+                        BoardSizePicker(selection: $setting.boardSize)
                     }
-                    
+
                     ToolbarItem(placement: .status) {
                         IconButton(systemName: "exclamationmark.bubble") {
                             presentedSheet = .feedback

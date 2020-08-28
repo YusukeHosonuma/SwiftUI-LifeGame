@@ -10,7 +10,7 @@ import SwiftUI
 final class UserDefaultSetting {
     static let shared = UserDefaultSetting()
         
-    static let DefaultBoardSize: Int = 40
+    static let DefaultBoardSize: Int = 32
     static let DefaultAnimationSpeed: Double = 0.5
     static let DefaultZoomLevel: Int = 5
     
