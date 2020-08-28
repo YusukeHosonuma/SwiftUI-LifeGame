@@ -160,8 +160,8 @@
 		E5B9BFCA24F617AC001CC1FA /* Firebase in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC924F617AC001CC1FA /* Firebase */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
 		E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526724F4951500AAE321 /* MacFeedbackView.swift */; };
-		E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */; };
-		E5C2526C24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */; };
+		E5C2526B24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */; };
+		E5C2526C24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */; };
 		E5C2526D24F4A7F900AAE321 /* AppTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FD74C24F20917002981F4 /* AppTextEditor.swift */; };
 		E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */; };
 		E5C8D5C124E8E503005DB0FC /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
@@ -319,7 +319,7 @@
 		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E5C2526724F4951500AAE321 /* MacFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFeedbackView.swift; sourceTree = "<group>"; };
-		E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAlerts.swift; sourceTree = "<group>"; };
+		E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAlert.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
 		E5C8D5C024E8E503005DB0FC /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDocument.swift; sourceTree = "<group>"; };
@@ -697,7 +697,7 @@
 		E5C2526924F49D1800AAE321 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				E5C2526A24F49D2F00AAE321 /* FeedbackAlerts.swift */,
+				E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -1167,7 +1167,7 @@
 				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
 				E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
-				E5C2526B24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
+				E5C2526B24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */,
 				E5FE1B2F24F710C90012D61E /* SpeedControlView.swift in Sources */,
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
@@ -1292,7 +1292,7 @@
 				E547C30B24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E5604AA124CC3ED600EA59C3 /* PreferenceView.swift in Sources */,
 				E5E50A2B24E539C900CD64B6 /* Image+.swift in Sources */,
-				E5C2526C24F49D2F00AAE321 /* FeedbackAlerts.swift in Sources */,
+				E5C2526C24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */,
 				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
