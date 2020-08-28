@@ -14,6 +14,8 @@
 		E507EBEE24CC1106002A6EC4 /* SettingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */; };
 		E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */; };
 		E50DF85D24F9065A00ED26D8 /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
+		E50DF85F24F90C6800ED26D8 /* BoardSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */; };
+		E50DF86024F90D1E00ED26D8 /* BoardSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
@@ -111,8 +113,6 @@
 		E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536824D51B9F003B4C9E /* UserDefault.swift */; };
 		E571536C24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
 		E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */; };
-		E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
-		E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
 		E574356A24E972F900BB27CA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356924E972F900BB27CA /* Authentication.swift */; };
 		E574356B24E972F900BB27CA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356924E972F900BB27CA /* Authentication.swift */; };
@@ -245,6 +245,7 @@
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitWrapper.swift; sourceTree = "<group>"; };
+		E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSizePicker.swift; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -300,7 +301,6 @@
 		E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConvertible.swift; sourceTree = "<group>"; };
 		E571536824D51B9F003B4C9E /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		E571536B24D51BD8003B4C9E /* UserDefaultSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultSetting.swift; sourceTree = "<group>"; };
-		E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSizeMenu.swift; sourceTree = "<group>"; };
 		E573BD8124D053F90096BF75 /* LifeGameCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameCommands.swift; sourceTree = "<group>"; };
 		E574356924E972F900BB27CA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E574356F24E97CF900BB27CA /* BoardSelectHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectHistoryView.swift; sourceTree = "<group>"; };
@@ -667,12 +667,12 @@
 			children = (
 				E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */,
 				E5B0572724CC3465005EE1AA /* CellView.swift */,
-				E572C8DB24DAE72C0030B192 /* BoardSizeMenu.swift */,
 				E57F07B324F267720057B2D1 /* SignInButton.swift */,
 				E5A7911B24D64A1000648813 /* ActionMenuButton.swift */,
 				E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */,
 				E528BABD24F38BAF00F4A49E /* IconButton.swift */,
 				E5A975B124F680080020FA06 /* BoardGridImage.swift */,
+				E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1158,7 +1158,6 @@
 				E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */,
 				E54A993124EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
 				E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */,
-				E572C8DC24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
 				E5529CDF24EB6AB6004A6EB4 /* DesigntimeBoardStore.swift in Sources */,
 				E5529CDC24EB66F4004A6EB4 /* Modifiers.swift in Sources */,
 				E53DFF7A24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
@@ -1173,6 +1172,7 @@
 				E507481F24CD4E45003811B5 /* HCenter.swift in Sources */,
 				E5D612DB24E0554400C3E065 /* BoardSelectStyle.swift in Sources */,
 				E5CA661224E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
+				E50DF86024F90D1E00ED26D8 /* BoardSizePicker.swift in Sources */,
 				E5261AA824F3228100218CDD /* BoardManager.swift in Sources */,
 				E518213324CC2E5300ABD16B /* Color+.swift in Sources */,
 				E518213024CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
@@ -1241,7 +1241,7 @@
 				E55F7AA624DD0C1000DBC175 /* MacRootView.swift in Sources */,
 				E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */,
 				E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */,
-				E572C8DD24DAE72C0030B192 /* BoardSizeMenu.swift in Sources */,
+				E50DF85F24F90C6800ED26D8 /* BoardSizePicker.swift in Sources */,
 				E5B706D524ED4DE500787B82 /* SheetButton.swift in Sources */,
 				E53DFF7B24DC09BC00DC8F4F /* FirestoreBoardRepository.swift in Sources */,
 				E55BF0C624D2C67700AAD125 /* VCenter.swift in Sources */,

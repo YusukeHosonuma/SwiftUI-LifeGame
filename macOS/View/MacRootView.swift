@@ -62,10 +62,6 @@ struct MacRootView: View {
                     }
                     
                     ToolbarItem(placement: .navigation) {
-                        BoardSizeMenu(size: $setting.boardSize)
-                    }
-
-                    ToolbarItem(placement: .navigation) {
                         IconButton(systemName: "square.grid.2x2.fill") {
                             presentedSheet = .boardSelect
                         }
@@ -95,7 +91,11 @@ struct MacRootView: View {
                     ToolbarItem(placement: .status) {
                         ScaleChangeButton(scale: $gameManager.scale)
                     }
-                    
+
+                    ToolbarItem(placement: .status) {
+                        BoardSizePicker(selection: $setting.boardSize)
+                    }
+
                     ToolbarItem(placement: .status) {
                         IconButton(systemName: "exclamationmark.bubble") {
                             presentedSheet = .feedback
