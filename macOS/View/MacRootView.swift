@@ -27,10 +27,6 @@ struct MacRootView: View {
     }
     
     @State private var presentedSheet: SheetType?
-    
-    @State var isPresentedSheet = false
-    @State var isPresentedFeedbackSheet = false
-    
 
     var body: some View {
         GeometryReader { geometry in
