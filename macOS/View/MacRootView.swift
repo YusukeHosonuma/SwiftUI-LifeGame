@@ -32,7 +32,7 @@ struct MacRootView: View {
         GeometryReader { geometry in
             NavigationView {
                 MacSidebar()
-                ContentView(zoomLevel: setting.zoomLevel)
+                ContentView()
                     .sheet(item: $presentedSheet) {
                         switch $0 {
                         case .boardSelect:
