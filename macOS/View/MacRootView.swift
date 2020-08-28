@@ -58,6 +58,7 @@ struct MacRootView: View {
                 Group {
                     ToolbarItem(placement: .navigation) {
                         IconButton(systemName: "sidebar.left", action: AppKitWrapper.toggleSidebar)
+                            .keyboardShortcut("b", modifiers: .command)
                     }
                     
                     ToolbarItem(placement: .navigation) {
