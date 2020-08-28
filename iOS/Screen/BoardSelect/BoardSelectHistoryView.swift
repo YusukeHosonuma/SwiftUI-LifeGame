@@ -56,7 +56,7 @@ struct BoardSelectHistoryView: View {
             }
         }
         .font(.system(.caption, design: .monospaced))
-        .frame(width: 80)
+        .aspectRatio(contentMode: .fit)
     }
 }
 
