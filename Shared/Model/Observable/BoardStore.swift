@@ -30,7 +30,8 @@ final class BoardStore: BoardStoreProtocol {
     @Published var histories: [BoardHistoryItem] = []
     
     private let authentication: Authentication = .shared
-    private let boardRepository: FirestoreBoardRepository = .shared
+    //private let boardRepository: FirestoreBoardRepository = .shared
+    private let patternRepository: FirestorePatternRepository = .shared
     
     private var staredRepository: FirestoreStaredRepository? {
         authentication.repositories?.stared
@@ -61,13 +62,13 @@ final class BoardStore: BoardStoreProtocol {
     private func startListenForSignIn(repositories: AuthenticationRepositories) {
         let staredIdsPublisher = repositories.stared.items.map { Set($0.map(\.id)) }
         
-        boardRepository.$items.combineLatest(staredIdsPublisher)
+        patternRepository.$items.combineLatest(staredIdsPublisher)
             .map { boards, staredIds in
                 boards.map {
-                    BoardItem(boardDocumentID: $0.id!,
+                    BoardItem(boardDocumentID: $0.documentID,
                               title: $0.title,
                               board: $0.makeBoard(),
-                              stared: staredIds.contains($0.id!))
+                              stared: staredIds.contains($0.documentID))
                 }
             }
             .assign(to: &$allBoards)
@@ -76,20 +77,20 @@ final class BoardStore: BoardStoreProtocol {
             .map { histories, staredIds in
                 histories.map {
                     BoardHistoryItem(historyID: $0.id,
-                                     boardDocumentID: $0.boardReference.documentID,
+                                     boardDocumentID: $0.patternDocumentRef.documentID,
                                      title: $0.board.title,
                                      board: $0.board.makeBoard(),
-                                     isStared: staredIds.contains($0.board.id!))
+                                     isStared: staredIds.contains($0.board.id))
                 }
             }
             .assign(to: &$histories)
     }
     
     private func startListenForSignOut() {
-        boardRepository.$items
+        patternRepository.$items
             .map { boards in
                 boards.map {
-                    BoardItem(boardDocumentID: $0.id!,
+                    BoardItem(boardDocumentID: $0.documentID,
                               title: $0.title,
                               board: $0.makeBoard(),
                               stared: false)
@@ -119,8 +120,8 @@ final class BoardStore: BoardStoreProtocol {
             if let document = document {
                 document.reference.updateData(["createdAt" : FieldValue.serverTimestamp()])
             } else {
-                self.boardRepository.get(by: boardID) {
-                    let document = HistoryDocument(boardReference: $0.reference)
+                self.patternRepository.get(by: boardID) {
+                    let document = HistoryDocument(patternDocumentRef: $0.reference)
                     historyRepository.add(by: boardID, document)
                 }
             }
@@ -132,7 +133,7 @@ final class BoardStore: BoardStoreProtocol {
     private func like(boardID: String) {
         guard let staredRepository = staredRepository else { preconditionFailure("This method is login required.") }
         
-        boardRepository.get(by: boardID) { board in
+        patternRepository.get(by: boardID) { board in
             staredRepository.get(id: boardID) { stared in
                 if stared == nil {
                     let document = StaredDocument(referenceBoard: board.reference)
@@ -145,7 +146,7 @@ final class BoardStore: BoardStoreProtocol {
     private func unlike(boardID: String) {
         guard let staredRepository = staredRepository else { preconditionFailure("This method is login required.") }
 
-        boardRepository.get(by: boardID) { board in
+        patternRepository.get(by: boardID) { board in
             staredRepository.get(id: boardID) { stared in
                 if let stared = stared {
                     staredRepository.delete(id: stared.id)

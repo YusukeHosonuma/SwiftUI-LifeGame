@@ -26,7 +26,7 @@ struct Application: App {
     @StateObject var boardManager = BoardManager.shared
     @StateObject var gameManager = GameManager.shared
     @StateObject var settingEnvironment = SettingEnvironment.shared
-    @StateObject var boardRepository = FirestoreBoardRepository.shared // TODO: Mac側のアカウント対応が終わったら不要になるはず。
+    @StateObject var patternRepository = FirestorePatternRepository.shared
     @StateObject var boardStore = BoardStore.shared
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
@@ -88,7 +88,7 @@ struct Application: App {
                     // 賛否はあるかもだが、何も尋ねずに現状の盤面を上書きしてしまう仕様にする。
                     // （都度、アラートがでてもうっとおしいだけなので）
                     
-                    boardRepository
+                    patternRepository
                         .get(by: documentID) { (document) in
                             let board = document.makeBoard()
                             boardManager.setBoard(board: board)
@@ -120,7 +120,7 @@ struct Application: App {
             // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta 6）❗
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
-                             boardRepository: boardRepository)
+                             patternRepository: patternRepository)
         }
         #endif
     }
@@ -132,7 +132,7 @@ struct Application: App {
             .environmentObject(boardManager)
             .environmentObject(gameManager)
             .environmentObject(settingEnvironment)
-            .environmentObject(boardRepository)
+            .environmentObject(patternRepository)
             .environmentObject(boardStore)
             .environmentObject(authentication)
             .environmentObject(networkMonitor)

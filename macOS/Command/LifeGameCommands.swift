@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 struct LifeGameCommands: Commands {
     @ObservedObject var boardManager: BoardManager // TODO: パフォーマンス的に少し無駄かも
     @ObservedObject var gameManager: GameManager
-    @ObservedObject var boardRepository: FirestoreBoardRepository
+    @ObservedObject var patternRepository: FirestorePatternRepository
     #if os(macOS)
     @ObservedObject var fileManager: LifeGameFileManager
     #endif

@@ -11,20 +11,20 @@ import FirebaseFirestoreSwift
 struct HistoryDocument: Codable {
     @DocumentID      var id: String!
     @ServerTimestamp var createdAt: Date?
-    var boardReference: DocumentReference
+    var patternDocumentRef: DocumentReference
 
     // MARK: Resolved after decoded
     var reference: DocumentReference!
-    var board: BoardDocument!
+    var board: PatternDocument!
 
     enum CodingKeys: CodingKey {
         case id
-        case boardReference
+        case patternDocumentRef
         case createdAt
     }
     
-    init(boardReference: DocumentReference) {
-        self.boardReference = boardReference
+    init(patternDocumentRef: DocumentReference) {
+        self.patternDocumentRef = patternDocumentRef
     }
     
     init(snapshot: DocumentSnapshot) {

@@ -30,13 +30,13 @@ final class DataFetcher {
         staredRepository.getAll { documents in
             let staredIds = Set(documents.map(\.id))
             
-            FirestoreBoardRepository.shared
+            FirestorePatternRepository.shared
                 .getAll { documents in
                     let results = documents.map {
-                        BoardItem(boardDocumentID: $0.id!,
+                        BoardItem(boardDocumentID: $0.id,
                                   title: $0.title,
                                   board: $0.makeBoard(),
-                                  stared: staredIds.contains($0.id!))
+                                  stared: staredIds.contains($0.id))
                     }
                     handler(results)
                 }
@@ -44,10 +44,10 @@ final class DataFetcher {
     }
     
     private func fetchAllBoards(_ handler: @escaping Handler) {
-        FirestoreBoardRepository.shared
+        FirestorePatternRepository.shared
             .getAll { documents in
                 let results = documents.map {
-                    BoardItem(boardDocumentID: $0.id!,
+                    BoardItem(boardDocumentID: $0.id,
                               title: $0.title,
                               board: $0.makeBoard(),
                               stared: false)

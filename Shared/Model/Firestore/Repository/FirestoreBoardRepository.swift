@@ -8,6 +8,9 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+// TODO: ❌ 最終的には削除する予定。
+
+/*
 protocol FirestoreBoardRepositoryProtorol: ObservableObject  {
     var items: [BoardDocument] { get }
     
@@ -78,3 +81,4 @@ final class FirestoreBoardRepository: ObservableObject, FirestoreBoardRepository
             .setData(from: document)
     }
 }
+*/

@@ -9,6 +9,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import LifeGame
 
+// TODO: ❌ 削除予定
+
 struct BoardDocument: Codable, Identifiable {
     @DocumentID
     var id: String?

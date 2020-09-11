@@ -79,11 +79,11 @@ final class FirestoreHistoryRepository: ObservableObject {
                 for (index, document) in documents.enumerated() {
                     dispatchGroup.enter() // ▶️
                     
-                    document.boardReference.getDocument { (snapshot, error) in
+                    document.patternDocumentRef.getDocument { (snapshot, error) in
                         guard let snapshot = snapshot else { fatalError() }
 
                         var newDocument = document
-                        newDocument.board = BoardDocument(snapshot: snapshot)
+                        newDocument.board = PatternDocument(snapshot: snapshot)
                         documents[index] = newDocument
                         
                         dispatchGroup.leave() // ↩️
