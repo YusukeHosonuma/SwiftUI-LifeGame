@@ -7,6 +7,7 @@
 
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Combine
 
 protocol FirestorePatternRepositoryProtorol: ObservableObject  {
     var items: [PatternDocument] { get }
@@ -29,6 +30,7 @@ final class FirestorePatternRepository: ObservableObject {
     private init() {
         collection
             .order(by: "title")
+            .limit(to: 40) // FIXME: 叩きすぎないように暫定処置 🏥
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else {
                     print("Error fetching snapshot results: \(error!)")
@@ -38,6 +40,18 @@ final class FirestorePatternRepository: ObservableObject {
             }
     }
 
+    func get(by reference: DocumentReference) -> Future<PatternDocument, Never> {
+        Future { promise in
+            reference.getDocument { (snapshot, error) in
+                if let error = error {
+                    fatalError(error.localizedDescription)
+                }
+                let document = PatternDocument(snapshot: snapshot!)
+                promise(.success(document))
+            }
+        }
+    }
+    
     func get(by id :String, handler: @escaping (PatternDocument) -> Void) {
         collection
             .document(id)
@@ -55,6 +69,7 @@ final class FirestorePatternRepository: ObservableObject {
     func getAll(handler: @escaping ([PatternDocument]) -> Void) {
         collection
             .order(by: "title")
+            .limit(to: 40) // FIXME: 叩きすぎないように暫定処置 🏥
             .getDocuments  { (snapshot, error) in
                 guard let snapshot = snapshot else {
                     print("Error fetching snapshot results: \(error!)")

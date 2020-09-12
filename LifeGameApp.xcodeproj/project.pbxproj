@@ -16,6 +16,17 @@
 		E50DF85D24F9065A00ED26D8 /* ScaleChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE1B2C24F70F740012D61E /* ScaleChangeButton.swift */; };
 		E50DF85F24F90C6800ED26D8 /* BoardSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */; };
 		E50DF86024F90D1E00ED26D8 /* BoardSizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */; };
+		E50E0C9C250CDFE400823980 /* PatternIDDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */; };
+		E50E0C9D250CDFE400823980 /* PatternIDDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */; };
+		E50E0C9E250CDFE400823980 /* PatternIDDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */; };
+		E50E0CA0250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */; };
+		E50E0CA1250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */; };
+		E50E0CA2250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */; };
+		E50E0CA5250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
+		E50E0CA6250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
+		E50E0CA7250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
+		E50E0CB3250CEADE00823980 /* EntryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB0250CEADE00823980 /* EntryGenerator.swift */; };
+		E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB4250CED3300823980 /* WidgetFamily+.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
 		E518212C24CC149C00ABD16B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E518212B24CC149C00ABD16B /* RootView.swift */; };
@@ -249,6 +260,11 @@
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitWrapper.swift; sourceTree = "<group>"; };
 		E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSizePicker.swift; sourceTree = "<group>"; };
+		E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternIDDocument.swift; sourceTree = "<group>"; };
+		E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePatternIDDocumentRepository.swift; sourceTree = "<group>"; };
+		E50E0CA4250CE19700823980 /* PatternService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternService.swift; sourceTree = "<group>"; };
+		E50E0CB0250CEADE00823980 /* EntryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryGenerator.swift; sourceTree = "<group>"; };
+		E50E0CB4250CED3300823980 /* WidgetFamily+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WidgetFamily+.swift"; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		E518212B24CC149C00ABD16B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -439,6 +455,14 @@
 			path = AppKit;
 			sourceTree = "<group>";
 		};
+		E50E0CA3250CE18200823980 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E50E0CA4250CE19700823980 /* PatternService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E518212E24CC27B900ABD16B /* Environment */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +487,7 @@
 				E5238DFE24EAC29E0087B9B0 /* StaredDocument.swift */,
 				E51FD75124F20DC0002981F4 /* FeedbackDocument.swift */,
 				E5A41B3F250B2E70007235C2 /* PatternDocument.swift */,
+				E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */,
 			);
 			path = Document;
 			sourceTree = "<group>";
@@ -475,6 +500,7 @@
 				E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */,
 				E51FD75424F20EE1002981F4 /* FirestoreFeedbackRepository.swift */,
 				E5A41B46250B3E1B007235C2 /* FirestorePatternRepository.swift */,
+				E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -506,6 +532,8 @@
 				E54A63AC24F4F31800084964 /* EntryView.swift */,
 				E54A63AE24F4F35800084964 /* Entry.swift */,
 				E5E0067D24EB8B1900A4EA02 /* DataFetcher.swift */,
+				E50E0CB0250CEADE00823980 /* EntryGenerator.swift */,
+				E50E0CB4250CED3300823980 /* WidgetFamily+.swift */,
 			);
 			path = LifeGameWidget;
 			sourceTree = "<group>";
@@ -878,6 +906,7 @@
 				E5F535F624F341E000D2DC25 /* Observable */,
 				E526A07224EAB06D00D76ECD /* Entity */,
 				E547C30824E3F4AA0022DF3A /* Cache */,
+				E50E0CA3250CE18200823980 /* Service */,
 				E52FE5DB24DC00E100D93764 /* Firestore */,
 				E5F535F724F341EB00D2DC25 /* UserDefault */,
 				E54A63A824F4F25100084964 /* BoardExample.swift */,
@@ -1127,6 +1156,7 @@
 			files = (
 				E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */,
 				E56DBCB324E4FFF400849CE4 /* Array+.swift in Sources */,
+				E50E0CB3250CEADE00823980 /* EntryGenerator.swift in Sources */,
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
 				E54A63AD24F4F31800084964 /* EntryView.swift in Sources */,
 				E5A41B49250B3E1B007235C2 /* FirestorePatternRepository.swift in Sources */,
@@ -1135,16 +1165,20 @@
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
 				E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
 				E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */,
+				E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */,
+				E50E0C9E250CDFE400823980 /* PatternIDDocument.swift in Sources */,
 				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
 				E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
 				E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
+				E50E0CA2250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */,
 				E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */,
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
 				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
 				E54A63B124F4F3B400084964 /* Provider.swift in Sources */,
+				E50E0CA7250CE19700823980 /* PatternService.swift in Sources */,
 				E5E0067E24EB8B1900A4EA02 /* DataFetcher.swift in Sources */,
 				E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */,
 				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
@@ -1161,6 +1195,8 @@
 				E51FD74D24F20917002981F4 /* AppTextEditor.swift in Sources */,
 				E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
 				E5A7911C24D64A1000648813 /* ActionMenuButton.swift in Sources */,
+				E50E0CA5250CE19700823980 /* PatternService.swift in Sources */,
+				E50E0C9C250CDFE400823980 /* PatternIDDocument.swift in Sources */,
 				E518212C24CC149C00ABD16B /* RootView.swift in Sources */,
 				E57F07B424F267720057B2D1 /* SignInButton.swift in Sources */,
 				E5FE1B2D24F70F740012D61E /* ScaleChangeButton.swift in Sources */,
@@ -1230,6 +1266,7 @@
 				E5A975B224F680080020FA06 /* BoardGridImage.swift in Sources */,
 				E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */,
 				E5FA934224C0570800229AAA /* ButtonStyleCircle.swift in Sources */,
+				E50E0CA0250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */,
 				E5E50A2A24E539C900CD64B6 /* Image+.swift in Sources */,
 				E574356A24E972F900BB27CA /* Authentication.swift in Sources */,
 			);
@@ -1279,10 +1316,13 @@
 				E5FA934D24C07A5500229AAA /* BoardPreset.swift in Sources */,
 				E54A993524EA766C00298388 /* BoardStore.swift in Sources */,
 				E526A07824EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */,
+				E50E0C9D250CDFE400823980 /* PatternIDDocument.swift in Sources */,
 				E5CA661324E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
 				E58D5F0E24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
+				E50E0CA1250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */,
+				E50E0CA6250CE19700823980 /* PatternService.swift in Sources */,
 				E5261AA924F3228100218CDD /* BoardManager.swift in Sources */,
 				E51FD75324F20DC0002981F4 /* FeedbackDocument.swift in Sources */,
 				E5CA661024E903AB00D6D59F /* HistoryDocument.swift in Sources */,
