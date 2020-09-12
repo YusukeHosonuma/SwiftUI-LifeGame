@@ -25,7 +25,7 @@
 		E50E0CA5250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
 		E50E0CA6250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
 		E50E0CA7250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
-		E50E0CB3250CEADE00823980 /* EntryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB0250CEADE00823980 /* EntryGenerator.swift */; };
+		E50E0CB3250CEADE00823980 /* TimelineEntryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB0250CEADE00823980 /* TimelineEntryGenerator.swift */; };
 		E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB4250CED3300823980 /* WidgetFamily+.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
 		E51169D524D64546002D40B6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169D424D64546002D40B6 /* ControlView.swift */; };
@@ -263,7 +263,7 @@
 		E50E0C9B250CDFE400823980 /* PatternIDDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternIDDocument.swift; sourceTree = "<group>"; };
 		E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePatternIDDocumentRepository.swift; sourceTree = "<group>"; };
 		E50E0CA4250CE19700823980 /* PatternService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternService.swift; sourceTree = "<group>"; };
-		E50E0CB0250CEADE00823980 /* EntryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryGenerator.swift; sourceTree = "<group>"; };
+		E50E0CB0250CEADE00823980 /* TimelineEntryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineEntryGenerator.swift; sourceTree = "<group>"; };
 		E50E0CB4250CED3300823980 /* WidgetFamily+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WidgetFamily+.swift"; sourceTree = "<group>"; };
 		E51169CE24D64446002D40B6 /* BoardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardContainerView.swift; sourceTree = "<group>"; };
 		E51169D424D64546002D40B6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
@@ -532,7 +532,7 @@
 				E54A63AC24F4F31800084964 /* EntryView.swift */,
 				E54A63AE24F4F35800084964 /* Entry.swift */,
 				E5E0067D24EB8B1900A4EA02 /* DataFetcher.swift */,
-				E50E0CB0250CEADE00823980 /* EntryGenerator.swift */,
+				E50E0CB0250CEADE00823980 /* TimelineEntryGenerator.swift */,
 				E50E0CB4250CED3300823980 /* WidgetFamily+.swift */,
 			);
 			path = LifeGameWidget;
@@ -1156,7 +1156,7 @@
 			files = (
 				E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */,
 				E56DBCB324E4FFF400849CE4 /* Array+.swift in Sources */,
-				E50E0CB3250CEADE00823980 /* EntryGenerator.swift in Sources */,
+				E50E0CB3250CEADE00823980 /* TimelineEntryGenerator.swift in Sources */,
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
 				E54A63AD24F4F31800084964 /* EntryView.swift in Sources */,
 				E5A41B49250B3E1B007235C2 /* FirestorePatternRepository.swift in Sources */,

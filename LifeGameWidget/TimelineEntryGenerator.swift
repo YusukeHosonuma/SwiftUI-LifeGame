@@ -9,8 +9,8 @@ import Foundation
 import Combine
 import WidgetKit
 
-final class EntryGenerator {
-    static let shared = EntryGenerator()
+final class TimelineEntryGenerator {
+    static let shared = TimelineEntryGenerator()
     
     private var cancellables: [AnyCancellable] = []
 
