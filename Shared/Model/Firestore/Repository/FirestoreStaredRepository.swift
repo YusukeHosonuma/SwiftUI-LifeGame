@@ -33,6 +33,18 @@ final class FirestoreStaredRepository {
             }
     }
     
+    func all() -> Future<[StaredDocument], Never> {
+        Future { promise in
+            self.stared
+                .getDocuments { (snapshot, error) in
+                    guard let snapshot = snapshot else { fatalError() }
+                    let documents = snapshot.documents.map(StaredDocument.init)
+                    promise(.success(documents))
+                }
+        }
+    }
+    
+    // TODO: 削除したい
     func getAll(handler: @escaping ([StaredDocument]) -> Void) {
         stared
             .getDocuments { (snapshot, error) in

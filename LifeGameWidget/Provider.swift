@@ -34,10 +34,9 @@ struct Provider: IntentTimelineProvider {
             }
         }
         
-        // TODO: star は後で考える
-        let filteredByStared = Auth.auth().currentUser != nil && self.isFilteredByStared(configuration: configuration)
+        let staredOnly = self.isFilteredByStared(configuration: configuration)
 
-        TimelineEntryGenerator.shared.generate(for: context.family, times: 5) { entries in
+        TimelineEntryGenerator.shared.generate(for: context.family, times: 5, staredOnly: staredOnly) { entries in
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         }
