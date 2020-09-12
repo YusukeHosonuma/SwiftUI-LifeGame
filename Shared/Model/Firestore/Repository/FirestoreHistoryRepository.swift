@@ -80,10 +80,12 @@ final class FirestoreHistoryRepository: ObservableObject {
                     dispatchGroup.enter() // ▶️
                     
                     document.patternDocumentRef.getDocument { (snapshot, error) in
-                        guard let snapshot = snapshot else { fatalError() }
+                        if let error = error {
+                            fatalError(error.localizedDescription)
+                        }
 
                         var newDocument = document
-                        newDocument.board = PatternDocument(snapshot: snapshot)
+                        newDocument.board = PatternDocument(snapshot: snapshot!)
                         documents[index] = newDocument
                         
                         dispatchGroup.leave() // ↩️
