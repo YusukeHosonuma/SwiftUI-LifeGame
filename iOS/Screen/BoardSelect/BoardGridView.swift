@@ -59,21 +59,37 @@ final class PatternLoader: ObservableObject {
                           stared: staredIds.contains(pattern.id))
             }
             .replaceError(with: nil)
+            .receive(on: RunLoop.main)
             .assign(to: &$board)
     }
 }
 
+final class AllPatternStore: ObservableObject {
+    @Published var ids: [String] = []
+    
+    init() {
+        PatternService.shared
+            .allPatternIds()
+            .assign(to: &$ids)
+    }
+}
+
 struct AllPatternView: View {
-    @State var ids: [String] = []
+    @StateObject var store = AllPatternStore()
+    
+    private var columns: [GridItem] {
+        return [
+            GridItem(.adaptive(minimum: 100))
+        ]
+    }
     
     var body: some View {
-        ForEach(ids, id: \.self) { id in
-            
-        }
-        Text("")
-            .onReceive(PatternService.shared.allPatternIds()) {
-                ids = $0
+        LazyVGrid(columns: columns) {
+            ForEach(store.ids, id: \.self) { id in
+                PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/\(id)")!)
+                    .frame(width: 100, height: 100, alignment: .center)
             }
+        }
     }
 }
 
