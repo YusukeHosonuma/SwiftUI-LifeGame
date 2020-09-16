@@ -17,4 +17,14 @@ final class PatternService {
             .map { $0.patternReferences }
             .eraseToAnyPublisher()
     }
+    
+    func allPatternIds() -> AnyPublisher<[String], Never> {
+        PatternIDRepository.shared.all
+            .map { document in
+                document.patternReferences.map {
+                    String($0.path.split(separator: "/").last!)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 }
