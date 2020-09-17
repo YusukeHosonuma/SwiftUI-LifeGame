@@ -24,7 +24,6 @@
 		E50E0CA2250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0C9F250CE02500823980 /* FirestorePatternIDDocumentRepository.swift */; };
 		E50E0CA5250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
 		E50E0CA6250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
-		E50E0CA7250CE19700823980 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
 		E50E0CB3250CEADE00823980 /* TimelineEntryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB0250CEADE00823980 /* TimelineEntryGenerator.swift */; };
 		E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CB4250CED3300823980 /* WidgetFamily+.swift */; };
 		E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51169CE24D64446002D40B6 /* BoardContainerView.swift */; };
@@ -1183,7 +1182,6 @@
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
 				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
 				E54A63B124F4F3B400084964 /* Provider.swift in Sources */,
-				E50E0CA7250CE19700823980 /* PatternService.swift in Sources */,
 				E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */,
 				E518C89724E368D600B02027 /* UserDefaultConvertible.swift in Sources */,
 				E5A41B42250B2E70007235C2 /* PatternDocument.swift in Sources */,

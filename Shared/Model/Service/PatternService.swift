@@ -11,20 +11,71 @@ import FirebaseFirestore
 
 final class PatternService {
     static let shared = PatternService()
+
+    private let authentication: Authentication = .shared
+
+//    func getAllPatternReferences() -> AnyPublisher<[DocumentReference], Never> {
+//        PatternIDRepository.shared.all
+//            .map { $0.patternReferences }
+//            .eraseToAnyPublisher()
+//    }
+//
+//    func allPatternIds() -> AnyPublisher<[String], Never> {
+//        PatternIDRepository.shared.all
+//            .map { document in
+//                document.patternReferences.map {
+//                    String($0.path.split(separator: "/").last!)
+//                }
+//            }
+//            .eraseToAnyPublisher()
+//    }
     
-    func getAllPatternReferences() -> AnyPublisher<[DocumentReference], Never> {
+    
+    func allPatternTitles() -> AnyPublisher<[String], Never> {
         PatternIDRepository.shared.all
-            .map { $0.patternReferences }
+            .map { document in
+                document.data.map(\.title) // TODO: IDに変更する
+            }
             .eraseToAnyPublisher()
     }
     
-    func allPatternIds() -> AnyPublisher<[String], Never> {
+    func patternIds(by type: String) -> AnyPublisher<[String], Never> {
         PatternIDRepository.shared.all
             .map { document in
-                document.patternReferences.map {
-                    String($0.path.split(separator: "/").last!)
-                }
+                document.data.filter { $0.patternType == type }.map(\.title) // TODO: IDに変更する
             }
+            .eraseToAnyPublisher()
+    }
+    
+    func fetch(from url: URL) -> AnyPublisher<BoardItem?, Never> {
+        let patternPublisher = URLSession.shared
+            .dataTaskPublisher(for: url)
+            .retry(3)
+            .map { (data, response) -> Data in
+                data
+            }
+            .decode(type: LifeWikiPattern.self, decoder: JSONDecoder())
+
+        return Publishers.Zip(patternPublisher, staredPatternIDs().setFailureType(to: Error.self))
+            .map { pattern, staredIds in
+                BoardItem(boardDocumentID: pattern.id,
+                          title: pattern.title,
+                          board: pattern.makeBoard(),
+                          stared: staredIds.contains(pattern.id))
+            }
+            .replaceError(with: nil)
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func staredPatternIDs() -> AnyPublisher<[String], Never> {
+        guard let staredRepository = authentication.repositories?.stared else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        
+        return staredRepository // TODO: たぶん登録順でソートさせたくなるはず（あるいはタイトル？）
+            .all()
+            .map { $0.map(\.patternID) }
             .eraseToAnyPublisher()
     }
 }

@@ -54,6 +54,24 @@ final class FirestoreStaredRepository {
             }
     }
     
+    func get(by id: String) -> Future<StaredDocument?, Never> {
+        Future { promise in
+            self.stared
+                .document(id)
+                .getDocument { (snapshot, error) in
+                    if let error = error {
+                        fatalError(error.localizedDescription)
+                    }
+                    if snapshot!.exists {
+                        let document = StaredDocument(snapshot: snapshot!)
+                        promise(.success(document))
+                    } else {
+                        promise(.success(nil))
+                    }
+                }
+        }
+    }
+    
     func get(id: String, handler: @escaping (StaredDocument?) -> Void) {
         stared
             .document(id)
@@ -68,9 +86,9 @@ final class FirestoreStaredRepository {
             }
     }
     
-    func add(id: String, document: StaredDocument) {
+    func setData(_ document: StaredDocument) {
         try! stared
-            .document(id)
+            .document(document.patternID)
             .setData(from: document)
     }
     

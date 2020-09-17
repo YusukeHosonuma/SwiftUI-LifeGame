@@ -19,23 +19,23 @@ final class TimelineEntryGenerator {
     func generate(for family: WidgetFamily, times: Int, staredOnly: Bool, completion: @escaping ([Entry]) -> Void) {
         let displayCount = family.displayCount
         
-        candidatePatternReferences(staredOnly: staredOnly)
-            .flatMap { references in
-                Publishers.MergeMany(
-                    references
-                        .shuffled()
-                        .prefix(displayCount * times)
-                        .map { reference in
-                            FirestorePatternRepository.shared.get(by: reference)
-                        }
-                )
-            }
-            .collect()
-            .sink { documents in
-                let entries = self.generateEntries(from: documents, displayCount: displayCount, times: times)
-                completion(entries)
-            }
-            .store(in: &cancellables)
+//        candidatePatternReferences(staredOnly: staredOnly)
+//            .flatMap { references in
+//                Publishers.MergeMany(
+//                    references
+//                        .shuffled()
+//                        .prefix(displayCount * times)
+//                        .map { reference in
+//                            FirestorePatternRepository.shared.get(by: reference)
+//                        }
+//                )
+//            }
+//            .collect()
+//            .sink { documents in
+//                let entries = self.generateEntries(from: documents, displayCount: displayCount, times: times)
+//                completion(entries)
+//            }
+//            .store(in: &cancellables)
     }
     
     // MARK: Private
@@ -62,13 +62,15 @@ final class TimelineEntryGenerator {
         return entries
     }
     
+    /*
     private func candidatePatternReferences(staredOnly: Bool) -> AnyPublisher<[DocumentReference], Never> {
         if let user = Auth.auth().currentUser, staredOnly {
             return FirestoreStaredRepository(user: user).all()
                 .map { $0.map(\.referenceBoard) }
                 .eraseToAnyPublisher()
         } else {
-            return PatternService.shared.getAllPatternReferences()
+            return Just([]).eraseToAnyPublisher()
+//            return PatternService.shared.getAllPatternReferences()
         }
-    }
+    }*/
 }

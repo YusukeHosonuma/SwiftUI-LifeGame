@@ -17,7 +17,6 @@ protocol BoardStoreProtocol: ObservableObject {
     var allBoards: [BoardItem] { get }
     var histories: [BoardHistoryItem] { get }
     
-    func toggleLike(boardID: String)
     func addToHistory(boardID: String)
 }
 
@@ -99,20 +98,6 @@ final class BoardStore: BoardStoreProtocol {
             .assign(to: &$allBoards)
     }
 
-    func toggleLike(boardID: String) {
-        guard let index = self.allBoards.firstIndex(where: { $0.boardDocumentID == boardID }) else { fatalError() }
-
-        var document = allBoards[index]
-        document.stared.toggle()
-        allBoards[index] = document
-
-        if document.stared {
-            like(boardID: boardID)
-        } else {
-            unlike(boardID: boardID)
-        }
-    }
-    
     func addToHistory(boardID: String) {
         guard let historyRepository = historyRepository else { preconditionFailure("This method is login required.") }
         
@@ -130,28 +115,24 @@ final class BoardStore: BoardStoreProtocol {
     
     // MARK: Private
     
-    private func like(boardID: String) {
-        guard let staredRepository = staredRepository else { preconditionFailure("This method is login required.") }
-        
-        patternRepository.get(by: boardID) { board in
-            staredRepository.get(id: boardID) { stared in
-                if stared == nil {
-                    let document = StaredDocument(referenceBoard: board.reference)
-                    staredRepository.add(id: boardID, document: document)
-                }
-            }
+    func toggleLike(to item: BoardItem) {
+        if item.stared {
+            unlike(patternID: item.boardDocumentID)
+        } else {
+            like(patternID: item.boardDocumentID)
         }
     }
     
-    private func unlike(boardID: String) {
+    func like(patternID: String) {
         guard let staredRepository = staredRepository else { preconditionFailure("This method is login required.") }
 
-        patternRepository.get(by: boardID) { board in
-            staredRepository.get(id: boardID) { stared in
-                if let stared = stared {
-                    staredRepository.delete(id: stared.id)
-                }
-            }
-        }
+        let document = StaredDocument(patternID: patternID)
+        staredRepository.setData(document)
+    }
+    
+    func unlike(patternID: String) {
+        guard let staredRepository = staredRepository else { preconditionFailure("This method is login required.") }
+        
+        staredRepository.delete(id: patternID)
     }
 }

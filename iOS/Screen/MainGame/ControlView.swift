@@ -47,7 +47,11 @@ struct ControlView: View {
                 SheetButton(by: $isPresentedListSheet) {
                     Image(systemName: "list.bullet")
                 } content: {
-                    AllPatternView()
+                    PatternSelectSheetView(presented: $isPresentedListSheet)
+                    //AllPatternView(presented: $isPresentedListSheet)
+                        .environmentObject(gameManager)
+                        .environmentObject(authentication)
+                        .environmentObject(boardStore)
 //                    PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!)
 //                    BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
 //                        .environmentObject(setting)

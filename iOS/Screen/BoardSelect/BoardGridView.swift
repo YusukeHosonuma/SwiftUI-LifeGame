@@ -38,44 +38,58 @@ struct LifeWikiPattern: Codable, Identifiable {
 final class PatternLoader: ObservableObject {
     @Published var board: BoardItem?
     
+    private let url: URL
+    private let patternService: PatternService = .shared
+    private var cancellables: [AnyCancellable] = []
+    
     init(url: URL) {
-        let patternPublisher = URLSession.shared
-            .dataTaskPublisher(for: url)
-            .map { (data, response) -> Data in
-                data
-            }
-            .decode(type: LifeWikiPattern.self, decoder: JSONDecoder())
-        
-        let staredIdsPublisher = FirestoreStaredRepository(user: Auth.auth().currentUser!)
-            .all()
-            .map { Set($0.map(\.id)) }
-            .setFailureType(to: Error.self)
-        
-        Publishers.Zip(patternPublisher, staredIdsPublisher)
-            .map { pattern, staredIds in
-                BoardItem(boardDocumentID: "",
-                          title: pattern.title,
-                          board: pattern.makeBoard(),
-                          stared: staredIds.contains(pattern.id))
-            }
-            .replaceError(with: nil)
-            .receive(on: RunLoop.main)
-            .assign(to: &$board)
+        self.url = url
+        refresh()
+    }
+    
+    func refresh() {
+        patternService.fetch(from: url).assign(to: &$board)
+
     }
 }
 
-final class AllPatternStore: ObservableObject {
-    @Published var ids: [String] = []
+final class PatternStore: ObservableObject {
+    @Published var allIds: [String] = []
+    @Published var staredIds: [String] = []
+    @Published var spaceshipIds: [String] = []
+
+    private let patternService: PatternService = .shared
     
     init() {
-        PatternService.shared
-            .allPatternIds()
-            .assign(to: &$ids)
+        patternService.allPatternTitles().assign(to: &$allIds)
+        patternService.staredPatternIDs().assign(to: &$staredIds)
+        patternService.patternIds(by: "Spaceship").assign(to: &$spaceshipIds)
     }
 }
 
-struct AllPatternView: View {
-    @StateObject var store = AllPatternStore()
+struct PatternSelectSheetView: View {
+    @StateObject var store = PatternStore()
+    @Binding var presented: Bool
+
+    var body: some View {
+        TabView {
+            PatternGridListView(presented: $presented, patternIds: store.allIds)
+                .tabItem { Text("All") }
+            PatternGridListView(presented: $presented, patternIds: store.spaceshipIds)
+                .tabItem { Text("Spaceship") }
+            PatternGridListView(presented: $presented, patternIds: store.staredIds)
+                .tabItem { Text("Stared") }
+        }
+    }
+}
+
+struct PatternGridListView: View {
+    @EnvironmentObject var gameManager: GameManager
+    @EnvironmentObject var boardStore: BoardStore
+    @EnvironmentObject var authentication: Authentication
+    
+    @Binding var presented: Bool
+    var patternIds: [String]
     
     private var columns: [GridItem] {
         return [
@@ -84,20 +98,55 @@ struct AllPatternView: View {
     }
     
     var body: some View {
-        LazyVGrid(columns: columns) {
-            ForEach(store.ids, id: \.self) { id in
-                PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/\(id)")!)
-                    .frame(width: 100, height: 100, alignment: .center)
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(patternIds, id: \.self) { id in
+                    if let url = URL(string: "https://lifegame-dev.web.app/pattern/\(id).json") {
+                        PatterndGridView(
+                            url: url,
+                            isSignIn: authentication.isSignIn,
+                            didTap: didTapItem,
+                            didToggleStar: didToggleStar
+                        )
+                        .frame(width: 100, height: 100, alignment: .center)
+                    }
+                }
             }
         }
+    }
+    
+    // MARK: Action
+    
+    private func didTapItem(item: BoardItem) {
+//        if authentication.isSignIn {
+//            boardStore.addToHistory(boardID: boardDocumentID)
+//        }
+        gameManager.setBoard(board: item.board)
+        self.presented = false
+    }
+    
+    private func didToggleStar(item: BoardItem) {
+        boardStore.toggleLike(to: item)
     }
 }
 
 struct PatterndGridView: View {
-    @StateObject var loader: PatternLoader
+    @StateObject private var loader: PatternLoader
+    private var isSignIn: Bool
+    private var didTap: (BoardItem) -> Void
+    private var didToggleStar: (BoardItem) -> Void
     
-    init(url: URL) {
+    @State var id: Int = 0
+    
+    init(url: URL,
+         isSignIn: Bool,
+         didTap: @escaping (BoardItem) -> Void,
+         didToggleStar: @escaping (BoardItem) -> Void
+    ) {
         _loader = StateObject(wrappedValue: PatternLoader(url: url))
+        self.isSignIn = isSignIn
+        self.didTap = didTap
+        self.didToggleStar = didToggleStar
     }
     
     var body: some View {
@@ -115,6 +164,23 @@ struct PatterndGridView: View {
                     }
                 }
                 .font(.system(.caption, design: .monospaced))
+                .id(id)
+            }
+            .onTapGesture {
+                didTap(board)
+            }
+            .contextMenu {
+                BoardSelectContextMenu(isStared: .init(get: { board.stared }, set: { _ in
+                    if isSignIn {
+                        withAnimation {
+                            didToggleStar(board)
+                            loader.refresh()
+                        }
+                    }
+//                    else {
+//                        isPresentedAlert.toggle()
+//                    }
+                }))
             }
         } else {
             ProgressView()
@@ -124,6 +190,9 @@ struct PatterndGridView: View {
 
 struct PatterndGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!)
+        PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!,
+                         isSignIn: true,
+                         didTap: { _ in },
+                         didToggleStar: { _ in })
     }
 }

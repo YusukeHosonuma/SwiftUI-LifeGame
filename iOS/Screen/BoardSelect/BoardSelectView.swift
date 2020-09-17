@@ -64,7 +64,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
                     BoardSelectHistoryView(
                         items: boardStore.histories,
                         toggleStar: { boardID in
-                            self.boardStore.toggleLike(boardID: boardID)
+                            //self.boardStore.toggleLike(boardID: boardID)
                         },
                         tapItem: tapHistoryCell
                     )
