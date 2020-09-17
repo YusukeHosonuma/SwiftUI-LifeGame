@@ -56,14 +56,23 @@ final class PatternLoader: ObservableObject {
 final class PatternStore: ObservableObject {
     @Published var allIds: [URL] = []
     @Published var staredIds: [URL] = []
-    @Published var spaceshipIds: [URL] = []
+    @Published var urlsByCategory: [PatternCategory: [URL]] = [:]
 
     private let patternService: PatternService = .shared
+    private var cancellables: [AnyCancellable] = []
     
     init() {
         patternService.patternURLs().assign(to: &$allIds)
         patternService.staredPatternURLs().assign(to: &$staredIds) // TODO: 最終的に Listen 形式に変える
-        patternService.patternURLs(by: "Spaceship").assign(to: &$spaceshipIds)
+        
+        for category in PatternCategory.allCases {
+            patternService
+                .patternURLs(by: category.rawValue)
+                .sink { urls in
+                    self.urlsByCategory[category] = urls
+                }
+                .store(in: &cancellables)
+        }
     }
 }
 
@@ -72,14 +81,79 @@ struct PatternSelectSheetView: View {
     @Binding var presented: Bool
 
     var body: some View {
-        TabView {
-            PatternGridListView(presented: $presented, patternURLs: store.allIds)
-                .tabItem { Text("All") }
-            PatternGridListView(presented: $presented, patternURLs: store.spaceshipIds)
-                .tabItem { Text("Spaceship") }
-            PatternGridListView(presented: $presented, patternURLs: store.staredIds)
-                .tabItem { Text("Stared") }
+        NavigationView {
+            TabView {
+                PatternCategoryListView(store: store, presented: $presented)
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Find")
+                    }
+                MyPatternListView(store: store, presented: $presented)
+                    .tabItem {
+                        Image(systemName: "person.crop.circle")
+                        Text("My Page")
+                    }
+            }
+            .navigationTitle("Select pattern")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", action: tapCancel)
+                }
+            }
         }
+    }
+    
+    // MARK: Actions
+
+    private func tapCancel() {
+        presented = false
+    }
+}
+
+struct MyPatternListView: View {
+    @ObservedObject var store: PatternStore
+    @Binding var presented: Bool
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                VStack(alignment: .leading) {
+                    title("History")
+                    PatternGridListView(
+                        style: .horizontal,
+                        presented: $presented,
+                        patternURLs: store.urlsByCategory[.conduit] ?? []
+                    )
+                    .padding(.horizontal)
+                    .frame(height: 120)
+                }
+                
+                VStack(alignment: .leading) {
+                    title("Stared")
+                    PatternGridListView(
+                        style: .grid,
+                        presented: $presented,
+                        patternURLs: store.urlsByCategory[.conduit] ?? []
+                    )
+                    .padding(.horizontal)
+                }
+            }
+            .padding(.vertical)
+        }
+    }
+    
+    private func title(_ text: String) -> some View {
+        Text(text)
+            .font(.headline)
+            .padding([.leading, .top])
+    }
+}
+
+extension PatternGridListView {
+    enum Style {
+        case grid
+        case horizontal
     }
 }
 
@@ -88,28 +162,48 @@ struct PatternGridListView: View {
     @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var authentication: Authentication
     
+    var style: Style
     @Binding var presented: Bool
     var patternURLs: [URL]
     
-    private var columns: [GridItem] {
-        return [
-            GridItem(.adaptive(minimum: 100))
-        ]
+    var body: some View {
+        switch style {
+        case .grid:
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+                    content()
+                }
+                .padding(16)
+            }
+            .padding(-16)
+            
+        case .horizontal:
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: [GridItem(.fixed(100))]) {
+                    ForEach(patternURLs, id: \.self) { url in
+                        PatterndGridLoadView(
+                            url: url,
+                            isSignIn: authentication.isSignIn,
+                            didTap: didTapItem,
+                            didToggleStar: didToggleStar
+                        )
+                        .frame(width: 100) // TODO: タイトルの長さに横幅が伸びてしまうので暫定
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            .padding(.horizontal, -16)
+        }
     }
     
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns) {
-                ForEach(patternURLs, id: \.self) { url in
-                    PatterndGridView(
-                        url: url,
-                        isSignIn: authentication.isSignIn,
-                        didTap: didTapItem,
-                        didToggleStar: didToggleStar
-                    )
-                    .frame(width: 100, height: 100, alignment: .center)
-                }
-            }
+    func content() -> some View {
+        ForEach(patternURLs, id: \.self) { url in
+            PatterndGridLoadView(
+                url: url,
+                isSignIn: authentication.isSignIn,
+                didTap: didTapItem,
+                didToggleStar: didToggleStar
+            )
         }
     }
     
@@ -128,11 +222,13 @@ struct PatternGridListView: View {
     }
 }
 
-struct PatterndGridView: View {
+struct PatterndGridLoadView: View {
     @StateObject private var loader: PatternLoader
     private var isSignIn: Bool
     private var didTap: (BoardItem) -> Void
     private var didToggleStar: (BoardItem) -> Void
+
+    @State private var isPresentedAlertNeedLogin = false
 
     init(url: URL,
          isSignIn: Bool,
@@ -147,45 +243,75 @@ struct PatterndGridView: View {
     
     var body: some View {
         if let board = loader.board {
-            VStack {
-                BoardThumbnailImage(board: board.board, cacheKey: board.id)
-                HStack {
-                    Text(board.title)
-                        .lineLimit(1)
-                        .foregroundColor(.accentColor)
-                    Spacer()
-                    if board.stared {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                    }
+            PatternGridView(board: board)
+                .onTapGesture {
+                    didTap(board)
                 }
-                .font(.system(.caption, design: .monospaced))
-            }
-            .onTapGesture {
-                didTap(board)
-            }
-            .contextMenu {
-                BoardSelectContextMenu(isStared: .init(get: { board.stared }, set: { _ in
-                    if isSignIn {
-                        withAnimation {
-                            didToggleStar(board)
-                            loader.refresh()
-                        }
-                    }
-//                    else {
-//                        isPresentedAlert.toggle()
-//                    }
-                }))
+                .contextMenu {
+                    BoardSelectContextMenu(
+                        isStared: .init(get: { board.stared },
+                                        set: { didSetStared(value: $0, board: board) })
+                    )
+                }
+                .alert(isPresented: $isPresentedAlertNeedLogin) {
+                    Alert(title: Text("Need login."))
+                }
+        } else {
+            PatternGridView.placeHolder()
+        }
+    }
+    
+    // MARK: Action
+    
+    private func didSetStared(value: Bool, board: BoardItem) {
+        if isSignIn {
+            withAnimation {
+                didToggleStar(board)
+                loader.refresh()
             }
         } else {
-            ProgressView()
+            self.isPresentedAlertNeedLogin.toggle()
+        }
+    }
+}
+
+struct PatternGridView: View {
+    let board: BoardItem
+    
+    static func placeHolder() -> some View {
+        PatternGridView(
+            board: BoardItem(boardDocumentID: "",
+                             title: BoardPreset.nebura.displayText,
+                             board: BoardPreset.nebura.board.board,
+                             stared: false)
+        )
+        .redacted(reason: .placeholder)
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                BoardThumbnailImage(board: board.board, cacheKey: board.id)
+                Spacer()
+            }
+            HStack {
+                Text(board.title) // TODO: 画像サイズの横幅に一致させるようにしたい
+                    .lineLimit(1)
+                    .foregroundColor(.accentColor)
+                Spacer()
+                if board.stared {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }
+            }
+            .font(.system(.caption, design: .monospaced))
         }
     }
 }
 
 struct PatterndGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!,
+        PatterndGridLoadView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!,
                          isSignIn: true,
                          didTap: { _ in },
                          didToggleStar: { _ in })

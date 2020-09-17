@@ -17,7 +17,7 @@ import CryptoKit
 // 現時点では対処方法が思いつかないので一旦保留にしておく。（次のリリースでは直ると思う）
 
 private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
-/*
+
 struct SignInButton: View {
     @Binding private var inProgress: Bool
     private let completion: (Error?) -> Void
@@ -146,4 +146,3 @@ private func sha256(_ input: String) -> String {
     
     return hashString
 }
-*/

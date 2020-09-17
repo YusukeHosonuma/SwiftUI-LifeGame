@@ -36,13 +36,13 @@ struct SignInView: View {
                     .font(.title3)
                     .padding([.bottom], 100)
                     
-//                    SignInButton(inProgress: $isDisplayProgress, completion: signInCompletion)
-//                        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-//                        .frame(width: 280, height: 44)
-//                        .padding()
-//                        .alert(isPresented: $isPresentedLoginFailedAlert) {
-//                            Alert(title: Text("Login is failed."))
-//                        }
+                    SignInButton(inProgress: $isDisplayProgress, completion: signInCompletion)
+                        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                        .frame(width: 280, height: 44)
+                        .padding()
+                        .alert(isPresented: $isPresentedLoginFailedAlert) {
+                            Alert(title: Text("Login is failed."))
+                        }
                 }
                 .navigationTitle("Sign-in")
                 .toolbar {
