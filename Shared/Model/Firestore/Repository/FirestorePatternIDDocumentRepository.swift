@@ -15,8 +15,8 @@ final class PatternIDRepository {
     var all: Future<PatternIDDocument, Never> {
         Future { promise in
             Firestore.firestore()
-                .collection("patternIds")
-                .document("all3")
+                .collection("patternIndex")
+                .document("All")
                 .getDocument(completion: { (snapshot, error) in
                     if let error = error {
                         fatalError(error.localizedDescription)

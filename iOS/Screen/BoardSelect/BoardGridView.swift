@@ -54,16 +54,16 @@ final class PatternLoader: ObservableObject {
 }
 
 final class PatternStore: ObservableObject {
-    @Published var allIds: [String] = []
-    @Published var staredIds: [String] = []
-    @Published var spaceshipIds: [String] = []
+    @Published var allIds: [URL] = []
+    @Published var staredIds: [URL] = []
+    @Published var spaceshipIds: [URL] = []
 
     private let patternService: PatternService = .shared
     
     init() {
-        patternService.allPatternTitles().assign(to: &$allIds)
-        patternService.staredPatternIDs().assign(to: &$staredIds)
-        patternService.patternIds(by: "Spaceship").assign(to: &$spaceshipIds)
+        patternService.patternURLs().assign(to: &$allIds)
+        patternService.staredPatternURLs().assign(to: &$staredIds) // TODO: 最終的に Listen 形式に変える
+        patternService.patternURLs(by: "Spaceship").assign(to: &$spaceshipIds)
     }
 }
 
@@ -73,11 +73,11 @@ struct PatternSelectSheetView: View {
 
     var body: some View {
         TabView {
-            PatternGridListView(presented: $presented, patternIds: store.allIds)
+            PatternGridListView(presented: $presented, patternURLs: store.allIds)
                 .tabItem { Text("All") }
-            PatternGridListView(presented: $presented, patternIds: store.spaceshipIds)
+            PatternGridListView(presented: $presented, patternURLs: store.spaceshipIds)
                 .tabItem { Text("Spaceship") }
-            PatternGridListView(presented: $presented, patternIds: store.staredIds)
+            PatternGridListView(presented: $presented, patternURLs: store.staredIds)
                 .tabItem { Text("Stared") }
         }
     }
@@ -89,7 +89,7 @@ struct PatternGridListView: View {
     @EnvironmentObject var authentication: Authentication
     
     @Binding var presented: Bool
-    var patternIds: [String]
+    var patternURLs: [URL]
     
     private var columns: [GridItem] {
         return [
@@ -100,16 +100,14 @@ struct PatternGridListView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(patternIds, id: \.self) { id in
-                    if let url = URL(string: "https://lifegame-dev.web.app/pattern/\(id).json") {
-                        PatterndGridView(
-                            url: url,
-                            isSignIn: authentication.isSignIn,
-                            didTap: didTapItem,
-                            didToggleStar: didToggleStar
-                        )
-                        .frame(width: 100, height: 100, alignment: .center)
-                    }
+                ForEach(patternURLs, id: \.self) { url in
+                    PatterndGridView(
+                        url: url,
+                        isSignIn: authentication.isSignIn,
+                        didTap: didTapItem,
+                        didToggleStar: didToggleStar
+                    )
+                    .frame(width: 100, height: 100, alignment: .center)
                 }
             }
         }
@@ -135,9 +133,7 @@ struct PatterndGridView: View {
     private var isSignIn: Bool
     private var didTap: (BoardItem) -> Void
     private var didToggleStar: (BoardItem) -> Void
-    
-    @State var id: Int = 0
-    
+
     init(url: URL,
          isSignIn: Bool,
          didTap: @escaping (BoardItem) -> Void,
@@ -164,7 +160,6 @@ struct PatterndGridView: View {
                     }
                 }
                 .font(.system(.caption, design: .monospaced))
-                .id(id)
             }
             .onTapGesture {
                 didTap(board)

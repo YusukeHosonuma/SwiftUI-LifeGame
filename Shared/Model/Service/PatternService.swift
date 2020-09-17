@@ -31,18 +31,35 @@ final class PatternService {
 //    }
     
     
-    func allPatternTitles() -> AnyPublisher<[String], Never> {
+//    func allPatternTitles() -> AnyPublisher<[String], Never> {
+//        PatternIDRepository.shared.all
+//            .map { document in
+//                document.data.map(\.title) // TODO: IDに変更する
+//            }
+//            .eraseToAnyPublisher()
+//    }
+    
+    func patternURLs() -> AnyPublisher<[URL], Never> {
         PatternIDRepository.shared.all
             .map { document in
-                document.data.map(\.title) // TODO: IDに変更する
+                document.data.map(\.jsonURL)
             }
             .eraseToAnyPublisher()
     }
     
-    func patternIds(by type: String) -> AnyPublisher<[String], Never> {
+    func patternURLs(by type: String) -> AnyPublisher<[URL], Never> {
         PatternIDRepository.shared.all
             .map { document in
-                document.data.filter { $0.patternType == type }.map(\.title) // TODO: IDに変更する
+                document.data.filter { $0.patternType == type }.map(\.jsonURL)
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    
+    func staredPatternURLs() -> AnyPublisher<[URL], Never> {
+        staredPatternIDs()
+            .map { ids in
+                ids.map { URL(string: "https://lifegame-dev.web.app/pattern/\($0).json")! }
             }
             .eraseToAnyPublisher()
     }
@@ -68,7 +85,7 @@ final class PatternService {
             .eraseToAnyPublisher()
     }
     
-    func staredPatternIDs() -> AnyPublisher<[String], Never> {
+    private func staredPatternIDs() -> AnyPublisher<[String], Never> {
         guard let staredRepository = authentication.repositories?.stared else {
             return Just([]).eraseToAnyPublisher()
         }

@@ -14,9 +14,13 @@ import FirebaseFirestoreSwift
 
 extension PatternIDDocument {
     struct Data: Codable {
+        var patternID: String
         var title: String
-        var patternType: String
-        var sourceURL: URL
+        var patternType: String // TODO: 最終的には消す予定
+        
+        var jsonURL: URL {
+            URL(string: "https://lifegame-dev.web.app/pattern/\(patternID).json")!
+        }
     }
 }
 
@@ -40,26 +44,6 @@ struct PatternIDDocument: Codable {
     }
 }
 
-//struct PatternIDDocument: Codable {
-//    @DocumentID
-//    var documentID: String!
-//    var documentReference: DocumentReference!
-//
-//    @ServerTimestamp
-//    var updatedAt: Date?
-//
-//    var patternReferences: [DocumentReference]
-//
-//    init(patternReferences: [DocumentReference]) {
-//        self.patternReferences = patternReferences
-//    }
-//
-//    enum CodingKeys: CodingKey {
-//        case documentID
-//        case updatedAt
-//        case patternReferences
-//    }
-//}
 
 extension PatternIDDocument {
     init(snapshot: DocumentSnapshot) {
