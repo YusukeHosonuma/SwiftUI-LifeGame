@@ -14,7 +14,7 @@ struct PatternCategoryListView: View {
     var body: some View {
         List {
             Section {
-                navigationLink(title: "All", patternURLs: store.allIds)
+                navigationLink(title: "All", patternURLs: store.allURLs)
             }
             Section(header: Text("Find by type")) {
                 ForEach(PatternCategory.allCases) { category in

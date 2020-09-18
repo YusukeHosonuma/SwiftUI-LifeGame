@@ -13,14 +13,10 @@ import FirebaseFirestoreSwift
 // https://github.com/YusukeHosonuma/LifeGame-DataRegister.git
 
 extension PatternIDDocument {
-    struct Data: Codable {
+    struct Data: Codable, PatternIdentifiable {
         var patternID: String
         var title: String
         var patternType: String // TODO: 最終的には消す予定
-        
-        var jsonURL: URL {
-            URL(string: "https://lifegame-dev.web.app/pattern/\(patternID).json")!
-        }
     }
 }
 
@@ -43,7 +39,6 @@ struct PatternIDDocument: Codable {
         case data
     }
 }
-
 
 extension PatternIDDocument {
     init(snapshot: DocumentSnapshot) {

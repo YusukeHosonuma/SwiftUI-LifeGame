@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 import Combine
 
 final class FirestoreStaredRepository {
-    let items: CurrentValueSubject<[StaredDocument], Never> = .init([])
+    let publisher: CurrentValueSubject<[StaredDocument], Never> = .init([])
 
     private let user: User
     
@@ -29,7 +29,7 @@ final class FirestoreStaredRepository {
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else { fatalError() }
                 let documents = snapshot.documents.map(StaredDocument.init)
-                self.items.value = documents
+                self.publisher.value = documents
             }
     }
     

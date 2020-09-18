@@ -9,8 +9,9 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 // Keyed by BoardDocument.id
-struct StaredDocument: Codable {
-    @DocumentID var id: String!
+struct StaredDocument: Codable, PatternIdentifiable {
+    @DocumentID
+    var id: String!
     var reference: DocumentReference!
     
     var patternID: String

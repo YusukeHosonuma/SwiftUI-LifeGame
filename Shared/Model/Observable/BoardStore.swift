@@ -41,7 +41,7 @@ final class BoardStore: BoardStoreProtocol {
     }
     
     private var staredIdsPublisher: AnyPublisher<Set<String>, Never>? {
-        staredRepository?.items.map { Set($0.map(\.id)) }.eraseToAnyPublisher()
+        staredRepository?.publisher.map { Set($0.map(\.id)) }.eraseToAnyPublisher()
     }
     
     private var cancellables: [AnyCancellable] = []
@@ -59,7 +59,7 @@ final class BoardStore: BoardStoreProtocol {
     }
     
     private func startListenForSignIn(repositories: AuthenticationRepositories) {
-        let staredIdsPublisher = repositories.stared.items.map { Set($0.map(\.id)) }
+        let staredIdsPublisher = repositories.stared.publisher.map { Set($0.map(\.id)) }
         
         patternRepository.$items.combineLatest(staredIdsPublisher)
             .map { boards, staredIds in
@@ -72,10 +72,10 @@ final class BoardStore: BoardStoreProtocol {
             }
             .assign(to: &$allBoards)
 
-        repositories.history.$items.combineLatest(staredIdsPublisher)
+        repositories.history.publisher.combineLatest(staredIdsPublisher)
             .map { histories, staredIds in
                 histories.map {
-                    BoardHistoryItem(historyID: $0.id,
+                    BoardHistoryItem(historyID: $0.documentID,
                                      boardDocumentID: $0.patternDocumentRef.documentID,
                                      title: $0.board.title,
                                      board: $0.board.makeBoard(),

@@ -14,31 +14,6 @@ final class PatternService {
 
     private let authentication: Authentication = .shared
 
-//    func getAllPatternReferences() -> AnyPublisher<[DocumentReference], Never> {
-//        PatternIDRepository.shared.all
-//            .map { $0.patternReferences }
-//            .eraseToAnyPublisher()
-//    }
-//
-//    func allPatternIds() -> AnyPublisher<[String], Never> {
-//        PatternIDRepository.shared.all
-//            .map { document in
-//                document.patternReferences.map {
-//                    String($0.path.split(separator: "/").last!)
-//                }
-//            }
-//            .eraseToAnyPublisher()
-//    }
-    
-    
-//    func allPatternTitles() -> AnyPublisher<[String], Never> {
-//        PatternIDRepository.shared.all
-//            .map { document in
-//                document.data.map(\.title) // TODO: IDに変更する
-//            }
-//            .eraseToAnyPublisher()
-//    }
-    
     func patternURLs() -> AnyPublisher<[URL], Never> {
         PatternIDRepository.shared.all
             .map { document in
@@ -55,12 +30,25 @@ final class PatternService {
             .eraseToAnyPublisher()
     }
     
-    
-    func staredPatternURLs() -> AnyPublisher<[URL], Never> {
-        staredPatternIDs()
-            .map { ids in
-                ids.map { URL(string: "https://lifegame-dev.web.app/pattern/\($0).json")! }
-            }
+    func listenStaredPatternURLs() -> AnyPublisher<[URL], Never> {
+        guard let staredRepository = authentication.repositories?.stared else {
+            return Just([]).eraseToAnyPublisher()
+        }
+            
+        return staredRepository
+            .publisher
+            .map { $0.map(\.jsonURL) }
+            .eraseToAnyPublisher()
+    }
+
+    func listenHistoryPatternURLs() -> AnyPublisher<[URL], Never> {
+        guard let historyRepository = authentication.repositories?.history else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        
+        return historyRepository
+            .publisher
+            .map { $0.map(\.jsonURL) }
             .eraseToAnyPublisher()
     }
     
@@ -84,6 +72,8 @@ final class PatternService {
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
+    
+    // MARK: - Private
     
     private func staredPatternIDs() -> AnyPublisher<[String], Never> {
         guard let staredRepository = authentication.repositories?.stared else {

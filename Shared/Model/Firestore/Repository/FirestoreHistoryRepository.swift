@@ -10,9 +10,9 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class FirestoreHistoryRepository: ObservableObject {
-    @Published var items: [HistoryDocument] = []
-    
+final class FirestoreHistoryRepository {
+    let publisher: CurrentValueSubject<[HistoryDocument], Never> = .init([])
+
     private var listenerRegistration: ListenerRegistration?
     private var cancellables: [AnyCancellable] = []
     
@@ -62,39 +62,16 @@ final class FirestoreHistoryRepository: ObservableObject {
             .updateData(["createdAt" : FieldValue.serverTimestamp()])
     }
 
-    
     // MARK: - Private
-
     
     private func startListen() {
-        let dispatchGroup = DispatchGroup()
-
         listenerRegistration = histories()
             .order(by: "createdAt", descending: true)
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else { fatalError() }
 
-                var documents = snapshot.documents.map(HistoryDocument.init)
-                
-                for (index, document) in documents.enumerated() {
-                    dispatchGroup.enter() // ▶️
-                    
-                    document.patternDocumentRef.getDocument { (snapshot, error) in
-                        if let error = error {
-                            fatalError(error.localizedDescription)
-                        }
-
-                        var newDocument = document
-                        newDocument.board = PatternDocument(snapshot: snapshot!)
-                        documents[index] = newDocument
-                        
-                        dispatchGroup.leave() // ↩️
-                    }
-                }
-                
-                dispatchGroup.notify(queue: .main) {
-                    self.items = documents
-                }
+                let documents = snapshot.documents.map(HistoryDocument.init)
+                self.publisher.value = documents
             }
     }
     
