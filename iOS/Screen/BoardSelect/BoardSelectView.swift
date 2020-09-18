@@ -61,13 +61,13 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
             
             VStack {
                 if authentication.isSignIn {
-                    BoardSelectHistoryView(
-                        items: boardStore.histories,
-                        toggleStar: { boardID in
-                            //self.boardStore.toggleLike(boardID: boardID)
-                        },
-                        tapItem: tapHistoryCell
-                    )
+//                    BoardSelectHistoryView(
+//                        items: boardStore.histories,
+//                        toggleStar: { boardID in
+//                            //self.boardStore.toggleLike(boardID: boardID)
+//                        },
+//                        tapItem: tapHistoryCell
+//                    )
                 } else {
                     Text("Need login.").emptyContent()
                 }

@@ -119,8 +119,7 @@ struct Application: App {
             // Note:
             // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta 6）❗
             LifeGameCommands(boardManager: boardManager,
-                             gameManager: gameManager,
-                             patternRepository: patternRepository)
+                             gameManager: gameManager)
         }
         #endif
     }
