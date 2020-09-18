@@ -80,9 +80,10 @@ struct LifeGameCommands: Commands {
         gameManager.setBoard(board: board)
     }
     
+    // TODO: 開発用のメニューだから消せるはず
     private func exportPresets() {
-        let presets = boardRepository.items.map(BoardPresetFile.init)
-        fileManager.exportPresets(presets)
+//        let presets = boardRepository.items.map(BoardPresetFile.init)
+//        fileManager.exportPresets(presets)
     }
     #endif
 }

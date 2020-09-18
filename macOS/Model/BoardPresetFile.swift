@@ -14,10 +14,10 @@ struct BoardPresetFile: Codable {
     var cells: [Int]
 }
 
-extension BoardPresetFile {
-    init(document: BoardDocument) {
-        title = document.title
-        size = document.size
-        cells = document.cells
-    }
-}
+//extension BoardPresetFile {
+//    init(document: BoardDocument) {
+//        title = document.title
+//        size = document.size
+//        cells = document.cells
+//    }
+//}

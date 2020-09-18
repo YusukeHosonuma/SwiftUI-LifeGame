@@ -14,10 +14,19 @@ final class PatternStore: ObservableObject {
     @Published var historyURLs: [URL] = []
     @Published var urlsByCategory: [PatternCategory: [URL]] = [:]
 
+    private let authentication: Authentication = .shared
     private let patternService: PatternService = .shared
     private var cancellables: [AnyCancellable] = []
     
     init() {
+        authentication.$isSignIn
+            .sink { [weak self] _ in
+                self?.bind()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bind() {
         patternService.patternURLs().assign(to: &$allURLs)
         patternService.listenStaredPatternURLs().assign(to: &$staredURLs)
         patternService.listenHistoryPatternURLs().assign(to: &$historyURLs)

@@ -9,10 +9,11 @@ import SwiftUI
 import LifeGame
 
 struct ContentView: View {
+    @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var authentication: Authentication
-    @EnvironmentObject var boardStore: BoardStore
+    @EnvironmentObject var patternStore: PatternStore
 
     var body: some View {
         ZStack {
@@ -23,12 +24,13 @@ struct ContentView: View {
                     VSplitView {
                         boardView()
                         
-                        BoardSelectHistoryView(
-                            items: boardStore.histories,
-                            toggleStar: toggleStar,
-                            tapItem: tapHistoryCell
+                        PatternGridListView(
+                            style: .horizontal,
+                            patternURLs: patternStore.historyURLs,
+                            didTapItem: didTapItem,
+                            didToggleStar: didToggleStar
                         )
-                        .padding(.top)
+                        .padding()
                         .frame(idealHeight: 120)
                     }
                 } else {
@@ -52,22 +54,16 @@ struct ContentView: View {
             .padding(40)
             .aspectRatio(1.0, contentMode: .fit)
     }
-    
-    // TODO: iOS版とほとんど同じ処理なので`BoardSelectHistoryView`に責務を移動したほうが良さそう。（そのうち）
-    
-    private func toggleStar(boardID: String) {
-        self.boardStore.toggleLike(boardID: boardID)
-    }
-    
-    private func tapHistoryCell(_ item: BoardHistoryItem) {
-        selectBoard(boardDocumentID: item.patternID, board: item.board)
-    }
 
-    private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
-        if authentication.isSignIn {
-            boardStore.addToHistory(boardID: boardDocumentID)
-        }
-        boardManager.setBoard(board: board)
+    // MARK: Action
+    
+    private func didTapItem(item: PatternItem) {
+        patternStore.recordHistory(patternID: item.patternID)
+        gameManager.setBoard(board: item.board)
+    }
+    
+    private func didToggleStar(item: PatternItem) {
+        patternStore.toggleStar(item: item)
     }
 }
 

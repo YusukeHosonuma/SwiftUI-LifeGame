@@ -7,7 +7,7 @@
 
 import SwiftUI
 import LifeGame
-
+/*
 struct BoardSelectHistoryView: View {
     typealias Item = BoardHistoryItem
     
@@ -76,3 +76,4 @@ struct BoardSelectHistoryView_Previews: PreviewProvider {
             .previewLayout(.fixed(width: 370, height: 100))
     }
 }
+*/

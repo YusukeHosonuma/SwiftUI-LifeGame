@@ -24,15 +24,15 @@ final class Authentication: ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 self.user = user
-                self.isSignIn = true
                 self.repositories = AuthenticationRepositories(
                     history: FirestoreHistoryRepository(user: user),
                     stared: FirestoreStaredRepository(user: user)
                 )
+                self.isSignIn = true
             } else {
                 self.user = nil
-                self.isSignIn = false
                 self.repositories = nil
+                self.isSignIn = false
             }
         }
     }
