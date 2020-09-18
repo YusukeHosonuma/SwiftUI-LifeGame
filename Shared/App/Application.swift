@@ -70,7 +70,6 @@ struct Application: App {
             // ```
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
-                             boardRepository: boardRepository,
                              fileManager: fileManager)
         }
 

@@ -12,7 +12,6 @@ import UniformTypeIdentifiers
 struct LifeGameCommands: Commands {
     @ObservedObject var boardManager: BoardManager // TODO: パフォーマンス的に少し無駄かも
     @ObservedObject var gameManager: GameManager
-    @ObservedObject var patternRepository: FirestorePatternRepository
     #if os(macOS)
     @ObservedObject var fileManager: LifeGameFileManager
     #endif
@@ -39,21 +38,30 @@ struct LifeGameCommands: Commands {
         #endif
 
         CommandMenu("Game") {
+            GameMenu(gameManager: gameManager)
+        }
+    }
+    
+    // Note: ✅
+    // メニューの状態がステートによって変化する場合、専用の`View`を用意しないと更新が一切行われない。（macOS-beta 7）
+    // ref: https://developer.apple.com/forums/thread/651748?answerId=617247022#617247022
+    
+    struct GameMenu: View {
+        @ObservedObject var gameManager: GameManager
+        
+        var body: some View {
             Section {
-                // TODO: macOS-beta 5 bug (maybe...)❗
-                // Not update disabled state when viewModel was changed.
-
                 Button("Start", action: gameManager.play)
                     .keyboardShortcut("r")
-                    .disabled(gameManager.state.canPlay)
+                    .disabled(!gameManager.state.canPlay)
 
                 Button("Stop", action: gameManager.stop)
                     .keyboardShortcut("x")
-                    .disabled(gameManager.state.canStop)
+                    .disabled(!gameManager.state.canStop)
 
                 Button("Next", action: gameManager.next)
                     .keyboardShortcut("n") // Next
-                    .disabled(gameManager.state.canNext)
+                    .disabled(!gameManager.state.canNext)
             }
             
             Section {
