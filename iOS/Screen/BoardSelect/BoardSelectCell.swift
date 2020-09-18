@@ -9,7 +9,7 @@ import SwiftUI
 import LifeGame
 
 struct BoardSelectCell: View {
-    var item: BoardItem
+    var item: PatternItem
     var style: BoardSelectStyle
     
     // @Namespace private var nspace
@@ -69,32 +69,32 @@ struct BoardSelectCell: View {
     }
 }
 
-struct BoardGridCell_Previews: PreviewProvider {
-
-    static var previews: some View {
-        Group {
-            gridView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .light)
-            gridView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .dark)
-            gridView(title: "SpaceShip", board: BoardPreset.spaceShip.board, colorScheme: .dark)
-        }
-        Group {
-            listView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .light)
-            listView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .dark)
-            listView(title: "SpaceShip", board: BoardPreset.spaceShip.board, colorScheme: .dark)
-        }
-    }
-
-    @ViewBuilder
-    private static func gridView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardSelectCell(item: BoardItem(boardDocumentID: "0", title: title, board: board.board, stared: true), style: .grid)
-            .previewLayout(.fixed(width: 200.0, height: 200.0))
-            .preferredColorScheme(colorScheme)
-    }
-
-    @ViewBuilder
-    private static func listView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
-        BoardSelectCell(item: BoardItem(boardDocumentID: "0", title: title, board: board.board, stared: true), style: .list)
-            .previewLayout(.fixed(width: 320.0, height: 80.0))
-            .preferredColorScheme(colorScheme)
-    }
-}
+//struct BoardGridCell_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        Group {
+//            gridView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .light)
+//            gridView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .dark)
+//            gridView(title: "SpaceShip", board: BoardPreset.spaceShip.board, colorScheme: .dark)
+//        }
+//        Group {
+//            listView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .light)
+//            listView(title: "Nebura",    board: BoardPreset.nebura.board,    colorScheme: .dark)
+//            listView(title: "SpaceShip", board: BoardPreset.spaceShip.board, colorScheme: .dark)
+//        }
+//    }
+//
+//    @ViewBuilder
+//    private static func gridView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
+//        BoardSelectCell(item: BoardItem(boardDocumentID: "0", title: title, board: board.board, stared: true), style: .grid)
+//            .previewLayout(.fixed(width: 200.0, height: 200.0))
+//            .preferredColorScheme(colorScheme)
+//    }
+//
+//    @ViewBuilder
+//    private static func listView(title: String, board: LifeGameBoard, colorScheme: ColorScheme) -> some View {
+//        BoardSelectCell(item: BoardItem(boardDocumentID: "0", title: title, board: board.board, stared: true), style: .list)
+//            .previewLayout(.fixed(width: 320.0, height: 80.0))
+//            .preferredColorScheme(colorScheme)
+//    }
+//}

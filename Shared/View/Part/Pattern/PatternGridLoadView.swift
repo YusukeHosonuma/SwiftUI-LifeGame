@@ -10,15 +10,15 @@ import SwiftUI
 struct PatternGridLoadView: View {
     @StateObject private var loader: PatternLoader
     private var isSignIn: Bool
-    private var didTap: (BoardItem) -> Void
-    private var didToggleStar: (BoardItem) -> Void
+    private var didTap: (PatternItem) -> Void
+    private var didToggleStar: (PatternItem) -> Void
 
     @State private var isPresentedAlertNeedLogin = false
 
     init(url: URL,
          isSignIn: Bool,
-         didTap: @escaping (BoardItem) -> Void,
-         didToggleStar: @escaping (BoardItem) -> Void
+         didTap: @escaping (PatternItem) -> Void,
+         didToggleStar: @escaping (PatternItem) -> Void
     ) {
         _loader = StateObject(wrappedValue: PatternLoader(url: url))
         self.isSignIn = isSignIn
@@ -48,7 +48,7 @@ struct PatternGridLoadView: View {
     
     // MARK: Action
     
-    private func didSetStared(value: Bool, board: BoardItem) {
+    private func didSetStared(value: Bool, board: PatternItem) {
         if isSignIn {
             withAnimation {
                 didToggleStar(board)

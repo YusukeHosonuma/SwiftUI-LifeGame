@@ -16,7 +16,7 @@ struct AllBoardSelectView: View {
     
     private var displayStyle: BoardSelectStyle
     private var isFilterByStared: Bool
-    private var didSelect: (BoardItem) -> Void
+    private var didSelect: (PatternItem) -> Void
     
     @State private var isPresentedAlert = false
     
@@ -24,7 +24,7 @@ struct AllBoardSelectView: View {
     
     init(displayStyle: BoardSelectStyle,
          isFilterByStared: Bool,
-         didSelect: @escaping (BoardItem) -> Void
+         didSelect: @escaping (PatternItem) -> Void
     ) {
         self.displayStyle = displayStyle
         self.isFilterByStared = isFilterByStared
@@ -34,7 +34,7 @@ struct AllBoardSelectView: View {
     // MARK: Computed Properties
     
     // TODO: テストしやすさを考えるとこういうロジックはViewから切り離したほうが良いのかもしれない。
-    private var fileredItems: [BoardItem] {
+    private var fileredItems: [PatternItem] {
         boardStore.allBoards
             .filter(when: authentication.isSignIn && isFilterByStared, isIncluded: \.stared)
     }
@@ -66,7 +66,7 @@ struct AllBoardSelectView: View {
                         BoardSelectContextMenu(isStared: .init(get: { item.stared }, set: { _ in
                             if authentication.isSignIn {
                                 withAnimation {
-                                    //self.boardStore.toggleLike(boardID: item.boardDocumentID)
+                                    //self.boardStore.toggleLike(boardID: item.patternID)
                                 }
                             } else {
                                 isPresentedAlert.toggle()

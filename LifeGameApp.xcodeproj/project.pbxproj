@@ -56,8 +56,8 @@
 		E5261AA924F3228100218CDD /* BoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5261AA724F3228100218CDD /* BoardManager.swift */; };
 		E5261AAB24F33F1800218CDD /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5261AAA24F33F1800218CDD /* GameManager.swift */; };
 		E5261AAC24F33F1800218CDD /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5261AAA24F33F1800218CDD /* GameManager.swift */; };
-		E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* BoardItem.swift */; };
-		E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* BoardItem.swift */; };
+		E526A07424EAB08400D76ECD /* PatternItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* PatternItem.swift */; };
+		E526A07524EAB08400D76ECD /* PatternItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* PatternItem.swift */; };
 		E526A07724EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07624EAB2B300D76ECD /* BoardHistoryItem.swift */; };
 		E526A07824EAB2B300D76ECD /* BoardHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07624EAB2B300D76ECD /* BoardHistoryItem.swift */; };
 		E528BABE24F38BAF00F4A49E /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528BABD24F38BAF00F4A49E /* IconButton.swift */; };
@@ -216,7 +216,9 @@
 		E5D9F27424BEBDBD009A526B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24A24BEBDBC009A526B /* Application.swift */; };
 		E5D9F27524BEBDBD009A526B /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9F24B24BEBDBC009A526B /* MainGameView.swift */; };
 		E5DB4C9524D853C000AADA66 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DB4C9424D853C000AADA66 /* PhotoPicker.swift */; };
-		E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* BoardItem.swift */; };
+		E5DF3BBB25146007004EC369 /* LifeWikiPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B825143BD600EC7C1A /* LifeWikiPattern.swift */; };
+		E5DF3BBC251460B3004EC369 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577FCD425123D74008202D3 /* String+.swift */; };
+		E5E0068024EB8B8900A4EA02 /* PatternItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526A07324EAB08400D76ECD /* PatternItem.swift */; };
 		E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A993024EA725F00298388 /* FirestoreStaredRepository.swift */; };
 		E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238DFE24EAC29E0087B9B0 /* StaredDocument.swift */; };
 		E5E50A2524E52C5300CD64B6 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E50A2424E52C5300CD64B6 /* GraphicsImageRenderer.swift */; };
@@ -305,7 +307,7 @@
 		E5238DFE24EAC29E0087B9B0 /* StaredDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaredDocument.swift; sourceTree = "<group>"; };
 		E5261AA724F3228100218CDD /* BoardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardManager.swift; sourceTree = "<group>"; };
 		E5261AAA24F33F1800218CDD /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		E526A07324EAB08400D76ECD /* BoardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardItem.swift; sourceTree = "<group>"; };
+		E526A07324EAB08400D76ECD /* PatternItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternItem.swift; sourceTree = "<group>"; };
 		E526A07624EAB2B300D76ECD /* BoardHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardHistoryItem.swift; sourceTree = "<group>"; };
 		E528BABD24F38BAF00F4A49E /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		E52FE5DC24DC012A00D93764 /* BoardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDocument.swift; sourceTree = "<group>"; };
@@ -543,7 +545,7 @@
 		E526A07224EAB06D00D76ECD /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				E526A07324EAB08400D76ECD /* BoardItem.swift */,
+				E526A07324EAB08400D76ECD /* PatternItem.swift */,
 				E526A07624EAB2B300D76ECD /* BoardHistoryItem.swift */,
 				E57366B825143BD600EC7C1A /* LifeWikiPattern.swift */,
 			);
@@ -707,6 +709,7 @@
 		E57366A8251439BC00EC7C1A /* Pattern */ = {
 			isa = PBXGroup;
 			children = (
+				E57366A42514394D00EC7C1A /* PatternGridListView.swift */,
 				E57366A9251439DB00EC7C1A /* PatternGridView.swift */,
 				E57366AC25143A0B00EC7C1A /* PatternGridLoadView.swift */,
 			);
@@ -789,7 +792,6 @@
 				E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */,
 				E5A975B124F680080020FA06 /* BoardGridImage.swift */,
 				E50DF85E24F90C6800ED26D8 /* BoardSizePicker.swift */,
-				E57366A42514394D00EC7C1A /* PatternGridListView.swift */,
 			);
 			path = Part;
 			sourceTree = "<group>";
@@ -1251,6 +1253,7 @@
 				E54A63AF24F4F35800084964 /* Entry.swift in Sources */,
 				E5E50A2824E535AD00CD64B6 /* GraphicsImageRenderer.swift in Sources */,
 				E518C89824E3690600B02027 /* Color+.swift in Sources */,
+				E5DF3BBC251460B3004EC369 /* String+.swift in Sources */,
 				E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */,
 				E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */,
 				E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */,
@@ -1258,9 +1261,10 @@
 				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
 				E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
-				E5E0068024EB8B8900A4EA02 /* BoardItem.swift in Sources */,
+				E5E0068024EB8B8900A4EA02 /* PatternItem.swift in Sources */,
 				E57366A12514324A00EC7C1A /* Web.swift in Sources */,
 				E5438E4724E2AD1D007A3EB7 /* BoardPreset.swift in Sources */,
+				E5DF3BBB25146007004EC369 /* LifeWikiPattern.swift in Sources */,
 				E5438E4524E2ACD4007A3EB7 /* BoardThumbnailImage.swift in Sources */,
 				E50E0CA2250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */,
 				E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */,
@@ -1298,7 +1302,7 @@
 				E55BF0C524D2C67700AAD125 /* VCenter.swift in Sources */,
 				E51FD74B24F208B4002981F4 /* FeedbackView.swift in Sources */,
 				E51169D524D64546002D40B6 /* ControlView.swift in Sources */,
-				E526A07424EAB08400D76ECD /* BoardItem.swift in Sources */,
+				E526A07424EAB08400D76ECD /* PatternItem.swift in Sources */,
 				E571536624D51B73003B4C9E /* UserDefaultConvertible.swift in Sources */,
 				E57366B325143B2400EC7C1A /* PatternLoader.swift in Sources */,
 				E5C2526B24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */,
@@ -1403,7 +1407,7 @@
 				E5261AAC24F33F1800218CDD /* GameManager.swift in Sources */,
 				E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
-				E526A07524EAB08400D76ECD /* BoardItem.swift in Sources */,
+				E526A07524EAB08400D76ECD /* PatternItem.swift in Sources */,
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
 				E57366A62514394D00EC7C1A /* PatternGridListView.swift in Sources */,
 				E57F07B724F2725E0057B2D1 /* MacSidebar.swift in Sources */,

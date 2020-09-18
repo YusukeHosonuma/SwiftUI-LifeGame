@@ -134,14 +134,14 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
         selectBoard(boardDocumentID: item.boardDocumentID, board: item.board)
     }
     
-    private func tapCell(_ item: BoardItem) {
-        selectBoard(boardDocumentID: item.boardDocumentID, board: item.board)
+    private func tapCell(_ item: PatternItem) {
+        selectBoard(boardDocumentID: item.patternID, board: item.board)
     }
     
     private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
-        if authentication.isSignIn {
-            boardStore.addToHistory(boardID: boardDocumentID)
-        }
+//        if authentication.isSignIn {
+//            boardStore.addToHistory(boardID: boardDocumentID)
+//        }
         gameManager.setBoard(board: board)
         dismiss()
     }
@@ -156,7 +156,7 @@ private extension View {
         self.font(.headline).padding([.top, .horizontal])
     }
 }
-
+/*
 struct BoardSelectView_Previews: PreviewProvider {
     static var previews: some View {
         view("Normal case. (Sign-in)",
@@ -224,3 +224,4 @@ struct BoardSelectView_Previews: PreviewProvider {
         .init(historyID: "2", boardDocumentID: "2", title: BoardPreset.spaceShip.displayText, board: BoardPreset.spaceShip.board.board, isStared: false),
     ]
 }
+*/

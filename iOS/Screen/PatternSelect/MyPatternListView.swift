@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyPatternListView: View {
+    @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var authentication: Authentication
 
     @ObservedObject var store: PatternStore
@@ -21,8 +22,9 @@ struct MyPatternListView: View {
                         title("History")
                         PatternGridListView(
                             style: .horizontal,
-                            presented: $presented,
-                            patternURLs: store.urlsByCategory[.conduit] ?? []
+                            patternURLs: store.historyURLs,
+                            didTapItem: didTapItem,
+                            didToggleStar: didToggleStar
                         )
                         .padding(.horizontal)
                         .frame(height: 120)
@@ -32,8 +34,9 @@ struct MyPatternListView: View {
                         title("Stared")
                         PatternGridListView(
                             style: .grid,
-                            presented: $presented,
-                            patternURLs: store.urlsByCategory[.conduit] ?? []
+                            patternURLs: store.staredURLs,
+                            didTapItem: didTapItem,
+                            didToggleStar: didToggleStar
                         )
                         .padding(.horizontal)
                     }
@@ -49,5 +52,17 @@ struct MyPatternListView: View {
         Text(text)
             .font(.headline)
             .padding([.leading, .top])
+    }
+    
+    // MARK: Action
+    
+    private func didTapItem(item: PatternItem) {
+        store.recordHistory(patternID: item.patternID)
+        gameManager.setBoard(board: item.board)
+        self.presented = false
+    }
+    
+    private func didToggleStar(item: PatternItem) {
+        store.toggleStar(item: item)
     }
 }

@@ -92,7 +92,7 @@ final class FirestoreStaredRepository {
             .setData(from: document)
     }
     
-    func delete(id: String) {
+    func delete(by id: String) {
         stared
             .document(id)
             .delete()

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class PatternLoader: ObservableObject {
-    @Published var board: BoardItem?
+    @Published var board: PatternItem?
     
     private let url: URL
     private let patternService: PatternService = .shared

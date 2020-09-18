@@ -9,28 +9,22 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct HistoryDocument: Codable, PatternIdentifiable {
+    
     @DocumentID
     var documentID: String!
-    
-    @ServerTimestamp
-    var createdAt: Date?
-    
-    var patternDocumentRef: DocumentReference
 
-    // MARK: Resolved after decoded
     var reference: DocumentReference!
-    var board: PatternDocument!
+
+    @ServerTimestamp
+    var updateAt: Date?
 
     var patternID: String { documentID }
-    
+
+    init() {}
+
     enum CodingKeys: CodingKey {
         case documentID
-        case patternDocumentRef
-        case createdAt
-    }
-    
-    init(patternDocumentRef: DocumentReference) {
-        self.patternDocumentRef = patternDocumentRef
+        case updateAt
     }
 }
 

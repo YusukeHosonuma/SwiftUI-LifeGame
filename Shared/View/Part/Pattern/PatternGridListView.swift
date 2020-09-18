@@ -15,14 +15,13 @@ extension PatternGridListView {
 }
 
 struct PatternGridListView: View {
-    @EnvironmentObject var gameManager: GameManager
-    @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var authentication: Authentication
     
     var style: Style
-    @Binding var presented: Bool
     var patternURLs: [URL]
-    
+    var didTapItem: (PatternItem) -> Void
+    var didToggleStar: (PatternItem) -> Void
+
     var body: some View {
         switch style {
         case .grid:
@@ -62,19 +61,5 @@ struct PatternGridListView: View {
                 didToggleStar: didToggleStar
             )
         }
-    }
-    
-    // MARK: Action
-    
-    private func didTapItem(item: BoardItem) {
-        if authentication.isSignIn {
-            boardStore.addToHistory(boardID: item.boardDocumentID)
-        }
-        gameManager.setBoard(board: item.board)
-        self.presented = false
-    }
-    
-    private func didToggleStar(item: BoardItem) {
-        boardStore.toggleLike(to: item)
     }
 }

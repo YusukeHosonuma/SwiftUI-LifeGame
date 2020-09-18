@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct PatternGridView: View {
-    let board: BoardItem
+    let board: PatternItem
     
     static func placeHolder() -> some View {
         PatternGridView(
-            board: BoardItem(boardDocumentID: "",
-                             title: BoardPreset.nebura.displayText,
-                             board: BoardPreset.nebura.board.board,
-                             stared: false)
+            board: PatternItem(patternID: "",
+                               title: BoardPreset.nebura.displayText,
+                               board: BoardPreset.nebura.board.board,
+                               stared: false)
         )
         .redacted(reason: .placeholder)
     }

@@ -59,7 +59,7 @@ struct BoardListView: View {
 
     private func didSelect(item: BoardItem) {
         if authentication.isSignIn {
-            boardStore.addToHistory(boardID: item.boardDocumentID)
+            boardStore.addToHistory(boardID: item.patternID)
         }
         gameManager.setBoard(board: item.board)
         dismiss()

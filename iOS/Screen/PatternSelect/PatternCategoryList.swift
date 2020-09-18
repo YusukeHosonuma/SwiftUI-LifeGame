@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PatternCategoryListView: View {
+    @EnvironmentObject var gameManager: GameManager
+
     @ObservedObject var store: PatternStore
     @Binding var presented: Bool
     
@@ -27,9 +29,26 @@ struct PatternCategoryListView: View {
     
     private func navigationLink(title: String, patternURLs: [URL]) -> some View {
         NavigationLink(title, destination:
-            PatternGridListView(style: .grid, presented: $presented, patternURLs: patternURLs)
-                .padding()
-                .navigationTitle(title)
+            PatternGridListView(
+                style: .grid,
+                patternURLs: patternURLs,
+                didTapItem: didTapItem,
+                didToggleStar: didToggleStar
+            )
+            .padding()
+            .navigationTitle(title)
         )
+    }
+    
+    // MARK: Action
+    
+    private func didTapItem(item: PatternItem) {
+        store.recordHistory(patternID: item.patternID)
+        gameManager.setBoard(board: item.board)
+        self.presented = false
+    }
+    
+    private func didToggleStar(item: PatternItem) {
+        store.toggleStar(item: item)
     }
 }

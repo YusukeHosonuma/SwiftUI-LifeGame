@@ -60,7 +60,7 @@ struct ContentView: View {
     }
     
     private func tapHistoryCell(_ item: BoardHistoryItem) {
-        selectBoard(boardDocumentID: item.boardDocumentID, board: item.board)
+        selectBoard(boardDocumentID: item.patternID, board: item.board)
     }
 
     private func selectBoard(boardDocumentID: String, board: Board<Cell>) {
