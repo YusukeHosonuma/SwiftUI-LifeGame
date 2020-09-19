@@ -9,18 +9,18 @@ import SwiftUI
 
 struct PatternCategoryListView: View {
     @EnvironmentObject var gameManager: GameManager
-
-    @ObservedObject var store: PatternStore
+    @EnvironmentObject var patternStore: PatternStore
+    
     @Binding var presented: Bool
     
     var body: some View {
         List {
             Section {
-                navigationLink(title: "All", patternURLs: store.allURLs)
+                navigationLink(title: "All", patternURLs: patternStore.allURLs)
             }
             Section(header: Text("Find by type")) {
                 ForEach(PatternCategory.allCases) { category in
-                    navigationLink(title: category.rawValue, patternURLs: store.urlsByCategory[category] ?? [])
+                    navigationLink(title: category.rawValue, patternURLs: patternStore.urlsByCategory[category] ?? [])
                 }
             }
         }
@@ -43,12 +43,12 @@ struct PatternCategoryListView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        store.recordHistory(patternID: item.patternID)
+        patternStore.recordHistory(patternID: item.patternID)
         gameManager.setBoard(board: item.board)
         self.presented = false
     }
     
     private func didToggleStar(item: PatternItem) {
-        store.toggleStar(item: item)
+        patternStore.toggleStar(item: item)
     }
 }

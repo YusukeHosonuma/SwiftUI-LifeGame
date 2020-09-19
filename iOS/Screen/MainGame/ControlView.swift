@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Combine
+
+var cancellables: [AnyCancellable] = []
 
 struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
@@ -17,9 +20,11 @@ struct ControlView: View {
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var boardStore: BoardStore
-    
+    @EnvironmentObject var applicationRouter: ApplicationRouter
+    @EnvironmentObject var patternStore: PatternStore
+
     @State var isPresentedListSheet = false
-    
+
     // MARK: View
     
     var body: some View {
@@ -51,6 +56,7 @@ struct ControlView: View {
                         .environmentObject(gameManager)
                         .environmentObject(authentication)
                         .environmentObject(boardStore)
+                        .environmentObject(patternStore)
 //                    PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!)
 //                    BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
 //                        .environmentObject(setting)
@@ -67,6 +73,20 @@ struct ControlView: View {
             }
             .buttonStyle(ButtonStyleCircle())
         }
+        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 },
+                   perform: didOpenPatternURL)
+    }
+    
+    private func didOpenPatternURL(url: URL) {
+        // TODO: 専用オブジェクトが処理する形にしたほうがいい、のかもしれない。
+        PatternService.shared.fetch(from: url)
+            .compactMap { $0 }
+            .sink { item in
+                patternStore.recordHistory(patternID: item.patternID)
+                gameManager.setBoard(board: item.board)
+                isPresentedListSheet = false
+            }
+            .store(in: &cancellables)
     }
     
     private func playButton() -> some View {

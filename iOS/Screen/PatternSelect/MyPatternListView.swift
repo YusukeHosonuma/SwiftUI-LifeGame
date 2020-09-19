@@ -10,8 +10,8 @@ import SwiftUI
 struct MyPatternListView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var patternStore: PatternStore
 
-    @ObservedObject var store: PatternStore
     @Binding var presented: Bool
     
     var body: some View {
@@ -22,7 +22,7 @@ struct MyPatternListView: View {
                         title("History")
                         PatternGridListView(
                             style: .horizontal,
-                            patternURLs: store.historyURLs,
+                            patternURLs: patternStore.historyURLs,
                             didTapItem: didTapItem,
                             didToggleStar: didToggleStar
                         )
@@ -34,7 +34,7 @@ struct MyPatternListView: View {
                         title("Stared")
                         PatternGridListView(
                             style: .grid,
-                            patternURLs: store.staredURLs,
+                            patternURLs: patternStore.staredURLs,
                             didTapItem: didTapItem,
                             didToggleStar: didToggleStar
                         )
@@ -57,12 +57,12 @@ struct MyPatternListView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        store.recordHistory(patternID: item.patternID)
+        patternStore.recordHistory(patternID: item.patternID)
         gameManager.setBoard(board: item.board)
         self.presented = false
     }
     
     private func didToggleStar(item: PatternItem) {
-        store.toggleStar(item: item)
+        patternStore.toggleStar(item: item)
     }
 }
