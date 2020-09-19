@@ -14,63 +14,50 @@ import FirebaseFirestore
 final class TimelineEntryGenerator {
     static let shared = TimelineEntryGenerator()
     
+    private let patternService: PatternService = .shared
     private var cancellables: [AnyCancellable] = []
     
     func generate(for family: WidgetFamily, times: Int, staredOnly: Bool, completion: @escaping ([Entry]) -> Void) {
         let displayCount = family.displayCount
+        let totalCount = displayCount * times
         
-//        candidatePatternReferences(staredOnly: staredOnly)
-//            .flatMap { references in
-//                Publishers.MergeMany(
-//                    references
-//                        .shuffled()
-//                        .prefix(displayCount * times)
-//                        .map { reference in
-//                            FirestorePatternRepository.shared.get(by: reference)
-//                        }
-//                )
-//            }
-//            .collect()
-//            .sink { documents in
-//                let entries = self.generateEntries(from: documents, displayCount: displayCount, times: times)
-//                completion(entries)
-//            }
-//            .store(in: &cancellables)
+        candidatePatternURLs(staredOnly: staredOnly)
+            .map { $0.shuffled().prefix(totalCount) }
+            .flatMap { urls in
+                Publishers.MergeMany(
+                    urls.map { self.patternService.fetch(from: $0) }
+                )
+            }
+            .collect()
+            .map { $0.compactMap { $0 } }
+            .sink { item in
+                let entries = self.generateEntries(from: item, displayCount: displayCount, times: times)
+                completion(entries)
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: Private
     
-    private func generateEntries(from documents: [PatternDocument], displayCount: Int, times: Int) -> [Entry] {
+    private func generateEntries(from items: [PatternItem], displayCount: Int, times: Int) -> [Entry] {
         let currentDate = Date()
 
-        let entries: [Entry] = documents
+        let entries: [Entry] = items
             .group(by: displayCount)
             .prefix(times)
             .enumerated()
-            .map { offset, documents in
+            .map { offset, items in
                 let entryDate = Calendar.current.date(byAdding: .minute, value: offset, to: currentDate)!
                 
-                let data = documents.map { document in
-                    BoardData(title: document.title,
-                              board: document.makeBoard(),
-                              url: URL(string: "board:///\(document.id)")!,
-                              cacheKey: document.id)
-                }
-                
+                let data = items.map(BoardData.init)
                 return Entry(date: entryDate, relevance: data)
             }
         return entries
     }
     
-    /*
-    private func candidatePatternReferences(staredOnly: Bool) -> AnyPublisher<[DocumentReference], Never> {
-        if let user = Auth.auth().currentUser, staredOnly {
-            return FirestoreStaredRepository(user: user).all()
-                .map { $0.map(\.referenceBoard) }
-                .eraseToAnyPublisher()
-        } else {
-            return Just([]).eraseToAnyPublisher()
-//            return PatternService.shared.getAllPatternReferences()
-        }
-    }*/
+    private func candidatePatternURLs(staredOnly: Bool) -> AnyPublisher<[URL], Never> {
+        return staredOnly
+            ? patternService.staredPatternURLs()
+            : patternService.patternURLs()
+    }
 }

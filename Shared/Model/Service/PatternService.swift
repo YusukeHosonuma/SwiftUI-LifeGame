@@ -9,6 +9,11 @@ import Foundation
 import Combine
 import FirebaseFirestore
 
+// Note:
+//
+// This service is designed by fail-safe,
+// therefore some method call is return empty (publisher) that login is neeeded.
+
 final class PatternService {
     static let shared = PatternService()
 
@@ -48,18 +53,29 @@ final class PatternService {
                     stared: staredIds.contains(pattern.id)
                 )
             }
-            .replaceError(with: nil)
+            .replaceError(with: nil) // TODO: エラーを投げる設計に変えたほうがいい
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
     
     // MARK: - Star
     
+    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[URL], Never> {
+        guard let staredRepository = staredRepository else {
+            return Just([]).eraseToAnyPublisher()
+        }
+
+        return staredRepository
+            .all()
+            .map { $0.map(\.jsonURL) }
+            .eraseToAnyPublisher()
+    }
+    
     func listenStaredPatternURLs() -> AnyPublisher<[URL], Never> {
         guard let staredRepository = staredRepository else {
             return Just([]).eraseToAnyPublisher()
         }
-            
+
         return staredRepository
             .publisher
             .map { $0.map(\.jsonURL) }

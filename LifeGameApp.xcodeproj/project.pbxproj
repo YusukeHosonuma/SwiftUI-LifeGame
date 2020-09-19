@@ -108,6 +108,10 @@
 		E562329B24EBE59100281C1E /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329A24EBE59100281C1E /* SettingRootView.swift */; };
 		E562329D24EBE5B400281C1E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329C24EBE5B400281C1E /* SignInView.swift */; };
 		E562329F24EBE5CB00281C1E /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562329E24EBE5CB00281C1E /* SettingAboutView.swift */; };
+		E568C9E02515745A0047ADC9 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574356924E972F900BB27CA /* Authentication.swift */; };
+		E568C9E62515746E0047ADC9 /* FirestoreHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA661124E92C0F00D6D59F /* FirestoreHistoryRepository.swift */; };
+		E568C9EC251574850047ADC9 /* HistoryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */; };
+		E568C9F2251574950047ADC9 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
 		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */; };
 		E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */; };
@@ -1246,6 +1250,7 @@
 				E573669D2514320D00EC7C1A /* PatternIdentifiable.swift in Sources */,
 				E5B7516124E3D7A00004D8AE /* FirestoreBoardRepository.swift in Sources */,
 				E56DBCB324E4FFF400849CE4 /* Array+.swift in Sources */,
+				E568C9EC251574850047ADC9 /* HistoryDocument.swift in Sources */,
 				E50E0CB3250CEADE00823980 /* TimelineEntryGenerator.swift in Sources */,
 				E5438E3A24E2AB0B007A3EB7 /* LifeGameWidget.swift in Sources */,
 				E54A63AD24F4F31800084964 /* EntryView.swift in Sources */,
@@ -1258,8 +1263,10 @@
 				E5E0068524EB8C1200A4EA02 /* StaredDocument.swift in Sources */,
 				E50E0CB5250CED3300823980 /* WidgetFamily+.swift in Sources */,
 				E50E0C9E250CDFE400823980 /* PatternIDDocument.swift in Sources */,
+				E568C9E62515746E0047ADC9 /* FirestoreHistoryRepository.swift in Sources */,
 				E547C30C24E3F7710022DF3A /* MemoryStorage.swift in Sources */,
 				E54A63AB24F4F25100084964 /* BoardExample.swift in Sources */,
+				E568C9F2251574950047ADC9 /* PatternService.swift in Sources */,
 				E518C89624E368A700B02027 /* UserDefaultGroup.swift in Sources */,
 				E5E0068024EB8B8900A4EA02 /* PatternItem.swift in Sources */,
 				E57366A12514324A00EC7C1A /* Web.swift in Sources */,
@@ -1269,6 +1276,7 @@
 				E50E0CA2250CE02500823980 /* FirestorePatternIDDocumentRepository.swift in Sources */,
 				E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */,
 				E5E50A2C24E539C900CD64B6 /* Image+.swift in Sources */,
+				E568C9E02515745A0047ADC9 /* Authentication.swift in Sources */,
 				E5E0068324EB8BDF00A4EA02 /* FirestoreStaredRepository.swift in Sources */,
 				E54A63B124F4F3B400084964 /* Provider.swift in Sources */,
 				E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */,
