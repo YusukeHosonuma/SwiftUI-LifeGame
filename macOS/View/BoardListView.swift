@@ -16,7 +16,7 @@ struct BoardListView: View {
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var gameManager: GameManager
-    @EnvironmentObject var patternStore: PatternStore
+    @EnvironmentObject var patternStore: PatternSelectManager
  
     // MARK: Inputs
     

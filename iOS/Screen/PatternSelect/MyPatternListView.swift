@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MyPatternListView: View {
-    @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var authentication: Authentication
-    @EnvironmentObject var patternStore: PatternStore
+
+    @ObservedObject var patternSelectManager: PatternSelectManager
 
     var body: some View {
         if authentication.isSignIn {
@@ -20,9 +20,9 @@ struct MyPatternListView: View {
                         title("History")
                         PatternGridListView(
                             style: .horizontal,
-                            patternURLs: patternStore.historyURLs,
-                            didTapItem: didTapItem,
-                            didToggleStar: didToggleStar
+                            patternURLs: patternSelectManager.historyURLs,
+                            didTapItem: patternSelectManager.select,
+                            didToggleStar: patternSelectManager.toggleStar
                         )
                         .padding(.horizontal)
                         .frame(height: 120)
@@ -32,9 +32,9 @@ struct MyPatternListView: View {
                         title("Stared")
                         PatternGridListView(
                             style: .grid,
-                            patternURLs: patternStore.staredURLs,
-                            didTapItem: didTapItem,
-                            didToggleStar: didToggleStar
+                            patternURLs: patternSelectManager.staredURLs,
+                            didTapItem: patternSelectManager.select,
+                            didToggleStar: patternSelectManager.toggleStar
                         )
                         .padding(.horizontal)
                     }
@@ -50,15 +50,5 @@ struct MyPatternListView: View {
         Text(text)
             .font(.headline)
             .padding([.leading, .top])
-    }
-    
-    // MARK: Action
-    
-    private func didTapItem(item: PatternItem) {
-        gameManager.setPattern(item)
-    }
-    
-    private func didToggleStar(item: PatternItem) {
-        patternStore.toggleStar(item: item)
     }
 }

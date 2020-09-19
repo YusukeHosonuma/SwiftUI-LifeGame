@@ -144,8 +144,8 @@
 		E57366B125143AA300EC7C1A /* PatternSelectSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B025143AA300EC7C1A /* PatternSelectSheetView.swift */; };
 		E57366B325143B2400EC7C1A /* PatternLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B225143B2400EC7C1A /* PatternLoader.swift */; };
 		E57366B425143B2400EC7C1A /* PatternLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B225143B2400EC7C1A /* PatternLoader.swift */; };
-		E57366B625143B8200EC7C1A /* PatternStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B525143B8200EC7C1A /* PatternStore.swift */; };
-		E57366B725143B8200EC7C1A /* PatternStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B525143B8200EC7C1A /* PatternStore.swift */; };
+		E57366B625143B8200EC7C1A /* PatternSelectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B525143B8200EC7C1A /* PatternSelectManager.swift */; };
+		E57366B725143B8200EC7C1A /* PatternSelectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B525143B8200EC7C1A /* PatternSelectManager.swift */; };
 		E57366B925143BD600EC7C1A /* LifeWikiPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B825143BD600EC7C1A /* LifeWikiPattern.swift */; };
 		E57366BA25143BD600EC7C1A /* LifeWikiPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57366B825143BD600EC7C1A /* LifeWikiPattern.swift */; };
 		E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573BD8124D053F90096BF75 /* LifeGameCommands.swift */; };
@@ -361,7 +361,7 @@
 		E57366AC25143A0B00EC7C1A /* PatternGridLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridLoadView.swift; sourceTree = "<group>"; };
 		E57366B025143AA300EC7C1A /* PatternSelectSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSelectSheetView.swift; sourceTree = "<group>"; };
 		E57366B225143B2400EC7C1A /* PatternLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternLoader.swift; sourceTree = "<group>"; };
-		E57366B525143B8200EC7C1A /* PatternStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternStore.swift; sourceTree = "<group>"; };
+		E57366B525143B8200EC7C1A /* PatternSelectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSelectManager.swift; sourceTree = "<group>"; };
 		E57366B825143BD600EC7C1A /* LifeWikiPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeWikiPattern.swift; sourceTree = "<group>"; };
 		E573BD8124D053F90096BF75 /* LifeGameCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameCommands.swift; sourceTree = "<group>"; };
 		E574356924E972F900BB27CA /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -948,7 +948,7 @@
 				E51FD74E24F20BA7002981F4 /* FeedbackManager.swift */,
 				E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */,
 				E57366B225143B2400EC7C1A /* PatternLoader.swift */,
-				E57366B525143B8200EC7C1A /* PatternStore.swift */,
+				E57366B525143B8200EC7C1A /* PatternSelectManager.swift */,
 			);
 			path = Observable;
 			sourceTree = "<group>";
@@ -1340,7 +1340,7 @@
 				E5CA660F24E903AB00D6D59F /* HistoryDocument.swift in Sources */,
 				E53EC5D424E60A7B0035AD58 /* BoardRenderImage.swift in Sources */,
 				E51169CF24D64446002D40B6 /* BoardContainerView.swift in Sources */,
-				E57366B625143B8200EC7C1A /* PatternStore.swift in Sources */,
+				E57366B625143B8200EC7C1A /* PatternSelectManager.swift in Sources */,
 				E577FCD525123D74008202D3 /* String+.swift in Sources */,
 				E57366AD25143A0B00EC7C1A /* PatternGridLoadView.swift in Sources */,
 				E5E6EB1424DFF27C0012E911 /* BoardSelectCell.swift in Sources */,
@@ -1456,7 +1456,7 @@
 				E5238E0024EAC29E0087B9B0 /* StaredDocument.swift in Sources */,
 				E54A63AA24F4F25100084964 /* BoardExample.swift in Sources */,
 				E51FD75024F20BA7002981F4 /* FeedbackManager.swift in Sources */,
-				E57366B725143B8200EC7C1A /* PatternStore.swift in Sources */,
+				E57366B725143B8200EC7C1A /* PatternSelectManager.swift in Sources */,
 				E5A41B48250B3E1B007235C2 /* FirestorePatternRepository.swift in Sources */,
 				E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */,
 				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,

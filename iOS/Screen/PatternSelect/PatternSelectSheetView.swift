@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct PatternSelectSheetView: View {
-    @EnvironmentObject var patternStore: PatternStore
-    @Binding var presented: Bool
+    @StateObject var patternSelectManager: PatternSelectManager
 
+    init(presented: Binding<Bool>) {
+        _patternSelectManager = StateObject(wrappedValue: .init(presented: presented))
+    }
+    
     var body: some View {
         NavigationView {
             TabView {
-                PatternCategoryListView()
+                PatternCategoryListView(patternSelectManager: patternSelectManager)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Find")
                     }
-                MyPatternListView()
+                MyPatternListView(patternSelectManager: patternSelectManager)
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("My Page")
@@ -29,15 +32,9 @@ struct PatternSelectSheetView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", action: tapCancel)
+                    Button("Cancel", action: patternSelectManager.cancel)
                 }
             }
         }
-    }
-    
-    // MARK: Actions
-
-    private func tapCancel() {
-        presented = false
     }
 }

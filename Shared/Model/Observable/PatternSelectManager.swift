@@ -5,10 +5,11 @@
 //  Created by Yusuke Hosonuma on 2020/09/18.
 //
 
+import SwiftUI
 import Combine
 import Foundation
 
-final class PatternStore: ObservableObject {
+final class PatternSelectManager: ObservableObject {
     @Published var allURLs: [URL] = []
     @Published var staredURLs: [URL] = []
     @Published var historyURLs: [URL] = []
@@ -16,9 +17,12 @@ final class PatternStore: ObservableObject {
 
     private let authentication: Authentication = .shared
     private let patternService: PatternService = .shared
+    private let gameManager: GameManager = .shared
     private var cancellables: [AnyCancellable] = []
+    private var presented: Binding<Bool>
     
-    init() {
+    init(presented: Binding<Bool>) {
+        self.presented = presented
         authentication.$isSignIn
             .sink { [weak self] _ in
                 self?.bind()
@@ -26,6 +30,21 @@ final class PatternStore: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func toggleStar(item: PatternItem) {
+        patternService.toggleStar(item: item)
+    }
+
+    func select(item: PatternItem) {
+        gameManager.setPattern(item)
+        presented.wrappedValue = false
+    }
+    
+    func cancel() {
+        presented.wrappedValue = false
+    }
+    
+    // MARK: Private
+
     private func bind() {
         patternService.patternURLs().assign(to: &$allURLs)
         patternService.listenStaredPatternURLs().assign(to: &$staredURLs)
@@ -39,9 +58,5 @@ final class PatternStore: ObservableObject {
                 }
                 .store(in: &cancellables)
         }
-    }
-
-    func toggleStar(item: PatternItem) {
-        patternService.toggleStar(item: item)
     }
 }

@@ -30,7 +30,6 @@ struct Application: App {
     @StateObject var boardStore = BoardStore.shared
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
-    @StateObject var patternStore = PatternStore()
     @StateObject var applicationRouter = ApplicationRouter.shared
     #if os(macOS)
     @StateObject var fileManager = LifeGameFileManager()
@@ -123,7 +122,6 @@ struct Application: App {
             .environmentObject(boardStore)
             .environmentObject(authentication)
             .environmentObject(networkMonitor)
-            .environmentObject(patternStore)
             .environmentObject(applicationRouter)
     }
 }

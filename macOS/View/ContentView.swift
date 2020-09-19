@@ -13,7 +13,7 @@ struct ContentView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var authentication: Authentication
-    @EnvironmentObject var patternStore: PatternStore
+    @EnvironmentObject var patternStore: PatternSelectManager
 
     var body: some View {
         ZStack {

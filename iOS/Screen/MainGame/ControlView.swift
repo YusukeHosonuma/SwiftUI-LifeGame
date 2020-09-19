@@ -8,6 +8,9 @@
 import SwiftUI
 import Combine
 
+// TODO: 🔍 View で cancellables を必要とされること自体、良くない兆候なのかもしれない。（コード的に問題はないが）
+private var cancellables: [AnyCancellable] = []
+
 struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var setting: SettingEnvironment
@@ -15,8 +18,9 @@ struct ControlView: View {
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var applicationRouter: ApplicationRouter
-    @EnvironmentObject var patternStore: PatternStore
 
+    @State var presentedSheetSelect = false
+    
     // MARK: View
     
     var body: some View {
@@ -40,21 +44,13 @@ struct ControlView: View {
 
                 Spacer()
                 
-                SheetButton(by: $gameManager.isPresentedPatternSelectSheet) {
+                SheetButton(by: $presentedSheetSelect) {
                     Image(systemName: "list.bullet")
                 } content: {
-                    PatternSelectSheetView(presented: $gameManager.isPresentedPatternSelectSheet)
-                    //AllPatternView(presented: $isPresentedListSheet)
+                    PatternSelectSheetView(presented: $presentedSheetSelect)
                         .environmentObject(gameManager)
                         .environmentObject(authentication)
                         .environmentObject(boardStore)
-                        .environmentObject(patternStore)
-//                    PatterndGridView(url: URL(string: "https://lifegame-dev.web.app/pattern/$rats.json")!)
-//                    BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
-//                        .environmentObject(setting)
-//                        .environmentObject(authentication)
-//                        .environmentObject(network)
-//                        .environmentObject(boardStore)
                 }
 
                 ActionMenuButton {
@@ -65,7 +61,15 @@ struct ControlView: View {
             }
             .buttonStyle(ButtonStyleCircle())
         }
-        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 }, perform: gameManager.setPattern)
+        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 }, perform: didOpenPatternURL)
+    }
+    
+    private func didOpenPatternURL(url: URL) {
+        gameManager.setPattern(from: url)
+            .sink {
+                self.presentedSheetSelect = false
+            }
+            .store(in: &cancellables)
     }
     
     private func playButton() -> some View {
