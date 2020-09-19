@@ -32,7 +32,8 @@ final class GameManager: ObservableObject {
     @Published var state: State = .stop
 
     private let boardManager: BoardManager = .shared
-    private let setting = SettingEnvironment.shared
+    private let setting: SettingEnvironment = .shared
+    private let patternService: PatternService = .shared
 
     private var timerPublisher: Cancellable?
 
@@ -62,7 +63,7 @@ final class GameManager: ObservableObject {
         boardManager.generateRandom()
     }
     
-    func setBoard(board: Board<Cell>) {
+    func setBoard(_ board: Board<Cell>) {
         boardManager.setBoard(board: board)
     }
     
@@ -79,6 +80,17 @@ final class GameManager: ObservableObject {
             }
             setting.animationSpeed = speed
         }
+    }
+    
+    func setPattern(from patternURL: URL) -> AnyPublisher<(), Never> {
+        patternService.fetch(from: patternURL)
+            .compactMap { $0 }
+            .map { [weak self] item in
+                self?.patternService.recordHistory(patternID: item.patternID)
+                self?.setBoard(item.board)
+                return ()
+            }
+            .eraseToAnyPublisher()
     }
     
     // MARK: Private

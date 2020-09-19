@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-var cancellables: [AnyCancellable] = []
+private var cancellables: [AnyCancellable] = []
 
 struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
@@ -77,18 +77,6 @@ struct ControlView: View {
                    perform: didOpenPatternURL)
     }
     
-    private func didOpenPatternURL(url: URL) {
-        // TODO: 専用オブジェクトが処理する形にしたほうがいい、のかもしれない。
-        PatternService.shared.fetch(from: url)
-            .compactMap { $0 }
-            .sink { item in
-                patternStore.recordHistory(patternID: item.patternID)
-                gameManager.setBoard(board: item.board)
-                isPresentedListSheet = false
-            }
-            .store(in: &cancellables)
-    }
-    
     private func playButton() -> some View {
         Button(action: gameManager.play) {
             Image(systemName: "play.fill")
@@ -109,6 +97,14 @@ struct ControlView: View {
             Image(systemName: "arrow.right.to.line.alt")
         }
         .enabled(gameManager.state.canNext)
+    }
+    
+    private func didOpenPatternURL(url: URL) {
+        gameManager.setPattern(from: url)
+            .sink {
+                isPresentedListSheet = false
+            }
+            .store(in: &cancellables)
     }
 }
 

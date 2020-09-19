@@ -142,7 +142,7 @@ struct BoardSelectView<BoardStore>: View where BoardStore: BoardStoreProtocol {
 //        if authentication.isSignIn {
 //            boardStore.addToHistory(boardID: boardDocumentID)
 //        }
-        gameManager.setBoard(board: board)
+        gameManager.setBoard(board)
         dismiss()
     }
     

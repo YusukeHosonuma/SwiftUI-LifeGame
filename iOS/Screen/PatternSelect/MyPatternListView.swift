@@ -58,7 +58,7 @@ struct MyPatternListView: View {
     
     private func didTapItem(item: PatternItem) {
         patternStore.recordHistory(patternID: item.patternID)
-        gameManager.setBoard(board: item.board)
+        gameManager.setBoard(item.board)
         self.presented = false
     }
     
