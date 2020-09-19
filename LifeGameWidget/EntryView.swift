@@ -65,8 +65,9 @@ struct EntryView : View {
     
     func large(data: BoardData) -> some View {
         VStack {
+            // TODO: Widgetの30MBのサイズ制限に引っかかるので、解像度を下げて暫定対応している
             BoardRenderImage(board: data.board.extended(by: .die, count: 1),
-                             cellRenderSize: 400 / data.board.size,
+                             cellRenderSize: 200 / data.board.size,
                              cellColor: cellColor)
             Text(data.title)
                 .foregroundColor(.gray)
