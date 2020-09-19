@@ -112,6 +112,7 @@
 		E568C9E62515746E0047ADC9 /* FirestoreHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA661124E92C0F00D6D59F /* FirestoreHistoryRepository.swift */; };
 		E568C9EC251574850047ADC9 /* HistoryDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA660E24E903AB00D6D59F /* HistoryDocument.swift */; };
 		E568C9F2251574950047ADC9 /* PatternService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E0CA4250CE19700823980 /* PatternService.swift */; };
+		E568CA03251587C50047ADC9 /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568CA02251587C50047ADC9 /* ApplicationRouter.swift */; };
 		E56A422924E2C0B100F9AC24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E558A97224DB70D00012E443 /* GoogleService-Info.plist */; };
 		E56DBCAC24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */; };
 		E56DBCAD24E4ED5000849CE4 /* LifeGameConfig.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */; };
@@ -344,6 +345,7 @@
 		E562329A24EBE59100281C1E /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
 		E562329C24EBE5B400281C1E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E562329E24EBE5CB00281C1E /* SettingAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutView.swift; sourceTree = "<group>"; };
+		E568CA02251587C50047ADC9 /* ApplicationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationRouter.swift; sourceTree = "<group>"; };
 		E56DBCAB24E4ED5000849CE4 /* LifeGameConfig.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LifeGameConfig.intentdefinition; sourceTree = "<group>"; };
 		E56DBCAE24E4FE3200849CE4 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		E571536524D51B73003B4C9E /* UserDefaultConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConvertible.swift; sourceTree = "<group>"; };
@@ -972,6 +974,7 @@
 			isa = PBXGroup;
 			children = (
 				E5D9F24A24BEBDBC009A526B /* Application.swift */,
+				E568CA02251587C50047ADC9 /* ApplicationRouter.swift */,
 				E598686024D434FC0010DC73 /* Assets.xcassets */,
 				E558A97224DB70D00012E443 /* GoogleService-Info.plist */,
 			);
@@ -1353,6 +1356,7 @@
 				E547C30A24E3F4CF0022DF3A /* MemoryStorage.swift in Sources */,
 				E57366B925143BD600EC7C1A /* LifeWikiPattern.swift in Sources */,
 				E5D9F27324BEBDBD009A526B /* Application.swift in Sources */,
+				E568CA03251587C50047ADC9 /* ApplicationRouter.swift in Sources */,
 				E5B0572824CC3465005EE1AA /* CellView.swift in Sources */,
 				E5E50A2724E5327E00CD64B6 /* GraphicsImageRenderer.swift in Sources */,
 				E5C8D5BF24E8D49C005DB0FC /* UIImageWrapper.swift in Sources */,

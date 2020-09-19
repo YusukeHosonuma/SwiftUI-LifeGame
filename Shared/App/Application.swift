@@ -80,20 +80,7 @@ struct Application: App {
         #else
         WindowGroup {
             configureCommonEnvironmentObject(RootView())
-                .onOpenURL { url in
-                    let documentID = url.lastPathComponent
-                    guard documentID != "0" else { return }
-                    
-                    // Note:
-                    // 賛否はあるかもだが、何も尋ねずに現状の盤面を上書きしてしまう仕様にする。
-                    // （都度、アラートがでてもうっとおしいだけなので）
-                    
-                    patternRepository
-                        .get(by: documentID) { (document) in
-                            let board = document.makeBoard()
-                            boardManager.setBoard(board: board)
-                        }
-                }
+                .onOpenURL(perform: ApplicationRouter.shared.performURL)
                 .onAppear {
                     boardManager.setLifeGameBoard(board: currentBoard)
                 }
