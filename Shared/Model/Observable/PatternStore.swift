@@ -40,11 +40,7 @@ final class PatternStore: ObservableObject {
                 .store(in: &cancellables)
         }
     }
-    
-    func recordHistory(patternID: String) {
-        patternService.recordHistory(patternID: patternID)
-    }
-    
+
     func toggleStar(item: PatternItem) {
         patternService.toggleStar(item: item)
     }

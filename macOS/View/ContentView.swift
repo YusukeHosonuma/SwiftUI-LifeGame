@@ -58,6 +58,7 @@ struct ContentView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
+        // TODO:
         patternStore.recordHistory(patternID: item.patternID)
         gameManager.setBoard(board: item.board)
     }

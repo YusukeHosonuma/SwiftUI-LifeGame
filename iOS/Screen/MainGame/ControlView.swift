@@ -8,22 +8,14 @@
 import SwiftUI
 import Combine
 
-private var cancellables: [AnyCancellable] = []
-
 struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
-
-    // Note:
-    // 仕様かバグか判断がつかないので暫定対処（beta 6）❗
-    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var applicationRouter: ApplicationRouter
     @EnvironmentObject var patternStore: PatternStore
-
-    @State var isPresentedListSheet = false
 
     // MARK: View
     
@@ -48,10 +40,10 @@ struct ControlView: View {
 
                 Spacer()
                 
-                SheetButton(by: $isPresentedListSheet) {
+                SheetButton(by: $gameManager.isPresentedPatternSelectSheet) {
                     Image(systemName: "list.bullet")
                 } content: {
-                    PatternSelectSheetView(presented: $isPresentedListSheet)
+                    PatternSelectSheetView(presented: $gameManager.isPresentedPatternSelectSheet)
                     //AllPatternView(presented: $isPresentedListSheet)
                         .environmentObject(gameManager)
                         .environmentObject(authentication)
@@ -73,8 +65,7 @@ struct ControlView: View {
             }
             .buttonStyle(ButtonStyleCircle())
         }
-        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 },
-                   perform: didOpenPatternURL)
+        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 }, perform: gameManager.setPattern)
     }
     
     private func playButton() -> some View {
@@ -97,14 +88,6 @@ struct ControlView: View {
             Image(systemName: "arrow.right.to.line.alt")
         }
         .enabled(gameManager.state.canNext)
-    }
-    
-    private func didOpenPatternURL(url: URL) {
-        gameManager.setPattern(from: url)
-            .sink {
-                isPresentedListSheet = false
-            }
-            .store(in: &cancellables)
     }
 }
 

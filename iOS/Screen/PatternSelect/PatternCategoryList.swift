@@ -11,8 +11,6 @@ struct PatternCategoryListView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var patternStore: PatternStore
     
-    @Binding var presented: Bool
-    
     var body: some View {
         List {
             Section {
@@ -43,9 +41,7 @@ struct PatternCategoryListView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        patternStore.recordHistory(patternID: item.patternID)
-        gameManager.setBoard(item.board)
-        self.presented = false
+        gameManager.setPattern(item)
     }
     
     private func didToggleStar(item: PatternItem) {

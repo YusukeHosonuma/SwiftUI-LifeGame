@@ -30,12 +30,15 @@ final class GameManager: ObservableObject {
     @Published var speed: Double = 0.5
     @Published var scale: CGFloat = 1.0
     @Published var state: State = .stop
+    
+    // TODO: ⚠️ これは iOS 限定と言えるので、このオブジェクトが表示の責務まで持つのはやりすぎ
+    @Published var isPresentedPatternSelectSheet: Bool = false
 
     private let boardManager: BoardManager = .shared
     private let setting: SettingEnvironment = .shared
     private let patternService: PatternService = .shared
-
     private var timerPublisher: Cancellable?
+    private var cancellables: [AnyCancellable] = []
 
     init() {
         setting.$animationSpeed.assign(to: &$speed)
@@ -82,15 +85,19 @@ final class GameManager: ObservableObject {
         }
     }
     
-    func setPattern(from patternURL: URL) -> AnyPublisher<(), Never> {
+    // TODO: ❓ ちょっとこのオブジェクトの責務的にはやりすぎ？（PatternSelectManager的なの欲しい？）
+    
+    func setPattern(_ item: PatternItem) {
+        self.patternService.recordHistory(patternID: item.patternID)
+        self.setBoard(item.board)
+        self.isPresentedPatternSelectSheet = false
+    }
+    
+    func setPattern(from patternURL: URL) {
         patternService.fetch(from: patternURL)
             .compactMap { $0 }
-            .map { [weak self] item in
-                self?.patternService.recordHistory(patternID: item.patternID)
-                self?.setBoard(item.board)
-                return ()
-            }
-            .eraseToAnyPublisher()
+            .sink(receiveValue: setPattern)
+            .store(in: &cancellables)
     }
     
     // MARK: Private

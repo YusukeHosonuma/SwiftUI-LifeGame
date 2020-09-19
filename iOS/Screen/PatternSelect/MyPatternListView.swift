@@ -12,8 +12,6 @@ struct MyPatternListView: View {
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var patternStore: PatternStore
 
-    @Binding var presented: Bool
-    
     var body: some View {
         if authentication.isSignIn {
             ScrollView {
@@ -57,9 +55,7 @@ struct MyPatternListView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        patternStore.recordHistory(patternID: item.patternID)
-        gameManager.setBoard(item.board)
-        self.presented = false
+        gameManager.setPattern(item)
     }
     
     private func didToggleStar(item: PatternItem) {

@@ -14,12 +14,12 @@ struct PatternSelectSheetView: View {
     var body: some View {
         NavigationView {
             TabView {
-                PatternCategoryListView(presented: $presented)
+                PatternCategoryListView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Find")
                     }
-                MyPatternListView(presented: $presented)
+                MyPatternListView()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("My Page")
