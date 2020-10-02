@@ -85,11 +85,11 @@ struct FeedbackWindow: View {
                     feedbackManager.send()
                     
                     // Note:
-                    // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta 5）❗
+                    // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta 9）❗
                     //
                     // ```
                     // dismissAlert() // 事前にdismissしてもしなくてもNG
-                    // showAlert(.thanks)
+                    // presentedAlert = .thanks
                     // ```
                     //
                     // そのためとりあえずフィードバック画面を閉じるだけに留める。
@@ -98,26 +98,12 @@ struct FeedbackWindow: View {
                 })
 
             case .thanks:
-                preconditionFailure()
+                return FeedbackAlert.thanksAlert {
+                    dismiss()
+                }
             }
         }
         .padding()
-
-        // Note:
-        // 標準のフィードバックアシスタントのように下部のツールバーに配置したいが方法が不明。。
-        // `.bottomBar`のplacementは削除されてしまったのかもしれない。（macOS-beta 5）❗
-        // ref: https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-toolbar-and-add-buttons-to-it
-        //
-        // ```
-        // .toolbar {
-        //     ToolbarItem(placement: .cancellationAction) {
-        //         Button("Cancel") {}
-        //     }
-        //     ToolbarItem(placement: .primaryAction) {
-        //         Button("Continue") {}
-        //     }
-        // }
-        // ```
     }
     
     func itemGroup<T: View>(description: String, @ViewBuilder content: () -> T) -> some View {
@@ -135,35 +121,6 @@ struct FeedbackWindow: View {
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 4)
             content()
-        }
-    }
-    
-    // MARK: Alert
-
-    private func showAlert(type: FeedbackAlert) -> Alert {
-        switch type {
-        case .invalid:
-            return FeedbackAlert.invalidAlert()
-            
-        case .sendConfirm:
-            return FeedbackAlert.sendConfirmAlert(tapSend: {
-                feedbackManager.send()
-                
-                // Note:
-                // macOSでAlertを連続で表示しようとしてもうまく行かない。（macOS-beta 5）❗
-                //
-                // ```
-                // dismissAlert() // 事前にdismissしてもしなくてもNG
-                // showAlert(.thanks)
-                // ```
-                //
-                // そのためとりあえずフィードバック画面を閉じるだけに留める。
-                dismissAlert()
-                dismiss()
-            })
-
-        case .thanks:
-            preconditionFailure()
         }
     }
     
