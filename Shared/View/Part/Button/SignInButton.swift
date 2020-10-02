@@ -11,11 +11,6 @@ import os
 import FirebaseAuth
 import CryptoKit
 
-// Note:
-// Xcode previews のビルドでだけ`SignInWithAppleButton`などが見つからずにビルドエラーになってしまう。（beta 6）❗
-// beta 6 で SwiftUI から AuthenticationServices に移動されたのが影響していそうだが、
-// 現時点では対処方法が思いつかないので一旦保留にしておく。（次のリリースでは直ると思う）
-
 private let logger = Logger(subsystem: "LifeGameApp", category: "SignInView")
 
 struct SignInButton: View {
