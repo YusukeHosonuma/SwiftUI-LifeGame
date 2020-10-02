@@ -35,7 +35,8 @@ final class BoardManager: ObservableObject {
         let newSize = (board.size <= self.board.size)
             ? self.board.size
             : PresetSizes.first(where: { board.size < $0 }) ?? board.size // fail-safe
-        
+        setting.boardSize = newSize
+
         let newBoard = Board(size: newSize, cell: Cell.die).setBoard(toCenter: board)
         self.board = LifeGameBoard(board: newBoard)
     }
