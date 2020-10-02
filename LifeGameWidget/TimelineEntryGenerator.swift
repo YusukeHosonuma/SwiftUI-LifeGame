@@ -56,8 +56,12 @@ final class TimelineEntryGenerator {
     }
     
     private func candidatePatternURLs(staredOnly: Bool) -> AnyPublisher<[URL], Never> {
-        return staredOnly
+        let publisher = staredOnly
             ? patternService.staredPatternURLs()
             : patternService.patternURLs()
+    
+        return publisher
+            .map { $0.map(\.url) }
+            .eraseToAnyPublisher()
     }
 }

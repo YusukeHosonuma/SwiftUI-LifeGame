@@ -72,14 +72,16 @@ final class PatternService {
     
     // MARK: - Star
     
-    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[URL], Never> {
+    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         guard let staredRepository = staredRepository else {
             return Just([]).eraseToAnyPublisher()
         }
 
         return staredRepository
             .all()
-            .map { $0.map(\.jsonURL) }
+            .map { urls in
+                urls.map { PatternURL(url: $0.jsonURL, stared: true) }
+            }
             .eraseToAnyPublisher()
     }
     

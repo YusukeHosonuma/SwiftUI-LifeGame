@@ -17,7 +17,6 @@ struct PatternHistoryView: View {
             didTapItem: didTapItem,
             didToggleStar: didToggleStar
         )
-
     }
     
     // MARK: Action
