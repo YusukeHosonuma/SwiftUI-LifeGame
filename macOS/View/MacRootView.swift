@@ -52,35 +52,55 @@ struct MacRootView: View {
             .navigationTitle(title)
             .toolbar {
                 ToolbarItemGroup(placement: .navigation) {
-                    IconButton(systemName: "sidebar.left", action: AppKitWrapper.toggleSidebar)
-                        .keyboardShortcut("b", modifiers: .command)
+                    IconButton(
+                        systemName: "sidebar.left",
+                        action: AppKitWrapper.toggleSidebar
+                    )
+                    .keyboardShortcut("b", modifiers: .command)
 
-                    IconButton(systemName: "list.bullet") {
-                        presentedSheet = .boardSelect
-                    }
+                    IconButton(
+                        systemName: "list.bullet",
+                        action: { presentedSheet = .boardSelect }
+                    )
                 }
                 
                 ToolbarItemGroup(placement: .status) {
-                    IconButton(systemName: "play.fill", action: gameManager.play)
-                        .enabled(gameManager.state.canPlay)
+                    IconButton(
+                        systemName: "play.fill",
+                        action: gameManager.play
+                    )
+                    .enabled(gameManager.state.canPlay)
                     
-                    IconButton(systemName: "stop.fill", action: gameManager.stop)
-                        .enabled(gameManager.state.canStop)
+                    IconButton(
+                        systemName: "stop.fill",
+                        action: gameManager.stop
+                    )
+                    .enabled(gameManager.state.canStop)
                     
-                    IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
-                        .enabled(gameManager.state.canNext)
+                    IconButton(
+                        systemName: "arrow.right.to.line.alt",
+                        action: gameManager.next
+                    )
+                    .enabled(gameManager.state.canNext)
                     
-                    IconButton(systemName: "square.grid.2x2.fill", action: gameManager.generateRandom)
+                    IconButton(
+                        systemName: "square.grid.2x2.fill",
+                        action: gameManager.generateRandom
+                    )
                     
-                    IconButton(systemName: "trash", action: gameManager.clear)
+                    IconButton(
+                        systemName: "trash",
+                        action: gameManager.clear
+                    )
                     
                     ScaleChangeButton(scale: $gameManager.scale)
                     
                     BoardSizePicker(selection: $setting.boardSize)
                     
-                    IconButton(systemName: "exclamationmark.bubble") {
-                        presentedSheet = .feedback
-                    }
+                    IconButton(
+                        systemName: "exclamationmark.bubble",
+                        action: { presentedSheet = .feedback }
+                    )
                 }
             }
         }
