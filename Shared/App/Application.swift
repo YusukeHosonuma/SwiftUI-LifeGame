@@ -26,8 +26,6 @@ struct Application: App {
     @StateObject var boardManager = BoardManager.shared
     @StateObject var gameManager = GameManager.shared
     @StateObject var settingEnvironment = SettingEnvironment.shared
-    @StateObject var patternRepository = FirestorePatternRepository.shared
-    @StateObject var boardStore = BoardStore.shared
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
     @StateObject var applicationRouter = ApplicationRouter.shared
@@ -118,8 +116,6 @@ struct Application: App {
             .environmentObject(boardManager)
             .environmentObject(gameManager)
             .environmentObject(settingEnvironment)
-            .environmentObject(patternRepository)
-            .environmentObject(boardStore)
             .environmentObject(authentication)
             .environmentObject(networkMonitor)
             .environmentObject(applicationRouter)

@@ -16,7 +16,6 @@ struct ControlView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var network: NetworkMonitor
-    @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var applicationRouter: ApplicationRouter
 
     @State var presentedSheetSelect = false
@@ -50,7 +49,6 @@ struct ControlView: View {
                     PatternSelectSheetView(presented: $presentedSheetSelect)
                         .environmentObject(gameManager)
                         .environmentObject(authentication)
-                        .environmentObject(boardStore)
                 }
 
                 ActionMenuButton {

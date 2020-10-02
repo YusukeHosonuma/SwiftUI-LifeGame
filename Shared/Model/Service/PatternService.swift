@@ -18,7 +18,7 @@ final class PatternService {
     static let shared = PatternService()
 
     private let authentication: Authentication = .shared
-    private let patternIDRepository: PatternIDRepository = .shared
+    private let patternIDRepository: FirestorePatternIndexRepository = .shared
     private var staredRepository: FirestoreStaredRepository? { authentication.repositories?.stared }
     private var historyRepository: FirestoreHistoryRepository? { authentication.repositories?.history }
 
@@ -27,6 +27,7 @@ final class PatternService {
             .all
             .map { document in
                 if let type = type {
+                    // TODO: カテゴリ単位でドキュメントを分けているので、そこから個別に取得したほうが高速（になるはず）
                     return document.data.filter { $0.patternType == type }.map(\.jsonURL)
                 } else {
                     return document.data.map(\.jsonURL)
