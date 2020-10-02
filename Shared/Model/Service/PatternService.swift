@@ -14,6 +14,11 @@ import FirebaseFirestore
 // This service is designed by fail-safe,
 // therefore some method call is return empty (publisher) that login is neeeded.
 
+struct PatternURL {
+    let url: URL
+    let stared: Bool
+}
+
 final class PatternService {
     static let shared = PatternService()
 
@@ -22,7 +27,7 @@ final class PatternService {
     private var staredRepository: FirestoreStaredRepository? { authentication.repositories?.stared }
     private var historyRepository: FirestoreHistoryRepository? { authentication.repositories?.history }
     
-    func patternURLs(by type: String? = nil) -> AnyPublisher<[(URL, Bool)], Never> {
+    func patternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         patternIDRepository
             .all
             .map { document -> [URL] in
@@ -35,7 +40,9 @@ final class PatternService {
             }
             .combineLatest(listenStaredPatternURLs())
             .map { allURLs, staredURLs in
-                allURLs.map { ($0, staredURLs.contains($0)) }
+                allURLs.map {
+                    PatternURL(url: $0, stared: staredURLs.contains($0))
+                }
             }
             .eraseToAnyPublisher()
     }

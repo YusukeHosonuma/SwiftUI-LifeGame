@@ -25,12 +25,11 @@ struct PatternSelectWindow: View {
         _patternSelectManager = .init(wrappedValue: .init(dismiss: dismiss))
     }
     
-    // MARK: Views
-    
+    // TODO: iOS版にもフィルタ機能を導入したら、PatternSelectManager に移すのが良いかもしれない。
     var patternURLs: [URL] {
         guard let item = selectionItem else { return [] }
         
-        let urls: [(URL, Bool)]
+        let urls: [PatternURL]
         
         if let category = PatternCategory(rawValue: item) {
             urls = patternSelectManager.urlsByCategory[category] ?? []
@@ -38,18 +37,18 @@ struct PatternSelectWindow: View {
             urls = patternSelectManager.allURLs
         }
         
-        return setting.isFilterByStared
-            ? urls.filter(\.1).map(\.0)
-            : urls.map(\.0)
+        return urls
+            .filter(when: setting.isFilterByStared, isIncluded: \.stared)
+            .map(\.url)
     }
+    
+    // MARK: Views
     
     var body: some View {
         NavigationView {
             List(selection: $selectionItem) {
-                
-                // TODO: 現時点ではスターによるフィルタリングは機能していないので、そのうち実装する。
                 Section(header: Text("Search options")) {
-                    Toggle("Star only", isOn: $setting.isFilterByStared.animation())
+                    Toggle("Stared", isOn: $setting.isFilterByStared.animation())
                         .enabled(authentication.isSignIn)
                 }
                 
