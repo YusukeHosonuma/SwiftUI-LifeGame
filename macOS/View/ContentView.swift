@@ -22,7 +22,7 @@ struct ContentView: View {
                 if authentication.isSignIn {
                     VSplitView {
                         boardView()
-                        
+
                         PatternGridListView(
                             style: .horizontal,
                             patternURLs: patternSelectManager.historyURLs,
@@ -30,8 +30,10 @@ struct ContentView: View {
                             didToggleStar: didToggleStar
                         )
                         .padding()
-                        .frame(idealHeight: 120)
+                        .frame(height: 120)
                     }
+                    .enabled(false)
+                    
                 } else {
                     boardView()
                 }
