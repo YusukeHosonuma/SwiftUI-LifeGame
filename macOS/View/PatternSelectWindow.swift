@@ -30,15 +30,17 @@ struct PatternSelectWindow: View {
     var patternURLs: [URL] {
         guard let item = selectionItem else { return [] }
         
+        let urls: [(URL, Bool)]
+        
         if let category = PatternCategory(rawValue: item) {
-            return patternSelectManager.urlsByCategory[category] ?? []
+            urls = patternSelectManager.urlsByCategory[category] ?? []
         } else {
-            return patternSelectManager.allURLs
+            urls = patternSelectManager.allURLs
         }
-    }
-
-    var navigationItmes: [String] {
-        ["All"] + PatternCategory.allCases.map(\.rawValue)
+        
+        return setting.isFilterByStared
+            ? urls.filter(\.1).map(\.0)
+            : urls.map(\.0)
     }
     
     var body: some View {
@@ -50,30 +52,28 @@ struct PatternSelectWindow: View {
                     Toggle("Star only", isOn: $setting.isFilterByStared.animation())
                         .enabled(authentication.isSignIn)
                 }
+                
+                Section(header: Text("General")) {
+                    Text("All").tag("All")
+                }
 
                 // Note:
                 // - 初期表示時に選択されている"All"がきれいにハイライトされない。（macOS beta 9）
                 // - Cmd + Click などで未選択状態にできてしまう。
-                Section {
-                    ForEach(navigationItmes, id: \.self) { name in
+                Section(header: Text("Category")) {
+                    ForEach(PatternCategory.allCases.map(\.rawValue), id: \.self) { name in
                         Text(name).tag(name)
                     }
                 }
             }
             .listStyle(SidebarListStyle())
             
-            VStack {
-                Text("Select board")
-                    .font(.title)
-                    .padding()
-                
-                PatternGridListView(
-                    style: .grid,
-                    patternURLs: patternURLs,
-                    didTapItem: didTapItem,
-                    didToggleStar: didToggleStar
-                )
-            }
+            PatternGridListView(
+                style: .grid,
+                patternURLs: patternURLs,
+                didTapItem: didTapItem,
+                didToggleStar: didToggleStar
+            )
             .padding()
         }
         .toolbar {

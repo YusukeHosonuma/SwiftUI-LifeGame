@@ -12,10 +12,10 @@ import Foundation
 final class PatternSelectManager: ObservableObject {
     typealias Handler = () -> Void
     
-    @Published var allURLs: [URL] = []
+    @Published var allURLs: [(URL, Bool)] = []
     @Published var staredURLs: [URL] = []
     @Published var historyURLs: [URL] = []
-    @Published var urlsByCategory: [PatternCategory: [URL]] = [:]
+    @Published var urlsByCategory: [PatternCategory: [(URL, Bool)]] = [:]
 
     private let authentication: Authentication = .shared
     private let patternService: PatternService = .shared

@@ -21,17 +21,21 @@ final class PatternService {
     private let patternIDRepository: FirestorePatternIndexRepository = .shared
     private var staredRepository: FirestoreStaredRepository? { authentication.repositories?.stared }
     private var historyRepository: FirestoreHistoryRepository? { authentication.repositories?.history }
-
-    func patternURLs(by type: String? = nil) -> AnyPublisher<[URL], Never> {
+    
+    func patternURLs(by type: String? = nil) -> AnyPublisher<[(URL, Bool)], Never> {
         patternIDRepository
             .all
-            .map { document in
+            .map { document -> [URL] in
                 if let type = type {
                     // TODO: カテゴリ単位でドキュメントを分けているので、そこから個別に取得したほうが高速（になるはず）
                     return document.data.filter { $0.patternType == type }.map(\.jsonURL)
                 } else {
                     return document.data.map(\.jsonURL)
                 }
+            }
+            .combineLatest(listenStaredPatternURLs())
+            .map { allURLs, staredURLs in
+                allURLs.map { ($0, staredURLs.contains($0)) }
             }
             .eraseToAnyPublisher()
     }
