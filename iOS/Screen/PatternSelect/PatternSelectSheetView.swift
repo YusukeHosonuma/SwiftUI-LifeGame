@@ -11,7 +11,7 @@ struct PatternSelectSheetView: View {
     @StateObject var patternSelectManager: PatternSelectManager
 
     init(presented: Binding<Bool>) {
-        _patternSelectManager = StateObject(wrappedValue: .init(presented: presented))
+        _patternSelectManager = StateObject(wrappedValue: .init { presented.wrappedValue = false })
     }
     
     var body: some View {

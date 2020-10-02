@@ -22,7 +22,7 @@ struct PatternSelectWindow: View {
     @State var selectionItem: String? = "All"
 
     init(dismiss: @escaping () -> Void) {
-        _patternSelectManager = StateObject(wrappedValue: .init(presented: .init(get: { true }, set: { _ in dismiss() })))
+        _patternSelectManager = .init(wrappedValue: .init(dismiss: dismiss))
     }
     
     // MARK: Views

@@ -10,6 +10,8 @@ import Combine
 import Foundation
 
 final class PatternSelectManager: ObservableObject {
+    typealias Handler = () -> Void
+    
     @Published var allURLs: [URL] = []
     @Published var staredURLs: [URL] = []
     @Published var historyURLs: [URL] = []
@@ -19,10 +21,10 @@ final class PatternSelectManager: ObservableObject {
     private let patternService: PatternService = .shared
     private let gameManager: GameManager = .shared
     private var cancellables: [AnyCancellable] = []
-    private var presented: Binding<Bool>?
+    private var dismiss: Handler?
     
-    init(presented: Binding<Bool>? = nil) {
-        self.presented = presented
+    init(dismiss: Handler? = nil) {
+        self.dismiss = dismiss
         authentication.$isSignIn
             .sink { [weak self] _ in
                 self?.bind()
@@ -36,11 +38,11 @@ final class PatternSelectManager: ObservableObject {
 
     func select(item: PatternItem) {
         gameManager.setPattern(item)
-        presented?.wrappedValue = false
+        dismiss?()
     }
     
     func cancel() {
-        presented?.wrappedValue = false
+        dismiss?()
     }
     
     // MARK: Private
