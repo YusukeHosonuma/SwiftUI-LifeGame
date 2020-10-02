@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 // https://github.com/YusukeHosonuma/SwiftUI-LifeGame.git
 // https://github.com/YusukeHosonuma/LifeGame-DataRegister.git
 
-extension PatternIDDocument {
+extension PatternIndexDocument {
     struct Data: Codable, PatternIdentifiable {
         var patternID: String
         var title: String
@@ -20,7 +20,7 @@ extension PatternIDDocument {
     }
 }
 
-struct PatternIDDocument: Codable {
+struct PatternIndexDocument: Codable {
     @DocumentID
     var documentID: String!
 
@@ -40,10 +40,8 @@ struct PatternIDDocument: Codable {
     }
 }
 
-extension PatternIDDocument {
+extension PatternIndexDocument {
     init(snapshot: DocumentSnapshot) {
-        var document = try! snapshot.data(as: Self.self)!
-        //document.documentReference = snapshot.reference
-        self = document
+        self = try! snapshot.data(as: Self.self)!
     }
 }
