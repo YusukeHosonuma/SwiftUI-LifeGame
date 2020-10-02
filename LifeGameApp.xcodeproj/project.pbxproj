@@ -160,7 +160,6 @@
 		E57F07B524F267720057B2D1 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B324F267720057B2D1 /* SignInButton.swift */; };
 		E57F07B724F2725E0057B2D1 /* MacSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacSidebar.swift */; };
 		E57FE79024F36F66009D8677 /* PatternSelectWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */; };
-		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
 		E580AAB824E14759007C60F1 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */; };
 		E58AB3A224EB77AA00339348 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C8D5C024E8E503005DB0FC /* AppLogger.swift */; };
 		E58CC55D24CB99D600048A0A /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E58CC55C24CB99D600048A0A /* LifeGame */; };
@@ -362,7 +361,6 @@
 		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		E57F07B624F2725E0057B2D1 /* MacSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSidebar.swift; sourceTree = "<group>"; };
 		E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSelectWindow.swift; sourceTree = "<group>"; };
-		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
 		E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
 		E58D5F0C24E7698A000A0345 /* NWPathMonitor+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWPathMonitor+Publisher.swift"; sourceTree = "<group>"; };
 		E58D5F4824E782C6000A0345 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -718,7 +716,6 @@
 		E580AA6B24E12EF8007C60F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */,
 				E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */,
 			);
 			path = Model;
@@ -1438,7 +1435,6 @@
 				E51FD75024F20BA7002981F4 /* FeedbackManager.swift in Sources */,
 				E57366B725143B8200EC7C1A /* PatternSelectManager.swift in Sources */,
 				E5A41B48250B3E1B007235C2 /* FirestorePatternRepository.swift in Sources */,
-				E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */,
 				E571536A24D51B9F003B4C9E /* UserDefault.swift in Sources */,
 				E5E50A2624E52EE000CD64B6 /* BoardThumbnailImage.swift in Sources */,
 				E5E50A2524E52C5300CD64B6 /* GraphicsImageRenderer.swift in Sources */,

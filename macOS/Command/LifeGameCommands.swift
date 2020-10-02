@@ -31,9 +31,6 @@ struct LifeGameCommands: Commands {
                 Button("Save As...", action: saveAs)
                     .keyboardShortcut("S")
             }
-            Section {
-                Button("Export Presets...", action: exportPresets)
-            }
         }
         #endif
 
@@ -86,12 +83,6 @@ struct LifeGameCommands: Commands {
     private func open() {
         guard let board = fileManager.open() else { return }
         gameManager.setBoard(board)
-    }
-    
-    // TODO: 開発用のメニューだから消せるはず
-    private func exportPresets() {
-//        let presets = boardRepository.items.map(BoardPresetFile.init)
-//        fileManager.exportPresets(presets)
     }
     #endif
 }
