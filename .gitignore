@@ -95,5 +95,4 @@ vendor/bundle
 
 # Firebase
 
-GoogleService-Info.plist
 .firebase

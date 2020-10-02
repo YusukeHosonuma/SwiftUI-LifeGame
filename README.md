@@ -8,14 +8,14 @@ The Conway's Game of Life that build with SwiftUI.
 
 ## Requirements
 
-- Xcode 12 (beta 5)
+- Xcode 12.2 (beta 2)
 - macOS Catalina
-  - **macOS Big Sur is required when build macOS app**
+  - **macOS Big Sur (beta 9) is required when build and run macOS app**
 
-**Important:**
+## Development
 
-Not included `GoogleService-Info.plist` that is needed to access to Firebase currently.
-This will be added in the near future.
+Open `LifeGameApp.xcodeproj` then build `LifeGameApp (iOS)` or `LifeGameApp (macOS)` scheme.  
+(Please change signing settings when neeeded)
 
 ## Dependency
 
