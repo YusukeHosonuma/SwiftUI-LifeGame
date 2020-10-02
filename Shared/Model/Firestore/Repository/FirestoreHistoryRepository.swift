@@ -10,9 +10,9 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class FirestoreHistoryRepository: ObservableObject {
-    @Published var items: [HistoryDocument] = []
-    
+final class FirestoreHistoryRepository {
+    let publisher: CurrentValueSubject<[HistoryDocument], Never> = .init([])
+
     private var listenerRegistration: ListenerRegistration?
     private var cancellables: [AnyCancellable] = []
     
@@ -48,51 +48,22 @@ final class FirestoreHistoryRepository: ObservableObject {
             }
     }
     
-    func add(by boardID: String, _ document: HistoryDocument) {
+    func setData(by patternID: String, document: HistoryDocument) {
         try! histories()
-            .document(boardID)
+            .document(patternID)
             .setData(from: document)
     }
-    
-    // TODO: refactor - Repository 以上のことをしているのでそのうち Service を抽出する
 
-    func moveToFirst(id: String) {
-        histories()
-            .document(id)
-            .updateData(["createdAt" : FieldValue.serverTimestamp()])
-    }
-
-    
     // MARK: - Private
-
     
     private func startListen() {
-        let dispatchGroup = DispatchGroup()
-
         listenerRegistration = histories()
-            .order(by: "createdAt", descending: true)
+            .order(by: "updateAt", descending: true)
             .addSnapshotListener { (snapshot, error) in
                 guard let snapshot = snapshot else { fatalError() }
 
-                var documents = snapshot.documents.map(HistoryDocument.init)
-                
-                for (index, document) in documents.enumerated() {
-                    dispatchGroup.enter() // ▶️
-                    
-                    document.boardReference.getDocument { (snapshot, error) in
-                        guard let snapshot = snapshot else { fatalError() }
-
-                        var newDocument = document
-                        newDocument.board = BoardDocument(snapshot: snapshot)
-                        documents[index] = newDocument
-                        
-                        dispatchGroup.leave() // ↩️
-                    }
-                }
-                
-                dispatchGroup.notify(queue: .main) {
-                    self.items = documents
-                }
+                let documents = snapshot.documents.map(HistoryDocument.init)
+                self.publisher.value = documents
             }
     }
     

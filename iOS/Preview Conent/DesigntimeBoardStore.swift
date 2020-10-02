@@ -8,10 +8,10 @@
 import SwiftUI
 
 final class DesigntimeBoardStore: BoardStoreProtocol {
-    @Published var allBoards: [BoardItem]
+    @Published var allBoards: [PatternItem]
     @Published var histories: [BoardHistoryItem]
     
-    init(allBoards: [BoardItem], histories: [BoardHistoryItem]) {
+    init(allBoards: [PatternItem], histories: [BoardHistoryItem]) {
         self.allBoards = allBoards
         self.histories = histories
     }

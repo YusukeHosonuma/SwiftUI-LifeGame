@@ -19,3 +19,12 @@ struct BoardData {
     var url: URL = URL(string: "board:///0")!
     var cacheKey: String?
 }
+
+extension BoardData {
+    init(from item: PatternItem) {
+        title = item.title
+        board = item.board
+        url = URL(string: "board:///\(item.patternID)")!
+        cacheKey = item.id
+    }
+}

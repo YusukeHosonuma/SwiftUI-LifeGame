@@ -14,7 +14,7 @@ final class UserDefaultSetting {
     static let DefaultAnimationSpeed: Double = 0.5
     static let DefaultZoomLevel: Int = 5
     
-    static let DefaultBoardSelectDisplayStyle: BoardSelectStyle = .grid
+    static let DefaultBoardSelectDisplayStyle: PatternSelectStyle = .grid
     static let DefaultIsFilterByStared: Bool = false
 
     @UserDefault(key: "boardSize", defaultValue: DefaultBoardSize)
@@ -32,7 +32,7 @@ final class UserDefaultSetting {
     #endif
 
     @UserDefault(key: "boardSelectDisplayStyle", defaultValue: DefaultBoardSelectDisplayStyle)
-    var boardSelectDisplayStyle: BoardSelectStyle
+    var boardSelectDisplayStyle: PatternSelectStyle
 
     @UserDefault(key: "isFilterByStared", defaultValue: DefaultIsFilterByStared)
     var isFilterByStared: Bool

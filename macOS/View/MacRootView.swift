@@ -38,13 +38,13 @@ struct MacRootView: View {
                         case .boardSelect:
                             // Note:
                             // とりあえずウィンドウサイズよりちょっと小さめで表示してみる。
-                            BoardListView(dismiss: dismissSheet)
+                            PatternSelectWindow(dismiss: dismissSheet)
                                 .frame(idealWidth: geometry.size.width * 0.8,
                                        idealHeight: geometry.size.height * 0.8)
                             
                         case .feedback:
                             if let uid = authentication.user?.uid {
-                                MacFeedbackView(dismiss: dismissSheet, userID: uid)
+                                FeedbackWindow(dismiss: dismissSheet, userID: uid)
                             }
                         }
                     }

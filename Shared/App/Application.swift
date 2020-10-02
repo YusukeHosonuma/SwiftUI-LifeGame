@@ -26,10 +26,11 @@ struct Application: App {
     @StateObject var boardManager = BoardManager.shared
     @StateObject var gameManager = GameManager.shared
     @StateObject var settingEnvironment = SettingEnvironment.shared
-    @StateObject var boardRepository = FirestoreBoardRepository.shared // TODO: Mac側のアカウント対応が終わったら不要になるはず。
+    @StateObject var patternRepository = FirestorePatternRepository.shared
     @StateObject var boardStore = BoardStore.shared
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var authentication = Authentication.shared
+    @StateObject var applicationRouter = ApplicationRouter.shared
     #if os(macOS)
     @StateObject var fileManager = LifeGameFileManager()
     #endif
@@ -69,7 +70,6 @@ struct Application: App {
             // ```
             LifeGameCommands(boardManager: boardManager,
                              gameManager: gameManager,
-                             boardRepository: boardRepository,
                              fileManager: fileManager)
         }
 
@@ -80,20 +80,7 @@ struct Application: App {
         #else
         WindowGroup {
             configureCommonEnvironmentObject(RootView())
-                .onOpenURL { url in
-                    let documentID = url.lastPathComponent
-                    guard documentID != "0" else { return }
-                    
-                    // Note:
-                    // 賛否はあるかもだが、何も尋ねずに現状の盤面を上書きしてしまう仕様にする。
-                    // （都度、アラートがでてもうっとおしいだけなので）
-                    
-                    boardRepository
-                        .get(by: documentID) { (document) in
-                            let board = document.makeBoard()
-                            boardManager.setBoard(board: board)
-                        }
-                }
+                .onOpenURL(perform: applicationRouter.performURL) // 🚀 Ignite
                 .onAppear {
                     boardManager.setLifeGameBoard(board: currentBoard)
                 }
@@ -119,8 +106,7 @@ struct Application: App {
             // Note:
             // 少なくとも iPad Simulator 上ではショートカットキーを受け付けていないように見える（beta 6）❗
             LifeGameCommands(boardManager: boardManager,
-                             gameManager: gameManager,
-                             boardRepository: boardRepository)
+                             gameManager: gameManager)
         }
         #endif
     }
@@ -132,9 +118,10 @@ struct Application: App {
             .environmentObject(boardManager)
             .environmentObject(gameManager)
             .environmentObject(settingEnvironment)
-            .environmentObject(boardRepository)
+            .environmentObject(patternRepository)
             .environmentObject(boardStore)
             .environmentObject(authentication)
             .environmentObject(networkMonitor)
+            .environmentObject(applicationRouter)
     }
 }

@@ -59,27 +59,7 @@ final class LifeGameFileManager: ObservableObject {
         }
         return nil
     }
-    
-    func exportPresets(_ files: [BoardPresetFile]) {
-        let panel = NSSavePanel()
-        panel.directoryURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-        panel.canCreateDirectories = true
-        panel.showsTagField = true
-        panel.nameFieldStringValue = "LifeGamePresets"
-        panel.allowedContentTypes = [UTType.json]
-        
-        if panel.runModal() == .OK {
-            guard let url = panel.url else { fatalError() }
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(files)
-                try data.write(to: url)
-            } catch {
-                fatalError("Failed to write file: \(error.localizedDescription)")
-            }
-        }
-    }
-    
+
     // MARK: private
     
     private func save(to url: URL, board: Board<Cell>) {

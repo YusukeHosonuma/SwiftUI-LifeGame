@@ -20,8 +20,6 @@ struct PreferenceView: View {
                     Text("Light mode")
                 }
             }
-            // Note:
-            // フレームサイズで制限しないとすごくでかく表示される。（macOS-beta 5）
             .frame(width: 240, height: 40)
             
             ColorPicker(selection: $setting.darkModeColor) {

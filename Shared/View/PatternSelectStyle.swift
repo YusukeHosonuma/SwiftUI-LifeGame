@@ -5,12 +5,14 @@
 //  Created by Yusuke Hosonuma on 2020/08/10.
 //
 
-enum BoardSelectStyle: Int, CaseIterable {
+// TODO: 現在、画面上では利用されていないので、どうするか考える。
+
+enum PatternSelectStyle: Int, CaseIterable {
     case grid
     case list
 }
 
-extension BoardSelectStyle {
+extension PatternSelectStyle {
     var text: String {
         switch self {
         case .grid: return "Grid"
@@ -26,9 +28,9 @@ extension BoardSelectStyle {
     }
 }
 
-extension BoardSelectStyle: UserDefaultConvertible {
+extension PatternSelectStyle: UserDefaultConvertible {
     init?(with object: Any) {
-        guard let rawValue = object as? Int, let value = BoardSelectStyle(rawValue: rawValue) else { return nil }
+        guard let rawValue = object as? Int, let value = PatternSelectStyle(rawValue: rawValue) else { return nil }
         self = value
     }
     

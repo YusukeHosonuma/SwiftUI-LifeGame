@@ -34,46 +34,15 @@ struct Provider: IntentTimelineProvider {
             }
         }
         
-        let filteredByStared = Auth.auth().currentUser != nil && self.isFilteredByStared(configuration: configuration)
+        let staredOnly = self.isFilteredByStared(configuration: configuration)
 
-        let currentDate = Date()
-
-        DataFetcher.shared.fetch { items in
-            let entries: [Entry] = items
-                .filter(when: filteredByStared) { $0.stared }
-                .shuffled()
-                .group(by: boardCount(family: context.family))
-                .prefix(5)
-                .enumerated()
-                .map { hourOffset, documents in
-                    let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-                    
-                    let data = documents.map { document in
-                        BoardData(title: document.title,
-                                  board: document.board,
-                                  url: URL(string: "board:///\(document.id)")!,
-                                  cacheKey: document.id)
-                    }
-                    
-                    return Entry(date: entryDate, relevance: data)
-                }
-
+        TimelineEntryGenerator.shared.generate(for: context.family, times: 5, staredOnly: staredOnly) { entries in
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         }
     }
     
     // MARK: Private
-    
-    private func boardCount(family: WidgetFamily) -> Int {
-        switch family {
-        case .systemSmall:  return 1
-        case .systemMedium: return 4
-        case .systemLarge:  return 1
-        @unknown default:
-            fatalError()
-        }
-    }
     
     private func isFilteredByStared(configuration: LifeGameConfigIntent) -> Bool {
         switch configuration.list {

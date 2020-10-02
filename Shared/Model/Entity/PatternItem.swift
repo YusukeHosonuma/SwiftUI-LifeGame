@@ -8,10 +8,11 @@
 import SwiftUI
 import LifeGame
 
-struct BoardItem: Equatable, Identifiable {
-    var id: String { boardDocumentID }
-    var boardDocumentID: String
+struct PatternItem: Equatable, Identifiable {
+    var patternID: String
     var title: String
     var board: Board<Cell>
     var stared: Bool
+
+    var id: String { patternID }
 }

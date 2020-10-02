@@ -1,5 +1,5 @@
 //
-//  BoardSelectContextMenu.swift
+//  PatternSelectContextMenu.swift
 //  LifeGameApp (iOS)
 //
 //  Created by Yusuke Hosonuma on 2020/08/17.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BoardSelectContextMenu: View {
+struct PatternSelectContextMenu: View {
     
     // MARK: Inputs
 
@@ -32,7 +32,7 @@ struct BoardSelectContextMenu_Previews: PreviewProvider {
     static var previews: some View {
         Button("Please long-press") {}
             .contextMenu {
-                BoardSelectContextMenu(isStared: .init(get: { true }, set: { _ in }))
+                PatternSelectContextMenu(isStared: .init(get: { true }, set: { _ in }))
             }
     }
 }

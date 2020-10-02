@@ -6,22 +6,20 @@
 //
 
 import SwiftUI
+import Combine
+
+// TODO: 🔍 View で cancellables を必要とされること自体、良くない兆候なのかもしれない。（コード的に問題はないが）
+private var cancellables: [AnyCancellable] = []
 
 struct ControlView: View {
-    @EnvironmentObject var historyRepository: FirestoreHistoryRepository
     @EnvironmentObject var gameManager: GameManager
-
-    // Note:
-    // 仕様かバグか判断がつかないので暫定対処（beta 6）❗
-    
-    // https://qiita.com/usk2000/items/1f8038dedf633a31dd78
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var network: NetworkMonitor
-    
     @EnvironmentObject var boardStore: BoardStore
-    
-    @State var isPresentedListSheet = false
+    @EnvironmentObject var applicationRouter: ApplicationRouter
+
+    @State var presentedSheetSelect = false
     
     // MARK: View
     
@@ -46,14 +44,13 @@ struct ControlView: View {
 
                 Spacer()
                 
-                SheetButton(by: $isPresentedListSheet) {
+                SheetButton(by: $presentedSheetSelect) {
                     Image(systemName: "list.bullet")
                 } content: {
-                    BoardSelectView(boardStore: boardStore, isPresented: $isPresentedListSheet)
-                        // 今回もとりあえず再現するか待つ。（beta 6）✅
-                        // .environmentObject(setting)
-                        // .environmentObject(authentication)
-                        // .environmentObject(network)
+                    PatternSelectSheetView(presented: $presentedSheetSelect)
+                        .environmentObject(gameManager)
+                        .environmentObject(authentication)
+                        .environmentObject(boardStore)
                 }
 
                 ActionMenuButton {
@@ -64,6 +61,15 @@ struct ControlView: View {
             }
             .buttonStyle(ButtonStyleCircle())
         }
+        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 }, perform: didOpenPatternURL)
+    }
+    
+    private func didOpenPatternURL(url: URL) {
+        gameManager.setPattern(from: url)
+            .sink {
+                self.presentedSheetSelect = false
+            }
+            .store(in: &cancellables)
     }
     
     private func playButton() -> some View {

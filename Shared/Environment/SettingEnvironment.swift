@@ -21,7 +21,7 @@ final class SettingEnvironment: ObservableObject {
     @Published var boardSize: Int
     @Published var animationSpeed: Double
     @Published var zoomLevel: Int
-    @Published var boardSelectDisplayStyle: BoardSelectStyle
+    @Published var boardSelectDisplayStyle: PatternSelectStyle
     @Published var isFilterByStared: Bool
 
     #if os(iOS)

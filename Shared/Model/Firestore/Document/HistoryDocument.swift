@@ -8,25 +8,27 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct HistoryDocument: Codable {
-    @DocumentID      var id: String!
-    @ServerTimestamp var createdAt: Date?
-    var boardReference: DocumentReference
+struct HistoryDocument: Codable, PatternIdentifiable {
+    
+    @DocumentID
+    var documentID: String!
 
-    // MARK: Resolved after decoded
     var reference: DocumentReference!
-    var board: BoardDocument!
+
+    @ServerTimestamp
+    var updateAt: Date?
+
+    var patternID: String { documentID }
+
+    init() {}
 
     enum CodingKeys: CodingKey {
-        case id
-        case boardReference
-        case createdAt
+        case documentID
+        case updateAt
     }
-    
-    init(boardReference: DocumentReference) {
-        self.boardReference = boardReference
-    }
-    
+}
+
+extension HistoryDocument {
     init(snapshot: DocumentSnapshot) {
         var document = try! snapshot.data(as: HistoryDocument.self)!
         document.reference = snapshot.reference
