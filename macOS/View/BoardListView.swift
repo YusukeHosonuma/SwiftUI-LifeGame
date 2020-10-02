@@ -62,11 +62,13 @@ struct BoardListView: View {
                     didTapItem: didTapItem,
                     didToggleStar: didToggleStar
                 )
-
-                Button("Cancel", action: patternSelectManager.cancel)
-                    .padding()
             }
             .padding()
+        }
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel", action: patternSelectManager.cancel)
+            }
         }
     }
     
@@ -81,8 +83,8 @@ struct BoardListView: View {
     }
 }
 
-//struct BoardListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BoardListView(dismiss: {})
-//    }
-//}
+struct BoardListView_Previews: PreviewProvider {
+    static var previews: some View {
+        BoardListView(dismiss: {})
+    }
+}

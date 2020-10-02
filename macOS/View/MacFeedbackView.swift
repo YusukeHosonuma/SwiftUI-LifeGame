@@ -63,14 +63,16 @@ struct MacFeedbackView: View {
                     }
                 }
             }
-            
-            HStack {
-                Button("Cancel", action: dismiss)
-                Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
                 Button("Continue") {
                     presentedAlert = .sendConfirm
                 }
                 .enabled(feedbackManager.isValid())
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel", action: dismiss)
             }
         }
         .alert(item: $presentedAlert) { type in
