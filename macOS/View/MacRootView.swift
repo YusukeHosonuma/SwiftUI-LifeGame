@@ -58,7 +58,7 @@ struct MacRootView: View {
                     }
                     
                     ToolbarItem(placement: .navigation) {
-                        IconButton(systemName: "square.grid.2x2.fill") {
+                        IconButton(systemName: "list.bullet") {
                             presentedSheet = .boardSelect
                         }
                     }
