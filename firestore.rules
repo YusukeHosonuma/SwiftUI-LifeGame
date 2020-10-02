@@ -6,7 +6,7 @@ service cloud.firestore {
     }
 
     match /feedbacks/{doc} {
-      allow create;
+      allow create: if request.auth.uid != null;
     }
 
     match /patternIndex/{index} {
