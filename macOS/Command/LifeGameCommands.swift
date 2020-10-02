@@ -85,7 +85,7 @@ struct LifeGameCommands: Commands {
     
     private func open() {
         guard let board = fileManager.open() else { return }
-        gameManager.setBoard(board: board)
+        gameManager.setBoard(board)
     }
     
     // TODO: 開発用のメニューだから消せるはず

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701EF9D62526AA5B00CA9E07 /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568CA02251587C50047ADC9 /* ApplicationRouter.swift */; };
 		E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A975B124F680080020FA06 /* BoardGridImage.swift */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
@@ -1471,6 +1472,7 @@
 				E53EC60E24E6ACEE0035AD58 /* Functons.swift in Sources */,
 				E50DF85C24F903F800ED26D8 /* AppKitWrapper.swift in Sources */,
 				E573BD8224D053F90096BF75 /* LifeGameCommands.swift in Sources */,
+				701EF9D62526AA5B00CA9E07 /* ApplicationRouter.swift in Sources */,
 				E518C89424E3684A00B02027 /* UserDefaultSettingGroup.swift in Sources */,
 				E57FE79324F37F96009D8677 /* AllBoardSelectView.swift in Sources */,
 				E57366A02514324A00EC7C1A /* Web.swift in Sources */,

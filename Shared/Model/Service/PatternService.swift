@@ -86,9 +86,9 @@ final class PatternService {
         guard let staredRepository = staredRepository else { return }
         
         if item.stared {
-            staredRepository.setData(StaredDocument(patternID: item.patternID))
-        } else {
             staredRepository.delete(by: item.patternID)
+        } else {
+            staredRepository.setData(StaredDocument(patternID: item.patternID))
         }
     }
 

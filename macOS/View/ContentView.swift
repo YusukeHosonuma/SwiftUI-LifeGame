@@ -13,7 +13,8 @@ struct ContentView: View {
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var boardManager: BoardManager
     @EnvironmentObject var authentication: Authentication
-    @EnvironmentObject var patternStore: PatternSelectManager
+    
+    @StateObject var patternSelectManager: PatternSelectManager = .init()
 
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct ContentView: View {
                         
                         PatternGridListView(
                             style: .horizontal,
-                            patternURLs: patternStore.historyURLs,
+                            patternURLs: patternSelectManager.historyURLs,
                             didTapItem: didTapItem,
                             didToggleStar: didToggleStar
                         )
@@ -58,13 +59,11 @@ struct ContentView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        // TODO:
-        patternStore.recordHistory(patternID: item.patternID)
-        gameManager.setBoard(board: item.board)
+        patternSelectManager.select(item: item)
     }
     
     private func didToggleStar(item: PatternItem) {
-        patternStore.toggleStar(item: item)
+        patternSelectManager.toggleStar(item: item)
     }
 }
 

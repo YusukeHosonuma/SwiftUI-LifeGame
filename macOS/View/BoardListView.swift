@@ -14,23 +14,22 @@ struct BoardListView: View {
     
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var authentication: Authentication
-    @EnvironmentObject var boardStore: BoardStore
     @EnvironmentObject var gameManager: GameManager
-    @EnvironmentObject var patternStore: PatternSelectManager
  
-    // MARK: Inputs
-    
-    let dismiss: () -> Void
-    
     // MARK: Local
-
+    
+    @StateObject var patternSelectManager: PatternSelectManager
     @State var selectionCategory: Set<PatternCategory> = [.agar]
 
+    init(dismiss: @escaping () -> Void) {
+        _patternSelectManager = StateObject(wrappedValue: .init(presented: .init(get: { true }, set: { _ in dismiss() })))
+    }
+    
     // MARK: Views
     
     var patternURLs: [URL] {
         guard let category = selectionCategory.first else { return [] }
-        return patternStore.urlsByCategory[category] ?? []
+        return patternSelectManager.urlsByCategory[category] ?? []
     }
 
     var body: some View {
@@ -64,7 +63,7 @@ struct BoardListView: View {
                     didToggleStar: didToggleStar
                 )
 
-                Button("Cancel", action: dismiss)
+                Button("Cancel", action: patternSelectManager.cancel)
                     .padding()
             }
             .padding()
@@ -74,18 +73,16 @@ struct BoardListView: View {
     // MARK: Action
     
     private func didTapItem(item: PatternItem) {
-        patternStore.recordHistory(patternID: item.patternID)
-        gameManager.setBoard(board: item.board)
-        dismiss()
+        patternSelectManager.select(item: item)
     }
     
     private func didToggleStar(item: PatternItem) {
-        patternStore.toggleStar(item: item)
+        patternSelectManager.toggleStar(item: item)
     }
 }
 
-struct BoardListView_Previews: PreviewProvider {
-    static var previews: some View {
-        BoardListView(dismiss: {})
-    }
-}
+//struct BoardListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BoardListView(dismiss: {})
+//    }
+//}

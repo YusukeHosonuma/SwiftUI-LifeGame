@@ -19,9 +19,9 @@ final class PatternSelectManager: ObservableObject {
     private let patternService: PatternService = .shared
     private let gameManager: GameManager = .shared
     private var cancellables: [AnyCancellable] = []
-    private var presented: Binding<Bool>
+    private var presented: Binding<Bool>?
     
-    init(presented: Binding<Bool>) {
+    init(presented: Binding<Bool>? = nil) {
         self.presented = presented
         authentication.$isSignIn
             .sink { [weak self] _ in
@@ -36,11 +36,11 @@ final class PatternSelectManager: ObservableObject {
 
     func select(item: PatternItem) {
         gameManager.setPattern(item)
-        presented.wrappedValue = false
+        presented?.wrappedValue = false
     }
     
     func cancel() {
-        presented.wrappedValue = false
+        presented?.wrappedValue = false
     }
     
     // MARK: Private
