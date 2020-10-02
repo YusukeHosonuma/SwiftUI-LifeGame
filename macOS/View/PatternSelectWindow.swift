@@ -1,5 +1,5 @@
 //
-//  BoardListView.swift
+//  PatternSelectWindow.swift
 //  LifeGameApp (macOS)
 //
 //  Created by Yusuke Hosonuma on 2020/08/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import LifeGame
 
-struct BoardListView: View {
+struct PatternSelectWindow: View {
     
     // MARK: Environments
     
@@ -19,7 +19,7 @@ struct BoardListView: View {
     // MARK: Local
     
     @StateObject var patternSelectManager: PatternSelectManager
-    @State var selectionCategory: Set<PatternCategory> = [.agar]
+    @State var selectionItem: String? = "All"
 
     init(dismiss: @escaping () -> Void) {
         _patternSelectManager = StateObject(wrappedValue: .init(presented: .init(get: { true }, set: { _ in dismiss() })))
@@ -28,13 +28,22 @@ struct BoardListView: View {
     // MARK: Views
     
     var patternURLs: [URL] {
-        guard let category = selectionCategory.first else { return [] }
-        return patternSelectManager.urlsByCategory[category] ?? []
+        guard let item = selectionItem else { return [] }
+        
+        if let category = PatternCategory(rawValue: item) {
+            return patternSelectManager.urlsByCategory[category] ?? []
+        } else {
+            return patternSelectManager.allURLs
+        }
     }
 
+    var navigationItmes: [String] {
+        ["All"] + PatternCategory.allCases.map(\.rawValue)
+    }
+    
     var body: some View {
         NavigationView {
-            List(selection: $selectionCategory) {
+            List(selection: $selectionItem) {
                 
                 // TODO: 現時点ではスターによるフィルタリングは機能していないので、そのうち実装する。
                 Section(header: Text("Search options")) {
@@ -42,10 +51,12 @@ struct BoardListView: View {
                         .enabled(authentication.isSignIn)
                 }
 
+                // Note:
+                // - 初期表示時に選択されている"All"がきれいにハイライトされない。（macOS beta 9）
+                // - Cmd + Click などで未選択状態にできてしまう。
                 Section {
-                    ForEach(PatternCategory.allCases) { category in
-                        Text(category.rawValue)
-                            .tag(category)
+                    ForEach(navigationItmes, id: \.self) { name in
+                        Text(name).tag(name)
                     }
                 }
             }
@@ -85,6 +96,6 @@ struct BoardListView: View {
 
 struct BoardListView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardListView(dismiss: {})
+        PatternSelectWindow(dismiss: {})
     }
 }

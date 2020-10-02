@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MacFeedbackView: View {
+struct FeedbackWindow: View {
     
     // MARK: Inputs
     

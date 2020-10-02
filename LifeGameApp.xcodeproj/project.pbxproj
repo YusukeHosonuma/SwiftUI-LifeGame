@@ -161,7 +161,7 @@
 		E57F07B724F2725E0057B2D1 /* MacSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F07B624F2725E0057B2D1 /* MacSidebar.swift */; };
 		E57FE78D24F36C61009D8677 /* BoardSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* BoardSelectStyle.swift */; };
 		E57FE78E24F36C76009D8677 /* BoardSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6EB1324DFF27C0012E911 /* BoardSelectCell.swift */; };
-		E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE78F24F36F66009D8677 /* BoardListView.swift */; };
+		E57FE79024F36F66009D8677 /* PatternSelectWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */; };
 		E57FE79224F37F96009D8677 /* AllBoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */; };
 		E57FE79324F37F96009D8677 /* AllBoardSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */; };
 		E580AA6D24E12F34007C60F1 /* BoardPresetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */; };
@@ -203,7 +203,7 @@
 		E5B9BFC824F617AC001CC1FA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC724F617AC001CC1FA /* FirebaseCore */; };
 		E5B9BFCA24F617AC001CC1FA /* Firebase in Frameworks */ = {isa = PBXBuildFile; productRef = E5B9BFC924F617AC001CC1FA /* Firebase */; };
 		E5BA30B624BEE444002D0564 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = E5BA30B524BEE444002D0564 /* LifeGame */; };
-		E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526724F4951500AAE321 /* MacFeedbackView.swift */; };
+		E5C2526824F4951500AAE321 /* FeedbackWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526724F4951500AAE321 /* FeedbackWindow.swift */; };
 		E5C2526B24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */; };
 		E5C2526C24F49D2F00AAE321 /* FeedbackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */; };
 		E5C2526D24F4A7F900AAE321 /* AppTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FD74C24F20917002981F4 /* AppTextEditor.swift */; };
@@ -370,7 +370,7 @@
 		E577FCD425123D74008202D3 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		E57F07B324F267720057B2D1 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		E57F07B624F2725E0057B2D1 /* MacSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSidebar.swift; sourceTree = "<group>"; };
-		E57FE78F24F36F66009D8677 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
+		E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSelectWindow.swift; sourceTree = "<group>"; };
 		E57FE79124F37F96009D8677 /* AllBoardSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBoardSelectView.swift; sourceTree = "<group>"; };
 		E580AA6C24E12F34007C60F1 /* BoardPresetFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPresetFile.swift; sourceTree = "<group>"; };
 		E580AAB724E14759007C60F1 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		E5B0572724CC3465005EE1AA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E5B706D324ED4DE500787B82 /* SheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetButton.swift; sourceTree = "<group>"; };
 		E5BA30A924BEE073002D0564 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
-		E5C2526724F4951500AAE321 /* MacFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFeedbackView.swift; sourceTree = "<group>"; };
+		E5C2526724F4951500AAE321 /* FeedbackWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackWindow.swift; sourceTree = "<group>"; };
 		E5C2526A24F49D2F00AAE321 /* FeedbackAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAlert.swift; sourceTree = "<group>"; };
 		E5C8D5BE24E8D49C005DB0FC /* UIImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapper.swift; sourceTree = "<group>"; };
 		E5C8D5C024E8E503005DB0FC /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
@@ -782,9 +782,9 @@
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E57F07B624F2725E0057B2D1 /* MacSidebar.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
-				E57FE78F24F36F66009D8677 /* BoardListView.swift */,
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
-				E5C2526724F4951500AAE321 /* MacFeedbackView.swift */,
+				E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */,
+				E5C2526724F4951500AAE321 /* FeedbackWindow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1418,7 +1418,7 @@
 				E50DF85D24F9065A00ED26D8 /* ScaleChangeButton.swift in Sources */,
 				E5A41B41250B2E70007235C2 /* PatternDocument.swift in Sources */,
 				E5261AAC24F33F1800218CDD /* GameManager.swift in Sources */,
-				E57FE79024F36F66009D8677 /* BoardListView.swift in Sources */,
+				E57FE79024F36F66009D8677 /* PatternSelectWindow.swift in Sources */,
 				E518213124CC27CC00ABD16B /* SettingEnvironment.swift in Sources */,
 				E526A07524EAB08400D76ECD /* PatternItem.swift in Sources */,
 				E57F07B224F267470057B2D1 /* SignInView.swift in Sources */,
@@ -1432,7 +1432,7 @@
 				E58D5F4A24E782C6000A0345 /* NetworkMonitor.swift in Sources */,
 				E5FA934724C05F5100229AAA /* ButtonStyleRounded.swift in Sources */,
 				E54A993224EA725F00298388 /* FirestoreStaredRepository.swift in Sources */,
-				E5C2526824F4951500AAE321 /* MacFeedbackView.swift in Sources */,
+				E5C2526824F4951500AAE321 /* FeedbackWindow.swift in Sources */,
 				E571536D24D51BD8003B4C9E /* UserDefaultSetting.swift in Sources */,
 				E57366B425143B2400EC7C1A /* PatternLoader.swift in Sources */,
 				E5B706D724ED4E0B00787B82 /* Modifiers.swift in Sources */,
