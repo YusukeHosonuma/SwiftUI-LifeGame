@@ -81,6 +81,10 @@ struct MacRootView: View {
                     }
                     
                     ToolbarItem(placement: .status) {
+                        IconButton(systemName: "square.grid.2x2.fill", action: gameManager.generateRandom)
+                    }
+                    
+                    ToolbarItem(placement: .status) {
                         IconButton(systemName: "trash", action: gameManager.clear)
                     }
 
