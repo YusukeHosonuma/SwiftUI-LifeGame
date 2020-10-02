@@ -10,6 +10,7 @@
 		701EF9D62526AA5B00CA9E07 /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568CA02251587C50047ADC9 /* ApplicationRouter.swift */; };
 		701EFA182526EBAA00CA9E07 /* PatternSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D612DA24E0554400C3E065 /* PatternSelectStyle.swift */; };
 		701EFA1E2526EBBA00CA9E07 /* PatternSelectContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54A992E24EA12F700298388 /* PatternSelectContextMenu.swift */; };
+		70B965D42527340E00CF63A3 /* PatternHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B965D32527340E00CF63A3 /* PatternHistoryView.swift */; };
 		E5059AEB24F723C3005C7EE6 /* BoardRenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53EC5D324E60A7B0035AD58 /* BoardRenderImage.swift */; };
 		E5059AEC24F72443005C7EE6 /* BoardGridImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A975B124F680080020FA06 /* BoardGridImage.swift */; };
 		E507481F24CD4E45003811B5 /* HCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507481E24CD4E45003811B5 /* HCenter.swift */; };
@@ -267,6 +268,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		70B965D32527340E00CF63A3 /* PatternHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternHistoryView.swift; sourceTree = "<group>"; };
 		E507481E24CD4E45003811B5 /* HCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCenter.swift; sourceTree = "<group>"; };
 		E507EBED24CC1106002A6EC4 /* SettingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConfigView.swift; sourceTree = "<group>"; };
 		E50DF85B24F903F800ED26D8 /* AppKitWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitWrapper.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				E55F7AA524DD0C1000DBC175 /* MacRootView.swift */,
 				E57F07B624F2725E0057B2D1 /* MacSidebar.swift */,
 				E55F7AA724DD0D9300DBC175 /* ContentView.swift */,
+				70B965D32527340E00CF63A3 /* PatternHistoryView.swift */,
 				E5604AA024CC3ED600EA59C3 /* PreferenceView.swift */,
 				E57FE78F24F36F66009D8677 /* PatternSelectWindow.swift */,
 				E5C2526724F4951500AAE321 /* FeedbackWindow.swift */,
@@ -1369,6 +1372,7 @@
 				E5CA661324E92C0F00D6D59F /* FirestoreHistoryRepository.swift in Sources */,
 				E5D9F27424BEBDBD009A526B /* Application.swift in Sources */,
 				E58D5F0E24E7698A000A0345 /* NWPathMonitor+Publisher.swift in Sources */,
+				70B965D42527340E00CF63A3 /* PatternHistoryView.swift in Sources */,
 				E5B0572924CC3465005EE1AA /* CellView.swift in Sources */,
 				E50E0CA1250CE02500823980 /* FirestorePatternIndexRepository.swift in Sources */,
 				E50E0CA6250CE19700823980 /* PatternService.swift in Sources */,

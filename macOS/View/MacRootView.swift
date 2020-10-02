@@ -51,52 +51,56 @@ struct MacRootView: View {
             }
             .navigationTitle(title)
             .toolbar {
-                Group {
-                    ToolbarItem(placement: .navigation) {
-                        IconButton(systemName: "sidebar.left", action: AppKitWrapper.toggleSidebar)
-                            .keyboardShortcut("b", modifiers: .command)
-                    }
-                    
-                    ToolbarItem(placement: .navigation) {
-                        IconButton(systemName: "square.grid.2x2.fill") {
-                            presentedSheet = .boardSelect
-                        }
-                    }
+                ToolbarItemGroup(placement: .navigation) {
+                    IconButton(
+                        systemName: "sidebar.left",
+                        action: AppKitWrapper.toggleSidebar
+                    )
+                    .keyboardShortcut("b", modifiers: .command)
+
+                    IconButton(
+                        systemName: "list.bullet",
+                        action: { presentedSheet = .boardSelect }
+                    )
                 }
                 
-                Group {
-                    ToolbarItem(placement: .status) {
-                        IconButton(systemName: "play.fill", action: gameManager.play)
-                            .enabled(gameManager.state.canPlay)
-                    }
+                ToolbarItemGroup(placement: .status) {
+                    IconButton(
+                        systemName: "play.fill",
+                        action: gameManager.play
+                    )
+                    .enabled(gameManager.state.canPlay)
                     
-                    ToolbarItem(placement: .status) {
-                        IconButton(systemName: "stop.fill", action: gameManager.stop)
-                            .enabled(gameManager.state.canStop)
-                    }
+                    IconButton(
+                        systemName: "stop.fill",
+                        action: gameManager.stop
+                    )
+                    .enabled(gameManager.state.canStop)
                     
-                    ToolbarItem(placement: .status) {
-                        IconButton(systemName: "arrow.right.to.line.alt", action: gameManager.next)
-                            .enabled(gameManager.state.canNext)
-                    }
+                    IconButton(
+                        systemName: "arrow.right.to.line.alt",
+                        action: gameManager.next
+                    )
+                    .enabled(gameManager.state.canNext)
                     
-                    ToolbarItem(placement: .status) {
-                        IconButton(systemName: "trash", action: gameManager.clear)
-                    }
-
-                    ToolbarItem(placement: .status) {
-                        ScaleChangeButton(scale: $gameManager.scale)
-                    }
-
-                    ToolbarItem(placement: .status) {
-                        BoardSizePicker(selection: $setting.boardSize)
-                    }
-
-                    ToolbarItem(placement: .status) {
-                        IconButton(systemName: "exclamationmark.bubble") {
-                            presentedSheet = .feedback
-                        }
-                    }
+                    IconButton(
+                        systemName: "square.grid.2x2.fill",
+                        action: gameManager.generateRandom
+                    )
+                    
+                    IconButton(
+                        systemName: "trash",
+                        action: gameManager.clear
+                    )
+                    
+                    ScaleChangeButton(scale: $gameManager.scale)
+                    
+                    BoardSizePicker(selection: $setting.boardSize)
+                    
+                    IconButton(
+                        systemName: "exclamationmark.bubble",
+                        action: { presentedSheet = .feedback }
+                    )
                 }
             }
         }

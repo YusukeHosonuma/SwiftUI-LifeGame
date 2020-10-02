@@ -14,6 +14,11 @@ import FirebaseFirestore
 // This service is designed by fail-safe,
 // therefore some method call is return empty (publisher) that login is neeeded.
 
+struct PatternURL {
+    let url: URL
+    let stared: Bool
+}
+
 final class PatternService {
     static let shared = PatternService()
 
@@ -21,16 +26,22 @@ final class PatternService {
     private let patternIDRepository: FirestorePatternIndexRepository = .shared
     private var staredRepository: FirestoreStaredRepository? { authentication.repositories?.stared }
     private var historyRepository: FirestoreHistoryRepository? { authentication.repositories?.history }
-
-    func patternURLs(by type: String? = nil) -> AnyPublisher<[URL], Never> {
+    
+    func patternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         patternIDRepository
             .all
-            .map { document in
+            .map { document -> [URL] in
                 if let type = type {
                     // TODO: カテゴリ単位でドキュメントを分けているので、そこから個別に取得したほうが高速（になるはず）
                     return document.data.filter { $0.patternType == type }.map(\.jsonURL)
                 } else {
                     return document.data.map(\.jsonURL)
+                }
+            }
+            .combineLatest(listenStaredPatternURLs())
+            .map { allURLs, staredURLs in
+                allURLs.map {
+                    PatternURL(url: $0, stared: staredURLs.contains($0))
                 }
             }
             .eraseToAnyPublisher()
@@ -61,14 +72,16 @@ final class PatternService {
     
     // MARK: - Star
     
-    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[URL], Never> {
+    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         guard let staredRepository = staredRepository else {
             return Just([]).eraseToAnyPublisher()
         }
 
         return staredRepository
             .all()
-            .map { $0.map(\.jsonURL) }
+            .map { urls in
+                urls.map { PatternURL(url: $0.jsonURL, stared: true) }
+            }
             .eraseToAnyPublisher()
     }
     

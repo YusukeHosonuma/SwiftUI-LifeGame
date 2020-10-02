@@ -25,55 +25,54 @@ struct PatternSelectWindow: View {
         _patternSelectManager = .init(wrappedValue: .init(dismiss: dismiss))
     }
     
-    // MARK: Views
-    
+    // TODO: iOS版にもフィルタ機能を導入したら、PatternSelectManager に移すのが良いかもしれない。
     var patternURLs: [URL] {
         guard let item = selectionItem else { return [] }
         
+        let urls: [PatternURL]
+        
         if let category = PatternCategory(rawValue: item) {
-            return patternSelectManager.urlsByCategory[category] ?? []
+            urls = patternSelectManager.urlsByCategory[category] ?? []
         } else {
-            return patternSelectManager.allURLs
+            urls = patternSelectManager.allURLs
         }
+        
+        return urls
+            .filter(when: setting.isFilterByStared, isIncluded: \.stared)
+            .map(\.url)
     }
-
-    var navigationItmes: [String] {
-        ["All"] + PatternCategory.allCases.map(\.rawValue)
-    }
+    
+    // MARK: Views
     
     var body: some View {
         NavigationView {
             List(selection: $selectionItem) {
-                
-                // TODO: 現時点ではスターによるフィルタリングは機能していないので、そのうち実装する。
                 Section(header: Text("Search options")) {
-                    Toggle("Star only", isOn: $setting.isFilterByStared.animation())
+                    Toggle("Stared", isOn: $setting.isFilterByStared.animation())
                         .enabled(authentication.isSignIn)
+                }
+                
+                Section(header: Text("General")) {
+                    Text("All").tag("All")
                 }
 
                 // Note:
                 // - 初期表示時に選択されている"All"がきれいにハイライトされない。（macOS beta 9）
                 // - Cmd + Click などで未選択状態にできてしまう。
-                Section {
-                    ForEach(navigationItmes, id: \.self) { name in
+                Section(header: Text("Category")) {
+                    ForEach(PatternCategory.allCases.map(\.rawValue), id: \.self) { name in
                         Text(name).tag(name)
                     }
                 }
             }
             .listStyle(SidebarListStyle())
             
-            VStack {
-                Text("Select board")
-                    .font(.title)
-                    .padding()
-                
-                PatternGridListView(
-                    style: .grid,
-                    patternURLs: patternURLs,
-                    didTapItem: didTapItem,
-                    didToggleStar: didToggleStar
-                )
-            }
+            PatternGridListView(
+                style: .grid,
+                patternURLs: patternURLs,
+                didTapItem: didTapItem,
+                didToggleStar: didToggleStar
+            )
             .padding()
         }
         .toolbar {

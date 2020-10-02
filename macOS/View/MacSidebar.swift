@@ -18,11 +18,6 @@ struct MacSidebar: View {
     
     var body: some View {
         List {
-            Section(header: Text("Presets")) {
-                Text("Random")
-                    .onTapGesture(perform: gameManager.generateRandom)
-            }
-
             Section(header: Text("Animation Speed")) {
                 Slider(value: $gameManager.speed, in: 0...1, onEditingChanged: gameManager.speedChanged)
             }

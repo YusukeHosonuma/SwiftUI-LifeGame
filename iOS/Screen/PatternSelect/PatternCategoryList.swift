@@ -24,11 +24,11 @@ struct PatternCategoryListView: View {
         .listStyle(GroupedListStyle())
     }
     
-    private func navigationLink(title: String, patternURLs: [URL]) -> some View {
+    private func navigationLink(title: String, patternURLs: [PatternURL]) -> some View {
         NavigationLink(title, destination:
             PatternGridListView(
                 style: .grid,
-                patternURLs: patternURLs,
+                patternURLs: patternURLs.map(\.url),
                 didTapItem: patternSelectManager.select,
                 didToggleStar: patternSelectManager.toggleStar
             )
