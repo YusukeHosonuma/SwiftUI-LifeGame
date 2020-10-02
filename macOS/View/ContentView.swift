@@ -18,8 +18,6 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            // Note:
-            // 履歴読み込み時に一部の表示が崩れる問題あり（Xcode beta 6 / macOS-beta 5）❗
             VStack {
                 if authentication.isSignIn {
                     VSplitView {

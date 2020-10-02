@@ -33,7 +33,7 @@ struct PatternGridLoadView: View {
                     didTap(board)
                 }
                 .contextMenu {
-                    BoardSelectContextMenu(
+                    PatternSelectContextMenu(
                         isStared: .init(get: { board.stared },
                                         set: { didSetStared(value: $0, board: board) })
                     )
