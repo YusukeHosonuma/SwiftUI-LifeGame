@@ -38,7 +38,7 @@ struct FeedbackDocument: Codable {
 
 extension FeedbackDocument {
     init(snapshot: DocumentSnapshot) {
-        var document = try! snapshot.data(as: Self.self)!
+        var document = try! snapshot.data(as: Self.self)
         document.reference = snapshot.reference
         self = document
     }

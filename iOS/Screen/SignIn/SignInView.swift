@@ -73,7 +73,7 @@ struct SignInView: View {
     }
 }
 
-struct SettingLoginView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView(isPresented: .constant(true))
             .environmentObject(Authentication(mockSignIn: false))
