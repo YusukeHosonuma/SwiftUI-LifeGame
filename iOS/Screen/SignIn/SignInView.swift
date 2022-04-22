@@ -73,6 +73,7 @@ struct SignInView: View {
     }
 }
 
+#if DEBUG
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView(isPresented: .constant(true))
@@ -91,3 +92,4 @@ struct SignInView_Previews: PreviewProvider {
             .preferredColorScheme(.light)
     }
 }
+#endif

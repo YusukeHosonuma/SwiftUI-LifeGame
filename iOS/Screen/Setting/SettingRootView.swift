@@ -67,6 +67,7 @@ struct SettingRootView: View {
     }
 }
 
+#if DEBUG
 struct SettingRootView_Previews: PreviewProvider {
     static var previews: some View {
         SettingRootView()
@@ -80,3 +81,4 @@ struct SettingRootView_Previews: PreviewProvider {
             .preferredColorScheme(.light)
     }
 }
+#endif
