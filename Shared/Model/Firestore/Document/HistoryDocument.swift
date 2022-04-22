@@ -30,7 +30,7 @@ struct HistoryDocument: Codable, PatternIdentifiable {
 
 extension HistoryDocument {
     init(snapshot: DocumentSnapshot) {
-        var document = try! snapshot.data(as: HistoryDocument.self)!
+        var document = try! snapshot.data(as: HistoryDocument.self)
         document.reference = snapshot.reference
         self = document
     }

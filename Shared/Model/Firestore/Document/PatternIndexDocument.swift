@@ -42,6 +42,6 @@ struct PatternIndexDocument: Codable {
 
 extension PatternIndexDocument {
     init(snapshot: DocumentSnapshot) {
-        self = try! snapshot.data(as: Self.self)!
+        self = try! snapshot.data(as: Self.self)
     }
 }
