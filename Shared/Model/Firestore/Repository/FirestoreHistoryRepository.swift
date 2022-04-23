@@ -60,7 +60,7 @@ final class FirestoreHistoryRepository {
         listenerRegistration = histories()
             .order(by: "updateAt", descending: true)
             .addSnapshotListener { (snapshot, error) in
-                guard let snapshot = snapshot else { fatalError() }
+                guard let snapshot = snapshot else { return }
 
                 let documents = snapshot.documents.map(HistoryDocument.init)
                 self.publisher.value = documents
