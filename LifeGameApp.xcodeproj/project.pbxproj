@@ -219,6 +219,8 @@
 		702AFBB72812CC6400AAC024 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBAB2812CC6400AAC024 /* ContentView.swift */; };
 		702AFBB82812CC6400AAC024 /* PatternHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBAC2812CC6400AAC024 /* PatternHistoryView.swift */; };
 		702AFBB92812CC6400AAC024 /* MacSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBAD2812CC6400AAC024 /* MacSidebar.swift */; };
+		705587692813964B002C3147 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 705587682813964B002C3147 /* FirebaseCrashlytics */; };
+		7055876D28139A23002C3147 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7055876C28139A23002C3147 /* FirebaseCrashlytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -369,6 +371,7 @@
 			files = (
 				702AF9ED2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				702AF9E82812B74100AAC024 /* LifeGame in Frameworks */,
+				705587692813964B002C3147 /* FirebaseCrashlytics in Frameworks */,
 				702AF9EB2812B7C700AAC024 /* FirebaseFirestore in Frameworks */,
 				702AFB0A2812B9B500AAC024 /* FirebaseAuth in Frameworks */,
 			);
@@ -380,6 +383,7 @@
 			files = (
 				702AFB2A2812BF2A00AAC024 /* LifeGame in Frameworks */,
 				702AFB302812BF5300AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				7055876D28139A23002C3147 /* FirebaseCrashlytics in Frameworks */,
 				702AFB2C2812BF4800AAC024 /* FirebaseAuth in Frameworks */,
 				702AFB2E2812BF5300AAC024 /* FirebaseFirestore in Frameworks */,
 			);
@@ -916,6 +920,7 @@
 				702AF9CC2812B6D100AAC024 /* Frameworks */,
 				702AF9CD2812B6D100AAC024 /* Resources */,
 				702AFB4E2812C5A700AAC024 /* Embed App Extensions */,
+				7055876B281397D2002C3147 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -928,6 +933,7 @@
 				702AF9EA2812B7C700AAC024 /* FirebaseFirestore */,
 				702AF9EC2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta */,
 				702AFB092812B9B500AAC024 /* FirebaseAuth */,
+				705587682813964B002C3147 /* FirebaseCrashlytics */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = 702AF9CF2812B6D100AAC024 /* LifeGameApp.app */;
@@ -940,6 +946,7 @@
 				702AF9D12812B6D200AAC024 /* Sources */,
 				702AF9D22812B6D200AAC024 /* Frameworks */,
 				702AF9D32812B6D200AAC024 /* Resources */,
+				7055876A28139778002C3147 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -951,6 +958,7 @@
 				702AFB2B2812BF4800AAC024 /* FirebaseAuth */,
 				702AFB2D2812BF5300AAC024 /* FirebaseFirestore */,
 				702AFB2F2812BF5300AAC024 /* FirebaseFirestoreSwift-Beta */,
+				7055876C28139A23002C3147 /* FirebaseCrashlytics */,
 			);
 			productName = "LifeGameApp (macOS)";
 			productReference = 702AF9D52812B6D200AAC024 /* LifeGameApp.app */;
@@ -1053,6 +1061,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7055876A28139778002C3147 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		7055876B281397D2002C3147 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		702AF9CB2812B6D100AAC024 /* Sources */ = {
@@ -1311,7 +1362,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1693,6 +1744,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */;
 			productName = LifeGame;
+		};
+		705587682813964B002C3147 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		7055876C28139A23002C3147 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
