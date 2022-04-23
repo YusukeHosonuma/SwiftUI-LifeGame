@@ -35,20 +35,23 @@ struct SettingConfigView: View {
                 }
             }
 
-            Section(header: Text("Background Image")) {
-                HCenter {
-                    if let _ = setting.backgroundImage {
-                        Button("Clear", action: clearBackgroundImage)
-                    } else {
-                        Button("Select...", action: showPhotoPicker)
-                    }
-                }
-                .sheet(isPresented: $isPresentedPhotoPicker) {
-                    PhotoPicker(configuration: configuration,
-                                isPresented: $isPresentedPhotoPicker,
-                                selectedImage: $setting.backgroundImage)
-                }
-            }
+            //
+            // FIXME: ⚠️ Not restore when re-launch app.
+            //
+            // Section(header: Text("Background Image")) {
+            //     HCenter {
+            //         if let _ = setting.backgroundImage {
+            //             Button("Clear", action: clearBackgroundImage)
+            //         } else {
+            //             Button("Select...", action: showPhotoPicker)
+            //         }
+            //     }
+            //     .sheet(isPresented: $isPresentedPhotoPicker) {
+            //         PhotoPicker(configuration: configuration,
+            //                     isPresented: $isPresentedPhotoPicker,
+            //                     selectedImage: $setting.backgroundImage)
+            //     }
+            // }
             
             Section {
                 HCenter {
