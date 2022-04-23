@@ -27,7 +27,7 @@ final class FirestoreStaredRepository {
         self.user = user
         stared
             .addSnapshotListener { (snapshot, error) in
-                guard let snapshot = snapshot else { fatalError() }
+                guard let snapshot = snapshot else { return }
                 let documents = snapshot.documents.map(StaredDocument.init)
                 self.publisher.value = documents
             }
