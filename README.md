@@ -8,18 +8,18 @@ The Conway's Game of Life that build with SwiftUI.
 
 ## Requirements
 
-- Xcode 12.2 (beta 2)
-- macOS Catalina
-  - **macOS Big Sur (beta 9) is required when build and run macOS app**
+- iOS 14+
+- macOS 11+
+- Xcode 13.3.1 (for development)
 
-## Development
+## Related Repository
 
-Open `LifeGameApp.xcodeproj` then build `LifeGameApp (iOS)` or `LifeGameApp (macOS)` scheme.  
-(Please change signing settings when neeeded)
-
-## Dependency
-
-- [YusukeHosonuma/LifeGame](https://github.com/YusukeHosonuma/LifeGame)
+- LifeGame core library
+  - [YusukeHosonuma/LifeGame](https://github.com/YusukeHosonuma/LifeGame)
+- Scraper for [LifeWiki](https://conwaylife.com/wiki/)
+  - [LifeWikiScraper](https://github.com/YusukeHosonuma/LifeWikiScraper)
+- Run-length encoding (RLE) library (used by [LifeWikiScraper](https://github.com/YusukeHosonuma/LifeWikiScraper))
+  - [SwiftRLE](https://github.com/YusukeHosonuma/SwiftRLE)
 
 ## Author
 
