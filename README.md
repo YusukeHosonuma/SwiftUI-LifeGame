@@ -15,7 +15,7 @@ The Conway's Game of Life that build with SwiftUI.
 ## Related Repository
 
 - LifeGame core library
-  - [YusukeHosonuma/LifeGame](https://github.com/YusukeHosonuma/LifeGame)
+  - [LifeGame](https://github.com/YusukeHosonuma/LifeGame)
 - Scraper for [LifeWiki](https://conwaylife.com/wiki/)
   - [LifeWikiScraper](https://github.com/YusukeHosonuma/LifeWikiScraper)
 - Run-length encoding (RLE) library (used by [LifeWikiScraper](https://github.com/YusukeHosonuma/LifeWikiScraper))
