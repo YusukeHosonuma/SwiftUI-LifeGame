@@ -45,7 +45,7 @@ struct LifeGameMacWidgetEntryView : View {
 
     var body: some View {
         VStack {
-            Text("Hello.")
+            Text("Hello!")
             Text(entry.date, style: .time)
         }
     }
