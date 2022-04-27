@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct PatternCategoryListView: View {
     @ObservedObject var patternSelectManager: PatternSelectManager

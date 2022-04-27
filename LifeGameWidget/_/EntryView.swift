@@ -8,6 +8,7 @@
 import SwiftUI
 import WidgetKit
 
+
 struct EntryView : View {
     @Environment(\.widgetFamily) private var widgetFamily
     @Environment(\.colorScheme) private var colorScheme

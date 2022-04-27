@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Core
 
 struct UIImageWrapper: UserDefaultConvertible {
     var image: UIImage?

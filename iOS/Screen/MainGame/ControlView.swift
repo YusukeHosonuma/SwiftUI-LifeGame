@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Core
 
 // TODO: 🔍 View で cancellables を必要とされること自体、良くない兆候なのかもしれない。（コード的に問題はないが）
 private var cancellables: [AnyCancellable] = []

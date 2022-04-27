@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct SettingRootView: View {
     @EnvironmentObject var authentication: Authentication

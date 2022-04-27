@@ -38,7 +38,7 @@ public final class Authentication: ObservableObject {
     }
     
     #if DEBUG
-    init(mockSignIn: Bool) {
+    public init(mockSignIn: Bool) {
         isSignIn = mockSignIn
     }
     #endif

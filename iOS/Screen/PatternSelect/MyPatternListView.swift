@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct MyPatternListView: View {
     @EnvironmentObject var authentication: Authentication
