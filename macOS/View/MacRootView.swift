@@ -102,6 +102,7 @@ struct MacRootView: View {
                         systemName: "exclamationmark.bubble",
                         action: { presentedSheet = .feedback }
                     )
+                    .enabled(authentication.isSignIn)
                 }
             }
         }
