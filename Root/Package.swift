@@ -19,13 +19,13 @@ let package = Package(
     ],
     targets: [
         .target(name: "Core", dependencies: [
+            "LifeGame",
             .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
             .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
             .product(name: "FirebaseFirestoreSwift-Beta", package: "firebase-ios-sdk"),
         ]),
         .target(name: "WidgetCommon", dependencies: [
             "Core",
-            "LifeGame",
         ]),
     ]
 )
