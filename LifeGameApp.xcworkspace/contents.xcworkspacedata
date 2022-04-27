@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:WidgetCommon">
+      location = "group:/Users/yusuke/ghq/github.com/YusukeHosonuma/SwiftUI-LifeGame/Root">
    </FileRef>
    <FileRef
       location = "group:LifeGameApp.xcodeproj">
