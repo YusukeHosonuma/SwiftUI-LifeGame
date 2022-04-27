@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 extension PatternGridListView {
     enum Style {

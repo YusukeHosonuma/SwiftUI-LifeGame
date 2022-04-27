@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct SignInView: View {
     @EnvironmentObject var authentication: Authentication

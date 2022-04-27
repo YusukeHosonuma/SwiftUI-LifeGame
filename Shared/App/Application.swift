@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 import LifeGame
+import Core
 
 @main
 struct Application: App {

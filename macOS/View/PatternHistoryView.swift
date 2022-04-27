@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct PatternHistoryView: View {
     @StateObject private var manager: PatternSelectManager = .init()

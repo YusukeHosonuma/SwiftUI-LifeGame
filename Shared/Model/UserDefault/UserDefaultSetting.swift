@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 final class UserDefaultSetting {
     static let shared = UserDefaultSetting()

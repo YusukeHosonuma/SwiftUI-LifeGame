@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LifeGame
+import Core
 
 struct BoardContainerView: View {
     @EnvironmentObject var setting: SettingEnvironment

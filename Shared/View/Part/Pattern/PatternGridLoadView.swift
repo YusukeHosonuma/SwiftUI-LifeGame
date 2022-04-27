@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct PatternGridLoadView: View {
     @StateObject private var loader: PatternLoader

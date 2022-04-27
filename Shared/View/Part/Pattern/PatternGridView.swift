@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct PatternGridView: View {
     let board: PatternItem

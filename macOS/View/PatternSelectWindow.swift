@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LifeGame
+import Core
 
 struct PatternSelectWindow: View {
     
