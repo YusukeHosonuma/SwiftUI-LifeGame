@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Core
+import Combine
 
 extension MacRootView {
     private enum SheetType: Int, Identifiable {
@@ -17,17 +18,21 @@ extension MacRootView {
     }
 }
 
+// FIXME: 暫定対処（現状では開放されることがないので ObservableObject などに移す）
+private var cancellables: Set<AnyCancellable> = []
+
 struct MacRootView: View {
     @EnvironmentObject var gameManager: GameManager
     @EnvironmentObject var setting: SettingEnvironment
     @EnvironmentObject var fileManager: LifeGameFileManager
     @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var applicationRouter: ApplicationRouter
+
+    @State private var presentedSheet: SheetType?
 
     private var title: String {
         fileManager.latestURL?.lastPathComponent ?? "Untitled"
     }
-    
-    @State private var presentedSheet: SheetType?
 
     var body: some View {
         GeometryReader { geometry in
@@ -106,10 +111,19 @@ struct MacRootView: View {
                 }
             }
         }
+        .onReceive(applicationRouter.$didOpenPatteenURL.compactMap { $0 }, perform: didOpenPatternURL)
     }
     
     private func dismissSheet() {
         presentedSheet = nil
+    }
+    
+    private func didOpenPatternURL(url: URL) {
+        gameManager.setPattern(from: url)
+            .sink {
+                presentedSheet = nil
+            }
+            .store(in: &cancellables)
     }
 }
 
