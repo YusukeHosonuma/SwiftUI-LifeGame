@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import Foundation
+import Core
 
 final class PatternSelectManager: ObservableObject {
     typealias Handler = () -> Void

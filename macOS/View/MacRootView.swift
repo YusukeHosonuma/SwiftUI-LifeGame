@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 extension MacRootView {
     private enum SheetType: Int, Identifiable {

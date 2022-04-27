@@ -9,15 +9,15 @@ import SwiftUI
 
 private let Suite = "group.lifegame"
 
-final class UserDefaultSettingGroup {
-    static let shared = UserDefaultSettingGroup()
+final public class UserDefaultSettingGroup {
+    public static let shared = UserDefaultSettingGroup()
 
-    static let DefaultLightModeColor: Color = .black
-    static let DefaultDarkModeColor: Color = .white
+    public static let DefaultLightModeColor: Color = .black
+    public static let DefaultDarkModeColor: Color = .white
 
     @UserDefaultGroup(suite: Suite,  key: "lightModeColor", defaultValue: DefaultLightModeColor)
-    var lightModeColor: Color
+    public var lightModeColor: Color
 
     @UserDefaultGroup(suite: Suite,  key: "darkModeColor", defaultValue: DefaultDarkModeColor)
-    var darkModeColor: Color
+    public var darkModeColor: Color
 }

@@ -11,10 +11,10 @@ import LifeGame
 // Widgetのプレースホルダなど、固定時間での表示が望ましいケースで表示例として利用すること。
 // （Widget専用にしちゃってもよいかも？）
 
-enum BoardExample: CaseIterable {
-    struct Data {
-        var title: String
-        var board: Board<Cell>
+public enum BoardExample: CaseIterable {
+    public struct Data {
+        public var title: String
+        public var board: Board<Cell>
     }
     
     case butterfly
@@ -22,7 +22,7 @@ enum BoardExample: CaseIterable {
     case monolith
     case nebura
     
-    var data: Data {
+    public var data: Data {
         switch self {
         case .butterfly:
             return Data(

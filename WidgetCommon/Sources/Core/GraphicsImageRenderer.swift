@@ -11,10 +11,10 @@ import AppKit
 import UIKit
 #endif
 
-final class GraphicsImageRenderer {
-    let size: CGSize
+public final class GraphicsImageRenderer {
+    private let size: CGSize
     
-    init(size: CGSize) {
+    public init(size: CGSize) {
         self.size = size
     }
     

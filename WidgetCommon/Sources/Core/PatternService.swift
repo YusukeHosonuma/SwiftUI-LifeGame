@@ -14,20 +14,20 @@ import FirebaseFirestore
 // This service is designed by fail-safe,
 // therefore some method call is return empty (publisher) that login is neeeded.
 
-struct PatternURL {
-    let url: URL
-    let stared: Bool
+public struct PatternURL {
+    public let url: URL
+    public let stared: Bool
 }
 
-final class PatternService {
-    static let shared = PatternService()
+final public class PatternService {
+    public static let shared = PatternService()
 
     private let authentication: Authentication = .shared
     private let patternIDRepository: FirestorePatternIndexRepository = .shared
     private var staredRepository: FirestoreStaredRepository? { authentication.repositories?.stared }
     private var historyRepository: FirestoreHistoryRepository? { authentication.repositories?.history }
     
-    func patternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
+    public func patternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         patternIDRepository
             .all
             .map { document -> [URL] in
@@ -47,7 +47,7 @@ final class PatternService {
             .eraseToAnyPublisher()
     }
     
-    func fetch(from url: URL) -> AnyPublisher<PatternItem?, Never> {
+    public func fetch(from url: URL) -> AnyPublisher<PatternItem?, Never> {
         let patternPublisher = URLSession.shared
             .dataTaskPublisher(for: url)
             .retry(3)
@@ -72,7 +72,7 @@ final class PatternService {
     
     // MARK: - Star
     
-    func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
+    public func staredPatternURLs(by type: String? = nil) -> AnyPublisher<[PatternURL], Never> {
         guard let staredRepository = staredRepository else {
             return Just([]).eraseToAnyPublisher()
         }
@@ -85,7 +85,7 @@ final class PatternService {
             .eraseToAnyPublisher()
     }
     
-    func listenStaredPatternURLs() -> AnyPublisher<[URL], Never> {
+    public func listenStaredPatternURLs() -> AnyPublisher<[URL], Never> {
         guard let staredRepository = staredRepository else {
             return Just([]).eraseToAnyPublisher()
         }
@@ -96,7 +96,7 @@ final class PatternService {
             .eraseToAnyPublisher()
     }
     
-    func toggleStar(item: PatternItem) {
+    public func toggleStar(item: PatternItem) {
         guard let staredRepository = staredRepository else { return }
         
         if item.stared {
@@ -108,13 +108,13 @@ final class PatternService {
 
     // MARK: - History
     
-    func recordHistory(patternID: String) {
+    public func recordHistory(patternID: String) {
         guard let historyRepository = historyRepository else { return }
         
         historyRepository.setData(by: patternID, document: HistoryDocument())
     }
     
-    func listenHistoryPatternURLs() -> AnyPublisher<[URL], Never> {
+    public func listenHistoryPatternURLs() -> AnyPublisher<[URL], Never> {
         guard let historyRepository = historyRepository else {
             return Just([]).eraseToAnyPublisher()
         }

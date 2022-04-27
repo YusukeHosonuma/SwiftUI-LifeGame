@@ -8,6 +8,7 @@
 import SwiftUI
 import LifeGame
 import Combine
+import Core
 
 private let BaseInterval = 0.05
 

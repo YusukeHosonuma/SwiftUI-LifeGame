@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum Web {
-    static func patternJSONURL(patternID: String) -> URL {
+public enum Web {
+    public static func patternJSONURL(patternID: String) -> URL {
         URL(string: "https://lifegame-dev.web.app/pattern/\(patternID).json")!
     }
 }

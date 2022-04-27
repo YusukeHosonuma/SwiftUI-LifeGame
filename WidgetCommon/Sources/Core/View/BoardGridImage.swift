@@ -17,7 +17,7 @@ struct BoardGridImage: View {
     let cellRenderSize: Int
     let boardSize: Int
 
-    private let gridColor: CGColor = Color.gray.opacity(0.3).cgColor
+    private let gridColor: CGColor = Color.gray.opacity(0.3).toCGColor()
 
     var body: some View {
         Image(image: renderImage())

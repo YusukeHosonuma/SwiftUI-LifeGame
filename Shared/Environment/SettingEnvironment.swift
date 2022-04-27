@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Core
 
 // TODO: もう少しうまくやれそうな気もする。というかこのクラスが過剰になるのでは？
 //

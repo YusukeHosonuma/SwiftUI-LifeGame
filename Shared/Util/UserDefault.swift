@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 @propertyWrapper
 struct UserDefault<T> where T: UserDefaultConvertible {

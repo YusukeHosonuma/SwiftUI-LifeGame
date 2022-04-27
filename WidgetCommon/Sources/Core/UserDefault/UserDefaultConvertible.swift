@@ -8,51 +8,51 @@
 import Foundation
 import SwiftUI
 
-protocol UserDefaultConvertible {
+public protocol UserDefaultConvertible {
     init?(with object: Any)
     func object() -> Any?
 }
 
 extension Bool: UserDefaultConvertible {
-    init?(with object: Any) {
+    public init?(with object: Any) {
         guard let value = object as? Bool else { return nil }
         self = value
     }
     
-    func object() -> Any? {
+    public func object() -> Any? {
         self
     }
 }
 
 extension Int: UserDefaultConvertible {
-    init?(with object: Any) {
+    public init?(with object: Any) {
         guard let value = object as? Int else { return nil }
         self = value
     }
     
-    func object() -> Any? {
+    public func object() -> Any? {
         self
     }
 }
 
 extension Double: UserDefaultConvertible {
-    init?(with object: Any) {
+    public init?(with object: Any) {
         guard let value = object as? Double else { return nil }
         self = value
     }
     
-    func object() -> Any? {
+    public func object() -> Any? {
         self
     }
 }
 
 extension Color: UserDefaultConvertible {
-    init?(with object: Any) {
+    public init?(with object: Any) {
         guard let data = object as? Data, let color = Color(rawValue: data) else { return nil }
         self = color
     }
     
-    func object() -> Any? {
+    public func object() -> Any? {
         self.rawValue
     }
 }

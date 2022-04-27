@@ -18,38 +18,40 @@ private let cacheStorage = MemoryCacheStorage<XImage>()
 
 // TODO: 内部的に BoardRenderImage を利用するようにしたい。
 
-struct BoardThumbnailImage: View {
+public struct BoardThumbnailImage: View {
     @Environment(\.colorScheme) var colorScheme
     
     private let board: Board<Cell>
     private let cellColor: Color?
     private let cacheKey: String?
     
-    init(board: Board<Cell>, cellColor: Color? = nil, cacheKey: String? = nil) {
+    public init(board: Board<Cell>, cellColor: Color? = nil, cacheKey: String? = nil) {
         self.board = board.extended(by: .die, count: 1)
         self.cellColor = cellColor
         self.cacheKey = cacheKey
     }
     
-    var body: some View {
+    public var body: some View {
         Image(image: thumbnailImage)
             .antialiased(false)
             .resizable()
             .scaledToFit()
     }
     
+    // MARK: Private
+    
     private var fillColor: CGColor {
         if let color = cellColor {
-            return color.cgColor
+            return color.toCGColor()
         } else {
             return colorScheme == .dark
-                ? Color.white.cgColor
-                : Color.black.cgColor
+                ? Color.white.toCGColor()
+                : Color.black.toCGColor()
         }
     }
     
     private var gridColor: CGColor {
-        Color.gray.opacity(0.3).cgColor
+        Color.gray.opacity(0.3).toCGColor()
     }
     
     private var thumbnailImage: XImage {

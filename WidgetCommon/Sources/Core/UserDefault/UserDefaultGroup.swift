@@ -8,7 +8,7 @@
 import Foundation
 
 @propertyWrapper
-struct UserDefaultGroup<T> where T: UserDefaultConvertible {
+public struct UserDefaultGroup<T> where T: UserDefaultConvertible {
     let suite: String
     let key: String
     let defaultValue: T
@@ -19,7 +19,7 @@ struct UserDefaultGroup<T> where T: UserDefaultConvertible {
         self.suite = suite
     }
     
-    var wrappedValue: T {
+    public var wrappedValue: T {
         get {
             guard let anyValue = UserDefaults(suiteName: suite)!.value(forKey: key) else { return defaultValue }
             guard let value = T(with: anyValue) else { return defaultValue }

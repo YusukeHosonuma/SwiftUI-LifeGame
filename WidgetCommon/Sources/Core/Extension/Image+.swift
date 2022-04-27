@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Image {
+public extension Image {
     #if os(macOS)
     init(image: NSImage) {
         self = Image(nsImage: image)

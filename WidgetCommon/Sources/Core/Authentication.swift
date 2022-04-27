@@ -7,18 +7,18 @@
 
 import FirebaseAuth
 
-struct AuthenticationRepositories {
+public struct AuthenticationRepositories {
     let history: FirestoreHistoryRepository
     let stared: FirestoreStaredRepository
 }
 
-final class Authentication: ObservableObject {
+public final class Authentication: ObservableObject {
     
-    static let shared = Authentication()
+    public static let shared = Authentication()
     
-    @Published var isSignIn: Bool = false
-    @Published var user: User? // TODO: 独自の型に変更したい
-    @Published var repositories: AuthenticationRepositories?
+    @Published public var isSignIn: Bool = false
+    @Published public var user: User? // TODO: 独自の型に変更したい
+    @Published public var repositories: AuthenticationRepositories?
     
     private init() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -43,7 +43,7 @@ final class Authentication: ObservableObject {
     }
     #endif
     
-    func signOut() {
+    public func signOut() {
         do {
             try Auth.auth().signOut()
         } catch {

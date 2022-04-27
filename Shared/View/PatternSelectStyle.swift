@@ -7,6 +7,8 @@
 
 // TODO: 現在、画面上では利用されていないので、どうするか考える。
 
+import Core
+
 enum PatternSelectStyle: Int, CaseIterable {
     case grid
     case list

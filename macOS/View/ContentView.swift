@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LifeGame
+import Core
 
 struct ContentView: View {
     @EnvironmentObject var gameManager: GameManager

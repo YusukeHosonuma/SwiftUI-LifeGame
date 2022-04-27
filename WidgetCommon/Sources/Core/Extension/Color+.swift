@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+public extension Color {
     static var placeholderText: Color {
         #if os(macOS)
         return Color(NSColor.placeholderTextColor)
@@ -19,7 +19,7 @@ extension Color {
     // Note:
     // beta 5 から標準で`cgColor`プロパティが用意されたが、返却値がOptional型になっており、
     // 固定値の`Color`でも変換できないことがあったので、解決されるまでは現状のextensionを残す。（beta 6）❗
-    var cgColor: CGColor {
+    func toCGColor() -> CGColor {
         #if os(macOS)
         return NSColor(self).cgColor
         #else

@@ -7,18 +7,18 @@
 
 import LifeGame
 
-enum BoardPreset: Int, CaseIterable {
+public enum BoardPreset: Int, CaseIterable {
     case nebura
     case spaceShip
     
-    var displayText: String {
+    public var displayText: String {
         switch self {
         case .spaceShip: return "Space ship"
         case .nebura:    return "Nebura"
         }
     }
 
-    var board: LifeGameBoard {
+    public var board: LifeGameBoard {
         switch self {
         case .spaceShip:
             return .init(size: 13, cells: [

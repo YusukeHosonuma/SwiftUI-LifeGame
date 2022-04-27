@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Core
 
 final class PatternLoader: ObservableObject {
     @Published var board: PatternItem?

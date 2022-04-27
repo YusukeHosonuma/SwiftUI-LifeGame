@@ -14,18 +14,18 @@ private typealias XImage = NSImage
 private typealias XImage = UIImage
 #endif
 
-struct BoardRenderImage: View {
+public struct BoardRenderImage: View {
     let board: Board<Cell>
     let cellRenderSize: Int
     let cellColor: CGColor
     
-    init(board: Board<Cell>, cellRenderSize: Int, cellColor: Color) {
+    public init(board: Board<Cell>, cellRenderSize: Int, cellColor: Color) {
         self.board = board
         self.cellRenderSize = cellRenderSize
-        self.cellColor = cellColor.cgColor
+        self.cellColor = cellColor.toCGColor()
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             Image(image: renderImage())
                 .resizable()
@@ -33,6 +33,8 @@ struct BoardRenderImage: View {
         }
     }
 
+    // MARK: Private
+    
     private func renderImage() -> XImage {
         let scale = cellRenderSize
         let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)

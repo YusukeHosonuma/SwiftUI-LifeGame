@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Core
 
 final class ApplicationRouter: ObservableObject {
     static let shared = ApplicationRouter()
