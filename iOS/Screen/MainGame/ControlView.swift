@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 import Core
 
-// TODO: 🔍 View で cancellables を必要とされること自体、良くない兆候なのかもしれない。（コード的に問題はないが）
-private var cancellables: [AnyCancellable] = []
+// FIXME: 暫定対処（現状では開放されることがないので ObservableObject などに移す）
+private var cancellables: Set<AnyCancellable> = []
 
 struct ControlView: View {
     @EnvironmentObject var gameManager: GameManager
@@ -20,7 +20,7 @@ struct ControlView: View {
     @EnvironmentObject var applicationRouter: ApplicationRouter
 
     @State var presentedSheetSelect = false
-    
+
     // MARK: View
     
     var body: some View {

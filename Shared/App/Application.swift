@@ -57,7 +57,7 @@ struct Application: App {
         // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
         
         WindowGroup {
-            configureCommonEnvironmentObject(MacRootView())
+            configure(MacRootView())
                 .environmentObject(fileManager)
         }
         .commands {
@@ -78,8 +78,7 @@ struct Application: App {
         }
         #else
         WindowGroup {
-            configureCommonEnvironmentObject(RootView())
-                .onOpenURL(perform: applicationRouter.performURL) // 🚀 Ignite
+            configure(RootView())
                 .onAppear {
                     boardManager.setLifeGameBoard(board: currentBoard)
                 }
@@ -112,7 +111,7 @@ struct Application: App {
     
     // MARK: Private
     
-    private func configureCommonEnvironmentObject<T: View>(_ view: T) -> some View {
+    private func configure<T: View>(_ view: T) -> some View {
         view
             .environmentObject(boardManager)
             .environmentObject(gameManager)
@@ -120,5 +119,13 @@ struct Application: App {
             .environmentObject(authentication)
             .environmentObject(networkMonitor)
             .environmentObject(applicationRouter)
+            //
+            // Handle launch events from widgets in the current window.
+            //
+            // 🌱 Special Thanks
+            // https://stackoverflow.com/questions/66647052/why-does-url-scheme-onopenurl-in-swiftui-always-open-a-new-window
+            //
+            .handlesExternalEvents(preferring: ["board"], allowing: ["*"])
+            .onOpenURL(perform: applicationRouter.performURL) // 🚀 Ignite
     }
 }
