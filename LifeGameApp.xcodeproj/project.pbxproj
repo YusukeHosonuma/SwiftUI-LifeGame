@@ -269,16 +269,11 @@
 		702AFB3B2812C5A600AAC024 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		702AFB3D2812C5A600AAC024 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		702AFB542812C65A00AAC024 /* LifeGameWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LifeGameWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		702AFB662812C68000AAC024 /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
-		702AFB672812C68000AAC024 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		702AFB682812C68000AAC024 /* LifeGameWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeGameWidget.swift; sourceTree = "<group>"; };
 		702AFB6A2812C68000AAC024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		702AFB6B2812C68000AAC024 /* LifeGameConfig.intentdefinition */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.intentdefinition; path = LifeGameConfig.intentdefinition; sourceTree = "<group>"; };
 		702AFB6C2812C68000AAC024 /* LifeGameWidgetExtension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = LifeGameWidgetExtension.entitlements; sourceTree = "<group>"; };
 		702AFB6D2812C68000AAC024 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		702AFB6E2812C68000AAC024 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		702AFB6F2812C68000AAC024 /* WidgetFamily+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WidgetFamily+.swift"; sourceTree = "<group>"; };
-		702AFB702812C68000AAC024 /* TimelineEntryGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryGenerator.swift; sourceTree = "<group>"; };
 		702AFBA02812CC6400AAC024 /* macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		702AFBA12812CC6400AAC024 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		702AFBA32812CC6400AAC024 /* LifeGameFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeGameFileManager.swift; sourceTree = "<group>"; };
@@ -750,7 +745,6 @@
 		702AFB572812C65A00AAC024 /* LifeGameWidget */ = {
 			isa = PBXGroup;
 			children = (
-				703498472818C66200A96E66 /* _ */,
 				702AFB692812C68000AAC024 /* Resources */,
 				702AFB682812C68000AAC024 /* LifeGameWidget.swift */,
 			);
@@ -761,7 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				702AFB6A2812C68000AAC024 /* Assets.xcassets */,
-				702AFB6B2812C68000AAC024 /* LifeGameConfig.intentdefinition */,
 				702AFB6C2812C68000AAC024 /* LifeGameWidgetExtension.entitlements */,
 				702AFB6D2812C68000AAC024 /* Info.plist */,
 			);
@@ -821,10 +814,8 @@
 		702B19732818A13100F48012 /* LifeGameMacWidget */ = {
 			isa = PBXGroup;
 			children = (
+				70D3F9B32818CE9600F3C775 /* Resources */,
 				702B19742818A13100F48012 /* LifeGameMacWidget.swift */,
-				702B19772818A13200F48012 /* Assets.xcassets */,
-				702B19792818A13200F48012 /* Info.plist */,
-				702B197A2818A13200F48012 /* LifeGameMacWidget.entitlements */,
 			);
 			path = LifeGameMacWidget;
 			sourceTree = "<group>";
@@ -832,22 +823,21 @@
 		7034983D2818BE4A00A96E66 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				702AFB6B2812C68000AAC024 /* LifeGameConfig.intentdefinition */,
 				7034983F2818BE6500A96E66 /* EntryView.swift */,
 				7034983E2818BE6500A96E66 /* Provider.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
 		};
-		703498472818C66200A96E66 /* _ */ = {
+		70D3F9B32818CE9600F3C775 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				702AFB662812C68000AAC024 /* EntryView.swift */,
-				702AFB702812C68000AAC024 /* TimelineEntryGenerator.swift */,
-				702AFB6F2812C68000AAC024 /* WidgetFamily+.swift */,
-				702AFB672812C68000AAC024 /* Entry.swift */,
-				702AFB6E2812C68000AAC024 /* Provider.swift */,
+				702B19772818A13200F48012 /* Assets.xcassets */,
+				702B19792818A13200F48012 /* Info.plist */,
+				702B197A2818A13200F48012 /* LifeGameMacWidget.entitlements */,
 			);
-			path = _;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1502,7 +1492,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.penginmura.LifeGameApp.LifeGameWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1532,7 +1522,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.penginmura.LifeGameApp.LifeGameWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1549,14 +1539,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = LifeGameMacWidget/LifeGameMacWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LifeGameMacWidget/Resources/LifeGameMacWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = LifeGameMacWidget/Info.plist;
+				INFOPLIST_FILE = LifeGameMacWidget/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LifeGameMacWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1580,13 +1570,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = LifeGameMacWidget/LifeGameMacWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LifeGameMacWidget/Resources/LifeGameMacWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P437HSA6PY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = LifeGameMacWidget/Info.plist;
+				INFOPLIST_FILE = LifeGameMacWidget/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LifeGameMacWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
