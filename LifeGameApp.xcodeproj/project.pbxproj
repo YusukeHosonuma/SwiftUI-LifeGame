@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		702AF9E82812B74100AAC024 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = 702AF9E72812B74100AAC024 /* LifeGame */; };
 		702AF9EB2812B7C700AAC024 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 702AF9EA2812B7C700AAC024 /* FirebaseFirestore */; };
 		702AF9ED2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 702AF9EC2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta */; };
 		702AFA152812B7F300AAC024 /* SpeedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AF9F82812B7F300AAC024 /* SpeedControlView.swift */; };
@@ -109,7 +108,6 @@
 		702AFB0A2812B9B500AAC024 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB092812B9B500AAC024 /* FirebaseAuth */; };
 		702AFB1C2812BA0E00AAC024 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFB0C2812BA0E00AAC024 /* LifeGameCommands.swift */; };
 		702AFB272812BBC500AAC024 /* LifeGameCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFB0C2812BA0E00AAC024 /* LifeGameCommands.swift */; };
-		702AFB2A2812BF2A00AAC024 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB292812BF2A00AAC024 /* LifeGame */; };
 		702AFB2C2812BF4800AAC024 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB2B2812BF4800AAC024 /* FirebaseAuth */; };
 		702AFB2E2812BF5300AAC024 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB2D2812BF5300AAC024 /* FirebaseFirestore */; };
 		702AFB302812BF5300AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB2F2812BF5300AAC024 /* FirebaseFirestoreSwift-Beta */; };
@@ -126,7 +124,6 @@
 		702AFB7D2812C6DA00AAC024 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB7C2812C6DA00AAC024 /* FirebaseFirestore */; };
 		702AFB7F2812C6DA00AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB7E2812C6DA00AAC024 /* FirebaseFirestoreSwift-Beta */; };
 		702AFB812812C72600AAC024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 702AFA2B2812B83900AAC024 /* GoogleService-Info.plist */; };
-		702AFB9D2812CB9400AAC024 /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = 702AFB9C2812CB9400AAC024 /* LifeGame */; };
 		702AFBB12812CC6400AAC024 /* LifeGameFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBA32812CC6400AAC024 /* LifeGameFileManager.swift */; };
 		702AFBB22812CC6400AAC024 /* MacRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBA52812CC6400AAC024 /* MacRootView.swift */; };
 		702AFBB32812CC6400AAC024 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702AFBA62812CC6400AAC024 /* PreferenceView.swift */; };
@@ -146,17 +143,16 @@
 		702F85752818ABDE005CFDAC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 702F85742818ABDE005CFDAC /* FirebaseAuth */; };
 		702F85772818ABDE005CFDAC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 702F85762818ABDE005CFDAC /* FirebaseFirestore */; };
 		702F85792818ABDE005CFDAC /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 702F85782818ABDE005CFDAC /* FirebaseFirestoreSwift-Beta */; };
-		702F857B2818ABEE005CFDAC /* LifeGame in Frameworks */ = {isa = PBXBuildFile; productRef = 702F857A2818ABEE005CFDAC /* LifeGame */; };
 		703498402818BE6B00A96E66 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034983F2818BE6500A96E66 /* EntryView.swift */; };
 		703498412818BE6B00A96E66 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034983E2818BE6500A96E66 /* Provider.swift */; };
-		703498432818C25200A96E66 /* WidgetCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 703498422818C25200A96E66 /* WidgetCommon */; };
 		703498442818C47B00A96E66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 702AFA2B2812B83900AAC024 /* GoogleService-Info.plist */; };
-		703498462818C64600A96E66 /* WidgetCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 703498452818C64600A96E66 /* WidgetCommon */; };
 		703498482818C67600A96E66 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034983F2818BE6500A96E66 /* EntryView.swift */; };
 		703498492818C67600A96E66 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034983E2818BE6500A96E66 /* Provider.swift */; };
 		7034984D2818C6F600A96E66 /* WidgetCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 7034984C2818C6F600A96E66 /* WidgetCommon */; };
 		705587692813964B002C3147 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 705587682813964B002C3147 /* FirebaseCrashlytics */; };
 		7055876D28139A23002C3147 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7055876C28139A23002C3147 /* FirebaseCrashlytics */; };
+		70891E812818FF6F00B7AD02 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 70891E802818FF6F00B7AD02 /* Core */; };
+		70891E83281901F000B7AD02 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 70891E82281901F000B7AD02 /* Core */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,10 +296,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				702AF9ED2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				702AF9E82812B74100AAC024 /* LifeGame in Frameworks */,
 				705587692813964B002C3147 /* FirebaseCrashlytics in Frameworks */,
-				703498462818C64600A96E66 /* WidgetCommon in Frameworks */,
 				702AF9EB2812B7C700AAC024 /* FirebaseFirestore in Frameworks */,
+				70891E812818FF6F00B7AD02 /* Core in Frameworks */,
 				702AFB0A2812B9B500AAC024 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,12 +307,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				702AFB2A2812BF2A00AAC024 /* LifeGame in Frameworks */,
 				702AFB302812BF5300AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				7055876D28139A23002C3147 /* FirebaseCrashlytics in Frameworks */,
-				703498432818C25200A96E66 /* WidgetCommon in Frameworks */,
 				702AFB2C2812BF4800AAC024 /* FirebaseAuth in Frameworks */,
 				702AFB2E2812BF5300AAC024 /* FirebaseFirestore in Frameworks */,
+				70891E83281901F000B7AD02 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +321,6 @@
 			files = (
 				702AFB562812C65A00AAC024 /* SwiftUI.framework in Frameworks */,
 				702AFB7D2812C6DA00AAC024 /* FirebaseFirestore in Frameworks */,
-				702AFB9D2812CB9400AAC024 /* LifeGame in Frameworks */,
 				702AFB7F2812C6DA00AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				702AFB7B2812C6D000AAC024 /* FirebaseAuth in Frameworks */,
 				7034984D2818C6F600A96E66 /* WidgetCommon in Frameworks */,
@@ -340,7 +333,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				702F85722818AA51005CFDAC /* WidgetCommon in Frameworks */,
-				702F857B2818ABEE005CFDAC /* LifeGame in Frameworks */,
 				702B19722818A13100F48012 /* SwiftUI.framework in Frameworks */,
 				702B19712818A13100F48012 /* WidgetKit.framework in Frameworks */,
 				702F85792818ABDE005CFDAC /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -860,12 +852,11 @@
 			);
 			name = "LifeGameApp (iOS)";
 			packageProductDependencies = (
-				702AF9E72812B74100AAC024 /* LifeGame */,
 				702AF9EA2812B7C700AAC024 /* FirebaseFirestore */,
 				702AF9EC2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta */,
 				702AFB092812B9B500AAC024 /* FirebaseAuth */,
 				705587682813964B002C3147 /* FirebaseCrashlytics */,
-				703498452818C64600A96E66 /* WidgetCommon */,
+				70891E802818FF6F00B7AD02 /* Core */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = 702AF9CF2812B6D100AAC024 /* LifeGameApp.app */;
@@ -888,12 +879,11 @@
 			);
 			name = "LifeGameApp (macOS)";
 			packageProductDependencies = (
-				702AFB292812BF2A00AAC024 /* LifeGame */,
 				702AFB2B2812BF4800AAC024 /* FirebaseAuth */,
 				702AFB2D2812BF5300AAC024 /* FirebaseFirestore */,
 				702AFB2F2812BF5300AAC024 /* FirebaseFirestoreSwift-Beta */,
 				7055876C28139A23002C3147 /* FirebaseCrashlytics */,
-				703498422818C25200A96E66 /* WidgetCommon */,
+				70891E82281901F000B7AD02 /* Core */,
 			);
 			productName = "LifeGameApp (macOS)";
 			productReference = 702AF9D52812B6D200AAC024 /* LifeGameApp.app */;
@@ -916,7 +906,6 @@
 				702AFB7A2812C6D000AAC024 /* FirebaseAuth */,
 				702AFB7C2812C6DA00AAC024 /* FirebaseFirestore */,
 				702AFB7E2812C6DA00AAC024 /* FirebaseFirestoreSwift-Beta */,
-				702AFB9C2812CB9400AAC024 /* LifeGame */,
 				7034984C2818C6F600A96E66 /* WidgetCommon */,
 			);
 			productName = LifeGameWidgetExtension;
@@ -941,7 +930,6 @@
 				702F85742818ABDE005CFDAC /* FirebaseAuth */,
 				702F85762818ABDE005CFDAC /* FirebaseFirestore */,
 				702F85782818ABDE005CFDAC /* FirebaseFirestoreSwift-Beta */,
-				702F857A2818ABEE005CFDAC /* LifeGame */,
 			);
 			productName = LifeGameMacWidgetExtension;
 			productReference = 702B19702818A13100F48012 /* LifeGameMacWidgetExtension.appex */;
@@ -1665,11 +1653,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		702AF9E72812B74100AAC024 /* LifeGame */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */;
-			productName = LifeGame;
-		};
 		702AF9EA2812B7C700AAC024 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1684,11 +1667,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		702AFB292812BF2A00AAC024 /* LifeGame */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */;
-			productName = LifeGame;
 		};
 		702AFB2B2812BF4800AAC024 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1720,11 +1698,6 @@
 			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		702AFB9C2812CB9400AAC024 /* LifeGame */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */;
-			productName = LifeGame;
-		};
 		702F85712818AA51005CFDAC /* WidgetCommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WidgetCommon;
@@ -1744,19 +1717,6 @@
 			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		702F857A2818ABEE005CFDAC /* LifeGame */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */;
-			productName = LifeGame;
-		};
-		703498422818C25200A96E66 /* WidgetCommon */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WidgetCommon;
-		};
-		703498452818C64600A96E66 /* WidgetCommon */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WidgetCommon;
-		};
 		7034984C2818C6F600A96E66 /* WidgetCommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WidgetCommon;
@@ -1770,6 +1730,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		70891E802818FF6F00B7AD02 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		70891E82281901F000B7AD02 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

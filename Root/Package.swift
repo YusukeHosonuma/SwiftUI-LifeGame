@@ -4,12 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "WidgetCommon",
+    name: "Root",
     platforms: [
         .iOS(.v14),
         .macOS(.v11),
     ],
     products: [
+        .library(name: "Core", targets: ["Core"]),
         .library(name: "WidgetCommon", targets: ["WidgetCommon"]),
     ],
     dependencies: [
@@ -18,16 +19,13 @@ let package = Package(
     ],
     targets: [
         .target(name: "Core", dependencies: [
+            "LifeGame",
             .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
             .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
             .product(name: "FirebaseFirestoreSwift-Beta", package: "firebase-ios-sdk"),
         ]),
         .target(name: "WidgetCommon", dependencies: [
             "Core",
-            "LifeGame",
         ]),
-        .testTarget(
-            name: "WidgetCommonTests",
-            dependencies: ["WidgetCommon"]),
     ]
 )
