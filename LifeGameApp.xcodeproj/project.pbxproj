@@ -153,6 +153,7 @@
 		7055876D28139A23002C3147 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7055876C28139A23002C3147 /* FirebaseCrashlytics */; };
 		70891E812818FF6F00B7AD02 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 70891E802818FF6F00B7AD02 /* Core */; };
 		70891E83281901F000B7AD02 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 70891E82281901F000B7AD02 /* Core */; };
+		70F6A71C281E100000E5375E /* SwiftUISimulator in Frameworks */ = {isa = PBXBuildFile; productRef = 70F6A71B281E100000E5375E /* SwiftUISimulator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +289,7 @@
 		702B197A2818A13200F48012 /* LifeGameMacWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LifeGameMacWidget.entitlements; sourceTree = "<group>"; };
 		7034983E2818BE6500A96E66 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7034983F2818BE6500A96E66 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		709D739A281E145200EF7115 /* SwiftUI-Simulator */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SwiftUI-Simulator"; path = "../SwiftUI-Simulator"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				702AF9ED2812B7C700AAC024 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				70F6A71C281E100000E5375E /* SwiftUISimulator in Frameworks */,
 				705587692813964B002C3147 /* FirebaseCrashlytics in Frameworks */,
 				702AF9EB2812B7C700AAC024 /* FirebaseFirestore in Frameworks */,
 				70891E812818FF6F00B7AD02 /* Core in Frameworks */,
@@ -347,6 +350,7 @@
 		702AF9C22812B6D000AAC024 = {
 			isa = PBXGroup;
 			children = (
+				709D739A281E145200EF7115 /* SwiftUI-Simulator */,
 				702AFA282812B83900AAC024 /* Shared */,
 				702AF9EE2812B7F300AAC024 /* iOS */,
 				702AFB9E2812CC6400AAC024 /* macOS */,
@@ -857,6 +861,7 @@
 				702AFB092812B9B500AAC024 /* FirebaseAuth */,
 				705587682813964B002C3147 /* FirebaseCrashlytics */,
 				70891E802818FF6F00B7AD02 /* Core */,
+				70F6A71B281E100000E5375E /* SwiftUISimulator */,
 			);
 			productName = "LifeGameApp (iOS)";
 			productReference = 702AF9CF2812B6D100AAC024 /* LifeGameApp.app */;
@@ -971,6 +976,7 @@
 			packageReferences = (
 				702AF9E62812B74100AAC024 /* XCRemoteSwiftPackageReference "LifeGame" */,
 				702AF9E92812B7C700AAC024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				70F6A71A281E100000E5375E /* XCRemoteSwiftPackageReference "SwiftUI-Simulator" */,
 			);
 			productRefGroup = 702AF9D02812B6D100AAC024 /* Products */;
 			projectDirPath = "";
@@ -1650,6 +1656,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		70F6A71A281E100000E5375E /* XCRemoteSwiftPackageReference "SwiftUI-Simulator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/YusukeHosonuma/SwiftUI-Simulator.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1738,6 +1752,11 @@
 		70891E82281901F000B7AD02 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		70F6A71B281E100000E5375E /* SwiftUISimulator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 70F6A71A281E100000E5375E /* XCRemoteSwiftPackageReference "SwiftUI-Simulator" */;
+			productName = SwiftUISimulator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

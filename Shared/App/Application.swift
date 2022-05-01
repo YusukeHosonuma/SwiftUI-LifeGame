@@ -11,6 +11,9 @@ import FirebaseAuth
 import FirebaseCore
 import LifeGame
 import Core
+#if DEBUG && os(iOS)
+import SwiftUISimulator
+#endif
 
 @main
 struct Application: App {
@@ -57,8 +60,7 @@ struct Application: App {
         // 現時点では仕様なのかバグなのか、他にやり方があるのかは不明。
         
         WindowGroup {
-            configure(MacRootView())
-                .environmentObject(fileManager)
+            content()
         }
         .commands {
             // Note: ✅
@@ -78,27 +80,13 @@ struct Application: App {
         }
         #else
         WindowGroup {
-            configure(RootView())
-                .onAppear {
-                    boardManager.setLifeGameBoard(board: currentBoard)
-                }
-                .onChange(of: scenePhase) { phase in
-                    switch phase {
-                    case .active:
-                        AppLogger.appLifecycle.info("Will active...")
-                        
-                    case .inactive:
-                        AppLogger.appLifecycle.info("Will inactive...")
-                        gameManager.stop()
-                        currentBoard = boardManager.board // タスクスイッチャーから直接killされると`background`を介さないのでここで保存
-
-                    case .background:
-                        AppLogger.appLifecycle.info("Will background...")
-
-                    @unknown default:
-                        fatalError()
-                    }
-                }
+            #if DEBUG
+            SimulatorView {
+                content()
+            }
+            #else
+            content()
+            #endif
         }
         .commands {
             // Note:
@@ -110,6 +98,35 @@ struct Application: App {
     }
     
     // MARK: Private
+    
+    private func content() -> some View {
+        #if os(macOS)
+        configure(MacRootView())
+            .environmentObject(fileManager)
+        #else
+        configure(RootView())
+            .onAppear {
+                boardManager.setLifeGameBoard(board: currentBoard)
+            }
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .active:
+                    AppLogger.appLifecycle.info("Will active...")
+                    
+                case .inactive:
+                    AppLogger.appLifecycle.info("Will inactive...")
+                    gameManager.stop()
+                    currentBoard = boardManager.board // タスクスイッチャーから直接killされると`background`を介さないのでここで保存
+
+                case .background:
+                    AppLogger.appLifecycle.info("Will background...")
+
+                @unknown default:
+                    fatalError()
+                }
+            }
+        #endif
+    }
     
     private func configure<T: View>(_ view: T) -> some View {
         view
