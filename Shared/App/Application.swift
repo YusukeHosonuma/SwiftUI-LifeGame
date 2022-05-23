@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Firebase
 import FirebaseAuth
 import FirebaseCore
 import LifeGame
