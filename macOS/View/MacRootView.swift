@@ -8,6 +8,7 @@
 import SwiftUI
 import Core
 import Combine
+import SwiftUICommon
 
 extension MacRootView {
     private enum SheetType: Int, Identifiable {

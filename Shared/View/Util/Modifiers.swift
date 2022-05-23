@@ -12,9 +12,3 @@ extension Text {
         self.foregroundColor(.secondary).padding()
     }
 }
-
-extension View {
-    func enabled(_ condition: Bool) -> some View {
-        self.disabled(!condition)
-    }
-}
