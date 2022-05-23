@@ -47,12 +47,12 @@ struct PhotoPicker: UIViewControllerRepresentable {
             if provider.canLoadObject(ofClass: UIImage.self) {
                 provider.loadObject(ofClass: UIImage.self) { (image, error) in
                     if let error = error {
-                        print("error: \(error.localizedDescription)")
+                        Swift.print("error: \(error.localizedDescription)")
                         return
                     }
                     
                     guard let image = image as? UIImage else {
-                        print("error: image is not UIImage")
+                        Swift.print("error: image is not UIImage")
                         return
                     }
                     
