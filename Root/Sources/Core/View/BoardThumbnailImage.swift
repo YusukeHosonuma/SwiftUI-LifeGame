@@ -25,15 +25,16 @@ public struct BoardThumbnailImage: View {
     private let board: Board<Cell>
     private let cellColor: Color?
     private let cacheKey: String?
+    private let scale: Int
     
     public init(board: Board<Cell>, cellColor: Color? = nil, cacheKey: String? = nil) {
         self.board = board.extended(by: .die, count: 1)
         self.cellColor = cellColor
         self.cacheKey = cacheKey
+        self.scale = max(2, 140 / board.size)
     }
     
     public var body: some View {
-        let scale = max(2, 140 / board.size)
         let renderWidth = CGFloat(board.size * scale + 1)
         
         if reasons.isEmpty == false {
@@ -43,35 +44,38 @@ public struct BoardThumbnailImage: View {
         } else {
             Canvas { canvasContext, size in
                 canvasContext.scaleBy(x: size.width / renderWidth, y: size.height / renderWidth)
-                canvasContext.withCGContext { context in
-                    context.setFillColor(fillColor)
-                    
-                    for (index, cell) in board.cells.enumerated() {
-                        let x = (index % board.size) * scale
-                        let y = (index / board.size) * scale
-                        if cell == .alive {
-                            context.fill(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: scale, height: scale)))
-                        }
-                    }
-                    
-                    // Draw grid
-                    context.setFillColor(gridColor)
-                    for index in 0...board.size + 1 {
-                        let length = board.size * scale + 1
-                        context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
-                        context.fill(CGRect(x: 0, y: scale * index, width: length, height: 1)) // horizontal lines
-                    }
-                }
+                canvasContext.withCGContext(content: renderThumbnail)
             }
             .scaledToFit()
         }
 
         // TODO: いったん既存のキャッシュ処理は無効化（必要そうだったらまた考える）
+        //
+        // Image(image: thumbnailImage)
+        //     .antialiased(false)
+        //     .resizable()
+        //     .scaledToFit()
+    }
+    
+    private func renderThumbnail(context: CGContext) {
+        context.setFillColor(fillColor)
         
-//        Image(image: thumbnailImage)
-//            .antialiased(false)
-//            .resizable()
-//            .scaledToFit()
+        // Draw cells
+        for (index, cell) in board.cells.enumerated() {
+            let x = (index % board.size) * scale
+            let y = (index / board.size) * scale
+            if cell == .alive {
+                context.fill(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: scale, height: scale)))
+            }
+        }
+        
+        // Draw grid
+        context.setFillColor(gridColor)
+        for index in 0...board.size + 1 {
+            let length = board.size * scale + 1
+            context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
+            context.fill(CGRect(x: 0, y: scale * index, width: length, height: 1)) // horizontal lines
+        }
     }
     
     // MARK: Private
