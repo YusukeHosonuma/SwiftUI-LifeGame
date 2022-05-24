@@ -8,6 +8,8 @@
 import SwiftUI
 
 public extension Color {
+    static let gridLine = Color.gray.opacity(0.3)
+
     static var placeholderText: Color {
         #if os(macOS)
         return Color(NSColor.placeholderTextColor)
