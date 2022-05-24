@@ -8,12 +8,6 @@
 import SwiftUI
 import LifeGame
 
-#if os(macOS)
-private typealias XImage = NSImage
-#else
-private typealias XImage = UIImage
-#endif
-
 public struct BoardRenderImage: View {
     let board: Board<Cell>
     let cellRenderSize: Int
@@ -26,41 +20,38 @@ public struct BoardRenderImage: View {
     }
     
     public var body: some View {
-        ZStack {
-            Image(image: renderImage())
-                .resizable()
-            BoardGridImage(cellRenderSize: cellRenderSize, boardSize: board.size)
-        }
-    }
+        let scale = CGFloat(cellRenderSize)
+        let boardSize = CGFloat(board.size)
+        let renderWidth = boardSize * scale + 1
 
-    // MARK: Private
-    
-    private func renderImage() -> XImage {
-        let scale = cellRenderSize
-        let size = CGSize(width: board.size * scale + 1, height: board.size * scale + 1)
-        
-        return GraphicsImageRenderer(size: size)
-            .image { context in
-                context.setFillColor(cellColor)
-                
-                #warning("すべてのセルを走査してるためパフォーマンス的には悪い。")
-                
-                // Note:
-                // ライフゲームの性質上、空白のセルは多めになるので、その分だけ走査コストを減らすことができる。
-                // （ただしその為には内部のデータ構造を見直す必要がある）
-                //
-                // しかし、パフォーマンス上のボトルネックがここなのか判断がつかないので、
-                // Instruments でパフォーマンスを計測してから対応したほうがよさそう。
-                
-                // Draw cells
-                for (index, cell) in board.cells.enumerated() {
-                    if cell == .alive {
-                        let x = (index % board.size) * scale
-                        let y = (index / board.size) * scale
-                        context.fill(CGRect(origin: CGPoint(x: x + 1, y: y + 1), size: CGSize(width: scale - 1, height: scale - 1)))
+        ZStack {
+            Canvas { canvasContext, size in
+                canvasContext.scaleBy(x: size.width / renderWidth, y: size.height / renderWidth)
+                canvasContext.withCGContext { context in
+                    context.setFillColor(cellColor)
+                    
+                    #warning("すべてのセルを走査してるためパフォーマンス的には悪い。")
+                    
+                    // Note:
+                    // ライフゲームの性質上、空白のセルは多めになるので、その分だけ走査コストを減らすことができる。
+                    // （ただしその為には内部のデータ構造を見直す必要がある）
+                    //
+                    // しかし、パフォーマンス上のボトルネックがここなのか判断がつかないので、
+                    // Instruments でパフォーマンスを計測してから対応したほうがよさそう。
+                    
+                    // Draw cells
+                    for (index, cell) in board.cells.enumerated() {
+                        if cell == .alive {
+                            let x = CGFloat(index % board.size) * scale
+                            let y = CGFloat(index / board.size) * scale
+                            context.fill(CGRect(origin: CGPoint(x: x + 1, y: y + 1), size: CGSize(width: scale - 1, height: scale - 1)))
+                        }
                     }
                 }
             }
+            
+            BoardGridImage(cellRenderSize: cellRenderSize, boardSize: board.size)
+        }
     }
 }
 

@@ -6,12 +6,7 @@
 //
 
 import SwiftUI
-
-#if os(macOS)
-private typealias XImage = NSImage
-#else
-private typealias XImage = UIImage
-#endif
+private let borderWidth: CGFloat = 1.0 // FIXME: `1.0`だと 128 x 128 で一部の線が描画されない
 
 struct BoardGridImage: View {
     let cellRenderSize: Int
@@ -20,25 +15,24 @@ struct BoardGridImage: View {
     private let gridColor: CGColor = Color.gray.opacity(0.3).toCGColor()
 
     var body: some View {
-        Image(image: renderImage())
-            .resizable()
-    }
-    
-    private func renderImage() -> XImage {
         let scale = cellRenderSize
-        let size = CGSize(width: boardSize * scale + 1, height: boardSize * scale + 1)
+        let renderWidth = CGFloat(boardSize * scale + 1)
         
-        return GraphicsImageRenderer(size: size)
-            .image { context in
+        Canvas { canvasContext, size in
+            canvasContext.scaleBy(x: size.width / renderWidth, y: size.height / renderWidth)
+            canvasContext.withCGContext { context in
                 context.setFillColor(gridColor)
 
                 // Draw grids
                 for index in 0...boardSize + 1 {
-                    let length = boardSize * scale + 1
-                    context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
-                    context.fill(CGRect(x: 0, y: scale * index, width: length, height: 1)) // horizontal lines
+                    let length = CGFloat(boardSize * scale) + borderWidth
+                    context.fill(CGRect(x: CGFloat(scale * index), y: 0, width: borderWidth, height: length)) // vertical lines
+                    context.fill(CGRect(x: 0, y: CGFloat(scale * index), width: length, height: borderWidth)) // horizontal lines
                 }
+                
+                context.makeImage()
             }
+        }
     }
 }
 
