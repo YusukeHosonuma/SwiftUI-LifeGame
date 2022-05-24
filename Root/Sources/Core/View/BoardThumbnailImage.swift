@@ -8,13 +8,13 @@
 import SwiftUI
 import LifeGame
 
-#if os(macOS)
-private typealias XImage = NSImage
-#else
-private typealias XImage = UIImage
-#endif
-
-private let cacheStorage = MemoryCacheStorage<XImage>()
+//#if os(macOS)
+//private typealias XImage = NSImage
+//#else
+//private typealias XImage = UIImage
+//#endif
+//
+//private let cacheStorage = MemoryCacheStorage<XImage>()
 
 // TODO: 内部的に BoardRenderImage を利用するようにしたい。
 
