@@ -34,6 +34,14 @@ public struct BoardThumbnailImage: View {
         self.scale = max(2, 140 / board.size)
     }
     
+    private var fillColor: Color {
+        if let color = cellColor {
+            return color
+        } else {
+            return colorScheme == .dark ? .white : .black
+        }
+    }
+    
     public var body: some View {
         let renderWidth = CGFloat(board.size * scale + 1)
         
@@ -68,13 +76,13 @@ public struct BoardThumbnailImage: View {
                     // Vertical lines
                     context.fill(
                         Path(CGRect(x: scale * index, y: 0, width: 1, height: length)),
-                        with: .color(gridColor)
+                        with: .color(.gridLine)
                     )
 
                     // Horizontal lines
                     context.fill(
                         Path(CGRect(x: 0, y: scale * index, width: length, height: 1)),
-                        with: .color(gridColor)
+                        with: .color(.gridLine)
                     )
                 }
             }
@@ -89,22 +97,6 @@ public struct BoardThumbnailImage: View {
         //     .scaledToFit()
     }
 
-    // MARK: Private
-    
-    private var fillColor: Color {
-        if let color = cellColor {
-            return color
-        } else {
-            return colorScheme == .dark
-                ? Color.white
-                : Color.black
-        }
-    }
-    
-    private var gridColor: Color {
-        Color.gray.opacity(0.3)
-    }
-    
 //    private var thumbnailImage: XImage {
 //        guard let cacheKey = cacheKey else {
 //            return renderImage()

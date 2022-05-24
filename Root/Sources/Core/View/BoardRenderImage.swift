@@ -8,7 +8,6 @@
 import SwiftUI
 import LifeGame
 
-private let gridColor: Color = .gray.opacity(0.3)
 private let gridLineWidth: CGFloat = 1.5 // `1.0`だと 128 x 128 で一部の線が描画されない
 
 public struct BoardRenderImage: View {
@@ -63,13 +62,13 @@ public struct BoardRenderImage: View {
                 // Vertical lines
                 context.fill(
                     Path(CGRect(x: scale * index, y: 0, width: gridLineWidth, height: length)),
-                    with: .color(gridColor)
+                    with: .color(.gridLine)
                 )
 
                 // Horizontal lines
                 context.fill(
                     Path(CGRect(x: 0, y: scale * index, width: length, height: gridLineWidth)),
-                    with: .color(gridColor)
+                    with: .color(.gridLine)
                 )
             }
         }
