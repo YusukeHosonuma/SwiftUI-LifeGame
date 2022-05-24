@@ -42,9 +42,41 @@ public struct BoardThumbnailImage: View {
             Color.gray.opacity(0.3)
                 .scaledToFit()
         } else {
-            Canvas { canvasContext, size in
-                canvasContext.scaleBy(x: size.width / renderWidth, y: size.height / renderWidth)
-                canvasContext.withCGContext(content: renderThumbnail)
+            Canvas { context, size in
+                context.scaleBy(x: size.width / renderWidth, y: size.height / renderWidth)
+                
+                //
+                // Render cells.
+                //
+                for (index, cell) in board.cells.enumerated() {
+                    let x = (index % board.size) * scale
+                    let y = (index / board.size) * scale
+                    if cell == .alive {
+                        context.fill(
+                            Path(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: scale, height: scale))),
+                            with: .color(fillColor)
+                        )
+                    }
+                }
+                
+                //
+                // Render grid.
+                //
+                for index in 0...board.size + 1 {
+                    let length = board.size * scale + 1
+                    
+                    // Vertical lines
+                    context.fill(
+                        Path(CGRect(x: scale * index, y: 0, width: 1, height: length)),
+                        with: .color(gridColor)
+                    )
+
+                    // Horizontal lines
+                    context.fill(
+                        Path(CGRect(x: 0, y: scale * index, width: length, height: 1)),
+                        with: .color(gridColor)
+                    )
+                }
             }
             .scaledToFit()
         }
@@ -56,42 +88,21 @@ public struct BoardThumbnailImage: View {
         //     .resizable()
         //     .scaledToFit()
     }
-    
-    private func renderThumbnail(context: CGContext) {
-        context.setFillColor(fillColor)
-        
-        // Draw cells
-        for (index, cell) in board.cells.enumerated() {
-            let x = (index % board.size) * scale
-            let y = (index / board.size) * scale
-            if cell == .alive {
-                context.fill(CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: scale, height: scale)))
-            }
-        }
-        
-        // Draw grid
-        context.setFillColor(gridColor)
-        for index in 0...board.size + 1 {
-            let length = board.size * scale + 1
-            context.fill(CGRect(x: scale * index, y: 0, width: 1, height: length)) // vertical lines
-            context.fill(CGRect(x: 0, y: scale * index, width: length, height: 1)) // horizontal lines
-        }
-    }
-    
+
     // MARK: Private
     
-    private var fillColor: CGColor {
+    private var fillColor: Color {
         if let color = cellColor {
-            return color.toCGColor()
+            return color
         } else {
             return colorScheme == .dark
-                ? Color.white.toCGColor()
-                : Color.black.toCGColor()
+                ? Color.white
+                : Color.black
         }
     }
     
-    private var gridColor: CGColor {
-        Color.gray.opacity(0.3).toCGColor()
+    private var gridColor: Color {
+        Color.gray.opacity(0.3)
     }
     
 //    private var thumbnailImage: XImage {
